@@ -32,7 +32,7 @@ public class DemoForm extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new java.awt.FlowLayout());
 
-        jLabel1.setText("jLabel1");
+        jLabel1.setText("Label");
         getContentPane().add(jLabel1);
 
         jButton1.setText("jButton1");
