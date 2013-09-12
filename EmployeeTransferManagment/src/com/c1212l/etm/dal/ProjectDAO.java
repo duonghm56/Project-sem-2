@@ -5,6 +5,7 @@
 package com.c1212l.etm.dal;
 
 import com.c1212l.etm.beans.Project;
+import java.sql.CallableStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -32,5 +33,37 @@ public class ProjectDAO extends ConnectionTool{
         closeConnection();
         return result;
     }
+    
+    public void addProject(Project project) throws ClassNotFoundException, SQLException{
+        initConnection();
+        CallableStatement cs = conn.prepareCall("call addProject(?, ?, ?)");
+        cs.setString(1, project.getProjectName());
+        cs.setDate(2, project.getCreateDate());
+        cs.setDate(3, project.getEndDate());
+        cs.executeUpdate();
+        closeConnection();
+    }
+    
+    public void updateProject(Project project) throws ClassNotFoundException, SQLException{
+        initConnection();
+        CallableStatement cs = conn.prepareCall("call updateProject(?, ?, ?, ?)");
+        cs.setInt(1, project.getProjectID());
+        cs.setString(2, project.getProjectName());
+        cs.setDate(3, project.getCreateDate());
+        cs.setDate(4, project.getEndDate());
+        cs.executeUpdate();
+        closeConnection();
+    }
+    
+    public void deleteProject(Project project) throws ClassNotFoundException, SQLException{
+        initConnection();
+        CallableStatement cs = conn.prepareCall("call deleteProject(?)");
+        cs.setInt(1, project.getProjectID());        
+        cs.executeUpdate();
+        closeConnection();
+    }
+    
+    
+    
     
 }
