@@ -4,3 +4,6 @@
 *.jar
 *.war
 *.ear
+/e-Project/EmployeeTransferManagment/build/
+/e-Project/EmployeeTransferManagment/dist/
+/EmployeeTransferManagment/nbproject/private/
