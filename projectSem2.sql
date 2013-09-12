@@ -1,6 +1,8 @@
---create database eproject
+create database eproject
+go
 
---use eproject
+use eproject
+go
 
 create table location(
 	locationID int primary key identity,
@@ -16,8 +18,8 @@ create table department(
 create table project(
 	projectID int primary key identity,
 	projectName nvarchar(200) unique,
-	createDate datetime,
-	endDate datetime
+	createDate date,
+	endDate date
 )
 
 create table employee(
@@ -55,6 +57,29 @@ create table [transfer](
 	toLocation int references location(locationID)
 )
 
+go
+-----------------------------------------------------------
+-- procedure cho bang project
+create procedure addProject(@name nvarchar(200), @createDate date, @endDate date)
+as begin
+	insert into project(projectName, createDate, endDate)
+		values(@name, @createDate, @endDate)
+end
+go
+
+create procedure editProject(@id int, @name nvarchar(200), @createDate data, @endDate date)
+as begin
+	update project set projectName=@name, createDate=@createDate, endDate=@endDate
+	where projectID=@id
+end
+go
+
+create procedure deleteProject(@id int)
+as begin
+	delete from project where projectID=@id
+end
+
+-----------------------------------------------------------
 go
 create procedure addLocation(@locationName nvarchar(200))
 as
