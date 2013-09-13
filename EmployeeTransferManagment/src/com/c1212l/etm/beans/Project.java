@@ -5,6 +5,7 @@
 package com.c1212l.etm.beans;
 
 import java.sql.Date;
+import java.util.Vector;
 
 /**
  *
@@ -57,5 +58,14 @@ public class Project {
 
     public Project() {
     }
-            
+    
+    public Vector getVector(){
+        Vector v = new Vector();
+        v.add(projectID);
+        v.add(projectName);
+        v.add(createDate);
+        v.add(endDate);
+        return v;
+    }
+    
 }
