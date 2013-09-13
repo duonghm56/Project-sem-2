@@ -62,8 +62,4 @@ public class ProjectDAO extends ConnectionTool{
         cs.executeUpdate();
         closeConnection();
     }
-    
-    
-    
-    
 }
