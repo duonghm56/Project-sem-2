@@ -1,0 +1,262 @@
+/*
+ * To change this template, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package DataAccess;
+
+import Bussiness.TableModelEmployee;
+import Entity.Employee;
+import java.sql.CallableStatement;
+import java.sql.Connection;
+import java.sql.Date;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.Vector;
+
+/**
+ *
+ * @author home
+ */
+public class EmployeeDAO {
+
+    private static Connection conn;
+    private static CallableStatement cs = null;
+    private static ResultSet rs = null;
+    private static Employee objEmpl = null;
+    private static Vector nameEmpl;
+
+    public EmployeeDAO() {
+    }
+
+    public static void insertEmployee(Employee objEmpl) throws SQLException {
+        conn = connection.getConnectionUrl();
+        cs = conn.prepareCall("{call spInsertEmployee(?,?,?,?,?,?,?,?,?,?,?,?,?)}");
+        cs.setString(1, objEmpl.getEmployeeName());
+        cs.setString(2, objEmpl.getUsername());
+        cs.setString(3, objEmpl.getPassword());
+        cs.setString(4, objEmpl.getEmployeeRole());
+        cs.setInt(5, objEmpl.getWorkExperience());
+        cs.setString(6, objEmpl.getAddress());
+        cs.setString(7, objEmpl.getEmail());
+        cs.setDate(8, Date.valueOf(objEmpl.getBirthday()));
+        cs.setString(9, objEmpl.getGender());
+        cs.setFloat(10, objEmpl.getAllowance());
+        cs.setInt(11, objEmpl.getLocationID());
+        cs.setInt(12, objEmpl.getDepartmentID());
+        cs.setInt(13, objEmpl.getProjectID());
+        cs.executeUpdate();
+    }
+
+    public static void updateEmployee(Employee objEmpl, int ID) throws SQLException {
+        conn = connection.getConnectionUrl();
+        cs = conn.prepareCall("{call spUpdateEmployeebyID(?,?,?,?,?,?,?,?,?,?,?,?,?,?)}");
+        cs.setString(1, objEmpl.getEmployeeName());
+        cs.setString(2, objEmpl.getUsername());
+        cs.setString(3, objEmpl.getPassword());
+        cs.setString(4, objEmpl.getEmployeeRole());
+        cs.setInt(5, objEmpl.getWorkExperience());
+        cs.setString(6, objEmpl.getAddress());
+        cs.setString(7, objEmpl.getEmail());
+        cs.setDate(8, Date.valueOf(objEmpl.getBirthday()));
+        cs.setString(9, objEmpl.getGender());
+        cs.setFloat(10, objEmpl.getAllowance());
+        cs.setInt(11, objEmpl.getLocationID());
+        cs.setInt(12, objEmpl.getDepartmentID());
+        cs.setInt(13, objEmpl.getProjectID());
+        cs.setInt(14, ID);
+        cs.executeUpdate();
+    }
+
+    public static void deleteEmployee(int ID) throws SQLException {
+        conn = connection.getConnectionUrl();
+        cs = conn.prepareCall("{call spDeleteEmployee(?)}");
+        cs.setInt(1, ID);
+        cs.executeUpdate();
+    }
+
+    public static void getEmployeeFromDB() throws SQLException {
+        conn = connection.getConnectionUrl();
+        cs = conn.prepareCall("{call spGetEmployee}");
+        rs = cs.executeQuery();
+        while (rs.next()) {
+            objEmpl = new Employee();
+            objEmpl.setEmployeeID(rs.getInt(1));
+            objEmpl.setEmployeeName(rs.getString(2));
+            objEmpl.setUsername(rs.getString(3));
+            objEmpl.setPassword(rs.getString(4));
+            objEmpl.setEmployeeRole(rs.getString(5));
+            objEmpl.setWorkExperience(rs.getInt(6));
+            objEmpl.setAddress(rs.getString(7));
+            objEmpl.setEmail(rs.getString(8));
+            objEmpl.setBirthday(rs.getDate(9).toString());
+            objEmpl.setGender(rs.getString(10));
+            objEmpl.setAllowance(rs.getFloat(11));
+            objEmpl.setLocationID(rs.getInt(12));
+            objEmpl.setDepartmentID(rs.getInt(13));
+            objEmpl.setProjectID(rs.getInt(14));
+            TableModelEmployee.addEmployee(objEmpl);
+        }
+    }
+
+    public static Vector getNameEmployee() throws SQLException {
+        conn = connection.getConnectionUrl();
+        cs = conn.prepareCall("{call spGetEmployee}");
+        rs = cs.executeQuery();
+        nameEmpl = new Vector();
+        nameEmpl.addElement("Select");
+        while (rs.next()) {
+            nameEmpl.addElement(rs.getString(2));
+        }
+        return nameEmpl;
+    }
+
+    public static Employee getEmployeeByID(int employeeID) throws SQLException {
+        conn = connection.getConnectionUrl();
+        cs = conn.prepareCall("{call spGetEmployeeByID(?)}");
+        cs.setInt(1, employeeID);
+        rs = cs.executeQuery();
+        while (rs.next()) {
+            objEmpl = new Employee();
+            objEmpl.setEmployeeID(rs.getInt(1));
+            objEmpl.setEmployeeName(rs.getString(2));
+            objEmpl.setUsername(rs.getString(3));
+            objEmpl.setPassword(rs.getString(4));
+            objEmpl.setEmployeeRole(rs.getString(5));
+            objEmpl.setWorkExperience(rs.getInt(6));
+            objEmpl.setAddress(rs.getString(7));
+            objEmpl.setEmail(rs.getString(8));
+            objEmpl.setBirthday(rs.getDate(9).toString());
+            objEmpl.setGender(rs.getString(10));
+            objEmpl.setAllowance(rs.getFloat(11));
+            objEmpl.setLocationID(rs.getInt(12));
+            objEmpl.setDepartmentID(rs.getInt(13));
+            objEmpl.setProjectID(rs.getInt(14));
+            TableModelEmployee.addEmployee(objEmpl);
+        }
+        return objEmpl;
+    }
+
+    public static void getEmployeeByName(String employeeName) throws SQLException {
+        conn = connection.getConnectionUrl();
+        cs = conn.prepareCall("{call spSearchEmployeeByName(?)}");
+        cs.setString(1, employeeName);
+        rs = cs.executeQuery();
+        while (rs.next()) {
+            objEmpl = new Employee();
+            objEmpl.setEmployeeID(rs.getInt(1));
+            objEmpl.setEmployeeName(rs.getString(2));
+            objEmpl.setUsername(rs.getString(3));
+            objEmpl.setPassword(rs.getString(4));
+            objEmpl.setEmployeeRole(rs.getString(5));
+            objEmpl.setWorkExperience(rs.getInt(6));
+            objEmpl.setAddress(rs.getString(7));
+            objEmpl.setEmail(rs.getString(8));
+            objEmpl.setBirthday(rs.getDate(9).toString());
+            objEmpl.setGender(rs.getString(10));
+            objEmpl.setAllowance(rs.getFloat(11));
+            objEmpl.setLocationID(rs.getInt(12));
+            objEmpl.setDepartmentID(rs.getInt(13));
+            objEmpl.setProjectID(rs.getInt(14));
+            TableModelEmployee.addEmployee(objEmpl);
+        }
+    }
+
+    public static int getEmployeeID(String employeeName) throws SQLException {
+        conn = connection.getConnectionUrl();
+        cs = conn.prepareCall("{call spSearchEmployeeByName(?)}");
+        cs.setString(1, employeeName);
+        rs = cs.executeQuery();
+        int employeeID = 0;
+        while (rs.next()) {
+            employeeID = rs.getInt(1);
+        }
+        return employeeID;
+    }
+
+    public static Employee getEmployee(String employeeName) throws SQLException {
+        conn = connection.getConnectionUrl();
+        cs = conn.prepareCall("{call spSearchEmployeeByName(?)}");
+        cs.setString(1, employeeName);
+        rs = cs.executeQuery();
+        Employee e = new Employee();
+        while (rs.next()) {
+            e.setLocationID(rs.getInt(12));
+            e.setDepartmentID(rs.getInt(13));
+            e.setProjectID(rs.getInt(14));
+        }
+        return e;
+    }
+
+    public static void getEmployeeByDepartment(int departmentID) throws SQLException {
+        conn = connection.getConnectionUrl();
+        cs = conn.prepareCall("{call spSearchEmployeeByDepartment(?)}");
+        cs.setInt(1, departmentID);
+        rs = cs.executeQuery();
+        while (rs.next()) {
+            objEmpl = new Employee();
+            objEmpl.setEmployeeID(rs.getInt(1));
+            objEmpl.setEmployeeName(rs.getString(2));
+            objEmpl.setUsername(rs.getString(3));
+            objEmpl.setPassword(rs.getString(4));
+            objEmpl.setEmployeeRole(rs.getString(5));
+            objEmpl.setWorkExperience(rs.getInt(6));
+            objEmpl.setAddress(rs.getString(7));
+            objEmpl.setEmail(rs.getString(8));
+            objEmpl.setBirthday(rs.getDate(9).toString());
+            objEmpl.setGender(rs.getString(10));
+            objEmpl.setAllowance(rs.getFloat(11));
+            objEmpl.setLocationID(rs.getInt(12));
+            objEmpl.setDepartmentID(rs.getInt(13));
+            objEmpl.setProjectID(rs.getInt(14));
+            TableModelEmployee.addEmployee(objEmpl);
+        }
+    }
+
+    public static void getEmployeeByProject(int projectID) throws SQLException {
+        conn = connection.getConnectionUrl();
+        cs = conn.prepareCall("{call spSearchEmployeeByProject(?)}");
+        cs.setInt(1, projectID);
+        rs = cs.executeQuery();
+        while (rs.next()) {
+            objEmpl = new Employee();
+            objEmpl.setEmployeeID(rs.getInt(1));
+            objEmpl.setEmployeeName(rs.getString(2));
+            objEmpl.setUsername(rs.getString(3));
+            objEmpl.setPassword(rs.getString(4));
+            objEmpl.setEmployeeRole(rs.getString(5));
+            objEmpl.setWorkExperience(rs.getInt(6));
+            objEmpl.setAddress(rs.getString(7));
+            objEmpl.setEmail(rs.getString(8));
+            objEmpl.setBirthday(rs.getDate(9).toString());
+            objEmpl.setGender(rs.getString(10));
+            objEmpl.setLocationID(rs.getInt(11));
+            objEmpl.setDepartmentID(rs.getInt(12));
+            objEmpl.setProjectID(rs.getInt(13));
+            TableModelEmployee.addEmployee(objEmpl);
+        }
+    }
+
+    public static void getEmployeeByLocation(int locationID) throws SQLException {
+        conn = connection.getConnectionUrl();
+        cs = conn.prepareCall("{call spSearchEmployeeByLocation(?)}");
+        cs.setInt(1, locationID);
+        rs = cs.executeQuery();
+        while (rs.next()) {
+            objEmpl = new Employee();
+            objEmpl.setEmployeeID(rs.getInt(1));
+            objEmpl.setEmployeeName(rs.getString(2));
+            objEmpl.setUsername(rs.getString(3));
+            objEmpl.setPassword(rs.getString(4));
+            objEmpl.setEmployeeRole(rs.getString(5));
+            objEmpl.setWorkExperience(rs.getInt(6));
+            objEmpl.setAddress(rs.getString(7));
+            objEmpl.setEmail(rs.getString(8));
+            objEmpl.setBirthday(rs.getDate(9).toString());
+            objEmpl.setGender(rs.getString(10));
+            objEmpl.setLocationID(rs.getInt(11));
+            objEmpl.setDepartmentID(rs.getInt(12));
+            objEmpl.setProjectID(rs.getInt(13));
+            TableModelEmployee.addEmployee(objEmpl);
+        }
+    }
+}

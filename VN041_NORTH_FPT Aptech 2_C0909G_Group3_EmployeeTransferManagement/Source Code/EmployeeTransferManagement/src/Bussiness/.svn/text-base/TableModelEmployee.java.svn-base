@@ -1,0 +1,105 @@
+/*
+ * To change this template, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package Bussiness;
+
+import Entity.Employee;
+import java.util.ArrayList;
+import java.util.List;
+import javax.swing.table.AbstractTableModel;
+
+/**
+ *
+ * @author home
+ */
+public class TableModelEmployee extends AbstractTableModel {
+
+    private static List<Employee> list = new ArrayList<Employee>();
+//    private int employeeID;
+
+    public static void addEmployee(Employee objEmpl) {
+        list.add(objEmpl);
+    }
+
+//    public int ID() {
+//        return employeeID;
+//    }
+
+    public void dataChanged() {
+        list.clear();
+        this.fireTableDataChanged();
+    }
+
+    public void removeRow(int rowIndex) {
+        list.remove(rowIndex);
+        this.fireTableDataChanged();
+    }
+
+    public int getRowCount() {
+        return list.size();
+    }
+
+    public int getColumnCount() {
+        return 9;
+    }
+
+    @Override
+    public String getColumnName(int column) {
+        switch (column) {
+            case 0:
+                return "ID";
+            case 1:
+                return "Name";
+            case 2:
+                return "Username";
+            case 3:
+                return "Role";
+            case 4:
+                return "WorkExprience";
+            case 5:
+                return "Address";
+            case 6:
+                return "Email";
+            case 7:
+                return "BirthDay";
+            case 8:
+                return "Gender";
+            case 9:
+                return "Allowance";
+            default:
+                return null;
+        }
+    }
+
+    public Object getValueAt(int rowIndex, int columnIndex) {
+        if (rowIndex < 0 || rowIndex > list.size()) {
+            return null;
+        }
+        Employee objEmpl = list.get(rowIndex);
+        switch (columnIndex) {
+            case 0:
+                return objEmpl.getEmployeeID();
+            case 1:
+                return objEmpl.getEmployeeName();
+            case 2:
+                return objEmpl.getUsername();
+            case 3:
+                return objEmpl.getEmployeeRole();
+            case 4:
+                return objEmpl.getWorkExperience();
+            case 5:
+                return objEmpl.getAddress();
+            case 6:
+                return objEmpl.getEmail();
+            case 7:
+                return objEmpl.getBirthday();
+            case 8:
+                return objEmpl.getGender();
+            case 9:
+                return objEmpl.getAllowance();
+            default:
+                return null;
+        }
+    }
+}

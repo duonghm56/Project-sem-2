@@ -1,0 +1,46 @@
+/*
+ * To change this template, choose Tools | Templates
+ * and open the template in the editor.
+ */
+
+package DataAccess;
+
+import Entity.Admin;
+import java.sql.CallableStatement;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.Vector;
+/**
+ *
+ * @author PROXUANTHI
+ */
+public class AdminDAO {
+    private static Connection conn = null;
+    private static CallableStatement cs = null;
+    private static ResultSet rs = null;
+    private static Vector admins;
+    private static Admin objAdmin = null;
+
+    public AdminDAO(){
+    }
+
+    public static Vector getAdminFromDB(String userName) throws SQLException
+    {
+        conn = connection.getConnectionUrl();
+        cs = conn.prepareCall("{call spGetAdmin(?)}");
+        cs.setString(1, userName);
+        rs = cs.executeQuery();
+        admins = new Vector();
+        while(rs.next()){
+            objAdmin = new Admin();
+            objAdmin.setAdminID(rs.getInt(1));
+            objAdmin.setUserName(rs.getString(2));
+            objAdmin.setPassWord(rs.getString(3));
+            objAdmin.setFullName(rs.getString(4));
+            objAdmin.setEmail(rs.getString(5));
+            admins.addElement(objAdmin);
+        }
+        return admins;
+    }
+}

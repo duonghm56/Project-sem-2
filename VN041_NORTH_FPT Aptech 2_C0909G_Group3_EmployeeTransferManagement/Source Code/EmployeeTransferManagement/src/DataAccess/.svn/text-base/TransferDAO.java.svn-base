@@ -1,0 +1,70 @@
+/*
+ * To change this template, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package DataAccess;
+
+import Bussiness.TableModelTransfer;
+import Entity.Transfer;
+import java.sql.CallableStatement;
+import java.sql.Connection;
+import java.sql.Date;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
+/**
+ *
+ * @author home
+ */
+public class TransferDAO {
+
+    private static Connection conn;
+    private static CallableStatement cs = null;
+    private static ResultSet rs = null;
+    private static Transfer objTransfer = null;
+
+    public static void getTransferFromDB() throws SQLException {
+        conn = connection.getConnectionUrl();
+        cs = conn.prepareCall("spGetTransfer");
+        rs = cs.executeQuery();
+        while (rs.next()) {
+            objTransfer = new Transfer();
+            objTransfer.setTransferID(rs.getInt(1));
+            objTransfer.setTransferTypeID(rs.getInt(2));
+            objTransfer.setEmployeeID(rs.getInt(3));
+            objTransfer.setFromProjectID(rs.getInt(4));
+            objTransfer.setToProjectID(rs.getInt(5));
+            objTransfer.setFromDepartmentID(rs.getInt(6));
+            objTransfer.setToDepartmentID(rs.getInt(7));
+            objTransfer.setFromLocationID(rs.getInt(8));
+            objTransfer.setToLocationID(rs.getInt(9));
+            objTransfer.setTransferRelievingDate(rs.getDate(10).toString());
+            objTransfer.setTransferJoiningDate(rs.getDate(11).toString());
+            objTransfer.setRequestDate(rs.getDate(12).toString());
+            objTransfer.setReason(rs.getString(13));
+            objTransfer.setApprove(rs.getString(14));
+            objTransfer.setApproveDate(rs.getDate(15).toString());
+            TableModelTransfer.addTransfer(objTransfer);
+        }
+    }
+
+    public static void insertTransfer(Transfer objTransfer) throws SQLException {
+        conn = connection.getConnectionUrl();
+        cs = conn.prepareCall("{call spInsertTransfer(?,?,?,?,?,?,?,?,?,?,?,?,?,?)}");
+        cs.setInt(1, objTransfer.getTransferTypeID());
+        cs.setInt(2, objTransfer.getEmployeeID());
+        cs.setInt(3, objTransfer.getFromProjectID());
+        cs.setInt(4, objTransfer.getToProjectID());
+        cs.setInt(5, objTransfer.getFromDepartmentID());
+        cs.setInt(6, objTransfer.getToDepartmentID());
+        cs.setInt(7, objTransfer.getFromLocationID());
+        cs.setInt(8, objTransfer.getToLocationID());
+        cs.setDate(9, Date.valueOf(objTransfer.getTransferRelievingDate()));
+        cs.setDate(10, Date.valueOf(objTransfer.getTransferJoiningDate()));
+        cs.setDate(11, Date.valueOf(objTransfer.getRequestDate()));
+        cs.setString(12, objTransfer.getReason());
+        cs.setString(13, objTransfer.getApprove());
+        cs.setDate(14, Date.valueOf(objTransfer.getApproveDate()));
+        cs.executeUpdate();
+    }
+}

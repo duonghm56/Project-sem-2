@@ -1,0 +1,63 @@
+/*
+ * To change this template, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package DataAccess;
+
+import Entity.Department;
+import java.sql.CallableStatement;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.Vector;
+
+/**
+ *
+ * @author PROXUANTHI
+ */
+public class DepartmentDAO {
+
+    private static Connection conn = null;
+    private static CallableStatement cs = null;
+    private static ResultSet rs = null;
+    private static Vector departments;
+
+    public DepartmentDAO() {
+    }
+
+    public static Vector getDepartmentFromDB() throws SQLException {
+        conn = connection.getConnectionUrl();
+        cs = conn.prepareCall("{call spDepartment}");
+        rs = cs.executeQuery();
+        departments = new Vector();
+        departments.add("Select");
+        while (rs.next()) {
+            departments.addElement(rs.getString(2));
+        }
+        return departments;
+    }
+
+    public static String getDepartmentName(int departmentID) throws SQLException {
+        conn = connection.getConnectionUrl();
+        cs = conn.prepareCall("{call spGetDepartmentName(?)}");
+        cs.setInt(1, departmentID);
+        rs = cs.executeQuery();
+        String departmentName = null;
+        while (rs.next()) {
+            departmentName = rs.getString(1);
+        }
+        return departmentName;
+    }
+
+    public static int getDepartmentID(String departmentName) throws SQLException {
+        conn = connection.getConnectionUrl();
+        cs = conn.prepareCall("{call spGetDepartmentID(?)}");
+        cs.setString(1, departmentName);
+        rs = cs.executeQuery();
+        int deparmentID = 0;
+        while (rs.next()) {
+            deparmentID = rs.getInt(1);
+        }
+        return deparmentID;
+    }
+}

@@ -1,0 +1,62 @@
+/*
+ * To change this template, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package DataAccess;
+
+import java.sql.CallableStatement;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.Vector;
+
+/**
+ *
+ * @author THANHNX
+ */
+public class LocationDAO {
+
+    private static Connection conn = null;
+    private static CallableStatement cs = null;
+    private static ResultSet rs = null;
+    private static Vector locations;
+
+    public LocationDAO() {
+    }
+
+    public static Vector getLocationFromDB() throws SQLException {
+        conn = connection.getConnectionUrl();
+        cs = conn.prepareCall("{call spLocation}");
+        rs = cs.executeQuery();
+        locations = new Vector();
+        locations.add("Select");
+        while (rs.next()) {
+            locations.addElement(rs.getString(2));
+        }
+        return locations;
+    }
+
+    public static String getLocationName(int locationID) throws SQLException {
+        conn = connection.getConnectionUrl();
+        cs = conn.prepareCall("{call spGetLocationName(?)}");
+        cs.setInt(1, locationID);
+        rs = cs.executeQuery();
+        String locationName = null;
+        while (rs.next()) {
+            locationName = rs.getString(1);
+        }
+        return locationName;
+    }
+
+    public static int getLocationID(String locationAddress) throws SQLException {
+        conn = connection.getConnectionUrl();
+        cs = conn.prepareCall("{call spGetLocationID(?)}");
+        cs.setString(1, locationAddress);
+        rs = cs.executeQuery();
+        int locationID = 0;
+        while (rs.next()) {
+            locationID = rs.getInt(1);
+        }
+        return locationID;
+    }
+}

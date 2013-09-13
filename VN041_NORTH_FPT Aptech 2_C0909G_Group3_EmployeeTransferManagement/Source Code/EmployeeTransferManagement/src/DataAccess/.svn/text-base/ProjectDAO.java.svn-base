@@ -1,0 +1,62 @@
+/*
+ * To change this template, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package DataAccess;
+
+import java.sql.CallableStatement;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.Vector;
+
+/**
+ *
+ * @author PROXUANTHI
+ */
+public class ProjectDAO {
+
+    private static Connection conn = null;
+    private static CallableStatement cs = null;
+    private static ResultSet rs = null;
+    private static Vector projects;
+
+    public ProjectDAO() {
+    }
+
+    public static Vector getProjectFromDB() throws SQLException {
+        conn = connection.getConnectionUrl();
+        cs = conn.prepareCall("{call spProject}");
+        rs = cs.executeQuery();
+        projects = new Vector();
+        projects.add("Select");
+        while (rs.next()) {
+            projects.addElement(rs.getString(2));
+        }
+        return projects;
+    }
+
+    public static String getProjectName(int projectID) throws SQLException {
+        conn = connection.getConnectionUrl();
+        cs = conn.prepareCall("{call spGetProjectName(?)}");
+        cs.setInt(1, projectID);
+        rs = cs.executeQuery();
+        String projectName = null;
+        while (rs.next()) {
+            projectName = rs.getString(1);
+        }
+        return projectName;
+    }
+
+    public static int getProjectID(String projectName) throws SQLException {
+        conn = connection.getConnectionUrl();
+        cs = conn.prepareCall("{call spGetProjectID(?)}");
+        cs.setString(1, projectName);
+        rs = cs.executeQuery();
+        int projectID = 0;
+        while (rs.next()) {
+            projectID = rs.getInt(1);
+        }
+        return projectID;
+    }
+}

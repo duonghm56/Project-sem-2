@@ -1,0 +1,60 @@
+/*
+ * To change this template, choose Tools | Templates
+ * and open the template in the editor.
+ */
+
+package Entity;
+
+/**
+ *
+ * @author PROXUANTHI
+ */
+public class Admin {
+    private int adminID;
+    private String userName;
+    private String passWord;
+    private String fullName;
+    private String email;
+
+    public int getAdminID() {
+        return adminID;
+    }
+
+    public void setAdminID(int adminID) {
+        this.adminID = adminID;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getFullName() {
+        return fullName;
+    }
+
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
+    }
+
+    public String getPassWord() {
+        return passWord;
+    }
+
+    public void setPassWord(String passWord) {
+        this.passWord = passWord;
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+
+    
+}

@@ -1,0 +1,77 @@
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/svn/!svn/ver/32/trunk/EmployeeTransferManagement/src/GUI
+END
+LoginJDialog.java
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/!svn/ver/32/trunk/EmployeeTransferManagement/src/GUI/LoginJDialog.java
+END
+MakeTransfer.java
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/!svn/ver/33/trunk/EmployeeTransferManagement/src/GUI/MakeTransfer.java
+END
+MainEmployee.java
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/!svn/ver/27/trunk/EmployeeTransferManagement/src/GUI/MainEmployee.java
+END
+LoginJDialog.form
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/!svn/ver/30/trunk/EmployeeTransferManagement/src/GUI/LoginJDialog.form
+END
+MakeTransfer.form
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/!svn/ver/33/trunk/EmployeeTransferManagement/src/GUI/MakeTransfer.form
+END
+MainAdministrator.java
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/svn/!svn/ver/33/trunk/EmployeeTransferManagement/src/GUI/MainAdministrator.java
+END
+MainEmployee.form
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/!svn/ver/27/trunk/EmployeeTransferManagement/src/GUI/MainEmployee.form
+END
+MainAdministrator.form
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/svn/!svn/ver/33/trunk/EmployeeTransferManagement/src/GUI/MainAdministrator.form
+END
+AddEmployee.java
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/!svn/ver/33/trunk/EmployeeTransferManagement/src/GUI/AddEmployee.java
+END
+AddEmployee.form
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/!svn/ver/33/trunk/EmployeeTransferManagement/src/GUI/AddEmployee.form
+END
+TransferDetails.java
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/svn/!svn/ver/33/trunk/EmployeeTransferManagement/src/GUI/TransferDetails.java
+END
+TransferDetails.form
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/svn/!svn/ver/33/trunk/EmployeeTransferManagement/src/GUI/TransferDetails.form
+END

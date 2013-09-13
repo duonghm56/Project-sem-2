@@ -1,0 +1,244 @@
+/*
+ * To change this template, choose Tools | Templates
+ * and open the template in the editor.
+ */
+
+package Entity;
+
+/**
+ *
+ * @author home
+ */
+public class Employee {
+    private int employeeID;
+    private String employeeName;
+    private String username;
+    private String password;
+    private String employeeRole;
+    private int workExperience;
+    private String address;
+    private String Email;
+    private String birthday;
+    private String gender;
+    private float allowance;
+    private int locationID;
+    private int departmentID;
+    private int projectID;
+
+    public Employee() {
+    }
+
+    public Employee(int employeeID, String employeeName, String username, String password, String employeeRole, int workExperience, String address, String Email, String birthday, String gender, float allowance, int locationID, int departmentID, int projectID) {
+        this.employeeID = employeeID;
+        this.employeeName = employeeName;
+        this.username = username;
+        this.password = password;
+        this.employeeRole = employeeRole;
+        this.workExperience = workExperience;
+        this.address = address;
+        this.Email = Email;
+        this.birthday = birthday;
+        this.gender = gender;
+        this.allowance = allowance;
+        this.locationID = locationID;
+        this.departmentID = departmentID;
+        this.projectID = projectID;
+    }
+
+    /**
+     * @return the employeeID
+     */
+    public int getEmployeeID() {
+        return employeeID;
+    }
+
+    /**
+     * @param employeeID the employeeID to set
+     */
+    public void setEmployeeID(int employeeID) {
+        this.employeeID = employeeID;
+    }
+
+    /**
+     * @return the employeeName
+     */
+    public String getEmployeeName() {
+        return employeeName;
+    }
+
+    /**
+     * @param employeeName the employeeName to set
+     */
+    public void setEmployeeName(String employeeName) {
+        this.employeeName = employeeName;
+    }
+
+    /**
+     * @return the username
+     */
+    public String getUsername() {
+        return username;
+    }
+
+    /**
+     * @param username the username to set
+     */
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    /**
+     * @return the password
+     */
+    public String getPassword() {
+        return password;
+    }
+
+    /**
+     * @param password the password to set
+     */
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    /**
+     * @return the employeeRole
+     */
+    public String getEmployeeRole() {
+        return employeeRole;
+    }
+
+    /**
+     * @param employeeRole the employeeRole to set
+     */
+    public void setEmployeeRole(String employeeRole) {
+        this.employeeRole = employeeRole;
+    }
+
+    /**
+     * @return the workExperience
+     */
+    public int getWorkExperience() {
+        return workExperience;
+    }
+
+    /**
+     * @param workExperience the workExperience to set
+     */
+    public void setWorkExperience(int workExperience) {
+        this.workExperience = workExperience;
+    }
+
+    /**
+     * @return the address
+     */
+    public String getAddress() {
+        return address;
+    }
+
+    /**
+     * @param address the address to set
+     */
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    /**
+     * @return the Email
+     */
+    public String getEmail() {
+        return Email;
+    }
+
+    /**
+     * @param Email the Email to set
+     */
+    public void setEmail(String Email) {
+        this.Email = Email;
+    }
+
+    /**
+     * @return the birthday
+     */
+    public String getBirthday() {
+        return birthday;
+    }
+
+    /**
+     * @param birthday the birthday to set
+     */
+    public void setBirthday(String birthday) {
+        this.birthday = birthday;
+    }
+
+    /**
+     * @return the gender
+     */
+    public String getGender() {
+        return gender;
+    }
+
+    /**
+     * @param gender the gender to set
+     */
+    public void setGender(String gender) {
+        this.gender = gender;
+    }
+
+    /**
+     * @return the allowance
+     */
+    public float getAllowance() {
+        return allowance;
+    }
+
+    /**
+     * @param allowance the allowance to set
+     */
+    public void setAllowance(float allowance) {
+        this.allowance = allowance;
+    }
+
+    /**
+     * @return the locationID
+     */
+    public int getLocationID() {
+        return locationID;
+    }
+
+    /**
+     * @param locationID the locationID to set
+     */
+    public void setLocationID(int locationID) {
+        this.locationID = locationID;
+    }
+
+    /**
+     * @return the departmentID
+     */
+    public int getDepartmentID() {
+        return departmentID;
+    }
+
+    /**
+     * @param departmentID the departmentID to set
+     */
+    public void setDepartmentID(int departmentID) {
+        this.departmentID = departmentID;
+    }
+
+    /**
+     * @return the projectID
+     */
+    public int getProjectID() {
+        return projectID;
+    }
+
+    /**
+     * @param projectID the projectID to set
+     */
+    public void setProjectID(int projectID) {
+        this.projectID = projectID;
+    }
+
+}

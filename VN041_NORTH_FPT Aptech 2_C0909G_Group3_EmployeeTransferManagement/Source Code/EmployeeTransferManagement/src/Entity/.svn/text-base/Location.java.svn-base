@@ -1,0 +1,29 @@
+/*
+ * To change this template, choose Tools | Templates
+ * and open the template in the editor.
+ */
+
+package Entity;
+
+/**
+ *
+ * @author PROXUANTHI
+ */
+public class Location {
+    
+    private String LocationAddress;
+
+    /**
+     * @return the LocationAddress
+     */
+    public String getLocationAddress() {
+        return LocationAddress;
+    }
+
+    /**
+     * @param LocationAddress the LocationAddress to set
+     */
+    public void setLocationAddress(String LocationAddress) {
+        this.LocationAddress = LocationAddress;
+    }
+}
