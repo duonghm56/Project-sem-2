@@ -86,38 +86,3 @@ as
 begin
 	insert into location(locationName) values(@locationName)
 end
-go
-create procedure editLocation(@id int,@name nvarchar(200))
-as
-begin
-	update location set locationName = @name
-	where locationID = @id
-end
-go
-create procedure deleteLocation(@id int )
-as
-begin
-	Delete location where locationID = @id
-end
----------------------------------------------
-go
-create procedure addDepartment(@departmentID int,@name nvarchar(200),@locationID int)
-as
-begin
-	insert into department(departmentID,departmentName,locationID) values(@departmentID,@name,@locationID)
-end
-go
-create procedure editDepartment(@departmentID int,@name nvarchar(200),@locationID int)
-as
-begin
-	update department set departmentName = @name,locationID=@locationID
-	where departmentID = @departmentID
-end
-go
-create procedure deleteDepartment(@departmentID int)
-as
-begin
-	Delete department where departmentID = @departmentID	
-end
----------------------------------------------------------------
-go

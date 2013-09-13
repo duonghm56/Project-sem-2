@@ -9,7 +9,7 @@ package com.c1212l.etm.beans;
  * @author Luu Bi
  */
 public class Location {
-    private int locationID;
+    private int locationID ;
     private String locationName;
 
     public Location() {
