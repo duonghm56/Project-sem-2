@@ -35,14 +35,16 @@ public class LocationDAO extends ConnectionTool {
         closeConnection();
         return listLocation;
     }
-    public void addLocation(Location location)throws ClassNotFoundException, SQLException
+    public int addLocation(Location location)throws ClassNotFoundException, SQLException
     {
+        int record = 0;
         initConnection();
         CallableStatement cs = conn.prepareCall("call addLocation");
         cs.setInt(1,location.getLocationID());
         cs.setString(2,location.getLocationName());
-        cs.executeUpdate();
+        record = cs.executeUpdate();
         closeConnection();
+        return record;
     }
     public void updateLocation(Location location)throws ClassNotFoundException, SQLException
     {

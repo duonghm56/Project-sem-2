@@ -11,7 +11,8 @@ import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.table.DefaultTableModel;
-
+import com.c1212l.etm.bll.LocationBUS;
+import javax.swing.JOptionPane;
 /**
  *
  * @author Luu Bi
@@ -21,6 +22,7 @@ public class LocationPanel extends javax.swing.JFrame {
     private Vector<Location>vctList = new Vector<Location>();
     private Vector vctHeader = new Vector();
     private Vector vctData = new Vector();
+    LocationBUS bus = new LocationBUS();
     /**
      * Creates new form LocationPanel
      */
@@ -100,6 +102,11 @@ public class LocationPanel extends javax.swing.JFrame {
         jButton2.setText("Delete");
 
         jButton3.setText("Add");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         jScrollPane3.setPreferredSize(new java.awt.Dimension(300, 200));
 
@@ -183,6 +190,27 @@ public class LocationPanel extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        try {
+            // TODO add your handling code here:
+            int locationID;
+            locationID = Integer.parseInt(txtLocationID.getText());
+            String locationName = txtLocationName.getText();
+            int record = bus.addLocation(locationID, locationName);
+            if (record>0) {
+                JOptionPane.showMessageDialog(this, "Add success");
+            }
+            else
+            {
+                JOptionPane.showMessageDialog(this,"Add fail");
+            }
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(LocationPanel.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(LocationPanel.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jButton3ActionPerformed
 
     /**
      * @param args the command line arguments
