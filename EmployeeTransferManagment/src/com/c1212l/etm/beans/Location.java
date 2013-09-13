@@ -15,6 +15,11 @@ public class Location {
     public Location() {
     }
 
+    public Location(int locationID, String locationName) {
+        this.locationID = locationID;
+        this.locationName = locationName;
+    }
+
     public int getLocationID() {
         return locationID;
     }
