@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -24,7 +25,7 @@ public class ProjectPanel extends javax.swing.JPanel {
      */
     public ProjectPanel() {
         try {
-            initComponents();     
+            initComponents();
             initTable();
             lstProject = projectBUS.getAllProject();
             fillData(lstProject);
@@ -63,6 +64,8 @@ public class ProjectPanel extends javax.swing.JPanel {
 
         lblProjectID.setText("Project ID");
         add(lblProjectID, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 30, -1, -1));
+
+        txtProjectID.setEditable(false);
         add(txtProjectID, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 30, 170, -1));
         add(txtProjectName, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 60, 170, -1));
 
@@ -116,6 +119,11 @@ public class ProjectPanel extends javax.swing.JPanel {
                 return canEdit [columnIndex];
             }
         });
+        tblProject.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblProjectMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tblProject);
 
         add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 180, 400, 110));
@@ -130,17 +138,62 @@ public class ProjectPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
-        // TODO add your handling code here:
+        if (txtProjectName.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "Please enter project name");
+        } else {
+            try {
+                projectBUS.addProject(txtProjectName.getText(), txtCreateDate.getText(), txtEndDate.getText());
+                reloadData();
+            } catch (Exception ex) {
+                JOptionPane.showMessageDialog(null, "Insert Fail !!!");
+                ex.printStackTrace();
+            }
+        }
     }//GEN-LAST:event_btnAddActionPerformed
 
     private void btnEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditActionPerformed
-        // TODO add your handling code here:
+        if (txtProjectID.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "Please select project");
+        } else {
+            try {
+                projectBUS.updateProject(
+                        txtProjectID.getText(),
+                        txtProjectName.getText(),
+                        txtCreateDate.getText(),
+                        txtEndDate.getText());
+                reloadData();
+                JOptionPane.showMessageDialog(null, "Update Success !!!");
+            } catch (Exception ex) {
+                JOptionPane.showMessageDialog(null, "Update Fail !!!");
+                ex.printStackTrace();
+            }
+        }
     }//GEN-LAST:event_btnEditActionPerformed
 
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
-        // TODO add your handling code here:
+        if (txtProjectID.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "Please select project");
+        } else {
+            try {
+                if (JOptionPane.showConfirmDialog(null, "Are you sure to delete?", "Delete", JOptionPane.YES_NO_OPTION) == JOptionPane.OK_OPTION) {
+                    projectBUS.deleteProject(txtProjectID.getText());
+                    reloadData();                    
+                }
+            } catch (Exception ex) {
+                JOptionPane.showMessageDialog(null, "Delete Fail !!!");
+                ex.printStackTrace();
+            }
+        }
     }//GEN-LAST:event_btnDeleteActionPerformed
 
+    private void tblProjectMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblProjectMouseClicked
+        int selectedRow = tblProject.getSelectedRow();
+        txtProjectID.setText(tblProject.getValueAt(selectedRow, 0).toString());
+        txtProjectName.setText(tblProject.getValueAt(selectedRow, 1).toString());
+        txtCreateDate.setText(tblProject.getValueAt(selectedRow, 2) != null ? tblProject.getValueAt(selectedRow, 2).toString() : "");
+        txtEndDate.setText(tblProject.getValueAt(selectedRow, 3) != null ? tblProject.getValueAt(selectedRow, 3).toString() : "");
+
+    }//GEN-LAST:event_tblProjectMouseClicked
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAdd;
     private javax.swing.JButton btnDelete;
@@ -156,26 +209,44 @@ public class ProjectPanel extends javax.swing.JPanel {
     private javax.swing.JTextField txtProjectID;
     private javax.swing.JTextField txtProjectName;
     // End of variables declaration//GEN-END:variables
-    
     DefaultTableModel tblModel;
     ArrayList<Project> lstProject;
     ProjectBUS projectBUS = new ProjectBUS();
-    
-    public void initTable(){
+
+    private void initTable() {
         Vector header = new Vector();
         header.add("Project ID");
         header.add("Project Name");
         header.add("Created Date");
-        header.add("End Date");        
+        header.add("End Date");
         tblModel = new DefaultTableModel(header, 0);
         tblProject.setModel(tblModel);
     }
-    
-    public void fillData(ArrayList<Project> lst){
-        if(lst != null){        
-            for ( Project p:lst ){
+
+    private void fillData(ArrayList<Project> lst) {
+        if (lst != null) {
+            for (Project p : lst) {
                 tblModel.addRow(p.getVector());
             }
         }
-    }    
+    }
+
+    private void reloadData() {
+        try {
+            initTable();
+            fillData(projectBUS.getAllProject());
+            initTextField();
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(ProjectPanel.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(ProjectPanel.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    private void initTextField() {
+        txtProjectID.setText("");
+        txtProjectName.setText("");
+        txtCreateDate.setText("");
+        txtEndDate.setText("");
+    }
 }

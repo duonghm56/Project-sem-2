@@ -67,7 +67,7 @@ as begin
 end
 go
 
-create procedure editProject(@id int, @name nvarchar(200), @createDate data, @endDate date)
+create procedure updateProject(@id int, @name nvarchar(200), @createDate date, @endDate date)
 as begin
 	update project set projectName=@name, createDate=@createDate, endDate=@endDate
 	where projectID=@id

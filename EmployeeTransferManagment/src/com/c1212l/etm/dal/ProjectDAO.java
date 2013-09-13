@@ -36,7 +36,7 @@ public class ProjectDAO extends ConnectionTool{
     
     public void addProject(Project project) throws ClassNotFoundException, SQLException{
         initConnection();
-        CallableStatement cs = conn.prepareCall("call addProject(?, ?, ?)");
+        CallableStatement cs = conn.prepareCall("{call addProject(?, ?, ?)}");
         cs.setString(1, project.getProjectName());
         cs.setDate(2, project.getCreateDate());
         cs.setDate(3, project.getEndDate());
@@ -46,7 +46,7 @@ public class ProjectDAO extends ConnectionTool{
     
     public void updateProject(Project project) throws ClassNotFoundException, SQLException{
         initConnection();
-        CallableStatement cs = conn.prepareCall("call updateProject(?, ?, ?, ?)");
+        CallableStatement cs = conn.prepareCall("{call updateProject(?, ?, ?, ?)}");
         cs.setInt(1, project.getProjectID());
         cs.setString(2, project.getProjectName());
         cs.setDate(3, project.getCreateDate());
@@ -57,7 +57,7 @@ public class ProjectDAO extends ConnectionTool{
     
     public void deleteProject(Project project) throws ClassNotFoundException, SQLException{
         initConnection();
-        CallableStatement cs = conn.prepareCall("call deleteProject(?)");
+        CallableStatement cs = conn.prepareCall("{call deleteProject(?)}");
         cs.setInt(1, project.getProjectID());        
         cs.executeUpdate();
         closeConnection();

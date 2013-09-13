@@ -29,31 +29,45 @@ public class ProjectBUS {
     }
 
     public void addProject(String projectName, String createDate, String endDate) throws ClassNotFoundException, SQLException {
-        Date createDate_date = Date.valueOf(createDate);
-        Date endDate_date = Date.valueOf(endDate);
+        Date createDate_date = null;
+        Date endDate_date = null;
+        try {
+            createDate_date = Date.valueOf(createDate);
+        }catch(Exception ex){            
+        }
+        try{
+            endDate_date = Date.valueOf(endDate);
+        }catch(Exception ex){            
+        }
         Project project = new Project();
         project.setProjectName(projectName);
         project.setCreateDate(createDate_date);
         project.setEndDate(endDate_date);
         projectDAO.addProject(project);
     }
-    
-    public void updateProject(int projectID, String projectName, String createDate, String endDate) throws ClassNotFoundException, SQLException {
-        Date createDate_date = Date.valueOf(createDate);
-        Date endDate_date = Date.valueOf(endDate);
+
+    public void updateProject(String projectID, String projectName, String createDate, String endDate) throws ClassNotFoundException, SQLException {
+        Date createDate_date = null;
+        Date endDate_date = null;
+        try {
+            createDate_date = Date.valueOf(createDate);
+        }catch(Exception ex){            
+        }
+        try{
+            endDate_date = Date.valueOf(endDate);
+        }catch(Exception ex){            
+        }
         Project project = new Project();
-        project.setProjectID(projectID);
+        project.setProjectID(Integer.parseInt(projectID));
         project.setProjectName(projectName);
         project.setCreateDate(createDate_date);
         project.setEndDate(endDate_date);
         projectDAO.updateProject(project);
     }
-    
-    public void deleteProject(int projectID) throws ClassNotFoundException, SQLException {        
+
+    public void deleteProject(String projectID) throws ClassNotFoundException, SQLException {
         Project project = new Project();
-        project.setProjectID(projectID);
+        project.setProjectID(Integer.parseInt(projectID));
         projectDAO.deleteProject(project);
     }
-    
-    
 }
