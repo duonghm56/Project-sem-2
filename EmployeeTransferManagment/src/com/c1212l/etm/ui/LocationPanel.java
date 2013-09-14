@@ -151,6 +151,11 @@ public class LocationPanel extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        tbLocationData.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tbLocationDataMouseClicked(evt);
+            }
+        });
         jScrollPane3.setViewportView(tbLocationData);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -283,6 +288,13 @@ public class LocationPanel extends javax.swing.JFrame {
             Logger.getLogger(LocationPanel.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void tbLocationDataMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbLocationDataMouseClicked
+        // TODO add your handling code here:
+           int row = tbLocationData.rowAtPoint(evt.getPoint());
+           txtLocationID.setText(tbLocationData.getValueAt(row, 0).toString());
+           txtLocationName.setText(tbLocationData.getValueAt(row, 1).toString());
+    }//GEN-LAST:event_tbLocationDataMouseClicked
 
     /**
      * @param args the command line arguments
