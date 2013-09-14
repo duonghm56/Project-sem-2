@@ -15,14 +15,14 @@ import java.util.ArrayList;
  *
  * @author OLDPC
  */
-public class ProjectDAO extends ConnectionTool{
-    
-    public ArrayList<Project> getAllProject() throws ClassNotFoundException, SQLException{
+public class ProjectDAO extends ConnectionTool {
+
+    public ArrayList<Project> getAllProject() throws ClassNotFoundException, SQLException {
         initConnection();
         Statement stmt = conn.createStatement();
-        ResultSet rs = stmt.executeQuery("select * from project");        
+        ResultSet rs = stmt.executeQuery("select * from project");
         ArrayList<Project> result = new ArrayList<>();
-        while(rs.next()){
+        while (rs.next()) {
             Project p = new Project();
             p.setProjectID(rs.getInt("projectID"));
             p.setProjectName(rs.getString("projectName"));
@@ -33,13 +33,13 @@ public class ProjectDAO extends ConnectionTool{
         closeConnection();
         return result;
     }
-    
-    public ArrayList<Project> searchProject(String condition) throws ClassNotFoundException, SQLException{
+
+    public ArrayList<Project> searchProject(String condition) throws ClassNotFoundException, SQLException {
         initConnection();
         Statement stmt = conn.createStatement();
-        ResultSet rs = stmt.executeQuery("select * from project " + condition);        
+        ResultSet rs = stmt.executeQuery("select * from project " + condition);
         ArrayList<Project> result = new ArrayList<>();
-        while(rs.next()){
+        while (rs.next()) {
             Project p = new Project();
             p.setProjectID(rs.getInt("projectID"));
             p.setProjectName(rs.getString("projectName"));
@@ -50,8 +50,8 @@ public class ProjectDAO extends ConnectionTool{
         closeConnection();
         return result;
     }
-    
-    public void addProject(Project project) throws ClassNotFoundException, SQLException{
+
+    public void addProject(Project project) throws ClassNotFoundException, SQLException {
         initConnection();
         CallableStatement cs = conn.prepareCall("{call addProject(?, ?, ?)}");
         cs.setString(1, project.getProjectName());
@@ -60,8 +60,8 @@ public class ProjectDAO extends ConnectionTool{
         cs.executeUpdate();
         closeConnection();
     }
-    
-    public void updateProject(Project project) throws ClassNotFoundException, SQLException{
+
+    public void updateProject(Project project) throws ClassNotFoundException, SQLException {
         initConnection();
         CallableStatement cs = conn.prepareCall("{call updateProject(?, ?, ?, ?)}");
         cs.setInt(1, project.getProjectID());
@@ -71,12 +71,32 @@ public class ProjectDAO extends ConnectionTool{
         cs.executeUpdate();
         closeConnection();
     }
-    
-    public void deleteProject(Project project) throws ClassNotFoundException, SQLException{
+
+    public void deleteProject(Project project) throws ClassNotFoundException, SQLException {
         initConnection();
         CallableStatement cs = conn.prepareCall("{call deleteProject(?)}");
-        cs.setInt(1, project.getProjectID());        
+        cs.setInt(1, project.getProjectID());
         cs.executeUpdate();
         closeConnection();
+    }
+
+    public Project getProjectById(int id) {
+        try {
+            initConnection();
+            Statement stmt = conn.createStatement();
+            ResultSet rs = stmt.executeQuery("select * from project where projectID = " + id);
+            Project project = null;
+            if (rs.next()) {
+                project = new Project();
+                project.setProjectID(rs.getInt("projectID"));
+                project.setProjectName(rs.getString("projectName"));
+                project.setCreateDate(rs.getDate("createDate"));
+                project.setEndDate(rs.getDate("endDate"));
+            }
+            closeConnection();
+            return project;
+        }catch(Exception ex){
+            return null;
+        }
     }
 }

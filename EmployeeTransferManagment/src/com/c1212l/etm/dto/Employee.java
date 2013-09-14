@@ -4,6 +4,7 @@
  */
 package com.c1212l.etm.dto;
 
+import com.c1212l.etm.dal.ProjectDAO;
 import java.util.Vector;
 
 /**
@@ -102,11 +103,14 @@ public class Employee {
         result.add(employeeID);
         result.add(employeeNumber);
         result.add(employeeName);
+        result.add(password);
         result.add(role);
         result.add(workExperience);
-        result.add(gender);
+        result.add(gender?"Male":"Female");
+        
         result.add(departnameID);
-        result.add(projectID);        
+        Project project = new ProjectDAO().getProjectById(projectID);
+        result.add(project!=null?project.getProjectName():"undifined");        
         return result;
     }
             

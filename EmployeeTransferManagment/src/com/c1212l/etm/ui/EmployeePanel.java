@@ -4,6 +4,21 @@
  */
 package com.c1212l.etm.ui;
 
+import com.c1212l.etm.bll.EmployeeBUS;
+import com.c1212l.etm.bll.ProjectBUS;
+import com.c1212l.etm.dto.Employee;
+import com.c1212l.etm.dto.Project;
+import com.c1212l.etm.util.KeyValue;
+import java.awt.event.KeyEvent;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.Vector;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableColumn;
+
 /**
  *
  * @author Luu Bi
@@ -15,6 +30,7 @@ public class EmployeePanel extends javax.swing.JPanel {
      */
     public EmployeePanel() {
         initComponents();
+        reloadData();
     }
 
     /**
@@ -47,7 +63,7 @@ public class EmployeePanel extends javax.swing.JPanel {
         jLabel2 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        tbEmployeeData = new javax.swing.JTable();
+        tblEmployee = new javax.swing.JTable();
         jLabel13 = new javax.swing.JLabel();
         txtEmployeeID = new javax.swing.JTextField();
 
@@ -58,8 +74,6 @@ public class EmployeePanel extends javax.swing.JPanel {
         jLabel10.setText("Work Experience:");
 
         jLabel14.setText("Year");
-
-        cmbGender.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Male", "Female", "Other", "Item 4" }));
 
         cmbProject.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Transfer Employees Manager", "Hotel Manager", " " }));
 
@@ -88,12 +102,17 @@ public class EmployeePanel extends javax.swing.JPanel {
         });
 
         btnDelete.setText("Delete");
+        btnDelete.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDeleteActionPerformed(evt);
+            }
+        });
 
         jLabel2.setText("Employee Name:");
 
         jLabel6.setText("Employee Role:");
 
-        tbEmployeeData.setModel(new javax.swing.table.DefaultTableModel(
+        tblEmployee.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -104,9 +123,24 @@ public class EmployeePanel extends javax.swing.JPanel {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane2.setViewportView(tbEmployeeData);
+        tblEmployee.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                tblEmployeeMouseReleased(evt);
+            }
+        });
+        tblEmployee.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                tblEmployeeKeyPressed(evt);
+            }
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                tblEmployeeKeyReleased(evt);
+            }
+        });
+        jScrollPane2.setViewportView(tblEmployee);
 
         jLabel13.setText("Employee ID:");
+
+        txtEmployeeID.setEditable(false);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -114,43 +148,58 @@ public class EmployeePanel extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(31, 31, 31)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel13)
-                    .addComponent(jLabel4)
-                    .addComponent(jLabel6)
-                    .addComponent(jLabel8)
-                    .addComponent(jLabel11)
-                    .addComponent(jLabel15)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(btnAdd)
-                        .addComponent(jLabel10)))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createSequentialGroup()
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabel2)
+                                .addComponent(jLabel13))
+                            .addGap(41, 41, 41)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(txtEmployeeRole, javax.swing.GroupLayout.DEFAULT_SIZE, 122, Short.MAX_VALUE)
+                                .addComponent(txtEmployeeName)
+                                .addComponent(txtEmployeeID)))
+                        .addComponent(jLabel6))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(31, 31, 31)
+                        .addComponent(jLabel8)
+                        .addGap(83, 83, 83)
+                        .addComponent(cmbGender, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(33, 33, 33)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(cmbGender, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtEmployeeRole, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtEmployeeNumber, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtEmployeeID, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtEmployeeName, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(txtWorkExperience, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(cmbProject, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(cmbDepartment, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(jLabel1)
+                            .addComponent(jLabel4))
+                        .addGap(31, 31, 31)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(txtEmployeeNumber, javax.swing.GroupLayout.DEFAULT_SIZE, 112, Short.MAX_VALUE)
+                            .addComponent(txtPassword)))
                     .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel10)
+                        .addGap(37, 37, 37)
+                        .addComponent(txtWorkExperience, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel14, javax.swing.GroupLayout.DEFAULT_SIZE, 26, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel11)
+                            .addComponent(jLabel15))
+                        .addGap(65, 65, 65)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(cmbDepartment, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(cmbProject, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(25, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(58, 58, 58)
+                        .addComponent(btnAdd)
                         .addGap(18, 18, 18)
                         .addComponent(btnUpdate)
                         .addGap(18, 18, 18)
-                        .addComponent(btnDelete)))
-                .addContainerGap(88, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 377, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnDelete))
+                    .addComponent(jScrollPane2))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -159,37 +208,29 @@ public class EmployeePanel extends javax.swing.JPanel {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel13)
-                    .addComponent(txtEmployeeID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtEmployeeID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1)
                     .addComponent(txtEmployeeNumber, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(txtEmployeeName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtEmployeeName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel4)
                     .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
-                    .addComponent(txtEmployeeRole, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtEmployeeRole, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel10)
                     .addComponent(txtWorkExperience, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel14))
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel8)
-                    .addComponent(cmbGender, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(cmbGender, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel11)
                     .addComponent(cmbProject, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel15)
                     .addComponent(cmbDepartment, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -198,21 +239,102 @@ public class EmployeePanel extends javax.swing.JPanel {
                     .addComponent(btnAdd)
                     .addComponent(btnUpdate)
                     .addComponent(btnDelete))
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(24, 24, 24))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
-        // TODO add your handling code here:
-    
+        try {
+            if (txtEmployeeID.getText().equals("")) {
+                throw new Exception("Please select Employee");
+            }
+            if (txtEmployeeNumber.getText().equals("")) {
+                throw new Exception("Please enter Employee Number");
+            }
+            if (txtEmployeeName.getText().equals("")) {
+                throw new Exception("Please enter Employee Name");
+            }
+            if (txtEmployeeRole.getText().equals("")) {
+                throw new Exception("Please enter Employee Role");
+            }
+            if (txtWorkExperience.getText().equals("")) {
+                throw new Exception("Please enter Work Experience");
+            }
+            int gender = ((KeyValue) cmbGender.getSelectedItem()).getKey();
+            employeeBUS.updateEmployee(
+                    txtEmployeeNumber.getText(),
+                    txtEmployeeName.getText(),
+                    new String(txtPassword.getPassword()),
+                    txtEmployeeRole.getText(),
+                    Integer.parseInt(txtWorkExperience.getText()),
+                    gender==1?true:false
+                    );
+            reloadData();
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, ex.getMessage());
+            ex.printStackTrace();
+        }
     }//GEN-LAST:event_btnUpdateActionPerformed
 
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
-        // TODO add your handling code here:
- 
+        try {
+            if (txtEmployeeNumber.getText().equals("")) {
+                throw new Exception("Please enter Employee Number");
+            }
+            if (txtEmployeeName.getText().equals("")) {
+                throw new Exception("Please enter Employee Name");
+            }
+            if (txtEmployeeRole.getText().equals("")) {
+                throw new Exception("Please enter Employee Role");
+            }
+            if (txtWorkExperience.getText().equals("")) {
+                throw new Exception("Please enter Work Experience");
+            }
+            employeeBUS.addEmployee(
+                    txtEmployeeNumber.getText(),
+                    txtEmployeeName.getText(),
+                    new String(txtPassword.getPassword()),
+                    txtEmployeeRole.getText(),
+                    Integer.parseInt(txtWorkExperience.getText()),
+                    ((KeyValue) cmbGender.getSelectedItem()).getKey() == 1 ? true : false,
+                    ((KeyValue) cmbDepartment.getSelectedItem()).getKey(),
+                    ((KeyValue) cmbProject.getSelectedItem()).getKey());
+            reloadData();
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, ex.getMessage());
+        }
     }//GEN-LAST:event_btnAddActionPerformed
+
+    private void tblEmployeeMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblEmployeeMouseReleased
+        updateFieldWhenSelectEmployee();
+    }//GEN-LAST:event_tblEmployeeMouseReleased
+
+    private void tblEmployeeKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tblEmployeeKeyPressed
+        
+    }//GEN-LAST:event_tblEmployeeKeyPressed
+
+    private void tblEmployeeKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tblEmployeeKeyReleased
+        if(evt.getKeyCode() == KeyEvent.VK_UP || evt.getKeyCode() == KeyEvent.VK_DOWN){
+            updateFieldWhenSelectEmployee();
+        }
+    }//GEN-LAST:event_tblEmployeeKeyReleased
+
+    private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
+        if(txtEmployeeNumber.getText().equals("")){
+            JOptionPane.showMessageDialog(null, "Please select employee");
+        }else{
+            try {
+                if (JOptionPane.showConfirmDialog(null, "Are you sure to delete?", "Delete", JOptionPane.YES_NO_OPTION) == JOptionPane.OK_OPTION) {
+                    employeeBUS.deleteEmployee(txtEmployeeNumber.getText());
+                    reloadData();
+                }
+            } catch (Exception ex){
+                JOptionPane.showMessageDialog(null, "Delete fail");
+            }
+        }
+    }//GEN-LAST:event_btnDeleteActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAdd;
@@ -232,7 +354,7 @@ public class EmployeePanel extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTable tbEmployeeData;
+    private javax.swing.JTable tblEmployee;
     private javax.swing.JTextField txtEmployeeID;
     private javax.swing.JTextField txtEmployeeName;
     private javax.swing.JTextField txtEmployeeNumber;
@@ -240,4 +362,102 @@ public class EmployeePanel extends javax.swing.JPanel {
     private javax.swing.JPasswordField txtPassword;
     private javax.swing.JTextField txtWorkExperience;
     // End of variables declaration//GEN-END:variables
+    DefaultTableModel tblModel;
+    ArrayList<Employee> lstEmpl;
+    EmployeeBUS employeeBUS = new EmployeeBUS();
+
+    private void initTable() {
+        Vector header = new Vector();
+        header.add("ID");
+        header.add("Number");
+        header.add("Name");
+        header.add("Password");
+        header.add("Role");
+        header.add("Experience");
+        header.add("Gender");
+        header.add("Department");
+        header.add("Project");
+        tblModel = new DefaultTableModel(header, 0);
+        tblEmployee.setModel(tblModel);
+        //TableColumn col = tblEmployee.getColumnModel().getColumn(3);
+        //tblEmployee.getColumnModel().removeColumn(col);
+        
+        tblEmployee.getColumnModel().getColumn(3).setMaxWidth(0);
+        tblEmployee.getColumnModel().getColumn(3).setMinWidth(0);
+        tblEmployee.getColumnModel().getColumn(3).setPreferredWidth(0);
+        tblEmployee.getColumnModel().getColumn(3).setResizable(false);
+        tblEmployee.getColumnModel().getColumn(0).setMaxWidth(0);
+        tblEmployee.getColumnModel().getColumn(0).setMinWidth(0);
+        tblEmployee.getColumnModel().getColumn(0).setPreferredWidth(0);
+        tblEmployee.getColumnModel().getColumn(0).setResizable(false);
+    }
+
+    private void fillData(ArrayList<Employee> lst) {
+        if (lst != null) {
+            for (Employee e : lst) {
+                tblModel.addRow(e.getVector());
+            }
+        }
+    }
+
+    private void initTextField() {
+        txtEmployeeID.setText("");
+        txtEmployeeNumber.setText("");
+        txtEmployeeName.setText("");
+        txtEmployeeRole.setText("");
+        txtPassword.setText("");
+        txtWorkExperience.setText("");        
+    }
+
+    private void reloadData() {
+        try {
+            initTable();
+            fillData(employeeBUS.getAllEmployees());
+            initTextField();
+            initCmbGender();
+            initCmbProject();
+            initCmbDepartment();
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(ProjectPanel.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(ProjectPanel.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    private void initCmbGender() {
+        cmbGender.removeAllItems();
+        cmbGender.addItem(new KeyValue(1, "Male"));
+        cmbGender.addItem(new KeyValue(0, "Female"));
+    }
+
+    private void initCmbProject() throws ClassNotFoundException, SQLException {
+        cmbProject.removeAllItems();
+        ProjectBUS projectBUS = new ProjectBUS();
+        ArrayList<Project> arrProject = projectBUS.getAllProject();
+        for (Project p : arrProject) {
+            cmbProject.addItem(new KeyValue(p.getProjectID(), p.getProjectName()));
+        }
+    }
+
+    /*
+     * Need Department DAL, BLL
+     */
+    private void initCmbDepartment() {
+        cmbDepartment.removeAllItems();
+        cmbDepartment.addItem(new KeyValue(1, "Marketing"));
+        cmbDepartment.addItem(new KeyValue(2, "Accounting"));
+    }
+
+    private void updateFieldWhenSelectEmployee() {
+        int selectedRow = tblEmployee.getSelectedRow();
+        txtEmployeeID.setText(tblEmployee.getValueAt(selectedRow, 0).toString());
+        txtEmployeeNumber.setText(tblEmployee.getValueAt(selectedRow, 1).toString());
+        txtEmployeeName.setText(tblEmployee.getValueAt(selectedRow, 2).toString());
+        txtPassword.setText(tblEmployee.getValueAt(selectedRow, 3).toString());
+        txtEmployeeRole.setText(tblEmployee.getValueAt(selectedRow, 4).toString());
+        txtWorkExperience.setText(tblEmployee.getValueAt(selectedRow, 5).toString());
+        cmbGender.setSelectedItem(new KeyValue(0, tblEmployee.getValueAt(selectedRow, 6).toString()));
+        cmbDepartment.setSelectedItem(new KeyValue(0, tblEmployee.getValueAt(selectedRow, 7).toString()));
+        cmbProject.setSelectedItem(new KeyValue(0, tblEmployee.getValueAt(selectedRow, 8).toString()));
+    }
 }
