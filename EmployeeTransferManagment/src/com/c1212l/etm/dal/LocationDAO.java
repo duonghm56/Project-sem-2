@@ -28,7 +28,7 @@ public class LocationDAO extends ConnectionTool {
             {
                 Location temp = new Location();
                 temp.setLocationID(rs.getInt("locationID"));
-                temp.setLocationName("locationName");
+                temp.setLocationName(rs.getString("locationName"));
                 listLocation.add(temp);
             }
         }

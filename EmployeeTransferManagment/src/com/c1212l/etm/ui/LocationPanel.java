@@ -41,6 +41,7 @@ public class LocationPanel extends javax.swing.JFrame {
                 Location tmp = vctList.elementAt(i);
                 Vector vctRow = new Vector();
                 vctRow.add(tmp.getLocationID());
+                vctRow.add(tmp.getLocationName());
                 vctData.add(vctRow);
             }
             tbLocationData.setModel(new DefaultTableModel(vctData,vctHeader));
