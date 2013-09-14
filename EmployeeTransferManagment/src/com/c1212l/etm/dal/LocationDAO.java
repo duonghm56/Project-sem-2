@@ -4,7 +4,7 @@
  */
 package com.c1212l.etm.dal;
 
-import com.c1212l.etm.beans.Location;
+import com.c1212l.etm.dto.Location;
 import java.sql.CallableStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;

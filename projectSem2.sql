@@ -59,7 +59,9 @@ create table [transfer](
 
 go
 -----------------------------------------------------------
--- procedure cho bang project
+-- DuongHM write ------------------------------------------
+
+-- procedure for project table
 create procedure addProject(@name nvarchar(200), @createDate date, @endDate date)
 as begin
 	insert into project(projectName, createDate, endDate)
@@ -78,8 +80,47 @@ create procedure deleteProject(@id int)
 as begin
 	delete from project where projectID=@id
 end
+go
+
+-- procedure for employee table
+create procedure addEmployee(@emplNum varchar(20), @emplName nvarchar(200), @pass varchar(50), @role nvarchar(100), @workExperience int, @gender bit, @departmentID int, @projectID int)
+as begin
+	insert into employee(employeeNumber ,employeeName, [password], [role], workExperience, gender, departmentID, projectID)
+		values(@emplNum, @emplName, @pass, @role, @workExperience, @gender, @departmentID, @projectID)
+end
+go
+
+create procedure updateEmployee(@emplNum varchar(20), @emplName nvarchar(200), @pass varchar(50), @role nvarchar(100), @workExperience int, @gender bit)
+as begin
+	update employee set employeeName = @emplName, [password] = @pass, [role] = @role,
+						workExperience = @workExperience, gender = @gender
+	where employeeNumber = @emplNum
+end
+go
+
+create procedure deleteEmployee(@emplNum varchar(20))
+as begin
+	delete from employee where employeeNumber = @emplNum
+end
+go
+
+create procedure changeEmployeeDepartment(@emplNum varchar(20), @departmentID int)
+as begin
+	update employee set departmentID = @departmentID
+	where employeeNumber = @emplNum
+end
+go
+
+create procedure changeEmployeeProject(@emplNum varchar(20), @projectID int)
+as begin
+	update employee set projectID = @projectID
+	where employeeNumber = @emplNum
+end
+go
 
 -----------------------------------------------------------
+
+
 go
 create procedure addLocation(@locationName nvarchar(200))
 as

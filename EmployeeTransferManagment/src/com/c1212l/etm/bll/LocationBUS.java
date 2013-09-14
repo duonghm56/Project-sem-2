@@ -6,7 +6,7 @@ package com.c1212l.etm.bll;
 
 import java.sql.SQLException;
 import com.c1212l.etm.dal.LocationDAO;
-import com.c1212l.etm.beans.Location;
+import com.c1212l.etm.dto.Location;
 /**
  *
  * @author Luu Bi

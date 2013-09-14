@@ -4,7 +4,7 @@
  */
 package com.c1212l.etm.bll;
 
-import com.c1212l.etm.beans.Project;
+import com.c1212l.etm.dto.Project;
 import com.c1212l.etm.dal.ProjectDAO;
 import java.sql.Date;
 import java.sql.SQLException;

@@ -4,7 +4,7 @@
  */
 package com.c1212l.etm.ui;
 
-import com.c1212l.etm.beans.Project;
+import com.c1212l.etm.dto.Project;
 import com.c1212l.etm.bll.ProjectBUS;
 import java.sql.SQLException;
 import java.util.ArrayList;

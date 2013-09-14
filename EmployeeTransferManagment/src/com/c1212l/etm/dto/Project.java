@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.c1212l.etm.beans;
+package com.c1212l.etm.dto;
 
 import java.sql.Date;
 import java.util.Vector;

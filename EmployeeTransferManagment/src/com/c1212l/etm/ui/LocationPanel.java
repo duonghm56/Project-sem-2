@@ -4,7 +4,7 @@
  */
 package com.c1212l.etm.ui;
 
-import com.c1212l.etm.beans.Location;
+import com.c1212l.etm.dto.Location;
 import com.c1212l.etm.dal.LocationDAO;
 import java.sql.SQLException;
 import java.util.Vector;
