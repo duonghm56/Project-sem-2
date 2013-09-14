@@ -39,9 +39,9 @@ public class LocationDAO extends ConnectionTool {
     {
         int record = 0;
         initConnection();
-        CallableStatement cs = conn.prepareCall("call addLocation");
-        cs.setInt(1,location.getLocationID());
-        cs.setString(2,location.getLocationName());
+        CallableStatement cs = conn.prepareCall("{call addLocation(?)}");
+//        cs.setInt(1,location.getLocationID());
+        cs.setString(1,location.getLocationName());
         record = cs.executeUpdate();
         closeConnection();
         return record;

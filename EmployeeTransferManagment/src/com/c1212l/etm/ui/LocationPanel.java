@@ -195,10 +195,10 @@ public class LocationPanel extends javax.swing.JFrame {
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         try {
             // TODO add your handling code here:
-            int locationID;
-            locationID = Integer.parseInt(txtLocationID.getText());
+//            int locationID;
+//            locationID = Integer.parseInt(txtLocationID.getText());
             String locationName = txtLocationName.getText();
-            int record = bus.addLocation(locationID, locationName);
+            int record = bus.addLocation(locationName);
             if (record>0) {
                 JOptionPane.showMessageDialog(this, "Add success");
             }

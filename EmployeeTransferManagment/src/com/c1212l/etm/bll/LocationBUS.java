@@ -13,10 +13,10 @@ import com.c1212l.etm.beans.Location;
  */
 public class LocationBUS {
     LocationDAO dao = new LocationDAO();
-    public int addLocation(int locationID,String locationName)throws ClassNotFoundException, SQLException
+    public int addLocation(String locationName)throws ClassNotFoundException, SQLException
     {
         Location bean = new Location();
-        bean.setLocationID(locationID);
+//        bean.setLocationID(locationID);
         bean.setLocationName(locationName);
         return dao.addLocation(bean);
     }
