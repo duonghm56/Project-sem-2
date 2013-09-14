@@ -72,9 +72,6 @@ public class ProjectPanel extends javax.swing.JPanel {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 txtProjectNameKeyReleased(evt);
             }
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                txtProjectNameKeyTyped(evt);
-            }
         });
         add(txtProjectName, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 60, 170, -1));
 
@@ -144,9 +141,6 @@ public class ProjectPanel extends javax.swing.JPanel {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 txtCreateDateKeyReleased(evt);
             }
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                txtCreateDateKeyTyped(evt);
-            }
         });
         add(txtCreateDate, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 90, 170, -1));
 
@@ -156,9 +150,6 @@ public class ProjectPanel extends javax.swing.JPanel {
         txtEndDate.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 txtEndDateKeyReleased(evt);
-            }
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                txtEndDateKeyTyped(evt);
             }
         });
         add(txtEndDate, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 120, 170, -1));
@@ -221,15 +212,6 @@ public class ProjectPanel extends javax.swing.JPanel {
         txtEndDate.setText(tblProject.getValueAt(selectedRow, 3) != null ? tblProject.getValueAt(selectedRow, 3).toString() : "");
 
     }//GEN-LAST:event_tblProjectMouseClicked
-
-    private void txtProjectNameKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtProjectNameKeyTyped
-    }//GEN-LAST:event_txtProjectNameKeyTyped
-
-    private void txtCreateDateKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCreateDateKeyTyped
-    }//GEN-LAST:event_txtCreateDateKeyTyped
-
-    private void txtEndDateKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtEndDateKeyTyped
-    }//GEN-LAST:event_txtEndDateKeyTyped
 
     private void txtEndDateKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtEndDateKeyReleased
         try {
