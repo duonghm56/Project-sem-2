@@ -12,12 +12,23 @@ import com.c1212l.etm.beans.Location;
  * @author Luu Bi
  */
 public class LocationBUS {
+    Location bean = new Location();
     LocationDAO dao = new LocationDAO();
     public int addLocation(String locationName)throws ClassNotFoundException, SQLException
     {
-        Location bean = new Location();
 //        bean.setLocationID(locationID);
         bean.setLocationName(locationName);
         return dao.addLocation(bean);
+    }
+        public int updateLocation(int locationID,String locationName)throws ClassNotFoundException, SQLException
+    {
+        bean.setLocationID(locationID);
+        bean.setLocationName(locationName);
+        return dao.updateLocation(bean);
+    }
+    public int deleteLocation(int locationID)throws ClassNotFoundException, SQLException
+    {
+        bean.setLocationID(locationID);
+        return dao.deleteLocation(bean);
     }
 }

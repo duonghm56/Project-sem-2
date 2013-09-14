@@ -30,7 +30,7 @@ public class LocationPanel extends javax.swing.JFrame {
         initComponents();
         loadData();
     }
-    private void loadData()  
+   private void loadData()  
     {
         try {    
             vctList = model.listAllLocation();
@@ -50,7 +50,26 @@ public class LocationPanel extends javax.swing.JFrame {
         } catch (SQLException ex) {
             Logger.getLogger(LocationPanel.class.getName()).log(Level.SEVERE, null, ex);
         }
-
+    }
+      private void updateData()  
+    {
+        try {    
+            vctData.removeAllElements();
+            vctList = model.listAllLocation();
+            for (int i = 0; i < vctList.size(); i++) {
+                Location tmp = vctList.elementAt(i);
+                Vector vctRow = new Vector();
+                vctRow.add(tmp.getLocationID());
+                vctRow.add(tmp.getLocationName());
+                vctData.add(vctRow);
+                    System.out.println(vctData.firstElement().toString());
+            }
+            tbLocationData.setModel(new DefaultTableModel(vctData,vctHeader));
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(LocationPanel.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(LocationPanel.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -99,8 +118,18 @@ public class LocationPanel extends javax.swing.JFrame {
         jLabel2.setText("Location Name:");
 
         jButton1.setText("Update");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jButton2.setText("Delete");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jButton3.setText("Add");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
@@ -212,6 +241,48 @@ public class LocationPanel extends javax.swing.JFrame {
             Logger.getLogger(LocationPanel.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+              try {
+            // TODO add your handling code here:
+            int locationID = Integer.parseInt(txtLocationID.getText());
+            String locationName = txtLocationName.getText();
+            int record = bus.updateLocation(locationID, locationName);
+            if (record>0) {
+                JOptionPane.showMessageDialog(this, "Update success");
+            }
+            else
+            {
+                JOptionPane.showMessageDialog(this,"Update fail");
+            }
+            updateData();
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(LocationPanel.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(LocationPanel.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+               try {
+            // TODO add your handling code here:
+            int locationID = Integer.parseInt(txtLocationID.getText());
+            int record = bus.deleteLocation(locationID);
+            if (record>0) {
+                JOptionPane.showMessageDialog(this, "Delete success");
+            }
+            else
+            {
+                JOptionPane.showMessageDialog(this,"Delete fail");
+            }
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(LocationPanel.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(LocationPanel.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
