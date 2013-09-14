@@ -27,6 +27,10 @@ public class ProjectBUS {
     public ArrayList<Project> getAllProject() throws ClassNotFoundException, SQLException {
         return projectDAO.getAllProject();
     }
+    
+    public ArrayList<Project> searchProject(String condition) throws ClassNotFoundException, SQLException {
+        return projectDAO.searchProject(condition);
+    }
 
     public void addProject(String projectName, String createDate, String endDate) throws ClassNotFoundException, SQLException {
         Date createDate_date = null;

@@ -67,6 +67,15 @@ public class ProjectPanel extends javax.swing.JPanel {
 
         txtProjectID.setEditable(false);
         add(txtProjectID, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 30, 170, -1));
+
+        txtProjectName.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtProjectNameKeyReleased(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtProjectNameKeyTyped(evt);
+            }
+        });
         add(txtProjectName, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 60, 170, -1));
 
         lblProjectName.setText("Project Name");
@@ -130,10 +139,28 @@ public class ProjectPanel extends javax.swing.JPanel {
 
         lblCreateDate.setText("Created Date");
         add(lblCreateDate, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 90, -1, -1));
+
+        txtCreateDate.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtCreateDateKeyReleased(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtCreateDateKeyTyped(evt);
+            }
+        });
         add(txtCreateDate, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 90, 170, -1));
 
         lblEndDate.setText("End Date");
         add(lblEndDate, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 120, -1, -1));
+
+        txtEndDate.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtEndDateKeyReleased(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtEndDateKeyTyped(evt);
+            }
+        });
         add(txtEndDate, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 120, 170, -1));
     }// </editor-fold>//GEN-END:initComponents
 
@@ -177,7 +204,7 @@ public class ProjectPanel extends javax.swing.JPanel {
             try {
                 if (JOptionPane.showConfirmDialog(null, "Are you sure to delete?", "Delete", JOptionPane.YES_NO_OPTION) == JOptionPane.OK_OPTION) {
                     projectBUS.deleteProject(txtProjectID.getText());
-                    reloadData();                    
+                    reloadData();
                 }
             } catch (Exception ex) {
                 JOptionPane.showMessageDialog(null, "Delete Fail !!!");
@@ -194,6 +221,45 @@ public class ProjectPanel extends javax.swing.JPanel {
         txtEndDate.setText(tblProject.getValueAt(selectedRow, 3) != null ? tblProject.getValueAt(selectedRow, 3).toString() : "");
 
     }//GEN-LAST:event_tblProjectMouseClicked
+
+    private void txtProjectNameKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtProjectNameKeyTyped
+    }//GEN-LAST:event_txtProjectNameKeyTyped
+
+    private void txtCreateDateKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCreateDateKeyTyped
+    }//GEN-LAST:event_txtCreateDateKeyTyped
+
+    private void txtEndDateKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtEndDateKeyTyped
+    }//GEN-LAST:event_txtEndDateKeyTyped
+
+    private void txtEndDateKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtEndDateKeyReleased
+        try {
+            loadSearchData();
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(ProjectPanel.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(ProjectPanel.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_txtEndDateKeyReleased
+
+    private void txtCreateDateKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCreateDateKeyReleased
+        try {
+            loadSearchData();
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(ProjectPanel.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(ProjectPanel.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_txtCreateDateKeyReleased
+
+    private void txtProjectNameKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtProjectNameKeyReleased
+        try {
+            loadSearchData();
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(ProjectPanel.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(ProjectPanel.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_txtProjectNameKeyReleased
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAdd;
     private javax.swing.JButton btnDelete;
@@ -248,5 +314,33 @@ public class ProjectPanel extends javax.swing.JPanel {
         txtProjectName.setText("");
         txtCreateDate.setText("");
         txtEndDate.setText("");
+    }
+
+    private void loadSearchData() throws ClassNotFoundException, SQLException {
+        String conditon = "";
+        if (!txtProjectName.getText().equals("")) {
+            if (!conditon.contains("where")) {
+                conditon += " where projectName like '%" + txtProjectName.getText() + "%'";
+            } else {
+                conditon += " and projectName like '%" + txtProjectName.getText() + "%'";
+            }
+        }
+        if (!txtCreateDate.getText().equals("")) {
+            if (conditon.contains("where")) {
+                conditon += " and convert(varchar(25), createDate, 126) like '" + txtCreateDate.getText() + "%'";
+            } else {
+                conditon += " where convert(varchar(25), createDate, 126) like '" + txtCreateDate.getText() + "%'";
+            }
+        }
+        if (!txtEndDate.getText().equals("")) {
+            if (conditon.contains("where")) {
+                conditon += " and convert(varchar(25), endDate, 126) like '" + txtEndDate.getText() + "%'";
+            } else {
+                conditon += " where convert(varchar(25), endDate, 126) like '" + txtEndDate.getText() + "%'";
+            }
+        }
+        initTable();
+        lstProject = projectBUS.searchProject(conditon);
+        fillData(lstProject);        
     }
 }

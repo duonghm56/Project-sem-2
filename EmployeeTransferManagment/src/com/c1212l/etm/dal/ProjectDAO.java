@@ -34,6 +34,23 @@ public class ProjectDAO extends ConnectionTool{
         return result;
     }
     
+    public ArrayList<Project> searchProject(String condition) throws ClassNotFoundException, SQLException{
+        initConnection();
+        Statement stmt = conn.createStatement();
+        ResultSet rs = stmt.executeQuery("select * from project " + condition);        
+        ArrayList<Project> result = new ArrayList<>();
+        while(rs.next()){
+            Project p = new Project();
+            p.setProjectID(rs.getInt("projectID"));
+            p.setProjectName(rs.getString("projectName"));
+            p.setCreateDate(rs.getDate("createDate"));
+            p.setEndDate(rs.getDate("endDate"));
+            result.add(p);
+        }
+        closeConnection();
+        return result;
+    }
+    
     public void addProject(Project project) throws ClassNotFoundException, SQLException{
         initConnection();
         CallableStatement cs = conn.prepareCall("{call addProject(?, ?, ?)}");
