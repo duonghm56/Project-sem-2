@@ -5,10 +5,12 @@
 package com.c1212l.etm.dal;
 
 import com.c1212l.etm.dto.Location;
+import com.c1212l.etm.dto.Project;
 import java.sql.CallableStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.Vector;
 
 /**
@@ -66,5 +68,19 @@ public class LocationDAO extends ConnectionTool {
           record = cs.executeUpdate();
           closeConnection();
           return record;
+    }
+      public ArrayList<Location> searchLocationName(String locationName) throws ClassNotFoundException, SQLException {
+        initConnection();
+        Statement stmt = conn.createStatement();
+        ResultSet rs = stmt.executeQuery("select * from location " + locationName);
+        ArrayList<Location> result = new ArrayList<>();
+        while (rs.next()) {
+            Location location = new Location();
+            location.setLocationID(rs.getInt("locationID"));
+            location.setLocationName(rs.getString("locationName"));
+            result.add(location);
+        }
+        closeConnection();
+        return result;
     }
 }

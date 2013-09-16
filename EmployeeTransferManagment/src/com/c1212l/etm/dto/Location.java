@@ -4,6 +4,8 @@
  */
 package com.c1212l.etm.dto;
 
+import java.util.Vector;
+
 /**
  *
  * @author Luu Bi
@@ -35,5 +37,10 @@ public class Location {
     public void setLocationName(String locationName) {
         this.locationName = locationName;
     }
-    
+     public Vector getVector(){
+        Vector v = new Vector();
+        v.add(locationID);
+        v.add(locationName);
+        return v;
+    }
 }

@@ -12,7 +12,11 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.table.DefaultTableModel;
 import com.c1212l.etm.bll.LocationBUS;
+import com.c1212l.etm.bll.ProjectBUS;
+import com.c1212l.etm.dto.Project;
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
+import javax.swing.table.TableModel;
 /**
  *
  * @author Luu Bi
@@ -20,38 +24,35 @@ import javax.swing.JOptionPane;
 public class LocationPanel extends javax.swing.JFrame {
     private LocationDAO  model = new LocationDAO();
     private Vector<Location>vctList = new Vector<Location>();
-    private Vector vctHeader = new Vector();
     private Vector vctData = new Vector();
-    LocationBUS bus = new LocationBUS();
+    LocationBUS locationBUS = new LocationBUS();
+    ArrayList<Location> lstLocation;
+    DefaultTableModel tblModel;
+        /**
+
     /**
      * Creates new form LocationPanel
      */
     public LocationPanel() {
         initComponents();
-        loadData();
+        initTable();
+        reloadData();
     }
-   private void loadData()  
-    {
-        try {    
-            vctList = model.listAllLocation();
-    
-            vctHeader.add("Location ID");
-            vctHeader.add("Location Name");
-            for (int i = 0; i < vctList.size(); i++) {
-                Location tmp = vctList.elementAt(i);
-                Vector vctRow = new Vector();
-                vctRow.add(tmp.getLocationID());
-                vctRow.add(tmp.getLocationName());
-                vctData.add(vctRow);
+     private void initTable() {
+        Vector header = new Vector();
+        header.add("Project ID");
+        header.add("Project Name");  
+        tblModel = new DefaultTableModel(header, 0);
+        tbLocationData.setModel(tblModel);
+    }
+       private void fillData(ArrayList<Location> lst) {
+        if (lst != null) {
+            for (Location location : lst) {
+                tblModel.addRow(location.getVector());
             }
-            tbLocationData.setModel(new DefaultTableModel(vctData,vctHeader));
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(LocationPanel.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (SQLException ex) {
-            Logger.getLogger(LocationPanel.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-      private void updateData()  
+      private void reloadData()  
     {
         try {    
             vctData.removeAllElements();
@@ -62,15 +63,28 @@ public class LocationPanel extends javax.swing.JFrame {
                 vctRow.add(tmp.getLocationID());
                 vctRow.add(tmp.getLocationName());
                 vctData.add(vctRow);
-                    System.out.println(vctData.firstElement().toString());
             }
-            tbLocationData.setModel(new DefaultTableModel(vctData,vctHeader));
+            tbLocationData.setModel((TableModel)vctData);
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(LocationPanel.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {
             Logger.getLogger(LocationPanel.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+      private void loadSearchLocationName() throws ClassNotFoundException, SQLException {
+             String conditon = "";
+        if (!txtLocationName.getText().equals("")) {
+            if (!conditon.contains("where")) {
+                conditon += " where projectName like '%" + txtLocationName.getText() + "%'";
+            } else {
+                conditon += " and projectName like '%" + txtLocationName.getText() + "%'";
+            }
+        }
+        initTable();
+        lstLocation = locationBUS.searchLocation(conditon);
+        fillData(lstLocation); 
+      }
+      
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -88,9 +102,9 @@ public class LocationPanel extends javax.swing.JFrame {
         txtLocationID = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         txtLocationName = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        btnUpdate = new javax.swing.JButton();
+        btnDelete = new javax.swing.JButton();
+        btnAdd = new javax.swing.JButton();
         jScrollPane3 = new javax.swing.JScrollPane();
         tbLocationData = new javax.swing.JTable();
 
@@ -117,24 +131,30 @@ public class LocationPanel extends javax.swing.JFrame {
 
         jLabel2.setText("Location Name:");
 
-        jButton1.setText("Update");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+        txtLocationName.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtLocationNameKeyReleased(evt);
             }
         });
 
-        jButton2.setText("Delete");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        btnUpdate.setText("Update");
+        btnUpdate.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                btnUpdateActionPerformed(evt);
             }
         });
 
-        jButton3.setText("Add");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        btnDelete.setText("Delete");
+        btnDelete.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                btnDeleteActionPerformed(evt);
+            }
+        });
+
+        btnAdd.setText("Add");
+        btnAdd.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAddActionPerformed(evt);
             }
         });
 
@@ -168,11 +188,11 @@ public class LocationPanel extends javax.swing.JFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(32, 32, 32)
-                                .addComponent(jButton3)
+                                .addComponent(btnAdd)
                                 .addGap(41, 41, 41)
-                                .addComponent(jButton1)
+                                .addComponent(btnUpdate)
                                 .addGap(36, 36, 36)
-                                .addComponent(jButton2))
+                                .addComponent(btnDelete))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -204,9 +224,9 @@ public class LocationPanel extends javax.swing.JFrame {
                     .addComponent(txtLocationName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(32, 32, 32)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton3)
-                    .addComponent(jButton2))
+                    .addComponent(btnUpdate)
+                    .addComponent(btnAdd)
+                    .addComponent(btnDelete))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(24, 24, 24))
@@ -226,13 +246,13 @@ public class LocationPanel extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
         try {
             // TODO add your handling code here:
 //            int locationID;
 //            locationID = Integer.parseInt(txtLocationID.getText());
             String locationName = txtLocationName.getText();
-            int record = bus.addLocation(locationName);
+            int record = locationBUS.addLocation(locationName);
             if (record>0) {
                 JOptionPane.showMessageDialog(this, "Add success");
             }
@@ -240,20 +260,21 @@ public class LocationPanel extends javax.swing.JFrame {
             {
                 JOptionPane.showMessageDialog(this,"Add fail");
             }
+            reloadData();
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(LocationPanel.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {
             Logger.getLogger(LocationPanel.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }//GEN-LAST:event_jButton3ActionPerformed
+    }//GEN-LAST:event_btnAddActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
         // TODO add your handling code here:
               try {
             // TODO add your handling code here:
             int locationID = Integer.parseInt(txtLocationID.getText());
             String locationName = txtLocationName.getText();
-            int record = bus.updateLocation(locationID, locationName);
+            int record = locationBUS.updateLocation(locationID, locationName);
             if (record>0) {
                 JOptionPane.showMessageDialog(this, "Update success");
             }
@@ -261,20 +282,20 @@ public class LocationPanel extends javax.swing.JFrame {
             {
                 JOptionPane.showMessageDialog(this,"Update fail");
             }
-            updateData();
+            reloadData();
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(LocationPanel.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {
             Logger.getLogger(LocationPanel.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_btnUpdateActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
         // TODO add your handling code here:
                try {
             // TODO add your handling code here:
             int locationID = Integer.parseInt(txtLocationID.getText());
-            int record = bus.deleteLocation(locationID);
+            int record = locationBUS.deleteLocation(locationID);
             if (record>0) {
                 JOptionPane.showMessageDialog(this, "Delete success");
             }
@@ -282,12 +303,13 @@ public class LocationPanel extends javax.swing.JFrame {
             {
                 JOptionPane.showMessageDialog(this,"Delete fail");
             }
+            reloadData();
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(LocationPanel.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {
             Logger.getLogger(LocationPanel.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_btnDeleteActionPerformed
 
     private void tbLocationDataMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbLocationDataMouseClicked
         // TODO add your handling code here:
@@ -295,6 +317,17 @@ public class LocationPanel extends javax.swing.JFrame {
            txtLocationID.setText(tbLocationData.getValueAt(row, 0).toString());
            txtLocationName.setText(tbLocationData.getValueAt(row, 1).toString());
     }//GEN-LAST:event_tbLocationDataMouseClicked
+
+    private void txtLocationNameKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtLocationNameKeyReleased
+        // TODO add your handling code here:
+            try {
+            loadSearchLocationName();
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(ProjectPanel.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(ProjectPanel.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_txtLocationNameKeyReleased
 
     /**
      * @param args the command line arguments
@@ -331,9 +364,9 @@ public class LocationPanel extends javax.swing.JFrame {
         });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
+    private javax.swing.JButton btnAdd;
+    private javax.swing.JButton btnDelete;
+    private javax.swing.JButton btnUpdate;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
