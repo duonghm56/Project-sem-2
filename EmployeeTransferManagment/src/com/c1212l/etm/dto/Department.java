@@ -11,6 +11,15 @@ package com.c1212l.etm.dto;
 public class Department {
     private int departmentID;
     private String departmentName;
+    private int locationID;
+
+    public int getLocationID() {
+        return locationID;
+    }
+
+    public void setLocationID(int locationID) {
+        this.locationID = locationID;
+    }
 
     public int getDepartmentID() {
         return departmentID;
