@@ -75,7 +75,6 @@ as begin
 	where projectID=@id
 end
 go
-
 create procedure deleteProject(@id int)
 as begin
 	delete from project where projectID=@id
@@ -126,4 +125,35 @@ create procedure addLocation(@locationName nvarchar(200))
 as
 begin
 	insert into location(locationName) values(@locationName)
+end
+go
+create procedure updateLocation(@id int,@name nvarchar(200))
+as begin
+	update location set locationName=@name
+	where locationID=@id
+end
+go
+create procedure deleteLocation(@id int)
+as begin
+	delete from location 
+	where locationID = @id
+end
+--------------------------------------------------------
+go
+create procedure addDepartment(@name nvarchar(200),@locationID nvarchar(200))
+as
+begin
+	insert into department(departmentName,locationID) values(@name,@locationID)
+end
+go
+create procedure updateDepartment(@id int,@name nvarchar(200),@locationID int)
+as begin
+	update department set departmentName=@name,locationID=@locationID
+	where departmentID=@id
+end
+go
+create procedure deleteDepartment(@id int)
+as begin
+	delete from department
+	where departmentID = @id
 end
