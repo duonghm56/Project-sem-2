@@ -4,27 +4,27 @@
  */
 package com.c1212l.etm.dal;
 
-import com.c1212l.etm.dto.Employee;
+import com.c1212l.etm.dto.Login;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.ArrayList;
+import java.util.Vector;
 
 /**
  *
  * @author Android21SDK
  */
 public class LoginDAO extends ConnectionTool {
-      public ArrayList<Login> getAllEmployee() throws ClassNotFoundException, SQLException{
+      public Vector<Login> getAllLogin() throws ClassNotFoundException, SQLException{
         initConnection();
         Statement stmt = conn.createStatement();
         ResultSet rs = stmt.executeQuery("select * from employee");
-        ArrayList<Employee> result = new ArrayList<Employee>();
+        Vector<Login> result = new Vector<Login>();
         while(rs.next()){
-            Employee e = new Employee();
-            e.setEmployeeID(rs.getInt("employeeID"));
-            e.setEmployeeNumber(rs.getString("employeeNumber"));
-            result.add(e);
+            Login l = new Login();
+            l.setUserName(rs.getString("userName"));
+            l.setPassword(rs.getString("password"));
+            result.add(l);
         }
         closeConnection();
         return result;

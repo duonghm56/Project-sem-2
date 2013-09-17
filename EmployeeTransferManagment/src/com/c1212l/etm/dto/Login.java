@@ -38,7 +38,7 @@ public class Login {
         this.password = password;
     }
 
-    public boolean isRole() {
+    public boolean getRole() {
         return role;
     }
 
