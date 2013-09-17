@@ -36,5 +36,14 @@ public class Department {
     public void setDepartmentName(String departmentName) {
         this.departmentName = departmentName;
     }
+
+    public Department(int departmentID, String departmentName, int locationID) {
+        this.departmentID = departmentID;
+        this.departmentName = departmentName;
+        this.locationID = locationID;
+    }
+    
+    public Department() {
+    }
     
 }
