@@ -156,6 +156,9 @@ if (n == JOptionPane.YES_OPTION) {
             if (txtUserName.getText().equals("")||txtPassword.getText().equals("")) {
                 JOptionPane.showMessageDialog(this, "Please enter all field");
             }
+            if (txtUserName.getText().equals("")) {
+                
+            }
         }
         catch(Exception e){e.printStackTrace();}
     }//GEN-LAST:event_btnLoginActionPerformed
