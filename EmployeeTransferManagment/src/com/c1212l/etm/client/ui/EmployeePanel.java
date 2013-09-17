@@ -4,6 +4,16 @@
  */
 package com.c1212l.etm.client.ui;
 
+import com.c1212l.etm.bll.EmployeeBUS;
+import com.c1212l.etm.dto.Employee;
+import com.c1212l.etm.ui.ProjectPanel;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.Vector;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author Android21SDK
@@ -15,6 +25,7 @@ public class EmployeePanel extends javax.swing.JPanel {
      */
     public EmployeePanel() {
         initComponents();
+        reloadData();
     }
 
     /**
@@ -28,6 +39,8 @@ public class EmployeePanel extends javax.swing.JPanel {
 
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        tblEmployee = new javax.swing.JTable();
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -44,19 +57,87 @@ public class EmployeePanel extends javax.swing.JPanel {
 
         setBorder(javax.swing.BorderFactory.createTitledBorder("Employee View"));
 
+        tblEmployee.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane2.setViewportView(tblEmployee);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 388, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 277, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 17, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
     }// </editor-fold>//GEN-END:initComponents
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jTable1;
+    private javax.swing.JTable tblEmployee;
     // End of variables declaration//GEN-END:variables
+  DefaultTableModel tblModel;
+    ArrayList<Employee> lstEmpl;
+    EmployeeBUS employeeBUS = new EmployeeBUS();
+
+    private void initTable() {
+        Vector header = new Vector();
+        header.add("ID");
+        header.add("Number");
+        header.add("Name");
+        header.add("Password");
+        header.add("Role");
+        header.add("Experience");
+        header.add("Gender");
+        header.add("Department");
+        header.add("Project");
+        tblModel = new DefaultTableModel(header, 0);
+        tblEmployee.setModel(tblModel);
+        //TableColumn col = tblEmployee.getColumnModel().getColumn(3);
+        //tblEmployee.getColumnModel().removeColumn(col);
+        
+        tblEmployee.getColumnModel().getColumn(3).setMaxWidth(0);
+        tblEmployee.getColumnModel().getColumn(3).setMinWidth(0);
+        tblEmployee.getColumnModel().getColumn(3).setPreferredWidth(0);
+        tblEmployee.getColumnModel().getColumn(3).setResizable(false);
+        tblEmployee.getColumnModel().getColumn(0).setMaxWidth(0);
+        tblEmployee.getColumnModel().getColumn(0).setMinWidth(0);
+        tblEmployee.getColumnModel().getColumn(0).setPreferredWidth(0);
+        tblEmployee.getColumnModel().getColumn(0).setResizable(false);
+    }
+
+    private void fillData(ArrayList<Employee> lst) {
+        if (lst != null) {
+            for (Employee e : lst) {
+                tblModel.addRow(e.getVector());
+            }
+        }
+    }
+    
+    private void reloadData() {
+        try {
+            initTable();
+            fillData(employeeBUS.getAllEmployees());
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(ProjectPanel.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(ProjectPanel.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
 }

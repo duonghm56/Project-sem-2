@@ -25,7 +25,7 @@ import javax.swing.table.DefaultTableModel;
  * @author Luu Bi
  */
 public class TransferPanel extends javax.swing.JPanel {
-    private TransferDAO  model = new TransferDAO();
+    private TransferDAO  model = new TransferDAO(); 
     private Vector<Transfer>vctList = new Vector<Transfer>();
     private Vector vctHeader = new Vector();
     private Vector vctData = new Vector();
