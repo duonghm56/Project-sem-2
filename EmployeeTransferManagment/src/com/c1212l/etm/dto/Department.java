@@ -4,6 +4,8 @@
  */
 package com.c1212l.etm.dto;
 
+import java.util.Vector;
+
 /**
  *
  * @author Android21SDK
@@ -36,14 +38,12 @@ public class Department {
     public void setDepartmentName(String departmentName) {
         this.departmentName = departmentName;
     }
-
-    public Department(int departmentID, String departmentName, int locationID) {
-        this.departmentID = departmentID;
-        this.departmentName = departmentName;
-        this.locationID = locationID;
+        
+    public Vector getVector(){
+        Vector v = new Vector();
+        v.add(departmentID);
+        v.add(departmentName);
+        v.add(locationID);
+        return v;
     }
-    
-    public Department() {
-    }
-    
 }

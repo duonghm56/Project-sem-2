@@ -5,6 +5,7 @@
 package com.c1212l.etm.dal;
 
 import com.c1212l.etm.dto.Location;
+import com.c1212l.etm.dto.Project;
 import java.sql.CallableStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -81,5 +82,22 @@ public class LocationDAO extends ConnectionTool {
         }
         closeConnection();
         return result;
+    }
+      public Location getLocationById(int id) {
+        try {
+            initConnection();
+            Statement stmt = conn.createStatement();
+            ResultSet rs = stmt.executeQuery("select * from location where locationID = " + id);
+            Location location = null;
+            if (rs.next()) {
+                location= new Location();
+                location.setLocationID(rs.getInt("locationID"));
+                location.setLocationName(rs.getString("locationName"));
+            }
+            closeConnection();
+            return location;
+        }catch(Exception ex){
+            return null;
+        }
     }
 }

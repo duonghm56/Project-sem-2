@@ -19,25 +19,26 @@ import java.util.ArrayList;
  */
 public class DepartmentBUS {
     DepartmentDAO departmentDAO;
-    public ArrayList<Department> searchLocation(String departmentName) throws ClassNotFoundException, SQLException {
+    public ArrayList<Department> searchDepartmentName(String departmentName) throws ClassNotFoundException, SQLException {
         return departmentDAO.searchDepartmentName(departmentName);
     }
     public DepartmentBUS() {
         departmentDAO= new DepartmentDAO();
     }
-    public ArrayList<Department> getdDepartment() throws ClassNotFoundException, SQLException{
-        return departmentDAO.getDepartment();
+    public ArrayList<Department> getAllDepartment() throws ClassNotFoundException, SQLException{
+        return departmentDAO.getAllDepartment();
     }
-    public void addDepartment(int dpmID, String dpmName) throws ClassNotFoundException, SQLException{
+    public void addDepartment(String dpmName,int locationID) throws ClassNotFoundException, SQLException{
         Department dpm=new Department();
-        dpm.setDepartmentID(dpmID);
         dpm.setDepartmentName(dpmName);
+        dpm.setLocationID(locationID);
         departmentDAO.addDepartment(dpm);
     }
-    public void updateDepartment(int dpmID, String dpmName) throws ClassNotFoundException, SQLException{
+    public void updateDepartment(int dpmID, String dpmName,int locationID) throws ClassNotFoundException, SQLException{
         Department dpm= new Department();
         dpm.setDepartmentID(dpmID);
         dpm.setDepartmentName(dpmName);
+        dpm.setLocationID(locationID);
         departmentDAO.updateDepartment(dpm);
     }
     public void deleteDepartment(int dpmID) throws ClassNotFoundException, SQLException{

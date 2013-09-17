@@ -4,6 +4,17 @@
  */
 package com.c1212l.etm.ui;
 
+import com.c1212l.etm.bll.DepartmentBUS;
+import com.c1212l.etm.dto.Department;
+import com.c1212l.etm.util.KeyValue;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.Vector;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author Luu Bi
@@ -14,7 +25,18 @@ public class DepartmentPanel extends javax.swing.JPanel {
      * Creates new form DepartmentPanel
      */
     public DepartmentPanel() {
-        initComponents();
+        try{
+            initComponents();
+            initCmbLocationID();
+            initTable();
+            lstDepartment = departmentBUS.getAllDepartment();
+            fillData(lstDepartment);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(ProjectPanel.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(ProjectPanel.class.getName()).log(Level.SEVERE, null, ex);
+        }
+   
     }
 
     /**
@@ -32,12 +54,12 @@ public class DepartmentPanel extends javax.swing.JPanel {
         jLabel3 = new javax.swing.JLabel();
         txtDepartmentID = new javax.swing.JTextField();
         txtDepartmentName = new javax.swing.JTextField();
-        txtLocationID = new javax.swing.JTextField();
         btnAdd = new javax.swing.JButton();
         btnUpdate = new javax.swing.JButton();
         btnDelete = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tbDepartmentData = new javax.swing.JTable();
+        cmbLocationID = new javax.swing.JComboBox();
 
         jTextField2.setText("jTextField2");
 
@@ -56,6 +78,11 @@ public class DepartmentPanel extends javax.swing.JPanel {
         });
 
         btnAdd.setText("Add");
+        btnAdd.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAddActionPerformed(evt);
+            }
+        });
 
         btnUpdate.setText("Update");
 
@@ -73,6 +100,8 @@ public class DepartmentPanel extends javax.swing.JPanel {
             }
         ));
         jScrollPane1.setViewportView(tbDepartmentData);
+
+        cmbLocationID.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Ha Noi", "TP.Ho Chi Minh", " " }));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -96,7 +125,7 @@ public class DepartmentPanel extends javax.swing.JPanel {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(txtDepartmentID, javax.swing.GroupLayout.DEFAULT_SIZE, 102, Short.MAX_VALUE)
                             .addComponent(txtDepartmentName)
-                            .addComponent(txtLocationID))))
+                            .addComponent(cmbLocationID, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -117,7 +146,7 @@ public class DepartmentPanel extends javax.swing.JPanel {
                 .addGap(32, 32, 32)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(txtLocationID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cmbLocationID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(29, 29, 29)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnAdd)
@@ -133,10 +162,29 @@ public class DepartmentPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtDepartmentNameActionPerformed
 
+    private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
+        // TODO add your handling code here:
+        if (txtDepartmentName.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "Please enter department name");
+            return;
+        }
+            try {
+                departmentBUS.addDepartment(txtDepartmentName.getText(),((KeyValue)cmbLocationID.getSelectedItem()).getKey());
+                JOptionPane.showMessageDialog(null, "Insert Success!!!");
+                System.out.println(cmbLocationID.getSelectedIndex());
+                reloadData();
+            } catch (Exception ex) {
+                JOptionPane.showMessageDialog(null, "Insert Fail !!!");
+                ex.printStackTrace();
+            
+        }
+    }//GEN-LAST:event_btnAddActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAdd;
     private javax.swing.JButton btnDelete;
     private javax.swing.JButton btnUpdate;
+    private javax.swing.JComboBox cmbLocationID;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -145,6 +193,60 @@ public class DepartmentPanel extends javax.swing.JPanel {
     private javax.swing.JTable tbDepartmentData;
     private javax.swing.JTextField txtDepartmentID;
     private javax.swing.JTextField txtDepartmentName;
-    private javax.swing.JTextField txtLocationID;
     // End of variables declaration//GEN-END:variables
+    DefaultTableModel tblModel;
+    ArrayList<Department> lstDepartment;
+    DepartmentBUS departmentBUS = new DepartmentBUS();
+
+    private void initTable() {
+        Vector header = new Vector();
+        header.add("Department ID");
+        header.add("Department Name");
+        header.add("Location ID");
+        tblModel = new DefaultTableModel(header, 0);
+        tbDepartmentData.setModel(tblModel);
+    }
+
+    private void fillData(ArrayList<Department> lst) {
+        if (lst != null) {
+            for (Department d : lst) {
+                tblModel.addRow(d.getVector());
+            }
+        }
+    }
+
+    private void reloadData() {
+        try {
+            initTable();
+            fillData(departmentBUS.getAllDepartment());
+            initTextField();
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(ProjectPanel.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(ProjectPanel.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    private void initTextField() {
+        txtDepartmentID.setText("");
+        txtDepartmentName.setText("");
+    }
+    private void initCmbLocationID() {
+        cmbLocationID.removeAllItems();
+        cmbLocationID.addItem(new KeyValue(10, "Ha Noi"));
+        cmbLocationID.addItem(new KeyValue(11, "TP.Ho Chi Minh"));
+    }
+    private void searchDepartmentName() throws ClassNotFoundException, SQLException {
+        String departmentName = "";
+        if (!txtDepartmentName.getText().equals("")) {
+            if (!departmentName.contains("where")) {
+                departmentName += " where projectName like '%" + txtDepartmentName.getText() + "%'";
+            } else {
+                departmentName += " and projectName like '%" + txtDepartmentName.getText() + "%'";
+            }
+        }
+            initTable();
+            lstDepartment = departmentBUS.searchDepartmentName(departmentName);
+            fillData(lstDepartment);  
+        }  
 }

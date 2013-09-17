@@ -5,7 +5,6 @@
 package com.c1212l.etm.dal;
 
 import com.c1212l.etm.dto.Department;
-import com.c1212l.etm.dto.Location;
 import java.sql.CallableStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -17,7 +16,7 @@ import java.util.ArrayList;
  * @author Android21SDK
  */
 public class DepartmentDAO extends ConnectionTool{
-    public ArrayList<Department> getDepartment() throws ClassNotFoundException, SQLException{
+    public ArrayList<Department> getAllDepartment() throws ClassNotFoundException, SQLException{
         initConnection();
         Statement stt=conn.createStatement();
         ResultSet rs=stt.executeQuery("select *from department");
@@ -26,6 +25,7 @@ public class DepartmentDAO extends ConnectionTool{
             Department dp= new Department();
             dp.setDepartmentID(rs.getInt("departmentID"));
             dp.setDepartmentName(rs.getString("departmentName"));
+            dp.setLocationID(rs.getInt("locationID"));
             result.add(dp);
         }
         closeConnection();
@@ -33,16 +33,18 @@ public class DepartmentDAO extends ConnectionTool{
     }
     public void addDepartment(Department department) throws ClassNotFoundException, SQLException{
         initConnection();
-        CallableStatement cs= conn.prepareCall("{call addDepartment(?)}");
+        CallableStatement cs= conn.prepareCall("{call addDepartment(?,?)}");
         cs.setString(1, department.getDepartmentName());
+        cs.setInt(2, department.getLocationID());
         cs.executeUpdate();
         closeConnection();
     }
     public void updateDepartment(Department department) throws ClassNotFoundException, SQLException{
         initConnection();
-        CallableStatement cs=conn.prepareCall("{call updateDepartment(?,?)}");
+        CallableStatement cs=conn.prepareCall("{call updateDepartment(?,?,?)}");
         cs.setInt(1, department.getDepartmentID());
         cs.setString(2, department.getDepartmentName());
+        cs.setInt(3, department.getLocationID());
         cs.executeUpdate();
         closeConnection();             
     }
