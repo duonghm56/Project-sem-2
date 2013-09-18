@@ -71,9 +71,16 @@ public class DepartmentPanel extends javax.swing.JPanel {
 
         jLabel3.setText("Location ID:");
 
+        txtDepartmentID.setEnabled(false);
+
         txtDepartmentName.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtDepartmentNameActionPerformed(evt);
+            }
+        });
+        txtDepartmentName.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtDepartmentNameKeyReleased(evt);
             }
         });
 
@@ -85,8 +92,18 @@ public class DepartmentPanel extends javax.swing.JPanel {
         });
 
         btnUpdate.setText("Update");
+        btnUpdate.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnUpdateActionPerformed(evt);
+            }
+        });
 
         btnDelete.setText("Delete");
+        btnDelete.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDeleteActionPerformed(evt);
+            }
+        });
 
         tbDepartmentData.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -99,6 +116,11 @@ public class DepartmentPanel extends javax.swing.JPanel {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        tbDepartmentData.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tbDepartmentDataMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tbDepartmentData);
 
         cmbLocationID.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Ha Noi", "TP.Ho Chi Minh", " " }));
@@ -180,6 +202,58 @@ public class DepartmentPanel extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_btnAddActionPerformed
 
+    private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
+        // TODO add your handling code here:
+                 try {
+            if (txtDepartmentName.getText().equals("")) {
+                throw new Exception("Please enter Employee Number");
+            }
+            else
+            {
+            int locationID= ((KeyValue) cmbLocationID.getSelectedItem()).getKey();
+            departmentBUS.updateDepartment(Integer.parseInt(txtDepartmentID.getText()), txtDepartmentName.getText(), locationID);
+                  reloadData();
+            }
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, ex.getMessage());
+            ex.printStackTrace();
+        }
+    }//GEN-LAST:event_btnUpdateActionPerformed
+
+    private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
+        // TODO add your handling code here:
+           if(txtDepartmentID.getText().equals("")){
+            JOptionPane.showMessageDialog(null, "Please select department");
+        }else{
+            try {
+                if (JOptionPane.showConfirmDialog(null, "Are you sure to delete?", "Delete", JOptionPane.YES_NO_OPTION) == JOptionPane.OK_OPTION) {
+                    departmentBUS.deleteDepartment(Integer.parseInt(txtDepartmentID.getText()));
+                    reloadData();
+                }
+            } catch (Exception ex){
+                JOptionPane.showMessageDialog(null, "Delete fail");
+            }
+        }
+    }//GEN-LAST:event_btnDeleteActionPerformed
+
+    private void tbDepartmentDataMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbDepartmentDataMouseClicked
+        // TODO add your handling code here:
+            int row = tbDepartmentData.rowAtPoint(evt.getPoint());
+           txtDepartmentID.setText(tbDepartmentData.getValueAt(row, 0).toString());
+           txtDepartmentName.setText(tbDepartmentData.getValueAt(row, 1).toString());
+    }//GEN-LAST:event_tbDepartmentDataMouseClicked
+
+    private void txtDepartmentNameKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDepartmentNameKeyReleased
+        // TODO add your handling code here:
+         try {
+            searchDepartmentName();
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(ProjectPanel.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(ProjectPanel.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_txtDepartmentNameKeyReleased
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAdd;
     private javax.swing.JButton btnDelete;
@@ -249,4 +323,5 @@ public class DepartmentPanel extends javax.swing.JPanel {
             lstDepartment = departmentBUS.searchDepartmentName(departmentName);
             fillData(lstDepartment);  
         }  
+    
 }

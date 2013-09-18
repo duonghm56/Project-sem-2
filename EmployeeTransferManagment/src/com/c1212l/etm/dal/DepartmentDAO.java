@@ -5,6 +5,7 @@
 package com.c1212l.etm.dal;
 
 import com.c1212l.etm.dto.Department;
+import com.c1212l.etm.dto.Project;
 import java.sql.CallableStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -69,5 +70,23 @@ public class DepartmentDAO extends ConnectionTool{
         }
         closeConnection();
         return result;
+    }
+           public Department getDepartmentID(int id) {
+        try {
+            initConnection();
+            Statement stmt = conn.createStatement();
+            ResultSet rs = stmt.executeQuery("select * from department where departmentID = " + id);
+            Department department = null;
+            if (rs.next()) {
+                department = new Department();
+                department.setDepartmentID(rs.getInt("departmentID"));
+                department.setDepartmentName(rs.getString("departmentName"));
+                department.setLocationID(rs.getInt("locationID"));
+            }
+            closeConnection();
+            return department;
+        }catch(Exception ex){
+            return null;
+        }
     }
 }

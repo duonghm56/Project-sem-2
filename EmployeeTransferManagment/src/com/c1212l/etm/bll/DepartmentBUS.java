@@ -34,10 +34,10 @@ public class DepartmentBUS {
         dpm.setLocationID(locationID);
         departmentDAO.addDepartment(dpm);
     }
-    public void updateDepartment(int dpmID, String dpmName,int locationID) throws ClassNotFoundException, SQLException{
+    public void updateDepartment(int departmentID, String departmentName,int locationID) throws ClassNotFoundException, SQLException{
         Department dpm= new Department();
-        dpm.setDepartmentID(dpmID);
-        dpm.setDepartmentName(dpmName);
+        dpm.setDepartmentID(departmentID);
+        dpm.setDepartmentName(departmentName);
         dpm.setLocationID(locationID);
         departmentDAO.updateDepartment(dpm);
     }
