@@ -4,13 +4,13 @@
  */
 package com.c1212l.etm.dal;
 
-import com.c1212l.etm.dto.Employee;
-import com.c1212l.etm.dto.Location;
+import com.c1212l.etm.dto.Project;
 import com.c1212l.etm.dto.Transfer;
 import java.sql.CallableStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.Vector;
 
 /**
@@ -18,37 +18,34 @@ import java.util.Vector;
  * @author Luu Bi
  */
 public class TransferDAO extends ConnectionTool{
-       public Vector <Transfer>  listAllTransfer() throws ClassNotFoundException, SQLException {
-        Vector <Transfer> listTransfer = null;
+        public ArrayList<Transfer> getAllTransfer() throws ClassNotFoundException, SQLException {
         initConnection();
-        Statement sta = conn.createStatement();
-        ResultSet rs = sta.executeQuery("Select * from transfer");
-        if (rs != null) {
-            listTransfer = new Vector<Transfer>();
-            while(rs.next())
-            {
-                Transfer temp = new Transfer();
-                temp.setTransferID(rs.getInt("transferID"));
-                temp.setTransferTypeID(rs.getInt("transferTypeID"));
-                temp.setEmployeeID(rs.getInt("employeeID"));
-                temp.setTransferRelievingDate(rs.getDate("transferRelievingDate"));
-                temp.setTransferJoiningDate(rs.getDate("transferJoiningDate"));
-                temp.setRequestDate(rs.getDate("requestDate"));
-                temp.setReason(rs.getString("reason"));
-                temp.setApprove(rs.getString("approve"));
-                temp.setApproveDate(rs.getDate("approveDate"));
-                temp.setFromProjectID(rs.getInt("fromProjectID"));
-                temp.setToProjectID(rs.getInt("toProjectID"));
-                temp.setFromDepartmentID(rs.getInt("fromDepartmentID"));
-                temp.setToDepartmentID(rs.getInt("toDepartmentID"));
-                temp.setFromLocationID(rs.getInt("fromLocationID"));
-                temp.setToLocationID(rs.getInt("toLocationID"));
-                listTransfer.add(temp);
-            }
+        Statement stmt = conn.createStatement();
+        ResultSet rs = stmt.executeQuery("select * from transfer");
+        ArrayList<Transfer> result = new ArrayList<>();
+        while (rs.next()) {
+            Transfer transfer = new Transfer();
+            transfer.setTransferID(rs.getInt("transferID"));
+            transfer.setTransferTypeID(rs.getInt("transferTypeID"));
+            transfer.setEmployeeID(rs.getInt("employeeID"));
+            transfer.setTransferRelievingDate(rs.getDate("transferRelievingDate"));
+            transfer.setTransferJoiningDate(rs.getDate("transferJoiningDate"));
+            transfer.setRequestDate(rs.getDate("requestDate"));
+            transfer.setReason(rs.getString("reason"));
+            transfer.setApprove(rs.getBoolean("approve"));
+            transfer.setApproveDate(rs.getDate("approveDate"));
+            transfer.setFromProjectID(rs.getInt("fromProjectID"));
+            transfer.setToProjectID(rs.getInt("toProjectID"));
+            transfer.setFromDepartmentID(rs.getInt("fromDepartmentID"));
+            transfer.setToDepartmentID(rs.getInt("toDepartmentID"));
+            transfer.setFromLocationID(rs.getInt("fromLocationID"));
+            transfer.setToLocationID(rs.getInt("toLocationID"));
+            result.add(transfer);
         }
         closeConnection();
-        return listTransfer;
+        return result;
     }
+
        public void addTransfer(Transfer transfer) throws ClassNotFoundException, SQLException{
         initConnection();
         CallableStatement cs = conn.prepareCall("{call addTransfer(?, ?, ?, ?, ?, ?, ?, ?,?,?,?,?,?,?)}");
@@ -58,7 +55,7 @@ public class TransferDAO extends ConnectionTool{
         cs.setDate(4,transfer.getTransferJoiningDate());
         cs.setDate(5,transfer.getRequestDate());
         cs.setString(6, transfer.getReason());
-        cs.setString(7, transfer.getApprove());
+        cs.setBoolean(7, transfer.getApprove());
         cs.setDate(8, transfer.getApproveDate());   
         cs.setInt(9, transfer.getFromProjectID());
         cs.setInt(10, transfer.getToProjectID());
@@ -79,7 +76,7 @@ public class TransferDAO extends ConnectionTool{
         cs.setDate(5,transfer.getTransferJoiningDate());
         cs.setDate(6,transfer.getRequestDate());
         cs.setString(7, transfer.getReason());
-        cs.setString(8, transfer.getApprove());
+        cs.setBoolean(8, transfer.getApprove());
         cs.setDate(9, transfer.getApproveDate());   
         cs.setInt(10, transfer.getFromProjectID());
         cs.setInt(11, transfer.getToProjectID());

@@ -4,7 +4,9 @@
  */
 package com.c1212l.etm.dto;
 
+import com.c1212l.etm.dal.ProjectDAO;
 import java.sql.Date;
+import java.util.Vector;
 
 /**
  *
@@ -18,7 +20,7 @@ public class Transfer {
     private Date transferJoiningDate;
     private Date requestDate;
     private String reason;
-    private String approve;
+    private boolean approve;
     private Date approveDate;
     private int fromProjectID;
     private int toProjectID;
@@ -29,7 +31,7 @@ public class Transfer {
     public Transfer() {
     }
 
-    public Transfer(int transferID, int transferTypeID, int employeeID, Date transferRelievingDate, Date transferJoiningDate, Date requestDate, String reason, String approve, Date approveDate, int fromProjectID, int toProjectID, int fromDepartmentID, int toDepartmentID, int fromLocationID, int toLocationID) {
+    public Transfer(int transferID, int transferTypeID, int employeeID, Date transferRelievingDate, Date transferJoiningDate, Date requestDate, String reason, boolean approve, Date approveDate, int fromProjectID, int toProjectID, int fromDepartmentID, int toDepartmentID, int fromLocationID, int toLocationID) {
         this.transferID = transferID;
         this.transferTypeID = transferTypeID;
         this.employeeID = employeeID;
@@ -103,11 +105,11 @@ public class Transfer {
         this.reason = reason;
     }
 
-    public String getApprove() {
+    public boolean getApprove() {
         return approve;
     }
 
-    public void setApprove(String approve) {
+    public void setApprove(boolean approve) {
         this.approve = approve;
     }
 
@@ -166,5 +168,23 @@ public class Transfer {
     public void setToLocationID(int toLocationID) {
         this.toLocationID = toLocationID;
     }
-    
+     public Vector getVector(){
+        Vector v = new Vector();
+        v.add(transferID);
+        v.add(transferTypeID);
+        v.add(employeeID);
+        v.add(transferRelievingDate);
+        v.add(transferJoiningDate);
+        v.add(requestDate);
+        v.add(reason);
+        v.add(approve?"Approve":"Unapprove");
+        v.add(approveDate);
+        v.add(fromProjectID);
+        v.add(toProjectID);
+        v.add(fromDepartmentID);
+        v.add(toDepartmentID);
+        v.add(fromLocationID);
+        v.add(toLocationID);    
+        return v;
+    }
 }

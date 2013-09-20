@@ -4,6 +4,8 @@
  */
 package com.c1212l.etm.dto;
 
+import java.util.Vector;
+
 /**
  *
  * @author OLDPC
@@ -41,5 +43,10 @@ public class TransferType {
         this.transferTypeID = transferTypeID;
         this.transferTypeName = transferTypeName;
     }
-    
+        public Vector getVector(){
+        Vector v = new Vector();
+        v.add(transferTypeID);
+        v.add(transferTypeName);
+        return v;
+    }
 }

@@ -157,5 +157,41 @@ as begin
 	delete from department
 	where departmentID = @id
 end
-
-
+-----------------------------------------------------------------
+go
+create procedure addTransferType(@transferTypeName nvarchar(200))
+as
+begin
+	insert into transferType(transferTypeName) values(@transferTypeName)
+end
+go
+create procedure updateTransferType(@id int,@name nvarchar(200))
+as begin
+	update transferType set transferTypeName=@name
+	where transferTypeID=@id
+end
+go
+create procedure deleteTransferType(@id int)
+as begin
+	delete from transferType 
+	where transferTypeID = @id
+end
+------------------------------------------------------------------------
+go
+create procedure addTransfer(@transferTypeID int,@employeeID int, @transferRelievingDate Date, @transferJoiningDate Date, @requestDate Date, @reason text, @approve bit, @approveDate Date, @fromProjectID int, @toProjectID int, @fromDepartmentID int, @toDepartmentID int, @fromLocationID int, @toLocationID int)
+as
+begin
+	insert into [transfer] values(@transferTypeID,@employeeID, @transferRelievingDate, @transferJoiningDate, @requestDate, @reason, @approve , @approveDate , @fromProjectID, @toProjectID, @fromDepartmentID, @toDepartmentID, @fromLocationID, @toLocationID)
+end
+go
+create procedure updateTransferType(@transferID int,@transferTypeID int,@employeeID int, @transferRelievingDate Date, @transferJoiningDate Date, @requestDate Date, @reason text, @approve bit, @approveDate Date, @fromProjectID int, @toProjectID int, @fromDepartmentID int, @toDepartmentID int, @fromLocationID int, @toLocationID int)
+as begin
+	update [transfer] set transferTypeID = @transferTypeID,employeeID = @employeeID, transferRelievingDate = @transferRelievingDate,transferJoiningDate = @transferJoiningDate, requestDate = @requestDate,reason = @reason ,approve = @approve, approveDate = @approveDate, fromProjectID = @fromProjectID,toProjectID = @toProjectID, fromDepartmentID = @fromDepartmentID,toDepartmentID = @toDepartmentID,fromLocationID = @fromLocationID,toLocationID = @toLocationID
+	where transferID=@transferID
+end
+go
+create procedure deleteTransfer(@id int)
+as begin
+	delete from [transfer] 
+	where transferID = @id
+end

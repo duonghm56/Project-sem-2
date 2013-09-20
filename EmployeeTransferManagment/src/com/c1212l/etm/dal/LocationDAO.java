@@ -5,7 +5,6 @@
 package com.c1212l.etm.dal;
 
 import com.c1212l.etm.dto.Location;
-import com.c1212l.etm.dto.Project;
 import java.sql.CallableStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -18,24 +17,19 @@ import java.util.Vector;
  * @author Luu Bi
  */
 public class LocationDAO extends ConnectionTool {
-    public Vector <Location>  listAllLocation() throws ClassNotFoundException, SQLException
-    {
-        Vector <Location> listLocation = null;
+       public ArrayList<Location> getAllLocation() throws ClassNotFoundException, SQLException {
         initConnection();
-        Statement sta = conn.createStatement();
-        ResultSet rs = sta.executeQuery("Select * from location");
-        if (rs != null) {
-            listLocation = new Vector<Location>();
-            while(rs.next())
-            {
-                Location temp = new Location();
-                temp.setLocationID(rs.getInt("locationID"));
-                temp.setLocationName(rs.getString("locationName"));
-                listLocation.add(temp);
-            }
+        Statement stmt = conn.createStatement();
+        ResultSet rs = stmt.executeQuery("select * from location");
+        ArrayList<Location> result = new ArrayList<>();
+        while (rs.next()) {
+            Location l = new Location();
+            l.setLocationID(rs.getInt("locationID"));
+            l.setLocationName(rs.getString("locationName"));
+            result.add(l);
         }
         closeConnection();
-        return listLocation;
+        return result;
     }
     public int addLocation(Location location)throws ClassNotFoundException, SQLException
     {

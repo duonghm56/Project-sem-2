@@ -17,31 +17,16 @@ import java.util.ArrayList;
  */
 public class TransferTypeDAO extends ConnectionTool{
     
-    public ArrayList<TransferType> getAllTransferType() throws ClassNotFoundException, SQLException{
+    public  ArrayList<TransferType>getAllTransferType() throws ClassNotFoundException, SQLException{
         initConnection();
         Statement stmt = conn.createStatement();
-        ResultSet rs = stmt.executeQuery("select * from project");        
-        ArrayList<TransferType> result = new ArrayList<TransferType>();
+        ResultSet rs = stmt.executeQuery("select * from transferType");        
+        ArrayList<TransferType> result = new ArrayList<>();
         while(rs.next()){
-            TransferType p = new TransferType();
-            p.setTransferTypeID(rs.getInt("transferTypeID"));
-            p.setTransferTypeName(rs.getString("transferTypeName"));
-            result.add(p);
-        }
-        closeConnection();
-        return result;
-    }
-    
-    public ArrayList<TransferType> searchTransferType(String condition) throws ClassNotFoundException, SQLException{
-        initConnection();
-        Statement stmt = conn.createStatement();
-        ResultSet rs = stmt.executeQuery("select * from project " + condition);        
-        ArrayList<TransferType> result = new ArrayList<TransferType>();
-        while(rs.next()){
-            TransferType p = new TransferType();
-            p.setTransferTypeID(rs.getInt("transferTypeID"));
-            p.setTransferTypeName(rs.getString("transferTypeName"));
-            result.add(p);
+            TransferType transferType = new TransferType();
+            transferType.setTransferTypeID(rs.getInt("transferTypeID"));
+            transferType.setTransferTypeName(rs.getString("transferTypeName"));
+            result.add(transferType);
         }
         closeConnection();
         return result;
@@ -70,6 +55,21 @@ public class TransferTypeDAO extends ConnectionTool{
         cs.setInt(1, transferType.getTransferTypeID());        
         cs.executeUpdate();
         closeConnection();
+    }
+    
+    public ArrayList<TransferType> searchTransferTypeName(String transferTypeName) throws ClassNotFoundException, SQLException {
+        initConnection();
+        Statement stmt = conn.createStatement();
+        ResultSet rs = stmt.executeQuery("select * from transferType " + transferTypeName);
+        ArrayList<TransferType> result = new ArrayList<TransferType>();
+        while (rs.next()) {
+            TransferType transferType = new TransferType();
+            transferType.setTransferTypeID(rs.getInt("transferTypeID"));
+            transferType.setTransferTypeName(rs.getString("transferTypeName"));
+            result.add(transferType);
+        }
+        closeConnection();
+        return result;
     }
     
 }

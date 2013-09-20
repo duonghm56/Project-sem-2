@@ -6,6 +6,7 @@ package com.c1212l.etm.bll;
 
 
 import com.c1212l.etm.dal.TransferDAO;
+import com.c1212l.etm.dto.Project;
 import com.c1212l.etm.dto.Transfer;
 import java.sql.Date;
 import java.sql.SQLException;
@@ -21,7 +22,10 @@ public class TransferBUS {
     public TransferBUS() {
         transferDAO = new TransferDAO();
     }   
-    public void addTransfer(int transferTypeID, int employeeID, Date transferRelievingDate, Date transferJoiningDate, Date requestDate, String reason, String approve, Date approveDate, int fromProjectID, int toProjectID, int fromDepartmentID, int toDepartmentID, int fromLocationID, int toLocationID) throws ClassNotFoundException, SQLException{
+    public ArrayList<Transfer> getAllTransfer() throws ClassNotFoundException, SQLException {
+        return transferDAO.getAllTransfer();
+    }
+    public void addTransfer(int transferTypeID, int employeeID, Date transferRelievingDate, Date transferJoiningDate, Date requestDate, String reason, boolean approve, Date approveDate, int fromProjectID, int toProjectID, int fromDepartmentID, int toDepartmentID, int fromLocationID, int toLocationID) throws ClassNotFoundException, SQLException{
         Transfer transfer = new Transfer();
         transfer.setTransferTypeID(transferTypeID);
         transfer.setEmployeeID(employeeID);
@@ -39,8 +43,7 @@ public class TransferBUS {
         transfer.setToLocationID(toLocationID);
         transferDAO.addTransfer(transfer);
     }
-    
-    public void updateTransfer(int transferID,int transferTypeID, int employeeID, Date transferRelievingDate, Date transferJoiningDate, Date requestDate, String reason, String approve, Date approveDate, int fromProjectID, int toProjectID, int fromDepartmentID, int toDepartmentID, int fromLocationID, int toLocationID) throws ClassNotFoundException, SQLException{
+    public void updateTransfer(int transferID,int transferTypeID, int employeeID, Date transferRelievingDate, Date transferJoiningDate, Date requestDate, String reason, boolean approve, Date approveDate, int fromProjectID, int toProjectID, int fromDepartmentID, int toDepartmentID, int fromLocationID, int toLocationID) throws ClassNotFoundException, SQLException{
        Transfer transfer = new Transfer();
        transfer.setTransferID(transferID);
         transfer.setTransferTypeID(transferTypeID);
