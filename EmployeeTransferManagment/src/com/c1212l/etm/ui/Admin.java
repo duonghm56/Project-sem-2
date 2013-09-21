@@ -4,6 +4,9 @@
  */
 package com.C1212L.etm.UI;
 
+import com.c1212l.etm.dal.LoginDAO;
+import com.c1212l.etm.dto.Login;
+import java.util.Vector;
 import javax.swing.JOptionPane;
 
 /**
@@ -85,7 +88,7 @@ public class Admin extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(btnLogin)
-                                .addGap(46, 46, 46)
+                                .addGap(45, 45, 45)
                                 .addComponent(btnExit))
                             .addComponent(txtUserName)
                             .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -137,15 +140,26 @@ if (n == JOptionPane.YES_OPTION) {
 
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
         // TODO add your handling code here:
-        try{
-            if (txtUserName.getText().equals("")||txtPassword.getText().equals("")) {
-                JOptionPane.showMessageDialog(this, "Please enter all field");
-            }
+         try{
+            vctList = loginDAO.getAllLogin();
             if (txtUserName.getText().equals("")) {
-                
+                JOptionPane.showMessageDialog(this, "Please enter all field");
+                return;
             }
-        }
-        catch(Exception e){e.printStackTrace();}
+            if (txtPassword.getText().equals("")) {
+                JOptionPane.showMessageDialog(this, "Please enter all field");
+                return;
+            }
+            for (int i = 0; i < vctList.size(); i++) {
+                Login login  = vctList.elementAt(i);
+                boolean temp = login.getRole();
+                if (txtUserName.getText().equals(login.getUserName()) && txtPassword.getText().equals(login.getPassword()) ) {
+                    if(temp == true)
+                    {
+                        JOptionPane.showMessageDialog(this, "Toi la admin");
+                    }
+                }
+            }
     }//GEN-LAST:event_btnLoginActionPerformed
 
     /**
@@ -191,4 +205,6 @@ if (n == JOptionPane.YES_OPTION) {
     private javax.swing.JPasswordField txtPassword;
     private javax.swing.JTextField txtUserName;
     // End of variables declaration//GEN-END:variables
+    private LoginDAO loginDAO = new LoginDAO ();
+    private Vector<Login> vctList = new Vector<Login>();
 }

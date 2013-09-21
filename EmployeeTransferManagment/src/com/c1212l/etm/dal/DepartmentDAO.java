@@ -20,13 +20,13 @@ public class DepartmentDAO extends ConnectionTool{
     public ArrayList<Department> getAllDepartment() throws ClassNotFoundException, SQLException{
         initConnection();
         Statement stt=conn.createStatement();
-        ResultSet rs=stt.executeQuery("Select * From department Inner Join location On department.locationID = location.locationID");
+        ResultSet rs=stt.executeQuery("Select * From department");
         ArrayList<Department> result = new ArrayList<Department>();
         while(rs.next()){
             Department dp= new Department();
             dp.setDepartmentID(rs.getInt("departmentID"));
             dp.setDepartmentName(rs.getString("departmentName"));
-            dp.setLocationName(rs.getString("locationName"));
+            dp.setLocationID(rs.getInt("locationID"));
             result.add(dp);
         }
         closeConnection();

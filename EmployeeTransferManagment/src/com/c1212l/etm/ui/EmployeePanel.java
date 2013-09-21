@@ -4,8 +4,10 @@
  */
 package com.c1212l.etm.ui;
 
+import com.c1212l.etm.bll.DepartmentBUS;
 import com.c1212l.etm.bll.EmployeeBUS;
 import com.c1212l.etm.bll.ProjectBUS;
+import com.c1212l.etm.dto.Department;
 import com.c1212l.etm.dto.Employee;
 import com.c1212l.etm.dto.Project;
 import com.c1212l.etm.util.KeyValue;
@@ -73,6 +75,12 @@ public class EmployeePanel extends javax.swing.JPanel {
 
         setBorder(javax.swing.BorderFactory.createTitledBorder("Employees Manager"));
 
+        txtEmployeeName.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtEmployeeNameKeyReleased(evt);
+            }
+        });
+
         jLabel11.setText("Project:");
 
         jLabel10.setText("Work Experience:");
@@ -87,7 +95,7 @@ public class EmployeePanel extends javax.swing.JPanel {
 
         jLabel1.setText("Employee Number:");
 
-        jLabel8.setText("Gender:");
+        jLabel8.setText("Employee ID:");
 
         btnUpdate.setText("Update");
         btnUpdate.addActionListener(new java.awt.event.ActionListener() {
@@ -142,7 +150,7 @@ public class EmployeePanel extends javax.swing.JPanel {
         });
         jScrollPane2.setViewportView(tblEmployee);
 
-        jLabel13.setText("Employee ID:");
+        jLabel13.setText("Gender:");
 
         txtEmployeeID.setEditable(false);
 
@@ -155,15 +163,11 @@ public class EmployeePanel extends javax.swing.JPanel {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(32, 32, 32)
-                                .addComponent(jLabel13)
-                                .addGap(34, 34, 34))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addContainerGap()
+                                .addGap(7, 7, 7)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -173,7 +177,11 @@ public class EmployeePanel extends javax.swing.JPanel {
                                         .addGap(24, 24, 24))
                                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                         .addComponent(jLabel2)
-                                        .addGap(18, 18, 18)))))
+                                        .addGap(18, 18, 18))))
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(jLabel13)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(txtEmployeeName, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -194,8 +202,8 @@ public class EmployeePanel extends javax.swing.JPanel {
                                 .addGap(48, 48, 48)
                                 .addComponent(jLabel11)))
                         .addGap(51, 51, 51))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(7, 7, 7)
                         .addComponent(btnAdd)
                         .addGap(36, 36, 36)
                         .addComponent(btnUpdate)
@@ -213,7 +221,7 @@ public class EmployeePanel extends javax.swing.JPanel {
                         .addComponent(txtWorkExperience, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addGap(0, 25, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jScrollPane2))
@@ -376,6 +384,17 @@ public class EmployeePanel extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_btnDeleteActionPerformed
 
+    private void txtEmployeeNameKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtEmployeeNameKeyReleased
+        try {
+            // TODO add your handling code here:
+            loadSearchEmployeeName();
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(EmployeePanel.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(EmployeePanel.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_txtEmployeeNameKeyReleased
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAdd;
     private javax.swing.JButton btnDelete;
@@ -415,7 +434,9 @@ public class EmployeePanel extends javax.swing.JPanel {
         header.add("ID");
         header.add("Number");
         header.add("Name");
+        header.add("Email");
         header.add("Password");
+        header.add("Confirm Password");
         header.add("Role");
         header.add("Experience");
         header.add("Gender");
@@ -487,9 +508,18 @@ public class EmployeePanel extends javax.swing.JPanel {
      * Need Department DAL, BLL
      */
     private void initCmbDepartment() {
-        cmbDepartment.removeAllItems();
-        cmbDepartment.addItem(new KeyValue(1, "Marketing"));
-        cmbDepartment.addItem(new KeyValue(2, "Accounting"));
+        try {
+            cmbDepartment.removeAllItems();
+            DepartmentBUS departmentBUS = new DepartmentBUS();
+            ArrayList<Department> arrDepartment = departmentBUS.getAllDepartment();
+            for (Department department : arrDepartment) {
+                cmbDepartment.addItem(new KeyValue(department.getDepartmentID(), department.getDepartmentName()));
+            }
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(EmployeePanel.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(EmployeePanel.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     private void updateFieldWhenSelectEmployee() {
@@ -497,11 +527,26 @@ public class EmployeePanel extends javax.swing.JPanel {
         txtEmployeeID.setText(tblEmployee.getValueAt(selectedRow, 0).toString());
         txtEmployeeNumber.setText(tblEmployee.getValueAt(selectedRow, 1).toString());
         txtEmployeeName.setText(tblEmployee.getValueAt(selectedRow, 2).toString());
-        txtPassword.setText(tblEmployee.getValueAt(selectedRow, 3).toString());
-        txtEmployeeRole.setText(tblEmployee.getValueAt(selectedRow, 4).toString());
-        txtWorkExperience.setText(tblEmployee.getValueAt(selectedRow, 5).toString());
-        cmbGender.setSelectedItem(new KeyValue(0, tblEmployee.getValueAt(selectedRow, 6).toString()));
-        cmbDepartment.setSelectedItem(new KeyValue(0, tblEmployee.getValueAt(selectedRow, 7).toString()));
-        cmbProject.setSelectedItem(new KeyValue(0, tblEmployee.getValueAt(selectedRow, 8).toString()));
+        txtEmail.setText(tblEmployee.getValueAt(selectedRow, 3).toString());
+        txtPassword.setText(tblEmployee.getValueAt(selectedRow, 4).toString());
+        txtConfirmPassword.setText(tblEmployee.getValueAt(selectedRow, 5).toString());
+        txtEmployeeRole.setText(tblEmployee.getValueAt(selectedRow, 6).toString());
+        txtWorkExperience.setText(tblEmployee.getValueAt(selectedRow, 7).toString());
+        cmbGender.setSelectedItem(new KeyValue(0, tblEmployee.getValueAt(selectedRow, 8).toString()));
+        cmbDepartment.setSelectedItem(new KeyValue(0, tblEmployee.getValueAt(selectedRow, 9).toString()));
+        cmbProject.setSelectedItem(new KeyValue(0, tblEmployee.getValueAt(selectedRow, 10).toString()));
+    }
+        private void loadSearchEmployeeName() throws ClassNotFoundException, SQLException {
+        String employeeName = "";
+        if (!txtEmployeeName.getText().equals("")) {
+            if (!employeeName.contains("where")) {
+                employeeName += " where employeeName like '%" + txtEmployeeName.getText() + "%'";
+            } else {
+                employeeName += " and employeeName like '%" + txtEmployeeName.getText() + "%'";
+            }
+        }
+        initTable();
+        lstEmpl = employeeBUS.searchEmployee(employeeName);
+        fillData(lstEmpl);        
     }
 }

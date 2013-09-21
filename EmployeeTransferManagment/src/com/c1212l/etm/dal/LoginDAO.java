@@ -21,10 +21,10 @@ public class LoginDAO extends ConnectionTool {
         ResultSet rs = stmt.executeQuery("select * from [admin]");
         Vector<Login> result = new Vector<Login>();
         while(rs.next()){
-            Login l = new Login();
-            l.setUserName(rs.getString("userName"));
-            l.setPassword(rs.getString("password"));
-            result.add(l);
+            Login login  = new Login();
+            login.setEmail(rs.getString("email"));
+            login.setPassword(rs.getString("password"));
+            result.add(login);
         }
         closeConnection();
         return result;

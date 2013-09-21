@@ -4,6 +4,7 @@
  */
 package com.c1212l.etm.dto;
 
+import com.c1212l.etm.dal.DepartmentDAO;
 import com.c1212l.etm.dal.ProjectDAO;
 import java.util.Vector;
 
@@ -111,10 +112,10 @@ public class Employee {
         result.add(role);
         result.add(workExperience);
         result.add(gender?"Male":"Female");
-        
-        result.add(departnameID);
         Project project = new ProjectDAO().getProjectById(projectID);
-        result.add(project!=null?project.getProjectName():"undifined");        
+        result.add(project!=null?project.getProjectName():"undifined");    
+        Department department = new DepartmentDAO().getDepartmentID(departnameID);
+        result.add(department!=null?department.getDepartmentName():"undifined");  
         return result;
     }
 

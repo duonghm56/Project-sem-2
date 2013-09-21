@@ -86,18 +86,17 @@ as begin
 	delete from project where projectID=@id
 end
 go
-
 -- procedure for employee table
-create procedure addEmployee(@emplNum varchar(20), @emplName nvarchar(200), @pass varchar(50), @role nvarchar(100), @workExperience int, @gender bit, @departmentID int, @projectID int)
+create procedure addEmployee(@emplNum varchar(20), @emplName nvarchar(200),@email varchar(100), @pass varchar(50),@confirmpass varchar(100), @role nvarchar(100), @workExperience int, @gender bit, @departmentID int, @projectID int)
 as begin
-	insert into employee(employeeNumber ,employeeName, [password], [role], workExperience, gender, departmentID, projectID)
-		values(@emplNum, @emplName, @pass, @role, @workExperience, @gender, @departmentID, @projectID)
+	insert into employee(employeeNumber ,employeeName,email, [password],confirmPassword, [role], workExperience, gender, departmentID, projectID)
+		values(@emplNum, @emplName,@email, @pass,@confirmpass, @role, @workExperience, @gender, @departmentID, @projectID)
 end
 go
 
-create procedure updateEmployee(@emplNum varchar(20), @emplName nvarchar(200), @pass varchar(50), @role nvarchar(100), @workExperience int, @gender bit)
+create procedure updateEmployee(@emplNum varchar(20), @emplName nvarchar(200),@email varchar(100), @pass varchar(50),@confirmPassword varchar(100), @role nvarchar(100), @workExperience int, @gender bit)
 as begin
-	update employee set employeeName = @emplName, [password] = @pass, [role] = @role,
+	update employee set employeeName = @emplName,email=@email, [password] = @pass,confirmPassword=@confirmPassword, [role] = @role,
 						workExperience = @workExperience, gender = @gender
 	where employeeNumber = @emplNum
 end

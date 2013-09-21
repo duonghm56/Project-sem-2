@@ -6,6 +6,7 @@ package com.c1212l.etm.bll;
 
 import com.c1212l.etm.dal.EmployeeDAO;
 import com.c1212l.etm.dto.Employee;
+import com.c1212l.etm.dto.Location;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
@@ -20,7 +21,9 @@ public class EmployeeBUS {
     public EmployeeBUS() {
         employeeDAO = new EmployeeDAO();
     }
-    
+     public ArrayList<Employee> searchEmployee(String employeeName) throws ClassNotFoundException, SQLException {
+        return employeeDAO.searchEmployeeName(employeeName);
+    }
     public ArrayList<Employee> getAllEmployees() throws ClassNotFoundException, SQLException{
         return employeeDAO.getAllEmployee();
     }

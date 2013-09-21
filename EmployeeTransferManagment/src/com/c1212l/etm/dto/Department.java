@@ -4,6 +4,8 @@
  */
 package com.c1212l.etm.dto;
 
+import com.c1212l.etm.dal.DepartmentDAO;
+import com.c1212l.etm.dal.LocationDAO;
 import java.util.Vector;
 
 /**
@@ -13,7 +15,6 @@ import java.util.Vector;
 public class Department {
     private int departmentID;
     private String departmentName;
-    private String locationName;
     private int locationID;
 
     public int getLocationID() {
@@ -38,20 +39,13 @@ public class Department {
 
     public void setDepartmentName(String departmentName) {
         this.departmentName = departmentName;
-    }
-
-    public String getLocationName() {
-        return locationName;
-    }
-
-    public void setLocationName(String locationName) {
-        this.locationName = locationName;
-    }   
+    } 
     public Vector getVector(){
         Vector v = new Vector();
         v.add(departmentID);
         v.add(departmentName);
-        v.add(locationName);
+        Location location = new LocationDAO().getLocationById(locationID);
+        v.add(location!=null?location.getLocationName():"undifined"); 
         return v;
     }
 }
