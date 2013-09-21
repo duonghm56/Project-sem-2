@@ -50,7 +50,7 @@
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
                           <Component id="txtDepartmentID" alignment="0" pref="102" max="32767" attributes="0"/>
                           <Component id="txtDepartmentName" alignment="0" max="32767" attributes="0"/>
-                          <Component id="cmbLocationID" alignment="0" max="32767" attributes="0"/>
+                          <Component id="cmbLocation" alignment="0" max="32767" attributes="0"/>
                       </Group>
                   </Group>
               </Group>
@@ -79,7 +79,7 @@
               <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jLabel3" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="cmbLocationID" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="cmbLocation" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
@@ -107,7 +107,7 @@
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel3">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Location ID:"/>
+        <Property name="text" type="java.lang.String" value="Location:"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="txtDepartmentID">
@@ -169,7 +169,7 @@
         </Component>
       </SubComponents>
     </Container>
-    <Component class="javax.swing.JComboBox" name="cmbLocationID">
+    <Component class="javax.swing.JComboBox" name="cmbLocation">
       <Properties>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
           <StringArray count="3">

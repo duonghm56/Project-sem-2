@@ -21,13 +21,13 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author Luu Bi
  */
-public class DepartmentPanel extends javax.swing.JPanel {
+public class TestDepartment extends javax.swing.JFrame {
 
     /**
-     * Creates new form DepartmentPanel
+     * Creates new form TestDepartment
      */
-    public DepartmentPanel() {
-        try{
+    public TestDepartment() {
+         try{
             initComponents();
             initCmbLocationID();
             initTable();
@@ -38,7 +38,6 @@ public class DepartmentPanel extends javax.swing.JPanel {
         } catch (SQLException ex) {
             Logger.getLogger(ProjectPanel.class.getName()).log(Level.SEVERE, null, ex);
         }
-   
     }
 
     /**
@@ -50,7 +49,7 @@ public class DepartmentPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jTextField2 = new javax.swing.JTextField();
+        jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -63,9 +62,9 @@ public class DepartmentPanel extends javax.swing.JPanel {
         tbDepartmentData = new javax.swing.JTable();
         cmbLocation = new javax.swing.JComboBox();
 
-        jTextField2.setText("jTextField2");
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        setBorder(javax.swing.BorderFactory.createTitledBorder("Department Manager"));
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Department Manager"));
 
         jLabel1.setText("Department ID:");
 
@@ -127,52 +126,52 @@ public class DepartmentPanel extends javax.swing.JPanel {
 
         cmbLocation.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Ha Noi", "TP.Ho Chi Minh", " " }));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(28, 28, 28)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(btnAdd)
                         .addGap(31, 31, 31)
                         .addComponent(btnUpdate)
                         .addGap(29, 29, 29)
                         .addComponent(btnDelete))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel1)
                             .addComponent(jLabel3)
                             .addComponent(jLabel2))
                         .addGap(40, 40, 40)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(txtDepartmentID, javax.swing.GroupLayout.DEFAULT_SIZE, 102, Short.MAX_VALUE)
                             .addComponent(txtDepartmentName)
                             .addComponent(cmbLocation, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 367, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(8, 8, 8)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(txtDepartmentID, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(19, 19, 19)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel2)
                     .addComponent(txtDepartmentName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(32, 32, 32)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(cmbLocation, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(29, 29, 29)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnAdd)
                     .addComponent(btnUpdate)
                     .addComponent(btnDelete))
@@ -180,11 +179,45 @@ public class DepartmentPanel extends javax.swing.JPanel {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 1, Short.MAX_VALUE)))
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 433, Short.MAX_VALUE)
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
+        );
+
+        pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void txtDepartmentNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDepartmentNameActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtDepartmentNameActionPerformed
+
+    private void txtDepartmentNameKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDepartmentNameKeyReleased
+        // TODO add your handling code here:
+        try {
+            searchDepartmentName();
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(ProjectPanel.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(ProjectPanel.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_txtDepartmentNameKeyReleased
 
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
         // TODO add your handling code here:
@@ -192,29 +225,29 @@ public class DepartmentPanel extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(null, "Please enter department name");
             return;
         }
-            try {
-                departmentBUS.addDepartment(txtDepartmentName.getText(),((KeyValue)cmbLocation.getSelectedItem()).getKey());
-                JOptionPane.showMessageDialog(null, "Insert Success!!!");
-                System.out.println(cmbLocation.getSelectedIndex());
-                reloadData();
-            } catch (Exception ex) {
-                JOptionPane.showMessageDialog(null, "Insert Fail !!!");
-                ex.printStackTrace();
-            
+        try {
+            departmentBUS.addDepartment(txtDepartmentName.getText(),((KeyValue)cmbLocation.getSelectedItem()).getKey());
+            JOptionPane.showMessageDialog(null, "Insert Success!!!");
+            System.out.println(cmbLocation.getSelectedIndex());
+            reloadData();
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, "Insert Fail !!!");
+            ex.printStackTrace();
+
         }
     }//GEN-LAST:event_btnAddActionPerformed
 
     private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
         // TODO add your handling code here:
-                 try {
+        try {
             if (txtDepartmentName.getText().equals("")) {
                 throw new Exception("Please enter Employee Number");
             }
             else
             {
-            int locationID= ((KeyValue) cmbLocation.getSelectedItem()).getKey();
-            departmentBUS.updateDepartment(Integer.parseInt(txtDepartmentID.getText()), txtDepartmentName.getText(), locationID);
-                  reloadData();
+                int locationID= ((KeyValue) cmbLocation.getSelectedItem()).getKey();
+                departmentBUS.updateDepartment(Integer.parseInt(txtDepartmentID.getText()), txtDepartmentName.getText(), locationID);
+                reloadData();
             }
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(null, ex.getMessage());
@@ -224,7 +257,7 @@ public class DepartmentPanel extends javax.swing.JPanel {
 
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
         // TODO add your handling code here:
-           if(txtDepartmentID.getText().equals("")){
+        if(txtDepartmentID.getText().equals("")){
             JOptionPane.showMessageDialog(null, "Please select department");
         }else{
             try {
@@ -240,22 +273,45 @@ public class DepartmentPanel extends javax.swing.JPanel {
 
     private void tbDepartmentDataMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbDepartmentDataMouseClicked
         // TODO add your handling code here:
-            int row = tbDepartmentData.rowAtPoint(evt.getPoint());
-           txtDepartmentID.setText(tbDepartmentData.getValueAt(row, 0).toString());
-           txtDepartmentName.setText(tbDepartmentData.getValueAt(row, 1).toString());
+        int row = tbDepartmentData.rowAtPoint(evt.getPoint());
+        txtDepartmentID.setText(tbDepartmentData.getValueAt(row, 0).toString());
+        txtDepartmentName.setText(tbDepartmentData.getValueAt(row, 1).toString());
     }//GEN-LAST:event_tbDepartmentDataMouseClicked
 
-    private void txtDepartmentNameKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDepartmentNameKeyReleased
-        // TODO add your handling code here:
-         try {
-            searchDepartmentName();
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String args[]) {
+        /* Set the Nimbus look and feel */
+        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         */
+        try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
         } catch (ClassNotFoundException ex) {
-            Logger.getLogger(ProjectPanel.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (SQLException ex) {
-            Logger.getLogger(ProjectPanel.class.getName()).log(Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TestDepartment.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(TestDepartment.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(TestDepartment.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(TestDepartment.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-    }//GEN-LAST:event_txtDepartmentNameKeyReleased
+        //</editor-fold>
 
+        /* Create and display the form */
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new TestDepartment().setVisible(true);
+            }
+        });
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAdd;
     private javax.swing.JButton btnDelete;
@@ -264,8 +320,8 @@ public class DepartmentPanel extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField jTextField2;
     private javax.swing.JTable tbDepartmentData;
     private javax.swing.JTextField txtDepartmentID;
     private javax.swing.JTextField txtDepartmentName;
