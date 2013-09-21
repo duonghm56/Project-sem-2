@@ -507,19 +507,13 @@ public class EmployeePanel extends javax.swing.JPanel {
     /*
      * Need Department DAL, BLL
      */
-    private void initCmbDepartment() {
-        try {
+    private void initCmbDepartment() throws ClassNotFoundException, SQLException{
             cmbDepartment.removeAllItems();
             DepartmentBUS departmentBUS = new DepartmentBUS();
             ArrayList<Department> arrDepartment = departmentBUS.getAllDepartment();
             for (Department department : arrDepartment) {
                 cmbDepartment.addItem(new KeyValue(department.getDepartmentID(), department.getDepartmentName()));
             }
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(EmployeePanel.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (SQLException ex) {
-            Logger.getLogger(EmployeePanel.class.getName()).log(Level.SEVERE, null, ex);
-        }
     }
 
     private void updateFieldWhenSelectEmployee() {

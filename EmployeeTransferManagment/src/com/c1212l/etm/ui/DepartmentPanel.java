@@ -29,7 +29,7 @@ public class DepartmentPanel extends javax.swing.JPanel {
     public DepartmentPanel() {
         try{
             initComponents();
-            initCmbLocationID();
+            initCmbLocation();
             initTable();
             lstDepartment = departmentBUS.getAllDepartment();
             fillData(lstDepartment);
@@ -307,7 +307,7 @@ public class DepartmentPanel extends javax.swing.JPanel {
         txtDepartmentID.setText("");
         txtDepartmentName.setText("");
     }
-    private void initCmbLocationID() {
+    private void initCmbLocation() {
           try {
             cmbLocation.removeAllItems();
              LocationBUS locationBUS = new LocationBUS();

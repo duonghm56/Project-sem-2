@@ -45,12 +45,14 @@
                           <Group type="102" alignment="1" attributes="0">
                               <EmptySpace pref="33" max="32767" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="cmbEmployeeID" alignment="0" min="-2" pref="79" max="-2" attributes="0"/>
-                                  <Component id="cmbTransferTypeID" alignment="0" min="-2" pref="79" max="-2" attributes="0"/>
                                   <Component id="dcTransferRelievingDate" alignment="0" min="-2" max="-2" attributes="0"/>
                                   <Component id="dcTransferJoiningDate" alignment="0" min="-2" max="-2" attributes="0"/>
                                   <Component id="dcRequestDate" alignment="0" min="-2" max="-2" attributes="0"/>
                                   <Component id="jScrollPane1" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
+                                      <Component id="cmbEmployee" alignment="0" pref="119" max="32767" attributes="0"/>
+                                      <Component id="cmbTransferType" alignment="0" max="32767" attributes="0"/>
+                                  </Group>
                               </Group>
                               <EmptySpace min="-2" pref="109" max="-2" attributes="0"/>
                           </Group>
@@ -67,18 +69,16 @@
                       </Group>
                       <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="dcApproveDate" alignment="0" pref="145" max="32767" attributes="0"/>
+                          <Component id="dcApproveDate" alignment="0" pref="159" max="32767" attributes="0"/>
                           <Group type="102" attributes="0">
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
-                                      <Component id="cmbToLocationID" alignment="0" pref="83" max="32767" attributes="0"/>
-                                      <Component id="cmbFromLocationID" alignment="0" max="32767" attributes="0"/>
-                                      <Component id="cmbToDepartmentID" alignment="0" max="32767" attributes="0"/>
-                                      <Component id="cmbFromDepartmentID" alignment="0" max="32767" attributes="0"/>
-                                  </Group>
-                                  <Component id="cmbToProjectID" alignment="0" min="-2" pref="83" max="-2" attributes="0"/>
-                                  <Component id="cmbFromProjectID" alignment="0" min="-2" pref="83" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
                                   <Component id="cmbApprove" alignment="0" min="-2" pref="90" max="-2" attributes="0"/>
+                                  <Component id="cmbFromProject" pref="98" max="32767" attributes="0"/>
+                                  <Component id="cmbToProject" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="cmbFromDepartment" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="cmbToDepartment" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="cmbFromLocation" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="cmbToLocation" alignment="0" max="32767" attributes="0"/>
                               </Group>
                               <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                           </Group>
@@ -119,18 +119,18 @@
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="jLabel3" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="cmbTransferTypeID" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="cmbTransferType" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="1" attributes="0">
                           <Group type="103" alignment="1" groupAlignment="3" attributes="0">
                               <Component id="jLabel11" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="cmbToProjectID" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="cmbToProject" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="1" attributes="0">
                               <Group type="103" groupAlignment="3" attributes="0">
                                   <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="cmbEmployeeID" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="cmbEmployee" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="1" attributes="0">
@@ -145,7 +145,7 @@
                           <Component id="jLabel5" alignment="1" min="-2" max="-2" attributes="0"/>
                           <Group type="103" alignment="1" groupAlignment="3" attributes="0">
                               <Component id="jLabel12" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="cmbFromDepartmentID" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="cmbFromDepartment" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
@@ -161,7 +161,7 @@
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="cmbFromProjectID" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="cmbFromProject" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="jLabel10" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
@@ -171,7 +171,7 @@
                       <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="jLabel13" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="cmbToDepartmentID" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="cmbToDepartment" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                   <Group type="103" alignment="0" groupAlignment="1" attributes="0">
@@ -184,11 +184,11 @@
                       <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="jLabel14" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="cmbFromLocationID" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="cmbFromLocation" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="cmbToLocationID" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="cmbToLocation" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="jLabel15" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
@@ -252,19 +252,19 @@
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel15">
       <Properties>
-        <Property name="text" type="java.lang.String" value="To Location ID:"/>
+        <Property name="text" type="java.lang.String" value="To Location:"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="txtTransferID">
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel13">
       <Properties>
-        <Property name="text" type="java.lang.String" value="To Department ID:"/>
+        <Property name="text" type="java.lang.String" value="To Department :"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel14">
       <Properties>
-        <Property name="text" type="java.lang.String" value="From Location ID:"/>
+        <Property name="text" type="java.lang.String" value="From Location:"/>
       </Properties>
     </Component>
     <Container class="javax.swing.JScrollPane" name="jScrollPane1">
@@ -284,12 +284,12 @@
     </Container>
     <Component class="javax.swing.JLabel" name="jLabel12">
       <Properties>
-        <Property name="text" type="java.lang.String" value="From Department ID:"/>
+        <Property name="text" type="java.lang.String" value="From Department:"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel11">
       <Properties>
-        <Property name="text" type="java.lang.String" value="To Project ID:"/>
+        <Property name="text" type="java.lang.String" value="To Project :"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel10">
@@ -332,7 +332,7 @@
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel2">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Employee ID:"/>
+        <Property name="text" type="java.lang.String" value="Employee:"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JButton" name="btnUpdate">
@@ -350,18 +350,13 @@
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel3">
       <Properties>
-        <Property name="text" type="java.lang.String" value="TransferType ID:"/>
+        <Property name="text" type="java.lang.String" value="Transfer Type:"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JComboBox" name="cmbTransferTypeID">
+    <Component class="javax.swing.JComboBox" name="cmbTransferType">
       <Properties>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-          <StringArray count="4">
-            <StringItem index="0" value="Item 1"/>
-            <StringItem index="1" value="Item 2"/>
-            <StringItem index="2" value="Item 3"/>
-            <StringItem index="3" value="Item 4"/>
-          </StringArray>
+          <StringArray count="0"/>
         </Property>
       </Properties>
     </Component>
@@ -370,77 +365,47 @@
         <Property name="text" type="java.lang.String" value="Transfer ID:"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JComboBox" name="cmbFromProjectID">
+    <Component class="javax.swing.JComboBox" name="cmbFromProject">
       <Properties>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-          <StringArray count="4">
-            <StringItem index="0" value="Item 1"/>
-            <StringItem index="1" value="Item 2"/>
-            <StringItem index="2" value="Item 3"/>
-            <StringItem index="3" value="Item 4"/>
-          </StringArray>
+          <StringArray count="0"/>
         </Property>
       </Properties>
     </Component>
-    <Component class="javax.swing.JComboBox" name="cmbFromLocationID">
+    <Component class="javax.swing.JComboBox" name="cmbFromLocation">
       <Properties>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-          <StringArray count="4">
-            <StringItem index="0" value="Item 1"/>
-            <StringItem index="1" value="Item 2"/>
-            <StringItem index="2" value="Item 3"/>
-            <StringItem index="3" value="Item 4"/>
-          </StringArray>
+          <StringArray count="0"/>
         </Property>
       </Properties>
     </Component>
-    <Component class="javax.swing.JComboBox" name="cmbToLocationID">
+    <Component class="javax.swing.JComboBox" name="cmbToLocation">
       <Properties>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-          <StringArray count="4">
-            <StringItem index="0" value="Item 1"/>
-            <StringItem index="1" value="Item 2"/>
-            <StringItem index="2" value="Item 3"/>
-            <StringItem index="3" value="Item 4"/>
-          </StringArray>
+          <StringArray count="0"/>
         </Property>
       </Properties>
     </Component>
-    <Component class="javax.swing.JComboBox" name="cmbToProjectID">
+    <Component class="javax.swing.JComboBox" name="cmbToProject">
       <Properties>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-          <StringArray count="4">
-            <StringItem index="0" value="Item 1"/>
-            <StringItem index="1" value="Item 2"/>
-            <StringItem index="2" value="Item 3"/>
-            <StringItem index="3" value="Item 4"/>
-          </StringArray>
+          <StringArray count="0"/>
         </Property>
       </Properties>
     </Component>
     <Component class="com.toedter.calendar.JDateChooser" name="dcTransferRelievingDate">
     </Component>
-    <Component class="javax.swing.JComboBox" name="cmbToDepartmentID">
+    <Component class="javax.swing.JComboBox" name="cmbToDepartment">
       <Properties>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-          <StringArray count="4">
-            <StringItem index="0" value="Item 1"/>
-            <StringItem index="1" value="Item 2"/>
-            <StringItem index="2" value="Item 3"/>
-            <StringItem index="3" value="Item 4"/>
-          </StringArray>
+          <StringArray count="0"/>
         </Property>
       </Properties>
     </Component>
-    <Component class="javax.swing.JComboBox" name="cmbEmployeeID">
+    <Component class="javax.swing.JComboBox" name="cmbEmployee">
       <Properties>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-          <StringArray count="4">
-            <StringItem index="0" value="Item 1"/>
-            <StringItem index="1" value="Item 2"/>
-            <StringItem index="2" value="Item 3"/>
-            <StringItem index="3" value="Item 4"/>
-          </StringArray>
+          <StringArray count="0"/>
         </Property>
       </Properties>
     </Component>
@@ -452,15 +417,10 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnAddActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JComboBox" name="cmbFromDepartmentID">
+    <Component class="javax.swing.JComboBox" name="cmbFromDepartment">
       <Properties>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-          <StringArray count="4">
-            <StringItem index="0" value="Item 1"/>
-            <StringItem index="1" value="Item 2"/>
-            <StringItem index="2" value="Item 3"/>
-            <StringItem index="3" value="Item 4"/>
-          </StringArray>
+          <StringArray count="0"/>
         </Property>
       </Properties>
     </Component>

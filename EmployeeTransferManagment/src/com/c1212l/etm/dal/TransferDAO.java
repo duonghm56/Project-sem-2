@@ -21,7 +21,7 @@ public class TransferDAO extends ConnectionTool{
         public ArrayList<Transfer> getAllTransfer() throws ClassNotFoundException, SQLException {
         initConnection();
         Statement stmt = conn.createStatement();
-        ResultSet rs = stmt.executeQuery("select * from transfer");
+        ResultSet rs = stmt.executeQuery("select * from [transfer]");
         ArrayList<Transfer> result = new ArrayList<>();
         while (rs.next()) {
             Transfer transfer = new Transfer();
