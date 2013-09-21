@@ -297,9 +297,9 @@ public class LocationPanel extends javax.swing.JPanel {
         String locationName = "";
         if (!txtLocationName.getText().equals("")) {
             if (!locationName.contains("where")) {
-                locationName += " where projectName like '%" + txtLocationName.getText() + "%'";
+                locationName += " where locationName like '%" + txtLocationName.getText() + "%'";
             } else {
-                locationName += " and projectName like '%" + txtLocationName.getText() + "%'";
+                locationName += " and locationName like '%" + txtLocationName.getText() + "%'";
             }
         }
         initTable();
