@@ -3,12 +3,8 @@
  * and open the template in the editor.
  */
 package com.c1212l.etm.bll;
-import com.c1212l.etm.dal.ConnectionTool;
 import com.c1212l.etm.dal.DepartmentDAO;
-import com.c1212l.etm.dal.EmployeeDAO;
 import com.c1212l.etm.dto.Department;
-import com.c1212l.etm.dto.Employee;
-import com.c1212l.etm.dto.Location;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;

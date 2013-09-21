@@ -5,12 +5,12 @@
 package com.c1212l.etm.dal;
 
 import com.c1212l.etm.dto.Department;
-import com.c1212l.etm.dto.Project;
 import java.sql.CallableStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.Vector;
 
 /**
  *
@@ -20,13 +20,13 @@ public class DepartmentDAO extends ConnectionTool{
     public ArrayList<Department> getAllDepartment() throws ClassNotFoundException, SQLException{
         initConnection();
         Statement stt=conn.createStatement();
-        ResultSet rs=stt.executeQuery("select *from department");
-        ArrayList<Department> result= new ArrayList<>();
+        ResultSet rs=stt.executeQuery("Select * From department Inner Join location On department.locationID = location.locationID");
+        ArrayList<Department> result = new ArrayList<Department>();
         while(rs.next()){
             Department dp= new Department();
             dp.setDepartmentID(rs.getInt("departmentID"));
             dp.setDepartmentName(rs.getString("departmentName"));
-            dp.setLocationID(rs.getInt("locationID"));
+            dp.setLocationName(rs.getString("locationName"));
             result.add(dp);
         }
         closeConnection();

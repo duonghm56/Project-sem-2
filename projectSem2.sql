@@ -21,12 +21,14 @@ create table project(
 	createDate date,
 	endDate date
 )
-
+drop table employee
 create table employee(
 	employeeID int primary key identity,
 	employeeNumber varchar(20) unique not null,
 	employeeName nvarchar(200) not null,
+	email varchar(100) unique not null,
 	password varchar(50) not null,
+	confirmPassword varchar(50)not null,
 	role nvarchar(100), 
 	workExperience int,
 	gender bit,
@@ -38,7 +40,6 @@ create table transferType(
 	transferTypeID int primary key identity,
 	transferTypeName nvarchar(200) not null unique
 )
-
 create table [transfer](
 	transferID int primary key identity,
 	transferTypeID int references transferType(transferTypeID),
@@ -56,7 +57,12 @@ create table [transfer](
 	fromLocation int references location(locationID),
 	toLocation int references location(locationID)
 )
-
+create table [admin]
+(
+	id int identity primary key,
+	email varchar(100) unique not null,
+	[password] varchar(100)not null
+)
 go
 -----------------------------------------------------------
 -- DuongHM write ------------------------------------------

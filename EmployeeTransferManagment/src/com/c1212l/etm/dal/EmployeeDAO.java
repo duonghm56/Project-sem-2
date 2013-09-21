@@ -27,7 +27,9 @@ public class EmployeeDAO extends ConnectionTool{
             e.setEmployeeID(rs.getInt("employeeID"));
             e.setEmployeeNumber(rs.getString("employeeNumber"));
             e.setEmployeeName(rs.getString("employeeName"));
+            e.setEmail(rs.getString("email"));
             e.setPassword(rs.getString("password"));
+            e.setConfirmPassword(rs.getString("confirmPassword"));
             e.setRole(rs.getString("role"));
             e.setWorkExperience(rs.getInt("workExperience"));
             e.setGender(rs.getBoolean("gender"));
@@ -41,28 +43,32 @@ public class EmployeeDAO extends ConnectionTool{
     
     public void addEmployee(Employee employee) throws ClassNotFoundException, SQLException{
         initConnection();
-        CallableStatement cs = conn.prepareCall("{call addEmployee(?, ?, ?, ?, ?, ?, ?, ?)}");
+        CallableStatement cs = conn.prepareCall("{call addEmployee(?, ?, ?, ?,?,?, ?, ?,?,?)}");
         cs.setString(1, employee.getEmployeeNumber());
         cs.setString(2, employee.getEmployeeName());
-        cs.setString(3, employee.getPassword());
-        cs.setString(4, employee.getRole());
-        cs.setInt(5, employee.getWorkExperience());
-        cs.setBoolean(6, employee.getGender());
-        cs.setInt(7, employee.getDepartnameID());
-        cs.setInt(8, employee.getProjectID());        
+        cs.setString(3,employee.getEmail());
+        cs.setString(4, employee.getPassword());
+        cs.setString(5,employee.getConfirmPassword());
+        cs.setString(6, employee.getRole());
+        cs.setInt(7, employee.getWorkExperience());
+        cs.setBoolean(8, employee.getGender());
+        cs.setInt(9, employee.getDepartnameID());
+        cs.setInt(10, employee.getProjectID());        
         cs.executeUpdate();
         closeConnection();        
     }
     
     public void updateEmployee(Employee employee) throws ClassNotFoundException, SQLException{
         initConnection();
-        CallableStatement cs = conn.prepareCall("{call updateEmployee(?, ?, ?, ?, ?, ?)}");
+        CallableStatement cs = conn.prepareCall("{call updateEmployee(?, ?, ?, ?, ?, ?,?,?)}");
         cs.setString(1, employee.getEmployeeNumber());
         cs.setString(2, employee.getEmployeeName());
-        cs.setString(3, employee.getPassword());
-        cs.setString(4, employee.getRole());
-        cs.setInt(5, employee.getWorkExperience());
-        cs.setBoolean(6, employee.getGender());    
+        cs.setString(3,employee.getEmail());
+        cs.setString(4, employee.getPassword());
+        cs.setString(5,employee.getConfirmPassword());
+        cs.setString(6, employee.getRole());
+        cs.setInt(7, employee.getWorkExperience());
+        cs.setBoolean(8, employee.getGender());    
         cs.executeUpdate();
         closeConnection();        
     }

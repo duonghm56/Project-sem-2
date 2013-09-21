@@ -25,11 +25,13 @@ public class EmployeeBUS {
         return employeeDAO.getAllEmployee();
     }
     
-    public void addEmployee(String emplNum, String emplName, String password, String role, int workExperience, boolean gender, int departmentID, int projectID) throws ClassNotFoundException, SQLException{
+    public void addEmployee(String emplNum, String emplName,String email, String password,String confirmPassword, String role, int workExperience, boolean gender, int departmentID, int projectID) throws ClassNotFoundException, SQLException{
         Employee e = new Employee();
         e.setEmployeeNumber(emplNum);
         e.setEmployeeName(emplName);
+        e.setEmail(email);
         e.setPassword(password);
+        e.setConfirmPassword(confirmPassword);
         e.setRole(role);
         e.setWorkExperience(workExperience);
         e.setGender(gender);
@@ -38,11 +40,13 @@ public class EmployeeBUS {
         employeeDAO.addEmployee(e);
     }
     
-    public void updateEmployee(String emplNum, String emplName, String password, String role, int workExperience, boolean gender) throws ClassNotFoundException, SQLException{
+    public void updateEmployee(String emplNum, String emplName,String email, String password,String confirmPassword, String role, int workExperience, boolean gender) throws ClassNotFoundException, SQLException{
         Employee e = new Employee();
         e.setEmployeeNumber(emplNum);
         e.setEmployeeName(emplName);
+        e.setEmail(email);
         e.setPassword(password);
+        e.setConfirmPassword(confirmPassword);
         e.setRole(role);
         e.setWorkExperience(workExperience);
         e.setGender(gender);        

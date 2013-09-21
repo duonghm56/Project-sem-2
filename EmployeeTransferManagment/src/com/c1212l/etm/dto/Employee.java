@@ -16,7 +16,9 @@ public class Employee {
     private int employeeID;
     private String employeeNumber;
     private String employeeName;
+    private String email;
     private String password;
+    private String confirmPassword;
     private String role;
     private int workExperience;
     private boolean gender;
@@ -103,7 +105,9 @@ public class Employee {
         result.add(employeeID);
         result.add(employeeNumber);
         result.add(employeeName);
+        result.add(email);
         result.add(password);
+        result.add(confirmPassword);
         result.add(role);
         result.add(workExperience);
         result.add(gender?"Male":"Female");
@@ -112,6 +116,22 @@ public class Employee {
         Project project = new ProjectDAO().getProjectById(projectID);
         result.add(project!=null?project.getProjectName():"undifined");        
         return result;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getConfirmPassword() {
+        return confirmPassword;
+    }
+
+    public void setConfirmPassword(String confirmPassword) {
+        this.confirmPassword = confirmPassword;
     }
             
 }

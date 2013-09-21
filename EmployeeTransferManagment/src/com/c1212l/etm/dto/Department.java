@@ -13,6 +13,7 @@ import java.util.Vector;
 public class Department {
     private int departmentID;
     private String departmentName;
+    private String locationName;
     private int locationID;
 
     public int getLocationID() {
@@ -38,12 +39,19 @@ public class Department {
     public void setDepartmentName(String departmentName) {
         this.departmentName = departmentName;
     }
-        
+
+    public String getLocationName() {
+        return locationName;
+    }
+
+    public void setLocationName(String locationName) {
+        this.locationName = locationName;
+    }   
     public Vector getVector(){
         Vector v = new Vector();
         v.add(departmentID);
         v.add(departmentName);
-        v.add(locationID);
+        v.add(locationName);
         return v;
     }
 }

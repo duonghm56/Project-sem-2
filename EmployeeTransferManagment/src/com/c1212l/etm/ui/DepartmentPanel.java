@@ -278,7 +278,7 @@ public class DepartmentPanel extends javax.swing.JPanel {
         Vector header = new Vector();
         header.add("Department ID");
         header.add("Department Name");
-        header.add("Location ID");
+        header.add("Location Name");
         tblModel = new DefaultTableModel(header, 0);
         tbDepartmentData.setModel(tblModel);
     }
