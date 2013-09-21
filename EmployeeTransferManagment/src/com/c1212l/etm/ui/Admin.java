@@ -6,7 +6,10 @@ package com.C1212L.etm.UI;
 
 import com.c1212l.etm.dal.LoginDAO;
 import com.c1212l.etm.dto.Login;
+import java.sql.SQLException;
 import java.util.Vector;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -34,7 +37,7 @@ public class Admin extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         lblUserName = new javax.swing.JLabel();
         lblPassword = new javax.swing.JLabel();
-        txtUserName = new javax.swing.JTextField();
+        txtEmail = new javax.swing.JTextField();
         btnLogin = new javax.swing.JButton();
         btnExit = new javax.swing.JButton();
         txtPassword = new javax.swing.JPasswordField();
@@ -46,13 +49,13 @@ public class Admin extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel1.setText("Employee Transfer Managment");
 
-        lblUserName.setText("UserName");
+        lblUserName.setText("Email:");
 
         lblPassword.setText("Password");
 
-        txtUserName.addActionListener(new java.awt.event.ActionListener() {
+        txtEmail.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtUserNameActionPerformed(evt);
+                txtEmailActionPerformed(evt);
             }
         });
 
@@ -90,7 +93,7 @@ public class Admin extends javax.swing.JFrame {
                                 .addComponent(btnLogin)
                                 .addGap(45, 45, 45)
                                 .addComponent(btnExit))
-                            .addComponent(txtUserName)
+                            .addComponent(txtEmail)
                             .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(92, 92, 92))))
         );
@@ -102,7 +105,7 @@ public class Admin extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblUserName)
-                    .addComponent(txtUserName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblPassword)
@@ -117,9 +120,9 @@ public class Admin extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txtUserNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtUserNameActionPerformed
+    private void txtEmailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtEmailActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtUserNameActionPerformed
+    }//GEN-LAST:event_txtEmailActionPerformed
 
     private void btnExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExitActionPerformed
            try{
@@ -139,27 +142,29 @@ if (n == JOptionPane.YES_OPTION) {
     }//GEN-LAST:event_btnExitActionPerformed
 
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
-        // TODO add your handling code here:
-         try{
-            vctList = loginDAO.getAllLogin();
-            if (txtUserName.getText().equals("")) {
-                JOptionPane.showMessageDialog(this, "Please enter all field");
-                return;
-            }
-            if (txtPassword.getText().equals("")) {
-                JOptionPane.showMessageDialog(this, "Please enter all field");
-                return;
-            }
-            for (int i = 0; i < vctList.size(); i++) {
-                Login login  = vctList.elementAt(i);
-                boolean temp = login.getRole();
-                if (txtUserName.getText().equals(login.getUserName()) && txtPassword.getText().equals(login.getPassword()) ) {
-                    if(temp == true)
-                    {
-                        JOptionPane.showMessageDialog(this, "Toi la admin");
+        try {
+            // TODO add your handling code here:
+                vctList = loginDAO.getAdmin();
+                if (txtEmail.getText().equals("")) {
+                    JOptionPane.showMessageDialog(this, "Please enter all field");
+                    return;
+                }
+                if (txtPassword.getText().equals("")) {
+                    JOptionPane.showMessageDialog(this, "Please enter all field");
+                    return;
+                }
+                for (int i = 0; i < vctList.size(); i++) {
+                    Login login  = vctList.elementAt(i);
+                    if (txtEmail.getText().equals(login.getEmail()) && txtPassword.getText().equals(login.getPassword()) ) {
+                            JOptionPane.showMessageDialog(this, "Toi la admin");
+                        
                     }
                 }
-            }
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(Admin.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(Admin.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_btnLoginActionPerformed
 
     /**
@@ -202,8 +207,8 @@ if (n == JOptionPane.YES_OPTION) {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel lblPassword;
     private javax.swing.JLabel lblUserName;
+    private javax.swing.JTextField txtEmail;
     private javax.swing.JPasswordField txtPassword;
-    private javax.swing.JTextField txtUserName;
     // End of variables declaration//GEN-END:variables
     private LoginDAO loginDAO = new LoginDAO ();
     private Vector<Login> vctList = new Vector<Login>();

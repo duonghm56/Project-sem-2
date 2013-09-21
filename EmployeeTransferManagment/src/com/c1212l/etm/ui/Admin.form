@@ -46,7 +46,7 @@
                               <EmptySpace min="-2" pref="45" max="-2" attributes="0"/>
                               <Component id="btnExit" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <Component id="txtUserName" alignment="0" max="32767" attributes="0"/>
+                          <Component id="txtEmail" alignment="0" max="32767" attributes="0"/>
                           <Component id="txtPassword" min="-2" pref="170" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="92" max="-2" attributes="0"/>
@@ -63,7 +63,7 @@
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="lblUserName" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="txtUserName" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="txtEmail" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
@@ -91,7 +91,7 @@
     </Component>
     <Component class="javax.swing.JLabel" name="lblUserName">
       <Properties>
-        <Property name="text" type="java.lang.String" value="UserName"/>
+        <Property name="text" type="java.lang.String" value="Email:"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="lblPassword">
@@ -99,9 +99,9 @@
         <Property name="text" type="java.lang.String" value="Password"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="txtUserName">
+    <Component class="javax.swing.JTextField" name="txtEmail">
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtUserNameActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtEmailActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JButton" name="btnLogin">
