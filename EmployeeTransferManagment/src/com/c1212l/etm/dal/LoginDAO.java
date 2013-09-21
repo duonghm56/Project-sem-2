@@ -29,5 +29,18 @@ public class LoginDAO extends ConnectionTool {
         closeConnection();
         return result;
     }
-    
+      public Vector<Login> getEmployee() throws ClassNotFoundException, SQLException{
+        initConnection();
+        Statement stmt = conn.createStatement();
+        ResultSet rs = stmt.executeQuery("select * from employee");
+        Vector<Login> result = new Vector<Login>();
+        while(rs.next()){
+            Login login  = new Login();
+            login.setEmail(rs.getString("email"));
+            login.setPassword(rs.getString("password"));
+            result.add(login);
+        }
+        closeConnection();
+        return result;
+    }
 }

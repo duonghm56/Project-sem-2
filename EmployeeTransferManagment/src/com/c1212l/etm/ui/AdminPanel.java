@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.C1212L.etm.UI;
+package com.c1212l.etm.ui;
 
 import com.c1212l.etm.dal.LoginDAO;
 import com.c1212l.etm.dto.Login;
@@ -14,14 +14,14 @@ import javax.swing.JOptionPane;
 
 /**
  *
- * @author Shady
+ * @author Luu Bi
  */
-public class Admin extends javax.swing.JFrame {
+public class AdminPanel extends javax.swing.JPanel {
 
     /**
-     * Creates new form Login
+     * Creates new form Admin
      */
-    public Admin() {
+    public AdminPanel() {
         initComponents();
     }
 
@@ -36,26 +36,21 @@ public class Admin extends javax.swing.JFrame {
 
         jLabel1 = new javax.swing.JLabel();
         lblUserName = new javax.swing.JLabel();
-        lblPassword = new javax.swing.JLabel();
-        txtEmail = new javax.swing.JTextField();
-        btnLogin = new javax.swing.JButton();
         btnExit = new javax.swing.JButton();
+        btnLogin = new javax.swing.JButton();
+        txtEmail = new javax.swing.JTextField();
+        lblPassword = new javax.swing.JLabel();
         txtPassword = new javax.swing.JPasswordField();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Login");
-        setBackground(new java.awt.Color(255, 255, 255));
-
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel1.setText("Employee Transfer Managment");
+        jLabel1.setText("Login Admin");
 
         lblUserName.setText("Email:");
 
-        lblPassword.setText("Password");
-
-        txtEmail.addActionListener(new java.awt.event.ActionListener() {
+        btnExit.setText("Exit");
+        btnExit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtEmailActionPerformed(evt);
+                btnExitActionPerformed(evt);
             }
         });
 
@@ -66,23 +61,21 @@ public class Admin extends javax.swing.JFrame {
             }
         });
 
-        btnExit.setText("Exit");
-        btnExit.addActionListener(new java.awt.event.ActionListener() {
+        txtEmail.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnExitActionPerformed(evt);
+                txtEmailActionPerformed(evt);
             }
         });
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
+        lblPassword.setText("Password");
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
+        this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(78, Short.MAX_VALUE)
+                .addContainerGap(74, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addGap(64, 64, 64))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(lblPassword)
@@ -95,7 +88,10 @@ public class Admin extends javax.swing.JFrame {
                                 .addComponent(btnExit))
                             .addComponent(txtEmail)
                             .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(92, 92, 92))))
+                        .addGap(92, 92, 92))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(131, 131, 131))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -114,35 +110,30 @@ public class Admin extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnLogin)
                     .addComponent(btnExit))
-                .addContainerGap(61, Short.MAX_VALUE))
+                .addContainerGap(46, Short.MAX_VALUE))
         );
-
-        pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txtEmailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtEmailActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtEmailActionPerformed
-
     private void btnExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExitActionPerformed
-           try{
-               int n = JOptionPane.showConfirmDialog(
-                            this, "Do you want Exit?",
-                            "Message Dialog",
-                            JOptionPane.YES_NO_OPTION);
-if (n == JOptionPane.YES_OPTION) {
-    this.dispose();
-} else if (n == JOptionPane.NO_OPTION) {
+        try{
+            int n = JOptionPane.showConfirmDialog(
+                this, "Do you want Exit?",
+                "Message Dialog",
+                JOptionPane.YES_NO_OPTION);
+            if (n == JOptionPane.YES_OPTION) {
+                System.exit(0);
+            } else if (n == JOptionPane.NO_OPTION) {
 
-} else {
+            } else {
 
-}
-           }
-           catch(Exception ex){ex.printStackTrace();}
+            }
+        }
+        catch(Exception ex){ex.printStackTrace();}
     }//GEN-LAST:event_btnExitActionPerformed
 
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
-        try {
+
+              try {
             // TODO add your handling code here:
                 vctList = loginDAO.getAdmin();
                 if (txtEmail.getText().equals("")) {
@@ -161,46 +152,16 @@ if (n == JOptionPane.YES_OPTION) {
                     }
                 }
         } catch (ClassNotFoundException ex) {
-            Logger.getLogger(Admin.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(AdminPanel.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {
-            Logger.getLogger(Admin.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(AdminPanel.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_btnLoginActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Admin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Admin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Admin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Admin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
+    private void txtEmailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtEmailActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtEmailActionPerformed
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new Admin().setVisible(true);
-            }
-        });
-    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnExit;
     private javax.swing.JButton btnLogin;

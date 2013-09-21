@@ -21,4 +21,7 @@ public class LoginBUS {
     public Vector<Login> getAdmin() throws ClassNotFoundException, SQLException{
         return loginDAO.getAdmin();
     }
+    public Vector<Login> getEmployee() throws ClassNotFoundException, SQLException{
+        return loginDAO.getEmployee();
+    }
 }

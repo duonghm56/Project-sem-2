@@ -15,13 +15,11 @@ import javax.swing.JOptionPane;
  *
  * @author Luu Bi
  */
-public class LoginPanel extends javax.swing.JPanel {
-        private LoginDAO loginDAO = new LoginDAO ();
-        private Vector<Login> vctList = new Vector<Login>();
+public class EmployeeLoginPanel extends javax.swing.JPanel {
     /**
      * Creates new form LoginPanel
      */
-    public LoginPanel() {
+    public EmployeeLoginPanel() {
         initComponents();
     }
 
@@ -38,7 +36,7 @@ public class LoginPanel extends javax.swing.JPanel {
         btnLogin = new javax.swing.JButton();
         txtPassword = new javax.swing.JPasswordField();
         lblPassword = new javax.swing.JLabel();
-        txtUserName = new javax.swing.JTextField();
+        txtEmail = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         lblUserName = new javax.swing.JLabel();
 
@@ -58,14 +56,14 @@ public class LoginPanel extends javax.swing.JPanel {
 
         lblPassword.setText("Password");
 
-        txtUserName.addActionListener(new java.awt.event.ActionListener() {
+        txtEmail.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtUserNameActionPerformed(evt);
+                txtEmailActionPerformed(evt);
             }
         });
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel1.setText("Employee Transfer Managment");
+        jLabel1.setText("Employee Login");
 
         lblUserName.setText("Email:");
 
@@ -73,25 +71,22 @@ public class LoginPanel extends javax.swing.JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap(54, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(74, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addGap(64, 64, 64))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblPassword)
-                            .addComponent(lblUserName))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(btnLogin)
-                                .addGap(46, 46, 46)
-                                .addComponent(btnExit))
-                            .addComponent(txtUserName)
-                            .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(92, 92, 92))))
+                    .addComponent(lblPassword)
+                    .addComponent(lblUserName))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(layout.createSequentialGroup()
+                            .addComponent(btnLogin)
+                            .addGap(46, 46, 46)
+                            .addComponent(btnExit))
+                        .addComponent(txtEmail)
+                        .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(92, 92, 92))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -101,7 +96,7 @@ public class LoginPanel extends javax.swing.JPanel {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblUserName)
-                    .addComponent(txtUserName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblPassword)
@@ -134,8 +129,9 @@ public class LoginPanel extends javax.swing.JPanel {
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
         // TODO add your handling code here:
         try{
-            vctList = loginDAO.getAllLogin();
-            if (txtUserName.getText().equals("")) {
+            vctList = loginDAO.getEmployee();
+            int count = 0;
+            if (txtEmail.getText().equals("")) {
                 JOptionPane.showMessageDialog(this, "Please enter all field");
                 return;
             }
@@ -145,21 +141,26 @@ public class LoginPanel extends javax.swing.JPanel {
             }
             for (int i = 0; i < vctList.size(); i++) {
                 Login login  = vctList.elementAt(i);
-                boolean temp = login.getRole();
-                if (txtUserName.getText().equals(login.getUserName()) && txtPassword.getText().equals(login.getPassword()) ) {
-                    if(temp == true)
-                    {
-                        JOptionPane.showMessageDialog(this, "Toi la admin");
-                    }
+                if (txtEmail.getText().equals(login.getEmail()) && txtPassword.getText().equals(login.getPassword()) ) {
+                   count++; 
                 }
+            }
+            if (count ==1) {
+                JOptionPane.showMessageDialog(this, "Login success!");
+                this.hide();
+                AdminUI admin = new AdminUI();
+                admin.show();
+            }
+            else{
+                JOptionPane.showMessageDialog(this, "Login fail!");
             }
         }
         catch(Exception e){e.printStackTrace();}
     }//GEN-LAST:event_btnLoginActionPerformed
 
-    private void txtUserNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtUserNameActionPerformed
+    private void txtEmailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtEmailActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtUserNameActionPerformed
+    }//GEN-LAST:event_txtEmailActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnExit;
@@ -167,7 +168,9 @@ public class LoginPanel extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel lblPassword;
     private javax.swing.JLabel lblUserName;
+    private javax.swing.JTextField txtEmail;
     private javax.swing.JPasswordField txtPassword;
-    private javax.swing.JTextField txtUserName;
     // End of variables declaration//GEN-END:variables
+    private LoginDAO loginDAO = new LoginDAO ();
+    private Vector<Login> vctList = new Vector<Login>();
 }
