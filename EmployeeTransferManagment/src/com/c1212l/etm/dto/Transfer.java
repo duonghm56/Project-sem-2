@@ -4,7 +4,11 @@
  */
 package com.c1212l.etm.dto;
 
+import com.c1212l.etm.dal.DepartmentDAO;
+import com.c1212l.etm.dal.EmployeeDAO;
+import com.c1212l.etm.dal.LocationDAO;
 import com.c1212l.etm.dal.ProjectDAO;
+import com.c1212l.etm.dal.TransferTypeDAO;
 import java.sql.Date;
 import java.util.Vector;
 
@@ -168,23 +172,37 @@ public class Transfer {
     public void setToLocationID(int toLocationID) {
         this.toLocationID = toLocationID;
     }
+    
      public Vector getVector(){
         Vector v = new Vector();
         v.add(transferID);
-        v.add(transferTypeID);
-        v.add(employeeID);
+        TransferType transferType= new TransferTypeDAO().getTransferTypeById(transferTypeID);
+        v.add(transferType!=null?transferType.getTransferTypeName():"undifined");
+        Employee employee = new EmployeeDAO().getEmployeeByID(employeeID);
+        v.add(employee!=null?employee.getEmployeeName():"undifined");
         v.add(transferRelievingDate);
         v.add(transferJoiningDate);
         v.add(requestDate);
         v.add(reason);
         v.add(approve?"Approve":"Unapprove");
         v.add(approveDate);
-        v.add(fromProjectID);
-        v.add(toProjectID);
-        v.add(fromDepartmentID);
-        v.add(toDepartmentID);
-        v.add(fromLocationID);
-        v.add(toLocationID);    
+        Project project;
+        project= new ProjectDAO().getProjectById(fromProjectID);
+        v.add(project!=null?project.getProjectName():"undifined");   
+        project = new ProjectDAO().getProjectById(toProjectID);
+        v.add(project!=null?project.getProjectName():"undifined");   
+        
+        Department department;
+        department = new DepartmentDAO().getDepartmentByID(fromDepartmentID);
+        v.add(department!=null?department.getDepartmentName():"undifined"); 
+        department = new DepartmentDAO().getDepartmentByID(toDepartmentID);
+        v.add(department!=null?department.getDepartmentName():"undifined"); 
+         
+        Location location;
+        location = new LocationDAO().getLocationById(fromLocationID);
+        v.add(department!=null?location.getLocationName():"undifined"); 
+        location = new LocationDAO().getLocationById(toDepartmentID);
+        v.add(location!=null?location.getLocationName():"undifined"); 
         return v;
     }
 }

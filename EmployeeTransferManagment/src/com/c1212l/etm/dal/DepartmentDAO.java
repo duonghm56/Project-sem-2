@@ -71,7 +71,7 @@ public class DepartmentDAO extends ConnectionTool{
         closeConnection();
         return result;
     }
-           public Department getDepartmentID(int id) {
+           public Department getDepartmentByID(int id) {
         try {
             initConnection();
             Statement stmt = conn.createStatement();

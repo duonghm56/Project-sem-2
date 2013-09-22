@@ -114,7 +114,7 @@ public class Employee {
         result.add(gender?"Male":"Female");
         Project project = new ProjectDAO().getProjectById(projectID);
         result.add(project!=null?project.getProjectName():"undifined");    
-        Department department = new DepartmentDAO().getDepartmentID(departnameID);
+        Department department = new DepartmentDAO().getDepartmentByID(departnameID);
         result.add(department!=null?department.getDepartmentName():"undifined");  
         return result;
     }

@@ -61,16 +61,14 @@
                       </Group>
                       <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="dcApproveDate" max="32767" attributes="0"/>
+                          <Component id="dcApproveDate" pref="231" max="32767" attributes="0"/>
                           <Group type="102" attributes="0">
                               <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                      <Component id="cmbApprove" alignment="0" min="-2" pref="91" max="-2" attributes="0"/>
-                                      <Component id="cmbFromDepartment" alignment="0" pref="110" max="32767" attributes="0"/>
-                                      <Component id="cmbToDepartment" alignment="0" max="32767" attributes="0"/>
-                                      <Component id="cmbFromLocation" alignment="0" max="32767" attributes="0"/>
-                                      <Component id="cmbToLocation" alignment="0" max="32767" attributes="0"/>
-                                  </Group>
+                                  <Component id="cmbApprove" alignment="0" min="-2" pref="91" max="-2" attributes="0"/>
+                                  <Component id="cmbFromDepartment" alignment="0" pref="118" max="32767" attributes="0"/>
+                                  <Component id="cmbToDepartment" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="cmbFromLocation" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="cmbToLocation" alignment="0" max="32767" attributes="0"/>
                                   <Component id="cmbFromProject" alignment="0" pref="118" max="32767" attributes="0"/>
                                   <Component id="cmbToProject" alignment="0" max="32767" attributes="0"/>
                               </Group>
@@ -90,8 +88,7 @@
           </Group>
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="jScrollPane3" min="-2" pref="732" max="-2" attributes="0"/>
-              <EmptySpace max="32767" attributes="0"/>
+              <Component id="jScrollPane3" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>

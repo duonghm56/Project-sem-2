@@ -146,7 +146,7 @@ public class AdminPanel extends javax.swing.JPanel {
                 }
                 for (int i = 0; i < vctList.size(); i++) {
                     Login login  = vctList.elementAt(i);
-                    if (txtEmail.getText().equals(login.getEmail()) && txtPassword.getText().equals(login.getPassword()) ) {
+                    if (txtEmail.getText().equals(login.getEmailAdmin()) && txtPassword.getText().equals(login.getPasswordAdmin()) ) {
                             JOptionPane.showMessageDialog(this, "Toi la admin");
                         
                     }

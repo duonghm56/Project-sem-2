@@ -9,22 +9,42 @@ package com.c1212l.etm.dto;
  * @author Android21SDK
  */
 public class Login {
-       private String email;
-       private String password;
+    
+       private String emailAdmin;
+       private String passwordAdmin;
+       private String emailEmployee;
+       private String passwordEmployee;
 
-    public String getEmail() {
-        return email;
+    public String getEmailAdmin() {
+        return emailAdmin;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setEmailAdmin(String emailAdmin) {
+        this.emailAdmin = emailAdmin;
     }
 
-    public String getPassword() {
-        return password;
+    public String getPasswordAdmin() {
+        return passwordAdmin;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public void setPasswordAdmin(String passwordAdmin) {
+        this.passwordAdmin = passwordAdmin;
     }
+
+    public String getEmailEmployee() {
+        return emailEmployee;
+    }
+
+    public void setEmailEmployee(String emailEmployee) {
+        this.emailEmployee = emailEmployee;
+    }
+
+    public String getPasswordEmployee() {
+        return passwordEmployee;
+    }
+
+    public void setPasswordEmployee(String passwordEmployee) {
+        this.passwordEmployee = passwordEmployee;
+    }
+
    }

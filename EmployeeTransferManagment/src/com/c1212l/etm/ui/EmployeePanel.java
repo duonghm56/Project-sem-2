@@ -87,11 +87,11 @@ public class EmployeePanel extends javax.swing.JPanel {
 
         jLabel14.setText("Year");
 
-        cmbProject.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Transfer Employees Manager", "Hotel Manager", " " }));
+        cmbProject.setModel(new javax.swing.DefaultComboBoxModel(new String[] { " " }));
 
         jLabel15.setText("Department");
 
-        cmbDepartment.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Marketing ", "Accounting Department", " " }));
+        cmbDepartment.setModel(new javax.swing.DefaultComboBoxModel(new String[] { " " }));
 
         jLabel1.setText("Employee Number:");
 
@@ -440,8 +440,8 @@ public class EmployeePanel extends javax.swing.JPanel {
         header.add("Role");
         header.add("Experience");
         header.add("Gender");
-        header.add("Department");
         header.add("Project");
+        header.add("Department");
         tblModel = new DefaultTableModel(header, 0);
         tblEmployee.setModel(tblModel);
         //TableColumn col = tblEmployee.getColumnModel().getColumn(3);
@@ -527,8 +527,8 @@ public class EmployeePanel extends javax.swing.JPanel {
         txtEmployeeRole.setText(tblEmployee.getValueAt(selectedRow, 6).toString());
         txtWorkExperience.setText(tblEmployee.getValueAt(selectedRow, 7).toString());
         cmbGender.setSelectedItem(new KeyValue(0, tblEmployee.getValueAt(selectedRow, 8).toString()));
-        cmbDepartment.setSelectedItem(new KeyValue(0, tblEmployee.getValueAt(selectedRow, 9).toString()));
-        cmbProject.setSelectedItem(new KeyValue(0, tblEmployee.getValueAt(selectedRow, 10).toString()));
+        cmbProject.setSelectedItem(new KeyValue(0, tblEmployee.getValueAt(selectedRow,9).toString()));
+        cmbDepartment.setSelectedItem(new KeyValue(0, tblEmployee.getValueAt(selectedRow, 10).toString()));
     }
         private void loadSearchEmployeeName() throws ClassNotFoundException, SQLException {
         String employeeName = "";

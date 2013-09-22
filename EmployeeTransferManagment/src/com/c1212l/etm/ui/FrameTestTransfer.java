@@ -24,12 +24,12 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author OLDPC
  */
-public class FrameTestEmployeePanel extends javax.swing.JFrame {
+public class FrameTestTransfer extends javax.swing.JFrame {
 
     /**
      * Creates new form FrameTestEmployeePanel
      */
-    public FrameTestEmployeePanel() {
+    public FrameTestTransfer() {
         initComponents();
     }
 
@@ -42,7 +42,13 @@ public class FrameTestEmployeePanel extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        employeePanel1 = new com.c1212l.etm.ui.EmployeePanel();
         employeePanel2 = new com.c1212l.etm.ui.EmployeePanel();
+        departmentPanel1 = new com.c1212l.etm.ui.DepartmentPanel();
+        transferPanel1 = new com.c1212l.etm.ui.TransferPanel();
+        transferPanel3 = new com.c1212l.etm.ui.TransferPanel();
+        transferPanel4 = new com.c1212l.etm.ui.TransferPanel();
+        transferPanel5 = new com.c1212l.etm.ui.TransferPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -52,15 +58,15 @@ public class FrameTestEmployeePanel extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(employeePanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(33, Short.MAX_VALUE))
+                .addComponent(transferPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(49, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(employeePanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(transferPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         pack();
@@ -83,25 +89,31 @@ public class FrameTestEmployeePanel extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(FrameTestEmployeePanel.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FrameTestTransfer.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(FrameTestEmployeePanel.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FrameTestTransfer.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(FrameTestEmployeePanel.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FrameTestTransfer.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(FrameTestEmployeePanel.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FrameTestTransfer.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new FrameTestEmployeePanel().setVisible(true);
+                new FrameTestTransfer().setVisible(true);
             }
         });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private com.c1212l.etm.ui.DepartmentPanel departmentPanel1;
+    private com.c1212l.etm.ui.EmployeePanel employeePanel1;
     private com.c1212l.etm.ui.EmployeePanel employeePanel2;
+    private com.c1212l.etm.ui.TransferPanel transferPanel1;
+    private com.c1212l.etm.ui.TransferPanel transferPanel3;
+    private com.c1212l.etm.ui.TransferPanel transferPanel4;
+    private com.c1212l.etm.ui.TransferPanel transferPanel5;
     // End of variables declaration//GEN-END:variables
 
 }

@@ -84,6 +84,7 @@ public class TransferDAO extends ConnectionTool{
         cs.setInt(13, transfer.getToDepartmentID());
         cs.setInt(14, transfer.getFromLocationID()); 
         cs.setInt(15, transfer.getToLocationID());
+        cs.executeUpdate();
         closeConnection();        
     }
        public void deleteTransfer(Transfer transfer) throws ClassNotFoundException, SQLException{

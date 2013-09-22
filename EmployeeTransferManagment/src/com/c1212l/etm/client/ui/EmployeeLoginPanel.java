@@ -6,8 +6,6 @@ package com.c1212l.etm.client.ui;
 
 import com.c1212l.etm.dto.Login;
 import com.c1212l.etm.dal.LoginDAO;
-import com.c1212l.etm.dto.Location;
-import java.util.ArrayList;
 import java.util.Vector;
 import javax.swing.JOptionPane;
 
@@ -128,6 +126,7 @@ public class EmployeeLoginPanel extends javax.swing.JPanel {
 
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
         // TODO add your handling code here:
+        
         try{
             vctList = loginDAO.getEmployee();
             int count = 0;
@@ -141,18 +140,9 @@ public class EmployeeLoginPanel extends javax.swing.JPanel {
             }
             for (int i = 0; i < vctList.size(); i++) {
                 Login login  = vctList.elementAt(i);
-                if (txtEmail.getText().equals(login.getEmail()) && txtPassword.getText().equals(login.getPassword()) ) {
-                   count++; 
+                if (txtEmail.getText().equals(login.getEmailEmployee()) && txtPassword.getText().equals(login.getPasswordEmployee()) ) {
+                   JOptionPane.showMessageDialog(this, "Dang nhap thanh cong");
                 }
-            }
-            if (count ==1) {
-                JOptionPane.showMessageDialog(this, "Login success!");
-                this.hide();
-                AdminUI admin = new AdminUI();
-                admin.show();
-            }
-            else{
-                JOptionPane.showMessageDialog(this, "Login fail!");
             }
         }
         catch(Exception e){e.printStackTrace();}

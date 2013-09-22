@@ -4,6 +4,7 @@
  */
 package com.c1212l.etm.dal;
 
+import com.c1212l.etm.dto.Department;
 import com.c1212l.etm.dto.Employee;
 import com.c1212l.etm.dto.Location;
 import java.sql.CallableStatement;
@@ -21,8 +22,7 @@ public class EmployeeDAO extends ConnectionTool{
     public ArrayList<Employee> getAllEmployee() throws ClassNotFoundException, SQLException{
         initConnection();
         Statement stmt = conn.createStatement();
-        ResultSet rs = stmt.executeQuery("Select * From employee Inner Join project On employee.projectID = project.projectID\n" +
-"Inner join department On employee.departmentID = department.departmentID");
+        ResultSet rs = stmt.executeQuery("Select * From employee");
         ArrayList<Employee> result = new ArrayList<Employee>();
         while(rs.next()){
             Employee e = new Employee();
@@ -104,5 +104,23 @@ public class EmployeeDAO extends ConnectionTool{
         }
         closeConnection();
         return result;
+    }
+        public Employee getEmployeeByID(int id) {
+        try {
+            initConnection();
+            Statement stmt = conn.createStatement();
+            ResultSet rs = stmt.executeQuery("select * from employee where employeeID = " +id);
+            Employee e = null;
+            if (rs.next()) {
+                    e = new Employee();
+                    e.setEmployeeID(rs.getInt("employeeID"));
+                    e.setEmployeeName(rs.getString("employeeName"));
+            }
+            closeConnection();
+            return e;
+
+        }catch(Exception ex){
+            return null;
+        }
     }
 }

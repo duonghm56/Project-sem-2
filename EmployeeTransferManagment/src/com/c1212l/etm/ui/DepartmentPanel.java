@@ -243,6 +243,8 @@ public class DepartmentPanel extends javax.swing.JPanel {
             int row = tbDepartmentData.rowAtPoint(evt.getPoint());
            txtDepartmentID.setText(tbDepartmentData.getValueAt(row, 0).toString());
            txtDepartmentName.setText(tbDepartmentData.getValueAt(row, 1).toString());
+           cmbLocation.setSelectedItem(new KeyValue(0, tbDepartmentData.getValueAt(row, 2).toString()));
+
     }//GEN-LAST:event_tbDepartmentDataMouseClicked
 
     private void txtDepartmentNameKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDepartmentNameKeyReleased

@@ -4,6 +4,7 @@
  */
 package com.c1212l.etm.dal;
 
+import com.c1212l.etm.dto.Project;
 import com.c1212l.etm.dto.TransferType;
 import java.sql.CallableStatement;
 import java.sql.ResultSet;
@@ -72,4 +73,22 @@ public class TransferTypeDAO extends ConnectionTool{
         return result;
     }
     
+    
+    public TransferType getTransferTypeById(int id) {
+        try {
+            initConnection();
+            Statement stmt = conn.createStatement();
+            ResultSet rs = stmt.executeQuery("select * from transferType where transferTypeID = " + id);
+            TransferType transferType = null;
+            if (rs.next()) {
+                transferType = new TransferType();
+                transferType.setTransferTypeID(rs.getInt("transferTypeID"));
+                transferType.setTransferTypeName(rs.getString("transferTypeName"));
+            }
+            closeConnection();
+            return transferType;
+        }catch(Exception ex){
+            return null;
+        }
+    }
 }
