@@ -60,7 +60,7 @@ public class TransferBUS {
         transfer.setToDepartmentID(toDepartmentID);
         transfer.setFromLocationID(fromLocationID);
         transfer.setToLocationID(toLocationID);
-        transferDAO.addTransfer(transfer);
+        transferDAO.updateTransfer(transfer);
     }
     
     public void deleteTransfer(int transferID) throws ClassNotFoundException, SQLException{

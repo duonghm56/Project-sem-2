@@ -40,6 +40,7 @@ create table transferType(
 	transferTypeID int primary key identity,
 	transferTypeName nvarchar(200) not null unique
 )
+drop table [transfer]
 create table [transfer](
 	transferID int primary key identity,
 	transferTypeID int references transferType(transferTypeID),
@@ -54,8 +55,8 @@ create table [transfer](
 	toProjectID int references project(projectID),
 	fromDepartmentID int references department(departmentID),
 	toDepartmentID int references department(departmentID),
-	fromLocation int references location(locationID),
-	toLocation int references location(locationID)
+	fromLocationID int references location(locationID),
+	toLocationID int references location(locationID)
 )
 create table [admin]
 (
@@ -189,7 +190,7 @@ begin
 	insert into [transfer] values(@transferTypeID,@employeeID, @transferRelievingDate, @transferJoiningDate, @requestDate, @reason, @approve , @approveDate , @fromProjectID, @toProjectID, @fromDepartmentID, @toDepartmentID, @fromLocationID, @toLocationID)
 end
 go
-create procedure updateTransferType(@transferID int,@transferTypeID int,@employeeID int, @transferRelievingDate Date, @transferJoiningDate Date, @requestDate Date, @reason text, @approve bit, @approveDate Date, @fromProjectID int, @toProjectID int, @fromDepartmentID int, @toDepartmentID int, @fromLocationID int, @toLocationID int)
+create procedure updateTransfer(@transferID int,@transferTypeID int,@employeeID int, @transferRelievingDate Date, @transferJoiningDate Date, @requestDate Date, @reason text, @approve bit, @approveDate Date, @fromProjectID int, @toProjectID int, @fromDepartmentID int, @toDepartmentID int, @fromLocationID int, @toLocationID int)
 as begin
 	update [transfer] set transferTypeID = @transferTypeID,employeeID = @employeeID, transferRelievingDate = @transferRelievingDate,transferJoiningDate = @transferJoiningDate, requestDate = @requestDate,reason = @reason ,approve = @approve, approveDate = @approveDate, fromProjectID = @fromProjectID,toProjectID = @toProjectID, fromDepartmentID = @fromDepartmentID,toDepartmentID = @toDepartmentID,fromLocationID = @fromLocationID,toLocationID = @toLocationID
 	where transferID=@transferID
@@ -200,3 +201,6 @@ as begin
 	delete from [transfer] 
 	where transferID = @id
 end
+Select * from [admin]
+Insert Into [admin] Values('luunguyenvan93@yahoo.com','12345')
+Select * from [transfer]
