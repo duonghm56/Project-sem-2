@@ -10,41 +10,33 @@ package com.c1212l.etm.dto;
  */
 public class Login {
     
-       private String emailAdmin;
-       private String passwordAdmin;
-       private String emailEmployee;
-       private String passwordEmployee;
+       private String email;
+       private String password;
+       private String emailSave;
 
-    public String getEmailAdmin() {
-        return emailAdmin;
+    public String getEmail() {
+        return email;
     }
 
-    public void setEmailAdmin(String emailAdmin) {
-        this.emailAdmin = emailAdmin;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
-    public String getPasswordAdmin() {
-        return passwordAdmin;
+    public String getPassword() {
+        return password;
     }
 
-    public void setPasswordAdmin(String passwordAdmin) {
-        this.passwordAdmin = passwordAdmin;
+    public void setPassword(String password) {
+        this.password = password;
     }
 
-    public String getEmailEmployee() {
-        return emailEmployee;
+    public String getEmailSave() {
+        return emailSave;
     }
 
-    public void setEmailEmployee(String emailEmployee) {
-        this.emailEmployee = emailEmployee;
+    public void setEmailSave(String emailSave) {
+        this.emailSave = emailSave;
     }
 
-    public String getPasswordEmployee() {
-        return passwordEmployee;
-    }
-
-    public void setPasswordEmployee(String passwordEmployee) {
-        this.passwordEmployee = passwordEmployee;
-    }
 
    }

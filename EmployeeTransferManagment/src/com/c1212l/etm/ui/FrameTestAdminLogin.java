@@ -24,12 +24,12 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author OLDPC
  */
-public class FrameTestAdmin extends javax.swing.JFrame {
+public class FrameTestAdminLogin extends javax.swing.JFrame {
 
     /**
      * Creates new form FrameTestEmployeePanel
      */
-    public FrameTestAdmin() {
+    public FrameTestAdminLogin() {
         initComponents();
     }
 
@@ -45,7 +45,7 @@ public class FrameTestAdmin extends javax.swing.JFrame {
         employeePanel1 = new com.c1212l.etm.ui.EmployeePanel();
         employeePanel2 = new com.c1212l.etm.ui.EmployeePanel();
         departmentPanel1 = new com.c1212l.etm.ui.DepartmentPanel();
-        adminPanel1 = new com.c1212l.etm.ui.AdminPanel();
+        adminLoginPanel2 = new com.c1212l.etm.ui.AdminLoginPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -53,13 +53,15 @@ public class FrameTestAdmin extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(adminPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(adminLoginPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(adminPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 246, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(adminLoginPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         pack();
@@ -82,25 +84,25 @@ public class FrameTestAdmin extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(FrameTestAdmin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FrameTestAdminLogin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(FrameTestAdmin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FrameTestAdminLogin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(FrameTestAdmin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FrameTestAdminLogin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(FrameTestAdmin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FrameTestAdminLogin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new FrameTestAdmin().setVisible(true);
+                new FrameTestAdminLogin().setVisible(true);
             }
         });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private com.c1212l.etm.ui.AdminPanel adminPanel1;
+    private com.c1212l.etm.ui.AdminLoginPanel adminLoginPanel2;
     private com.c1212l.etm.ui.DepartmentPanel departmentPanel1;
     private com.c1212l.etm.ui.EmployeePanel employeePanel1;
     private com.c1212l.etm.ui.EmployeePanel employeePanel2;

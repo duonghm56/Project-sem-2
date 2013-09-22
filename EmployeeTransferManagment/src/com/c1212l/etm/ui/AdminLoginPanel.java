@@ -5,6 +5,7 @@
 package com.c1212l.etm.ui;
 
 import com.c1212l.etm.dal.LoginDAO;
+import com.c1212l.etm.dto.Employee;
 import com.c1212l.etm.dto.Login;
 import java.sql.SQLException;
 import java.util.Vector;
@@ -16,12 +17,12 @@ import javax.swing.JOptionPane;
  *
  * @author Luu Bi
  */
-public class AdminPanel extends javax.swing.JPanel {
+public class AdminLoginPanel extends javax.swing.JPanel {
 
     /**
-     * Creates new form Admin
+     * Creates new form AdminLoginPanel
      */
-    public AdminPanel() {
+    public AdminLoginPanel() {
         initComponents();
     }
 
@@ -34,23 +35,18 @@ public class AdminPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
-        lblUserName = new javax.swing.JLabel();
-        btnExit = new javax.swing.JButton();
+        btnExit2 = new javax.swing.JButton();
+        txtPassword = new javax.swing.JPasswordField();
         btnLogin = new javax.swing.JButton();
         txtEmail = new javax.swing.JTextField();
         lblPassword = new javax.swing.JLabel();
-        txtPassword = new javax.swing.JPasswordField();
+        lblUserName = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel1.setText("Login Admin");
-
-        lblUserName.setText("Email:");
-
-        btnExit.setText("Exit");
-        btnExit.addActionListener(new java.awt.event.ActionListener() {
+        btnExit2.setText("Exit");
+        btnExit2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnExitActionPerformed(evt);
+                btnExit2ActionPerformed(evt);
             }
         });
 
@@ -69,6 +65,11 @@ public class AdminPanel extends javax.swing.JPanel {
 
         lblPassword.setText("Password");
 
+        lblUserName.setText("Email:");
+
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel1.setText("Admin Login");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -84,14 +85,14 @@ public class AdminPanel extends javax.swing.JPanel {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(btnLogin)
-                                .addGap(45, 45, 45)
-                                .addComponent(btnExit))
+                                .addGap(46, 46, 46)
+                                .addComponent(btnExit2))
                             .addComponent(txtEmail)
                             .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(92, 92, 92))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(131, 131, 131))))
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(118, 118, 118))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -106,22 +107,22 @@ public class AdminPanel extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblPassword)
                     .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(29, 29, 29)
+                .addGap(30, 30, 30)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnLogin)
-                    .addComponent(btnExit))
-                .addContainerGap(46, Short.MAX_VALUE))
+                    .addComponent(btnExit2))
+                .addContainerGap(125, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExitActionPerformed
+    private void btnExit2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExit2ActionPerformed
         try{
             int n = JOptionPane.showConfirmDialog(
                 this, "Do you want Exit?",
                 "Message Dialog",
                 JOptionPane.YES_NO_OPTION);
             if (n == JOptionPane.YES_OPTION) {
-                System.exit(0);
+                //                this.dispose();
             } else if (n == JOptionPane.NO_OPTION) {
 
             } else {
@@ -129,33 +130,35 @@ public class AdminPanel extends javax.swing.JPanel {
             }
         }
         catch(Exception ex){ex.printStackTrace();}
-    }//GEN-LAST:event_btnExitActionPerformed
+    }//GEN-LAST:event_btnExit2ActionPerformed
 
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
+        // TODO add your handling code here:
 
-              try {
-            // TODO add your handling code here:
-                vctList = loginDAO.getAdmin();
-                if (txtEmail.getText().equals("")) {
-                    JOptionPane.showMessageDialog(this, "Please enter all field");
-                    return;
+        try{
+            vctList = loginDAO.getAdmin();
+            if (txtEmail.getText().equals("")) {
+                JOptionPane.showMessageDialog(this, "Please enter all field");
+                return;
+            }
+            if (txtPassword.getText().equals("")) {
+                JOptionPane.showMessageDialog(this, "Please enter all field");
+                return;
+            }
+            for (int i = 0; i < vctList.size(); i++) {
+                Login login = vctList.elementAt(i);
+                if (txtEmail.getText().equals(login.getEmail()) && txtPassword.getText().equals(login.getPassword()) ) {
+                    JOptionPane.showMessageDialog(this, "Login success!");
+                    this.hide();
+                    AdminManager.email = login.getEmail();
+                    AdminManager adminManager = new AdminManager();
+                    adminManager.show();
                 }
-                if (txtPassword.getText().equals("")) {
-                    JOptionPane.showMessageDialog(this, "Please enter all field");
-                    return;
+                else{
+                    JOptionPane.showMessageDialog(this, "Login fail");
                 }
-                for (int i = 0; i < vctList.size(); i++) {
-                    Login login  = vctList.elementAt(i);
-                    if (txtEmail.getText().equals(login.getEmailAdmin()) && txtPassword.getText().equals(login.getPasswordAdmin()) ) {
-                            JOptionPane.showMessageDialog(this, "Toi la admin");
-                        
-                    }
-                }
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(AdminPanel.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (SQLException ex) {
-            Logger.getLogger(AdminPanel.class.getName()).log(Level.SEVERE, null, ex);
-        }
+            }
+        }catch(Exception ex){ex.printStackTrace();}
     }//GEN-LAST:event_btnLoginActionPerformed
 
     private void txtEmailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtEmailActionPerformed
@@ -164,13 +167,17 @@ public class AdminPanel extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnExit;
+    private javax.swing.JButton btnExit1;
+    private javax.swing.JButton btnExit2;
     private javax.swing.JButton btnLogin;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JLabel lblPassword;
     private javax.swing.JLabel lblUserName;
     private javax.swing.JTextField txtEmail;
     private javax.swing.JPasswordField txtPassword;
     // End of variables declaration//GEN-END:variables
-    private LoginDAO loginDAO = new LoginDAO ();
+   private LoginDAO loginDAO = new LoginDAO();
     private Vector<Login> vctList = new Vector<Login>();
 }

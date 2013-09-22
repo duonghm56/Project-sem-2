@@ -4,9 +4,13 @@
  */
 package com.c1212l.etm.client.ui;
 
-import com.c1212l.etm.dto.Login;
 import com.c1212l.etm.dal.LoginDAO;
+import com.c1212l.etm.dto.Employee;
+import com.c1212l.etm.dto.Login;
+import java.sql.SQLException;
 import java.util.Vector;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -139,13 +143,29 @@ public class EmployeeLoginPanel extends javax.swing.JPanel {
                 return;
             }
             for (int i = 0; i < vctList.size(); i++) {
-                Login login  = vctList.elementAt(i);
-                if (txtEmail.getText().equals(login.getEmailEmployee()) && txtPassword.getText().equals(login.getPasswordEmployee()) ) {
-                   JOptionPane.showMessageDialog(this, "Dang nhap thanh cong");
+                Employee employee  = vctList.elementAt(i);
+                Login login = new Login();
+                if (txtEmail.getText().equals(employee.getEmail()) && txtPassword.getText().equals(employee.getPassword()) ) {
+                   count++;
+                   email = employee.getEmail();
                 }
             }
+            if (count==1) {
+                JOptionPane.showMessageDialog(this, "Login success!");
+                this.hide();
+                AdminUI.email = email;
+                AdminUI adminUI = new AdminUI();
+                adminUI.show();
+            }
+            else    
+            {
+                JOptionPane.showMessageDialog(this, "Login fail!");
+            }
+         } catch (ClassNotFoundException ex) {
+            Logger.getLogger(EmployeeLoginPanel.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(EmployeeLoginPanel.class.getName()).log(Level.SEVERE, null, ex);
         }
-        catch(Exception e){e.printStackTrace();}
     }//GEN-LAST:event_btnLoginActionPerformed
 
     private void txtEmailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtEmailActionPerformed
@@ -161,6 +181,7 @@ public class EmployeeLoginPanel extends javax.swing.JPanel {
     private javax.swing.JTextField txtEmail;
     private javax.swing.JPasswordField txtPassword;
     // End of variables declaration//GEN-END:variables
-    private LoginDAO loginDAO = new LoginDAO ();
-    private Vector<Login> vctList = new Vector<Login>();
+    private LoginDAO loginDAO = new LoginDAO();
+    private Vector<Employee> vctList = new Vector<Employee>();
+    private String email;
 }

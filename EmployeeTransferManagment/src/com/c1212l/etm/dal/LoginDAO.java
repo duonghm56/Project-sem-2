@@ -9,7 +9,6 @@ import com.c1212l.etm.dto.Login;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.ArrayList;
 import java.util.Vector;
 
 /**
@@ -20,12 +19,12 @@ public class LoginDAO extends ConnectionTool {
       public Vector<Login> getAdmin() throws ClassNotFoundException, SQLException{
         initConnection();
         Statement stmt = conn.createStatement();
-        ResultSet rs = stmt.executeQuery("select * from [admin]");
+        ResultSet rs = stmt.executeQuery("Select * from [admin]");
         Vector<Login> result = new Vector<Login>();
         while(rs.next()){
             Login login  = new Login();
-            login.setEmailAdmin(rs.getString("email"));
-            login.setPasswordAdmin(rs.getString("password"));
+            login.setEmail(rs.getString("email"));
+            login.setPassword(rs.getString("password"));
             result.add(login);
         }
         closeConnection();

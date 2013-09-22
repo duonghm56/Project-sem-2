@@ -5,6 +5,7 @@
 package com.c1212l.etm.bll;
 
 import com.c1212l.etm.dal.LoginDAO;
+import com.c1212l.etm.dto.Employee;
 import com.c1212l.etm.dto.Login;
 import java.sql.SQLException;
 import java.util.Vector;
@@ -21,7 +22,7 @@ public class LoginBUS {
     public Vector<Login> getAdmin() throws ClassNotFoundException, SQLException{
         return loginDAO.getAdmin();
     }
-    public Vector<Login> getEmployee() throws ClassNotFoundException, SQLException{
+    public Vector<Employee> getEmployee() throws ClassNotFoundException, SQLException{
         return loginDAO.getEmployee();
     }
 }
