@@ -18,12 +18,12 @@ public class EmployeeClient {
     private String currentProject;
     private String role;
     private String workExperience;
-    private int reason;
+    private String reason;
 
     public EmployeeClient() {
     }
 
-    public EmployeeClient(String fullName, boolean gender, String email, String address, String currentDepartment, String currentLocation, String currentProject, String role, String workExperience, int reason) {
+    public EmployeeClient(String fullName, boolean gender, String email, String address, String currentDepartment, String currentLocation, String currentProject, String role, String workExperience, String reason) {
         this.fullName = fullName;
         this.gender = gender;
         this.email = email;
@@ -108,11 +108,11 @@ public class EmployeeClient {
         this.workExperience = workExperience;
     }
 
-    public int getReason() {
+    public String getReason() {
         return reason;
     }
 
-    public void setReason(int reason) {
+    public void setReason(String reason) {
         this.reason = reason;
     }
     

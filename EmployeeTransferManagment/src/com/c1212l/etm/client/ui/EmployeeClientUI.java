@@ -4,6 +4,15 @@
  */
 package com.c1212l.etm.client.ui;
 
+import com.c1212l.etm.dal.EmployeeClientDAO;
+import com.c1212l.etm.dal.LoginDAO;
+import com.c1212l.etm.dto.Employee;
+import com.c1212l.etm.dto.EmployeeClient;
+import java.sql.SQLException;
+import java.util.Vector;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author Android21SDK
@@ -15,6 +24,7 @@ public class EmployeeClientUI extends javax.swing.JFrame {
      */
     public EmployeeClientUI() {
         initComponents();
+        loadData();
     }
 
     /**
@@ -44,8 +54,8 @@ public class EmployeeClientUI extends javax.swing.JFrame {
         jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         txtCurrentDepartment = new javax.swing.JTextField();
-        txtWorkEperience = new javax.swing.JTextField();
-        txCurrentLocation = new javax.swing.JTextField();
+        txtWorkExperience = new javax.swing.JTextField();
+        txtCurrentLocation = new javax.swing.JTextField();
         jLabel11 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
         txtRole = new javax.swing.JTextField();
@@ -64,13 +74,11 @@ public class EmployeeClientUI extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel2.setIcon(new javax.swing.ImageIcon("C:\\Users\\Android21SDK\\Documents\\GitHub\\Project-sem-2\\EmployeeTransferManagment\\src\\Image\\banner.jpg")); // NOI18N
-
         jLabel1.setText("Email");
 
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("User Profile"));
 
-        jLabel3.setText("FullName");
+        jLabel3.setText("Full Name:");
 
         jLabel4.setText("Gender");
 
@@ -80,17 +88,39 @@ public class EmployeeClientUI extends javax.swing.JFrame {
 
         jLabel7.setText("Address");
 
+        txtFullName.setEnabled(false);
+
+        txtGender.setEnabled(false);
+
+        txtBirthday.setEnabled(false);
+
+        txtEmail.setEnabled(false);
+
+        txtAddress.setEnabled(false);
+
         jLabel8.setText("Current Department");
 
         jLabel9.setText("Current Project");
 
         jLabel10.setText("Current Location");
 
+        txtCurrentDepartment.setEnabled(false);
+
+        txtWorkExperience.setEnabled(false);
+
+        txtCurrentLocation.setEnabled(false);
+
         jLabel11.setText("Role");
 
-        jLabel12.setText("Work Expeince");
+        jLabel12.setText("Work Experience");
+
+        txtRole.setEnabled(false);
+
+        txtCurrentProject.setEnabled(false);
 
         jLabel13.setText("Salary");
+
+        txtSalary.setEnabled(false);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -122,8 +152,8 @@ public class EmployeeClientUI extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(txtCurrentDepartment)
-                    .addComponent(txtWorkEperience)
-                    .addComponent(txCurrentLocation, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(txtWorkExperience)
+                    .addComponent(txtCurrentLocation, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(txtRole, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtSalary)
                     .addComponent(txtCurrentProject))
@@ -163,11 +193,11 @@ public class EmployeeClientUI extends javax.swing.JFrame {
                             .addComponent(txtRole, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(27, 27, 27)
-                        .addComponent(txCurrentLocation, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(txtCurrentLocation, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel12)
-                    .addComponent(txtWorkEperience, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtWorkExperience, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel13)
@@ -234,11 +264,10 @@ public class EmployeeClientUI extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(jLabel1)))
-                .addGap(0, 7, Short.MAX_VALUE))
+                .addGap(0, 916, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(0, 0, 0))
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -318,16 +347,39 @@ public class EmployeeClientUI extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JTextField txCurrentLocation;
     private javax.swing.JTextField txtAddress;
     private javax.swing.JTextField txtBirthday;
     private javax.swing.JTextField txtCurrentDepartment;
+    private javax.swing.JTextField txtCurrentLocation;
     private javax.swing.JTextField txtCurrentProject;
     private javax.swing.JTextField txtEmail;
     private javax.swing.JTextField txtFullName;
     private javax.swing.JTextField txtGender;
     private javax.swing.JTextField txtRole;
     private javax.swing.JTextField txtSalary;
-    private javax.swing.JTextField txtWorkEperience;
+    private javax.swing.JTextField txtWorkExperience;
     // End of variables declaration//GEN-END:variables
+    private EmployeeClientDAO emplClientDAO = new EmployeeClientDAO();
+    private Vector<EmployeeClient> vctList = new Vector<EmployeeClient>();
+    private void loadData()
+    {
+        try {
+            vctList = emplClientDAO.getEmployeeClient();
+            for (int i = 0; i < vctList.size(); i++) {
+                EmployeeClient employeeClient  = vctList.elementAt(i);
+                txtFullName.setText(employeeClient.getFullName());
+                txtEmail.setText(employeeClient.getEmail());
+                txtCurrentDepartment.setText(employeeClient.getCurrentDepartment());
+                txtCurrentProject.setText(employeeClient.getCurrentProject());
+                txtCurrentLocation.setText(employeeClient.getCurrentLocation());
+                txtRole.setText(employeeClient.getRole());
+                txtWorkExperience.setText(employeeClient.getWorkExperience());
+                            
+            }
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(EmployeeClientUI.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(EmployeeClientUI.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
 }
