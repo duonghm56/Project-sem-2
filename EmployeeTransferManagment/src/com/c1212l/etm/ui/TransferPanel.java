@@ -348,7 +348,7 @@ public class TransferPanel extends javax.swing.JPanel {
                 throw new Exception("Please enter Reason");
             }
             convertDate();
-            int transferID = Integer.parseInt(txtTransferID.getText());
+            //int transferID = Integer.parseInt(txtTransferID.getText());
             int transferTypeID = ((KeyValue) cmbTransferType.getSelectedItem()).getKey();
             int employeeID = ((KeyValue) cmbEmployee.getSelectedItem()).getKey();
             String reason = txtReason.getText();

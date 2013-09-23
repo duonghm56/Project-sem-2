@@ -28,7 +28,7 @@ public class EmployeeBUS {
         return employeeDAO.getAllEmployee();
     }
     
-    public void addEmployee(String emplNum, String emplName,String email, String password,String confirmPassword, String role, int workExperience, boolean gender, int departmentID, int projectID) throws ClassNotFoundException, SQLException{
+    public void addEmployee(String emplNum, String emplName,String email, String password,String confirmPassword, String role, int workExperience, boolean gender, int departmentID, int projectID) throws ClassNotFoundException, SQLException, Exception{
         Employee e = new Employee();
         e.setEmployeeNumber(emplNum);
         e.setEmployeeName(emplName);
@@ -56,7 +56,7 @@ public class EmployeeBUS {
         employeeDAO.updateEmployee(e);
     }
     
-    public void deleteEmployee(String emplNum) throws ClassNotFoundException, SQLException{
+    public void deleteEmployee(String emplNum) throws ClassNotFoundException, SQLException, Exception{
         Employee e = new Employee();
         e.setEmployeeNumber(emplNum);         
         employeeDAO.deleteEmployee(e);

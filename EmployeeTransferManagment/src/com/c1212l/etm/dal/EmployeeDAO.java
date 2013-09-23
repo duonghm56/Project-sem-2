@@ -8,6 +8,7 @@ import com.c1212l.etm.dto.Department;
 import com.c1212l.etm.dto.Employee;
 import com.c1212l.etm.dto.Location;
 import java.sql.CallableStatement;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -17,14 +18,14 @@ import java.util.ArrayList;
  *
  * @author OLDPC
  */
-public class EmployeeDAO extends ConnectionTool{
-    
-    public ArrayList<Employee> getAllEmployee() throws ClassNotFoundException, SQLException{
+public class EmployeeDAO extends ConnectionTool {
+
+    public ArrayList<Employee> getAllEmployee() throws ClassNotFoundException, SQLException {
         initConnection();
         Statement stmt = conn.createStatement();
         ResultSet rs = stmt.executeQuery("Select * From employee");
         ArrayList<Employee> result = new ArrayList<Employee>();
-        while(rs.next()){
+        while (rs.next()) {
             Employee e = new Employee();
             e.setEmployeeID(rs.getInt("employeeID"));
             e.setEmployeeNumber(rs.getString("employeeNumber"));
@@ -42,47 +43,68 @@ public class EmployeeDAO extends ConnectionTool{
         closeConnection();
         return result;
     }
-    
-    public void addEmployee(Employee employee) throws ClassNotFoundException, SQLException{
+
+    public void addEmployee(Employee employee) throws ClassNotFoundException, SQLException, Exception {
         initConnection();
-        CallableStatement cs = conn.prepareCall("{call addEmployee(?, ?, ?, ?,?,?, ?, ?,?,?)}");
-        cs.setString(1, employee.getEmployeeNumber());
-        cs.setString(2, employee.getEmployeeName());
-        cs.setString(3,employee.getEmail());
-        cs.setString(4, employee.getPassword());
-        cs.setString(5,employee.getConfirmPassword());
-        cs.setString(6, employee.getRole());
-        cs.setInt(7, employee.getWorkExperience());
-        cs.setBoolean(8, employee.getGender());
-        cs.setInt(9, employee.getDepartnameID());
-        cs.setInt(10, employee.getProjectID());        
-        cs.executeUpdate();
-        closeConnection();        
+        String error = "";
+        PreparedStatement pstmt = conn.prepareStatement("select * from employee where employeeNumber = ?");
+        pstmt.setString(1, employee.getEmployeeNumber());
+        if (pstmt.executeQuery().next()) {
+            error += "Error: Duplicate employee number\n";
+        }
+        if (error.equals("")) {
+            CallableStatement cs = conn.prepareCall("{call addEmployee(?, ?, ?, ?,?,?, ?, ?,?,?)}");
+            cs.setString(1, employee.getEmployeeNumber());
+            cs.setString(2, employee.getEmployeeName());
+            cs.setString(3, employee.getEmail());
+            cs.setString(4, employee.getPassword());
+            cs.setString(5, employee.getConfirmPassword());
+            cs.setString(6, employee.getRole());
+            cs.setInt(7, employee.getWorkExperience());
+            cs.setBoolean(8, employee.getGender());
+            cs.setInt(9, employee.getDepartnameID());
+            cs.setInt(10, employee.getProjectID());
+            cs.executeUpdate();
+        } else {
+            throw new Exception(error);
+        }
+        closeConnection();
     }
-    
-    public void updateEmployee(Employee employee) throws ClassNotFoundException, SQLException{
+
+    public void updateEmployee(Employee employee) throws ClassNotFoundException, SQLException {
         initConnection();
         CallableStatement cs = conn.prepareCall("{call updateEmployee(?, ?, ?, ?, ?, ?,?,?)}");
         cs.setString(1, employee.getEmployeeNumber());
         cs.setString(2, employee.getEmployeeName());
-        cs.setString(3,employee.getEmail());
+        cs.setString(3, employee.getEmail());
         cs.setString(4, employee.getPassword());
-        cs.setString(5,employee.getConfirmPassword());
+        cs.setString(5, employee.getConfirmPassword());
         cs.setString(6, employee.getRole());
         cs.setInt(7, employee.getWorkExperience());
-        cs.setBoolean(8, employee.getGender());    
+        cs.setBoolean(8, employee.getGender());
         cs.executeUpdate();
-        closeConnection();        
+        closeConnection();
     }
-    
-    public void deleteEmployee(Employee employee) throws ClassNotFoundException, SQLException{
+
+    public void deleteEmployee(Employee employee) throws ClassNotFoundException, SQLException, Exception {
         initConnection();
-        CallableStatement cs = conn.prepareCall("{call deleteEmployee(?)}");
-        cs.setString(1, employee.getEmployeeNumber());
-        cs.executeUpdate();     
-        closeConnection();        
+        String error = "";
+        PreparedStatement pstmt = conn.prepareStatement("select * from transfer where employeeID = ?");
+        pstmt.setInt(1, employee.getEmployeeID());
+        if (pstmt.executeQuery().next()) {
+            error += "Error: This employee made at least one transfer\n";
+        }
+        if (error.equals("")) {
+            CallableStatement cs = conn.prepareCall("{call deleteEmployee(?)}");
+            cs.setString(1, employee.getEmployeeNumber());
+            cs.executeUpdate();
+        }else{
+            throw new Exception(error);
+        }
+        closeConnection();
     }
-        public ArrayList<Employee> searchEmployeeName(String employeeName) throws ClassNotFoundException, SQLException {
+
+    public ArrayList<Employee> searchEmployeeName(String employeeName) throws ClassNotFoundException, SQLException {
         initConnection();
         Statement stmt = conn.createStatement();
         ResultSet rs = stmt.executeQuery("select * from employee " + employeeName);
@@ -105,21 +127,22 @@ public class EmployeeDAO extends ConnectionTool{
         closeConnection();
         return result;
     }
-        public Employee getEmployeeByID(int id) {
+
+    public Employee getEmployeeByID(int id) {
         try {
             initConnection();
             Statement stmt = conn.createStatement();
-            ResultSet rs = stmt.executeQuery("select * from employee where employeeID = " +id);
+            ResultSet rs = stmt.executeQuery("select * from employee where employeeID = " + id);
             Employee e = null;
             if (rs.next()) {
-                    e = new Employee();
-                    e.setEmployeeID(rs.getInt("employeeID"));
-                    e.setEmployeeName(rs.getString("employeeName"));
+                e = new Employee();
+                e.setEmployeeID(rs.getInt("employeeID"));
+                e.setEmployeeName(rs.getString("employeeName"));
             }
             closeConnection();
             return e;
 
-        }catch(Exception ex){
+        } catch (Exception ex) {
             return null;
         }
     }

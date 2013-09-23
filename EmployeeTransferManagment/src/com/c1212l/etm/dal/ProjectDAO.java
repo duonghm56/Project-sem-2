@@ -22,16 +22,15 @@ public class ProjectDAO extends ConnectionTool {
 
     public ArrayList<Project> getAllProject() throws ClassNotFoundException, SQLException {
         initConnection();
-        Statement stmt = conn.createStatement();
-        Calendar gmt = Calendar.getInstance(TimeZone.getTimeZone("GMT"));
+        Statement stmt = conn.createStatement();        
         ResultSet rs = stmt.executeQuery("select * from project");
         ArrayList<Project> result = new ArrayList<>();
         while (rs.next()) {
             Project p = new Project();            
             p.setProjectID(rs.getInt("projectID"));
             p.setProjectName(rs.getString("projectName"));
-            p.setCreateDate(rs.getDate("createDate", gmt));
-            p.setEndDate(rs.getDate("endDate", gmt));            
+            p.setCreateDate(rs.getDate("createDate"));
+            p.setEndDate(rs.getDate("endDate"));            
             result.add(p);
         }
         closeConnection();
