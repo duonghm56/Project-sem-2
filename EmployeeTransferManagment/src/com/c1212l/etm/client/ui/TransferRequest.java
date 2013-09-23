@@ -82,6 +82,11 @@ public class TransferRequest extends javax.swing.JFrame {
         jScrollPane1.setViewportView(txtReason);
 
         btnSend.setText("Send Request");
+        btnSend.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSendActionPerformed(evt);
+            }
+        });
 
         btnReset.setText("Reset");
         btnReset.addActionListener(new java.awt.event.ActionListener() {
@@ -196,6 +201,11 @@ public class TransferRequest extends javax.swing.JFrame {
         cboToLocation.setSelectedIndex(0);
         cboToProject.setSelectedIndex(0);
     }//GEN-LAST:event_btnResetActionPerformed
+
+    private void btnSendActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSendActionPerformed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_btnSendActionPerformed
 
     /**
      * @param args the command line arguments
