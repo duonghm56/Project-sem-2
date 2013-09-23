@@ -362,6 +362,7 @@ public class EmployeeClientUI extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
     private EmployeeClientDAO emplClientDAO = new EmployeeClientDAO();
     private Vector<EmployeeClient> vctList = new Vector<EmployeeClient>();
+    private Employee employee= new Employee();
     private void loadData()
     {
         try {
@@ -375,6 +376,15 @@ public class EmployeeClientUI extends javax.swing.JFrame {
                 txtCurrentLocation.setText(employeeClient.getCurrentLocation());
                 txtRole.setText(employeeClient.getRole());
                 txtWorkExperience.setText(employeeClient.getWorkExperience());
+                if (employee.getGender() == true) {
+                    txtGender.setText("Male");
+                }
+                else if(employee.getGender() == false)
+                {
+                    txtGender.setText("Female");
+                }
+                txtSalary.setText(employeeClient.getReason());
+                txtBirthday.setText(employeeClient.getBirthday().toString());
                             
             }
         } catch (ClassNotFoundException ex) {

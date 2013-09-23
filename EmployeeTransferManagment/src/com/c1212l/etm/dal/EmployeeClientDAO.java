@@ -40,6 +40,7 @@ public class EmployeeClientDAO  extends ConnectionTool {
             e.setRole(rs.getString("role"));
             e.setWorkExperience(rs.getString("workExperience"));
             e.setReason(rs.getString("reason"));
+            e.setBirthday(rs.getDate("birthday"));
             result.add(e);   
         }
         closeConnection();

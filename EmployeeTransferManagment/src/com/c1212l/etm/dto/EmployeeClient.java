@@ -4,6 +4,8 @@
  */
 package com.c1212l.etm.dto;
 
+import java.sql.Date;
+
 /**
  *
  * @author Android21SDK
@@ -19,10 +21,14 @@ public class EmployeeClient {
     private String role;
     private String workExperience;
     private String reason;
-
+    private Date birthday;
     public EmployeeClient() {
     }
 
+    public EmployeeClient(Date birthday) {
+        this.birthday = birthday;
+    }
+    
     public EmployeeClient(String fullName, boolean gender, String email, String address, String currentDepartment, String currentLocation, String currentProject, String role, String workExperience, String reason) {
         this.fullName = fullName;
         this.gender = gender;
@@ -34,6 +40,14 @@ public class EmployeeClient {
         this.role = role;
         this.workExperience = workExperience;
         this.reason = reason;
+    }
+
+    public Date getBirthday() {
+        return birthday;
+    }
+
+    public void setBirthday(Date birthday) {
+        this.birthday = birthday;
     }
 
     public String getFullName() {
