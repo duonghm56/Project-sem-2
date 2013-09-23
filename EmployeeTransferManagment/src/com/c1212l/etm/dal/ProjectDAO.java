@@ -11,6 +11,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.TimeZone;
 
 /**
  *
@@ -21,14 +23,15 @@ public class ProjectDAO extends ConnectionTool {
     public ArrayList<Project> getAllProject() throws ClassNotFoundException, SQLException {
         initConnection();
         Statement stmt = conn.createStatement();
+        Calendar gmt = Calendar.getInstance(TimeZone.getTimeZone("GMT"));
         ResultSet rs = stmt.executeQuery("select * from project");
         ArrayList<Project> result = new ArrayList<>();
         while (rs.next()) {
-            Project p = new Project();
+            Project p = new Project();            
             p.setProjectID(rs.getInt("projectID"));
             p.setProjectName(rs.getString("projectName"));
-            p.setCreateDate(rs.getDate("createDate"));
-            p.setEndDate(rs.getDate("endDate"));
+            p.setCreateDate(rs.getDate("createDate", gmt));
+            p.setEndDate(rs.getDate("endDate", gmt));            
             result.add(p);
         }
         closeConnection();
@@ -52,24 +55,44 @@ public class ProjectDAO extends ConnectionTool {
         return result;
     }
 
-    public void addProject(Project project) throws ClassNotFoundException, SQLException {
+    public void addProject(Project project) throws ClassNotFoundException, SQLException, Exception {
         initConnection();
-        CallableStatement cs = conn.prepareCall("{call addProject(?, ?, ?)}");
-        cs.setString(1, project.getProjectName());
-        cs.setDate(2, project.getCreateDate());
-        cs.setDate(3, project.getEndDate());
-        cs.executeUpdate();
+        String error = "";
+        PreparedStatement pstmt = conn.prepareStatement("select * from project where projectName = ?");
+        pstmt.setString(1, project.getProjectName());
+        if (pstmt.executeQuery().next()) {
+            error += "Error: Duplicate project name\n";
+        }
+        if (error.equals("")) {
+            CallableStatement cs = conn.prepareCall("{call addProject(?, ?, ?)}");
+            cs.setString(1, project.getProjectName());
+            cs.setDate(2, project.getCreateDate());
+            cs.setDate(3, project.getEndDate());
+            cs.executeUpdate();
+        } else {
+            throw new Exception(error);
+        }
         closeConnection();
     }
 
-    public void updateProject(Project project) throws ClassNotFoundException, SQLException {
+    public void updateProject(Project project) throws ClassNotFoundException, SQLException, Exception {
         initConnection();
-        CallableStatement cs = conn.prepareCall("{call updateProject(?, ?, ?, ?)}");
-        cs.setInt(1, project.getProjectID());
-        cs.setString(2, project.getProjectName());
-        cs.setDate(3, project.getCreateDate());
-        cs.setDate(4, project.getEndDate());
-        cs.executeUpdate();
+        String error = "";
+        /*PreparedStatement pstmt = conn.prepareStatement("select * from project where projectName = ?");
+        pstmt.setString(1, project.getProjectName());
+        if (pstmt.executeQuery().next()) {
+            error += "Error: Duplicate project name\n";
+        }*/
+        if (error.equals("")) {
+            CallableStatement cs = conn.prepareCall("{call updateProject(?, ?, ?, ?)}");
+            cs.setInt(1, project.getProjectID());
+            cs.setString(2, project.getProjectName());
+            cs.setDate(3, project.getCreateDate());
+            cs.setDate(4, project.getEndDate());
+            cs.executeUpdate();
+        } else {
+            throw new Exception(error);
+        }
         closeConnection();
     }
 
@@ -78,21 +101,21 @@ public class ProjectDAO extends ConnectionTool {
         String error = "";
         PreparedStatement pstmt = conn.prepareStatement("select * from employee where projectID = ?");
         pstmt.setInt(1, project.getProjectID());
-        if(pstmt.executeQuery().next()){
+        if (pstmt.executeQuery().next()) {
             error += "Some employees are still working on this project\n";
         }
         pstmt = conn.prepareStatement("select * from transfer where fromProjectID = ? or toProjectID = ?");
         pstmt.setInt(1, project.getProjectID());
         pstmt.setInt(2, project.getProjectID());
-        if(pstmt.executeQuery().next()){
+        if (pstmt.executeQuery().next()) {
             error += "Some transfer records reference to this project";
         }
-        
-        if (!error.equals("")) {
+
+        if (error.equals("")) {
             CallableStatement cs = conn.prepareCall("{call deleteProject(?)}");
             cs.setInt(1, project.getProjectID());
             cs.executeUpdate();
-        }else{
+        } else {
             throw new Exception(error);
         }
         closeConnection();

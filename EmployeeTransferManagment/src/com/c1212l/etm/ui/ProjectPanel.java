@@ -58,25 +58,21 @@ public class ProjectPanel extends javax.swing.JPanel {
         txtCreateDate = new javax.swing.JTextField();
         lblEndDate = new javax.swing.JLabel();
         txtEndDate = new javax.swing.JTextField();
+        btnReset = new javax.swing.JButton();
 
         setBorder(javax.swing.BorderFactory.createTitledBorder("Project Manager"));
-        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         lblProjectID.setText("Project ID");
-        add(lblProjectID, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 30, -1, -1));
 
         txtProjectID.setEditable(false);
-        add(txtProjectID, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 30, 170, -1));
 
         txtProjectName.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 txtProjectNameKeyReleased(evt);
             }
         });
-        add(txtProjectName, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 60, 170, -1));
 
         lblProjectName.setText("Project Name");
-        add(lblProjectName, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 60, -1, -1));
 
         btnAdd.setText("Add");
         btnAdd.addActionListener(new java.awt.event.ActionListener() {
@@ -84,7 +80,6 @@ public class ProjectPanel extends javax.swing.JPanel {
                 btnAddActionPerformed(evt);
             }
         });
-        add(btnAdd, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 150, 70, -1));
 
         btnEdit.setText("Update");
         btnEdit.addActionListener(new java.awt.event.ActionListener() {
@@ -92,7 +87,6 @@ public class ProjectPanel extends javax.swing.JPanel {
                 btnEditActionPerformed(evt);
             }
         });
-        add(btnEdit, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 150, 70, -1));
 
         btnDelete.setText("Delete");
         btnDelete.addActionListener(new java.awt.event.ActionListener() {
@@ -100,7 +94,6 @@ public class ProjectPanel extends javax.swing.JPanel {
                 btnDeleteActionPerformed(evt);
             }
         });
-        add(btnDelete, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 150, 70, -1));
 
         tblProject.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -132,27 +125,96 @@ public class ProjectPanel extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(tblProject);
 
-        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 180, 400, 110));
-
         lblCreateDate.setText("Created Date");
-        add(lblCreateDate, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 90, -1, -1));
 
         txtCreateDate.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 txtCreateDateKeyReleased(evt);
             }
         });
-        add(txtCreateDate, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 90, 170, -1));
 
         lblEndDate.setText("End Date");
-        add(lblEndDate, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 120, -1, -1));
 
         txtEndDate.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 txtEndDateKeyReleased(evt);
             }
         });
-        add(txtEndDate, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 120, 170, -1));
+
+        btnReset.setText("Reset");
+        btnReset.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnResetActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
+        this.setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(52, 52, 52)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(layout.createSequentialGroup()
+                            .addComponent(lblProjectID)
+                            .addGap(72, 72, 72)
+                            .addComponent(txtProjectID, javax.swing.GroupLayout.DEFAULT_SIZE, 177, Short.MAX_VALUE))
+                        .addGroup(layout.createSequentialGroup()
+                            .addComponent(lblProjectName)
+                            .addGap(56, 56, 56)
+                            .addComponent(txtProjectName))
+                        .addGroup(layout.createSequentialGroup()
+                            .addComponent(lblCreateDate)
+                            .addGap(55, 55, 55)
+                            .addComponent(txtCreateDate))
+                        .addGroup(layout.createSequentialGroup()
+                            .addComponent(lblEndDate)
+                            .addGap(76, 76, 76)
+                            .addComponent(txtEndDate)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(btnAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(10, 10, 10)
+                        .addComponent(btnEdit, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(10, 10, 10)
+                        .addComponent(btnDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnReset, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(18, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(14, 14, 14)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblProjectID)
+                    .addComponent(txtProjectID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(10, 10, 10)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblProjectName)
+                    .addComponent(txtProjectName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(10, 10, 10)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblCreateDate)
+                    .addComponent(txtCreateDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(10, 10, 10)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblEndDate)
+                    .addComponent(txtEndDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(10, 10, 10)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnAdd)
+                    .addComponent(btnEdit)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(btnDelete)
+                        .addComponent(btnReset)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
@@ -163,7 +225,7 @@ public class ProjectPanel extends javax.swing.JPanel {
                 projectBUS.addProject(txtProjectName.getText(), txtCreateDate.getText(), txtEndDate.getText());
                 reloadData();
             } catch (Exception ex) {
-                JOptionPane.showMessageDialog(null, "Insert Fail !!!");
+                JOptionPane.showMessageDialog(null, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
                 ex.printStackTrace();
             }
         }
@@ -181,8 +243,12 @@ public class ProjectPanel extends javax.swing.JPanel {
                         txtEndDate.getText());
                 reloadData();
                 JOptionPane.showMessageDialog(null, "Update Success !!!");
-            } catch (Exception ex) {
-                JOptionPane.showMessageDialog(null, "Update Fail !!!");
+            }catch(SQLException ex){
+                if(ex.getMessage().contains("UNIQUE KEY")){
+                    JOptionPane.showMessageDialog(null, "Error: Duplicate name!", "Error", JOptionPane.ERROR_MESSAGE);
+                }
+            }catch (Exception ex) {
+                JOptionPane.showMessageDialog(null, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
                 ex.printStackTrace();
             }
         }
@@ -198,7 +264,7 @@ public class ProjectPanel extends javax.swing.JPanel {
                     reloadData();
                 }
             } catch (Exception ex) {
-                JOptionPane.showMessageDialog(null, ex.getMessage());
+                JOptionPane.showMessageDialog(null, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
                 ex.printStackTrace();
             }
         }
@@ -215,7 +281,9 @@ public class ProjectPanel extends javax.swing.JPanel {
 
     private void txtEndDateKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtEndDateKeyReleased
         try {
-            loadSearchData();
+            if (txtProjectID.getText().equals("")) {
+                loadSearchData();
+            }
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(ProjectPanel.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {
@@ -225,7 +293,9 @@ public class ProjectPanel extends javax.swing.JPanel {
 
     private void txtCreateDateKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCreateDateKeyReleased
         try {
-            loadSearchData();
+            if (txtProjectID.getText().equals("")) {
+                loadSearchData();
+            }
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(ProjectPanel.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {
@@ -235,17 +305,24 @@ public class ProjectPanel extends javax.swing.JPanel {
 
     private void txtProjectNameKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtProjectNameKeyReleased
         try {
-            loadSearchData();
+            if (txtProjectID.getText().equals("")) {
+                loadSearchData();
+            }
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(ProjectPanel.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {
             Logger.getLogger(ProjectPanel.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_txtProjectNameKeyReleased
+
+    private void btnResetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnResetActionPerformed
+        reloadData();
+    }//GEN-LAST:event_btnResetActionPerformed
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAdd;
     private javax.swing.JButton btnDelete;
     private javax.swing.JButton btnEdit;
+    private javax.swing.JButton btnReset;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblCreateDate;
     private javax.swing.JLabel lblEndDate;
@@ -321,8 +398,9 @@ public class ProjectPanel extends javax.swing.JPanel {
                 conditon += " where convert(varchar(25), endDate, 126) like '" + txtEndDate.getText() + "%'";
             }
         }
+        //JOptionPane.showMessageDialog(null, conditon);
         initTable();
         lstProject = projectBUS.searchProject(conditon);
-        fillData(lstProject);        
+        fillData(lstProject);
     }
 }

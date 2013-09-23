@@ -64,7 +64,7 @@ public class Project {
         v.add(projectID);
         v.add(projectName);
         v.add(createDate);
-        v.add(endDate);
+        v.add(endDate);        
         return v;
     }
     
