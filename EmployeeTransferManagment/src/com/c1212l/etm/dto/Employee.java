@@ -27,8 +27,8 @@ public class Employee {
     private int departnameID;
     private int projectID;
     private String address;
-    private Date Birthday;
-    private int reason;
+    private Date birthday;
+    private float salary;
 
     public Employee() {
     }
@@ -109,24 +109,24 @@ public class Employee {
         return address;
     }
 
+    public Date getBirthday() {
+        return birthday;
+    }
+
+    public void setBirthday(Date birthday) {
+        this.birthday = birthday;
+    }
+
+    public float getSalary() {
+        return salary;
+    }
+
+    public void setSalary(float salary) {
+        this.salary = salary;
+    }
+
     public void setAddress(String address) {
         this.address = address;
-    }
-
-    public Date getBirthday() {
-        return Birthday;
-    }
-
-    public void setBirthday(Date Birthday) {
-        this.Birthday = Birthday;
-    }
-
-    public int getReason() {
-        return reason;
-    }
-
-    public void setReason(int reason) {
-        this.reason = reason;
     }
     
     public Vector getVector(){
@@ -135,6 +135,9 @@ public class Employee {
         result.add(employeeNumber);
         result.add(employeeName);
         result.add(email);
+        result.add(salary);
+        result.add(birthday);
+        result.add(address);
         result.add(password);
         result.add(confirmPassword);
         result.add(role);

@@ -27,9 +27,12 @@ create table employee(
 	employeeNumber varchar(20) unique not null,
 	employeeName nvarchar(200) not null,
 	email varchar(100) unique not null,
-	password varchar(50) not null,
+	salary float,
+	birthday date ,
+	[address] nvarchar(200),
+	[password] varchar(50) not null,
 	confirmPassword varchar(50)not null,
-	role nvarchar(100), 
+	[role] nvarchar(100), 
 	workExperience int,
 	gender bit,
 	departmentID int references department(departmentID),
@@ -88,16 +91,16 @@ as begin
 end
 go
 -- procedure for employee table
-create procedure addEmployee(@emplNum varchar(20), @emplName nvarchar(200),@email varchar(100), @pass varchar(50),@confirmpass varchar(100), @role nvarchar(100), @workExperience int, @gender bit, @departmentID int, @projectID int)
+create procedure addEmployee(@emplNum varchar(20), @emplName nvarchar(200),@email varchar(100),@salary float,@birthday date,@address nvarchar(200), @pass varchar(50),@confirmpass varchar(100), @role nvarchar(100), @workExperience int, @gender bit, @departmentID int, @projectID int)
 as begin
-	insert into employee(employeeNumber ,employeeName,email, [password],confirmPassword, [role], workExperience, gender, departmentID, projectID)
-		values(@emplNum, @emplName,@email, @pass,@confirmpass, @role, @workExperience, @gender, @departmentID, @projectID)
+	insert into employee(employeeNumber ,employeeName,email,salary,birthday,[address], [password],confirmPassword, [role], workExperience, gender, departmentID, projectID)
+		values(@emplNum, @emplName,@email,@salary,@birthday,@address, @pass,@confirmpass, @role, @workExperience, @gender, @departmentID, @projectID)
 end
 go
 
-create procedure updateEmployee(@emplNum varchar(20), @emplName nvarchar(200),@email varchar(100), @pass varchar(50),@confirmPassword varchar(100), @role nvarchar(100), @workExperience int, @gender bit)
+create procedure updateEmployee(@emplNum varchar(20), @emplName nvarchar(200),@email varchar(100),@salary float,@birthday date,@address nvarchar(200), @pass varchar(50),@confirmPassword varchar(100), @role nvarchar(100), @workExperience int, @gender bit)
 as begin
-	update employee set employeeName = @emplName,email=@email, [password] = @pass,confirmPassword=@confirmPassword, [role] = @role,
+	update employee set employeeName = @emplName,email=@email,salary=@salary,birthday=@birthday,[address]=@address, [password] = @pass,confirmPassword=@confirmPassword, [role] = @role,
 						workExperience = @workExperience, gender = @gender
 	where employeeNumber = @emplNum
 end
@@ -211,3 +214,4 @@ Select * from employee Inner Join department On
          Inner Join project On project.projectID =employee.projectID
          Inner Join [transfer] On employee.employeeID = [transfer].employeeID
          Where employee.email = 'hung@gmail.com'
+         

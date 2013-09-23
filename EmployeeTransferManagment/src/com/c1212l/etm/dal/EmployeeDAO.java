@@ -31,6 +31,9 @@ public class EmployeeDAO extends ConnectionTool {
             e.setEmployeeNumber(rs.getString("employeeNumber"));
             e.setEmployeeName(rs.getString("employeeName"));
             e.setEmail(rs.getString("email"));
+            e.setSalary(rs.getFloat("salary"));
+            e.setBirthday(rs.getDate("birthday"));
+            e.setAddress(rs.getString("address"));
             e.setPassword(rs.getString("password"));
             e.setConfirmPassword(rs.getString("confirmPassword"));
             e.setRole(rs.getString("role"));
@@ -38,9 +41,6 @@ public class EmployeeDAO extends ConnectionTool {
             e.setGender(rs.getBoolean("gender"));
             e.setDepartnameID(rs.getInt("departmentID"));
             e.setProjectID(rs.getInt("projectID"));
-            e.setAddress(rs.getString("address"));
-            e.setBirthday(rs.getDate("birthday"));
-            e.setReason(rs.getInt("reason"));
             result.add(e);
         }
         closeConnection();
@@ -56,17 +56,20 @@ public class EmployeeDAO extends ConnectionTool {
             error += "Error: Duplicate employee number\n";
         }
         if (error.equals("")) {
-            CallableStatement cs = conn.prepareCall("{call addEmployee(?, ?, ?, ?,?,?, ?, ?,?,?)}");
+            CallableStatement cs = conn.prepareCall("{call addEmployee(?, ?, ?, ?,?,?, ?, ?,?,?,?,?,?)}");
             cs.setString(1, employee.getEmployeeNumber());
             cs.setString(2, employee.getEmployeeName());
             cs.setString(3, employee.getEmail());
-            cs.setString(4, employee.getPassword());
-            cs.setString(5, employee.getConfirmPassword());
-            cs.setString(6, employee.getRole());
-            cs.setInt(7, employee.getWorkExperience());
-            cs.setBoolean(8, employee.getGender());
-            cs.setInt(9, employee.getDepartnameID());
-            cs.setInt(10, employee.getProjectID());
+            cs.setFloat(4, employee.getSalary());
+            cs.setDate(5, employee.getBirthday());
+            cs.setString(6,employee.getAddress());
+            cs.setString(7, employee.getPassword());
+            cs.setString(8, employee.getConfirmPassword());
+            cs.setString(9, employee.getRole());
+            cs.setInt(10, employee.getWorkExperience());
+            cs.setBoolean(11, employee.getGender());
+            cs.setInt(12, employee.getDepartnameID());
+            cs.setInt(13, employee.getProjectID());
             cs.executeUpdate();
         } else {
             throw new Exception(error);
@@ -76,15 +79,18 @@ public class EmployeeDAO extends ConnectionTool {
 
     public void updateEmployee(Employee employee) throws ClassNotFoundException, SQLException {
         initConnection();
-        CallableStatement cs = conn.prepareCall("{call updateEmployee(?, ?, ?, ?, ?, ?,?,?)}");
+        CallableStatement cs = conn.prepareCall("{call updateEmployee(?, ?, ?, ?, ?, ?,?,?,?,?,?)}");
         cs.setString(1, employee.getEmployeeNumber());
         cs.setString(2, employee.getEmployeeName());
         cs.setString(3, employee.getEmail());
-        cs.setString(4, employee.getPassword());
-        cs.setString(5, employee.getConfirmPassword());
-        cs.setString(6, employee.getRole());
-        cs.setInt(7, employee.getWorkExperience());
-        cs.setBoolean(8, employee.getGender());
+        cs.setFloat(4, employee.getSalary());
+        cs.setDate(5, employee.getBirthday());
+        cs.setString(6,employee.getAddress());
+        cs.setString(7, employee.getPassword());
+        cs.setString(8, employee.getConfirmPassword());
+        cs.setString(9, employee.getRole());
+        cs.setInt(10, employee.getWorkExperience());
+        cs.setBoolean(11, employee.getGender());
         cs.executeUpdate();
         closeConnection();
     }
@@ -118,6 +124,9 @@ public class EmployeeDAO extends ConnectionTool {
             e.setEmployeeNumber(rs.getString("employeeNumber"));
             e.setEmployeeName(rs.getString("employeeName"));
             e.setEmail(rs.getString("email"));
+            e.setSalary(rs.getFloat("salary"));
+            e.setBirthday(rs.getDate("birthday"));
+            e.setAddress(rs.getString("address"));
             e.setPassword(rs.getString("password"));
             e.setConfirmPassword(rs.getString("confirmPassword"));
             e.setRole(rs.getString("role"));
