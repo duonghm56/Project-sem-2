@@ -25,7 +25,6 @@ public class EmployeeClientDAO  extends ConnectionTool {
 "	     employee.departmentID = department.departmentID \n" +
 "         Inner Join location On department.locationID = location.locationID\n" +
 "         Inner Join project On project.projectID =employee.projectID\n" +
-"         Inner Join [transfer] On employee.employeeID = [transfer].employeeID\n" +
 "         Where employee.email = "+"'"+EmployeeLoginPanel.email+"'");
         Vector<EmployeeClient> result = new Vector<>();
         while (rs.next()) {
