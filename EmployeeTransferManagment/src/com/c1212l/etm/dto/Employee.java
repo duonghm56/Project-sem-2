@@ -6,6 +6,7 @@ package com.c1212l.etm.dto;
 
 import com.c1212l.etm.dal.DepartmentDAO;
 import com.c1212l.etm.dal.ProjectDAO;
+import java.sql.Date;
 import java.util.Vector;
 
 /**
@@ -25,6 +26,9 @@ public class Employee {
     private boolean gender;
     private int departnameID;
     private int projectID;
+    private String address;
+    private Date Birthday;
+    private int reason;
 
     public Employee() {
     }
@@ -99,6 +103,30 @@ public class Employee {
 
     public void setProjectID(int projectID) {
         this.projectID = projectID;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public Date getBirthday() {
+        return Birthday;
+    }
+
+    public void setBirthday(Date Birthday) {
+        this.Birthday = Birthday;
+    }
+
+    public int getReason() {
+        return reason;
+    }
+
+    public void setReason(int reason) {
+        this.reason = reason;
     }
     
     public Vector getVector(){

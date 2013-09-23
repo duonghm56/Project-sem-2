@@ -38,6 +38,9 @@ public class EmployeeDAO extends ConnectionTool {
             e.setGender(rs.getBoolean("gender"));
             e.setDepartnameID(rs.getInt("departmentID"));
             e.setProjectID(rs.getInt("projectID"));
+            e.setAddress(rs.getString("address"));
+            e.setBirthday(rs.getDate("birthday"));
+            e.setReason(rs.getInt("reason"));
             result.add(e);
         }
         closeConnection();
