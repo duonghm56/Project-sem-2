@@ -4,6 +4,7 @@
  */
 package com.c1212l.etm.dal;
 
+import com.c1212l.etm.client.ui.EmployeeLoginPanel;
 import com.c1212l.etm.dto.Employee;
 import com.c1212l.etm.dto.EmployeeClient;
 import com.c1212l.etm.dto.Project;
@@ -16,15 +17,16 @@ import java.util.Vector;
  *
  * @author Android21SDK
  */
-public class EmployeeClientDAO extends ConnectionTool{
+public class EmployeeClientDAO  extends ConnectionTool {
     public Vector<EmployeeClient> getEmployeeClient() throws ClassNotFoundException, SQLException {
         initConnection();
         Statement stmt = conn.createStatement();
-        ResultSet rs = stmt.executeQuery("Select * from employee Inner Join department On\n" +
-"employee.departmentID = department.departmentID\n" +
-"Inner Join location On department.locationID = location.locationID\n" +
-"Inner Join project On project.projectID =employee.projectID\n" +
-"Inner Join [transfer] On employee.employeeID = [transfer].employeeID");
+        ResultSet rs = stmt.executeQuery("Select * from employee Inner Join department On \n" +
+"	     employee.departmentID = department.departmentID \n" +
+"         Inner Join location On department.locationID = location.locationID\n" +
+"         Inner Join project On project.projectID =employee.projectID\n" +
+"         Inner Join [transfer] On employee.employeeID = [transfer].employeeID\n" +
+"         Where employee.email = "+"'"+EmployeeLoginPanel.email+"'");
         Vector<EmployeeClient> result = new Vector<>();
         while (rs.next()) {
             EmployeeClient e = new EmployeeClient();

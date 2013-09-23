@@ -4,6 +4,7 @@
  */
 package com.c1212l.etm.client.ui;
 
+import com.c1212l.etm.dal.EmployeeClientDAO;
 import com.c1212l.etm.dal.LoginDAO;
 import com.c1212l.etm.dto.Employee;
 import com.c1212l.etm.dto.Login;
@@ -152,10 +153,13 @@ public class EmployeeLoginPanel extends javax.swing.JPanel {
             }
             if (count==1) {
                 JOptionPane.showMessageDialog(this, "Login success!");
-                this.hide();
-                AdminUI.email = email;
-                AdminUI adminUI = new AdminUI();
-                adminUI.show();
+                    this.hide();
+                    EmployeeClientUI empClient = new EmployeeClientUI();
+                    empClient.show();
+////                AdminUI.email = email;
+////                
+////                AdminUI adminUI = new AdminUI();
+////                adminUI.show();
             }
             else    
             {
@@ -183,5 +187,5 @@ public class EmployeeLoginPanel extends javax.swing.JPanel {
     // End of variables declaration//GEN-END:variables
     private LoginDAO loginDAO = new LoginDAO();
     private Vector<Employee> vctList = new Vector<Employee>();
-    private String email;
+    public static String email;
 }

@@ -204,3 +204,10 @@ end
 Select * from [admin]
 Insert Into [admin] Values('luunguyenvan93@yahoo.com','12345')
 Select * from [transfer]
+Select * from employee
+Select * from employee Inner Join department On 
+	     employee.departmentID = department.departmentID 
+         Inner Join location On department.locationID = location.locationID
+         Inner Join project On project.projectID =employee.projectID
+         Inner Join [transfer] On employee.employeeID = [transfer].employeeID
+         Where employee.email = 'hung@gmail.com'

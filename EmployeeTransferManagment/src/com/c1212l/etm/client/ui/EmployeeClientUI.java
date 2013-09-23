@@ -24,6 +24,7 @@ public class EmployeeClientUI extends javax.swing.JFrame {
      */
     public EmployeeClientUI() {
         initComponents();
+        lblEmail.setText("Email:"+EmployeeLoginPanel.email);
         loadData();
     }
 
@@ -37,7 +38,7 @@ public class EmployeeClientUI extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel2 = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
+        lblEmail = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
@@ -74,7 +75,7 @@ public class EmployeeClientUI extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setText("Email");
+        lblEmail.setText("Email");
 
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("User Profile"));
 
@@ -263,7 +264,7 @@ public class EmployeeClientUI extends javax.swing.JFrame {
                         .addComponent(jLabel2))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jLabel1)))
+                        .addComponent(lblEmail)))
                 .addGap(0, 916, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
@@ -273,7 +274,7 @@ public class EmployeeClientUI extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(7, 7, 7)
-                .addComponent(jLabel1)
+                .addComponent(lblEmail)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -323,7 +324,6 @@ public class EmployeeClientUI extends javax.swing.JFrame {
         });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
@@ -347,6 +347,7 @@ public class EmployeeClientUI extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JLabel lblEmail;
     private javax.swing.JTextField txtAddress;
     private javax.swing.JTextField txtBirthday;
     private javax.swing.JTextField txtCurrentDepartment;
