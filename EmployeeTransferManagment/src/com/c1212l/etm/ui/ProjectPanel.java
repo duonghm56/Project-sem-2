@@ -198,7 +198,7 @@ public class ProjectPanel extends javax.swing.JPanel {
                     reloadData();
                 }
             } catch (Exception ex) {
-                JOptionPane.showMessageDialog(null, "Delete Fail !!!");
+                JOptionPane.showMessageDialog(null, ex.getMessage());
                 ex.printStackTrace();
             }
         }

@@ -6,6 +6,7 @@ package com.c1212l.etm.dal;
 
 import com.c1212l.etm.dto.Project;
 import java.sql.CallableStatement;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -72,11 +73,28 @@ public class ProjectDAO extends ConnectionTool {
         closeConnection();
     }
 
-    public void deleteProject(Project project) throws ClassNotFoundException, SQLException {
+    public void deleteProject(Project project) throws ClassNotFoundException, SQLException, Exception {
         initConnection();
-        CallableStatement cs = conn.prepareCall("{call deleteProject(?)}");
-        cs.setInt(1, project.getProjectID());
-        cs.executeUpdate();
+        String error = "";
+        PreparedStatement pstmt = conn.prepareStatement("select * from employee where projectID = ?");
+        pstmt.setInt(1, project.getProjectID());
+        if(pstmt.executeQuery().next()){
+            error += "Some employees are still working on this project\n";
+        }
+        pstmt = conn.prepareStatement("select * from transfer where fromProjectID = ? or toProjectID = ?");
+        pstmt.setInt(1, project.getProjectID());
+        pstmt.setInt(2, project.getProjectID());
+        if(pstmt.executeQuery().next()){
+            error += "Some transfer records reference to this project";
+        }
+        
+        if (!error.equals("")) {
+            CallableStatement cs = conn.prepareCall("{call deleteProject(?)}");
+            cs.setInt(1, project.getProjectID());
+            cs.executeUpdate();
+        }else{
+            throw new Exception(error);
+        }
         closeConnection();
     }
 
@@ -95,7 +113,7 @@ public class ProjectDAO extends ConnectionTool {
             }
             closeConnection();
             return project;
-        }catch(Exception ex){
+        } catch (Exception ex) {
             return null;
         }
     }

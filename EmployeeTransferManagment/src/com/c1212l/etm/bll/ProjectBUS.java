@@ -69,7 +69,7 @@ public class ProjectBUS {
         projectDAO.updateProject(project);
     }
 
-    public void deleteProject(String projectID) throws ClassNotFoundException, SQLException {
+    public void deleteProject(String projectID) throws ClassNotFoundException, SQLException, Exception {
         Project project = new Project();
         project.setProjectID(Integer.parseInt(projectID));
         projectDAO.deleteProject(project);
