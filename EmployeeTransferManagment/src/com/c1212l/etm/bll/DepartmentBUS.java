@@ -24,20 +24,20 @@ public class DepartmentBUS {
     public ArrayList<Department> getAllDepartment() throws ClassNotFoundException, SQLException{
         return departmentDAO.getAllDepartment();
     }
-    public void addDepartment(String dpmName,int locationID) throws ClassNotFoundException, SQLException{
+    public void addDepartment(String dpmName,int locationID) throws ClassNotFoundException, Exception{
         Department dpm=new Department();
         dpm.setDepartmentName(dpmName);
         dpm.setLocationID(locationID);
         departmentDAO.addDepartment(dpm);
     }
-    public void updateDepartment(int departmentID, String departmentName,int locationID) throws ClassNotFoundException, SQLException{
+    public void updateDepartment(int departmentID, String departmentName,int locationID) throws ClassNotFoundException, Exception{
         Department dpm= new Department();
         dpm.setDepartmentID(departmentID);
         dpm.setDepartmentName(departmentName);
         dpm.setLocationID(locationID);
         departmentDAO.updateDepartment(dpm);
     }
-    public void deleteDepartment(int dpmID) throws ClassNotFoundException, SQLException{
+    public void deleteDepartment(int dpmID) throws ClassNotFoundException, Exception{
         Department dpm= new Department();
         dpm.setDepartmentID(dpmID);
         departmentDAO.deleteDepartment(dpm);

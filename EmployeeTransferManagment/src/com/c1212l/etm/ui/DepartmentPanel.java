@@ -198,9 +198,7 @@ public class DepartmentPanel extends javax.swing.JPanel {
                 System.out.println(cmbLocation.getSelectedIndex());
                 reloadData();
             } catch (Exception ex) {
-                JOptionPane.showMessageDialog(null, "Insert Fail !!!");
-                ex.printStackTrace();
-            
+                   JOptionPane.showMessageDialog(null, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_btnAddActionPerformed
 
@@ -217,8 +215,7 @@ public class DepartmentPanel extends javax.swing.JPanel {
                   reloadData();
             }
         } catch (Exception ex) {
-            JOptionPane.showMessageDialog(null, ex.getMessage());
-            ex.printStackTrace();
+                   JOptionPane.showMessageDialog(null, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_btnUpdateActionPerformed
 
@@ -233,7 +230,8 @@ public class DepartmentPanel extends javax.swing.JPanel {
                     reloadData();
                 }
             } catch (Exception ex){
-                JOptionPane.showMessageDialog(null, "Delete fail");
+                    JOptionPane.showMessageDialog(null, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+
             }
         }
     }//GEN-LAST:event_btnDeleteActionPerformed

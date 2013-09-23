@@ -27,21 +27,21 @@ public class LocationBUS {
         return locationDAO.searchLocationName(locationName);
     }
 
-    public int addLocation(String locationName)throws ClassNotFoundException, SQLException
+    public int addLocation(String locationName)throws ClassNotFoundException, Exception
     {
         Location location = new Location();
 //        bean.setLocationID(locationID);
         location.setLocationName(locationName);
         return locationDAO.addLocation(location);
     }
-        public int updateLocation(int locationID,String locationName)throws ClassNotFoundException, SQLException
+        public void updateLocation(int locationID,String locationName)throws ClassNotFoundException, Exception
         {
         Location location = new Location();
         location.setLocationID(locationID);
         location.setLocationName(locationName);
-        return locationDAO.updateLocation(location);
+        locationDAO.updateLocation(location);
     }
-    public int deleteLocation(int locationID)throws ClassNotFoundException, SQLException
+    public int deleteLocation(int locationID)throws ClassNotFoundException, Exception
     {
         Location location = new Location();
         location.setLocationID(locationID);

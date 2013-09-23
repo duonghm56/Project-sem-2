@@ -43,9 +43,6 @@ public class FrameTestEmployee extends javax.swing.JFrame {
     private void initComponents() {
 
         employeePanel1 = new com.c1212l.etm.ui.EmployeePanel();
-        employeePanel2 = new com.c1212l.etm.ui.EmployeePanel();
-        departmentPanel1 = new com.c1212l.etm.ui.DepartmentPanel();
-        employeePanel4 = new com.c1212l.etm.ui.EmployeePanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -54,12 +51,15 @@ public class FrameTestEmployee extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(employeePanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 8, Short.MAX_VALUE))
+                .addContainerGap()
+                .addComponent(employeePanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(employeePanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(employeePanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         pack();
@@ -100,10 +100,7 @@ public class FrameTestEmployee extends javax.swing.JFrame {
         });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private com.c1212l.etm.ui.DepartmentPanel departmentPanel1;
     private com.c1212l.etm.ui.EmployeePanel employeePanel1;
-    private com.c1212l.etm.ui.EmployeePanel employeePanel2;
-    private com.c1212l.etm.ui.EmployeePanel employeePanel4;
     // End of variables declaration//GEN-END:variables
 
 }

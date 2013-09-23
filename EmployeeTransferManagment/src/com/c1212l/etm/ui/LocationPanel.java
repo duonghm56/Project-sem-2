@@ -188,10 +188,8 @@ public class LocationPanel extends javax.swing.JPanel {
                 JOptionPane.showMessageDialog(this,"Add fail");
             }
             reloadData();
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(LocationPanel.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (SQLException ex) {
-            Logger.getLogger(LocationPanel.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (Exception ex) {
+                JOptionPane.showMessageDialog(null, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_btnAddActionPerformed
 
@@ -201,19 +199,11 @@ public class LocationPanel extends javax.swing.JPanel {
             // TODO add your handling code here:
             int locationID = Integer.parseInt(txtLocationID.getText());
             String locationName = txtLocationName.getText();
-            int record = locationBUS.updateLocation(locationID, locationName);
-            if (record>0) {
-                JOptionPane.showMessageDialog(this, "Update success");
-            }
-            else
-            {
-                JOptionPane.showMessageDialog(this,"Update fail");
-            }
+            locationBUS.updateLocation(locationID, locationName);
+            JOptionPane.showMessageDialog(this, "Update success");
             reloadData();
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(LocationPanel.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (SQLException ex) {
-            Logger.getLogger(LocationPanel.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (Exception ex) {
+                JOptionPane.showMessageDialog(null, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_btnUpdateActionPerformed
 
@@ -231,10 +221,9 @@ public class LocationPanel extends javax.swing.JPanel {
                 JOptionPane.showMessageDialog(this,"Delete fail");
             }
             reloadData();
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(LocationPanel.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (SQLException ex) {
-            Logger.getLogger(LocationPanel.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (Exception ex) {
+             JOptionPane.showMessageDialog(null, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+
         }
     }//GEN-LAST:event_btnDeleteActionPerformed
 

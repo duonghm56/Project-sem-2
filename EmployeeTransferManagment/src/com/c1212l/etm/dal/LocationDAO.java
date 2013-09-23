@@ -6,6 +6,7 @@ package com.c1212l.etm.dal;
 
 import com.c1212l.etm.dto.Location;
 import java.sql.CallableStatement;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -31,36 +32,70 @@ public class LocationDAO extends ConnectionTool {
         closeConnection();
         return result;
     }
-    public int addLocation(Location location)throws ClassNotFoundException, SQLException
+    public int addLocation(Location location)throws ClassNotFoundException, Exception
     {
+        initConnection();
         int record = 0;
-        initConnection();
-        CallableStatement cs = conn.prepareCall("{call addLocation(?)}");
-//        cs.setInt(1,location.getLocationID());
-        cs.setString(1,location.getLocationName());
-        record = cs.executeUpdate();
+        String error = "";
+        PreparedStatement pstmt = conn.prepareStatement("select * from location where locationName = ?");
+        pstmt.setString(1, location.getLocationName());
+        if (pstmt.executeQuery().next()) {
+            error += "Error: Duplicate location name\n";
+        }
+        if (error.equals("")) {
+            CallableStatement cs = conn.prepareCall("{call addLocation( ?)}");
+            cs.setString(1, location.getLocationName());
+            cs.executeUpdate();
+        } else {
+            throw new Exception(error);
+        }
         closeConnection();
         return record;
     }
-    public int updateLocation(Location location)throws ClassNotFoundException, SQLException
+    public void updateLocation(Location location)throws ClassNotFoundException, Exception
     {
-        int record =0;
         initConnection();
-        CallableStatement cs = conn.prepareCall("{call updateLocation(?,?)}");
-        cs.setInt(1,location.getLocationID());
-        cs.setString(2, location.getLocationName());
-        record=cs.executeUpdate();
+        String error = "";
+        PreparedStatement pstmt = conn.prepareStatement("select * from location where locationName = ?");
+        pstmt.setString(1, location.getLocationName());
+        if (pstmt.executeQuery().next()) {
+            error += "Error: Update duplicate department name\n";
+        }
+        if (error.equals("")) {
+            CallableStatement cs = conn.prepareCall("{call updateLocation(?, ?)}");
+            cs.setInt(1,location.getLocationID());
+            cs.setString(2, location.getLocationName());
+            cs.executeUpdate();
+        } else {
+            throw new Exception(error);
+        }
         closeConnection();
-        return record;
     }
-    public int deleteLocation(Location location)throws ClassNotFoundException, SQLException
+    public int deleteLocation(Location location)throws ClassNotFoundException, Exception
     {
-          int record =0;
+                int record =0;
           initConnection();
-          CallableStatement cs = conn.prepareCall("{call deleteLocation(?)}");
-          cs.setInt(1,location.getLocationID());
-          record = cs.executeUpdate();
-          closeConnection();
+        String error = "";
+        PreparedStatement pstmt = conn.prepareStatement("select * from department where locationID = ?");
+        pstmt.setInt(1, location.getLocationID());
+        if(pstmt.executeQuery().next()){
+            error += "Some departments are still working on this location\n";
+        }
+        pstmt = conn.prepareStatement("select * from transfer where fromLocationID = ? or toLocationID = ?");
+        pstmt.setInt(1, location.getLocationID());
+        pstmt.setInt(2, location.getLocationID());
+        if(pstmt.executeQuery().next()){
+            error += "Some transfer records reference to this location\n";
+        }
+        
+        if (!error.equals("")) {
+            CallableStatement cs = conn.prepareCall("{call deleteLocation(?)}");
+            cs.setInt(1, location.getLocationID());
+            cs.executeUpdate();
+        }else{
+                throw new Exception(error);
+        }
+        closeConnection();
           return record;
     }
       public ArrayList<Location> searchLocationName(String locationName) throws ClassNotFoundException, SQLException {
