@@ -27,12 +27,12 @@ public class LocationBUS {
         return locationDAO.searchLocationName(locationName);
     }
 
-    public int addLocation(String locationName)throws ClassNotFoundException, Exception
+    public void addLocation(String locationName)throws ClassNotFoundException, Exception
     {
         Location location = new Location();
 //        bean.setLocationID(locationID);
         location.setLocationName(locationName);
-        return locationDAO.addLocation(location);
+        locationDAO.addLocation(location);
     }
         public void updateLocation(int locationID,String locationName)throws ClassNotFoundException, Exception
         {

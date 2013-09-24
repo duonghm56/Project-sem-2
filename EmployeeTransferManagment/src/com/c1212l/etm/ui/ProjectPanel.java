@@ -220,15 +220,16 @@ public class ProjectPanel extends javax.swing.JPanel {
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
         if (txtProjectName.getText().equals("")) {
             JOptionPane.showMessageDialog(null, "Please enter project name");
-        } else {
+            return;
+        }
             try {
                 projectBUS.addProject(txtProjectName.getText(), txtCreateDate.getText(), txtEndDate.getText());
+                JOptionPane.showMessageDialog(null, "Add success!");
                 reloadData();
             } catch (Exception ex) {
                 JOptionPane.showMessageDialog(null, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
                 ex.printStackTrace();
             }
-        }
     }//GEN-LAST:event_btnAddActionPerformed
 
     private void btnEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditActionPerformed
@@ -242,8 +243,8 @@ public class ProjectPanel extends javax.swing.JPanel {
                         txtProjectName.getText(),
                         txtCreateDate.getText(),
                         txtEndDate.getText());
-                reloadData();
                 JOptionPane.showMessageDialog(null, "Update Success !!!");
+                reloadData();
             }catch(Exception ex){
                 JOptionPane.showMessageDialog(null, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
 
@@ -253,17 +254,18 @@ public class ProjectPanel extends javax.swing.JPanel {
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
         if (txtProjectID.getText().equals("")) {
             JOptionPane.showMessageDialog(null, "Please select project");
-        } else {
+            return;
+        }
             try {
                 if (JOptionPane.showConfirmDialog(null, "Are you sure to delete?", "Delete", JOptionPane.YES_NO_OPTION) == JOptionPane.OK_OPTION) {
                     projectBUS.deleteProject(txtProjectID.getText());
+                    JOptionPane.showMessageDialog(null, "Delete success!");
                     reloadData();
                 }
             } catch (Exception ex) {
                 JOptionPane.showMessageDialog(null, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
                 ex.printStackTrace();
             }
-        }
     }//GEN-LAST:event_btnDeleteActionPerformed
 
     private void tblProjectMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblProjectMouseClicked

@@ -376,6 +376,7 @@ public class EmployeePanel extends javax.swing.JPanel {
                     Integer.parseInt(txtWorkExperience.getText()),
                     gender==1?true:false
                     );
+            JOptionPane.showMessageDialog(null, "Update success!");
             reloadData();
         } catch (Exception ex) {
                     JOptionPane.showMessageDialog(null, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
@@ -412,6 +413,7 @@ public class EmployeePanel extends javax.swing.JPanel {
                     ((KeyValue) cmbGender.getSelectedItem()).getKey() == 1 ? true : false,
                     ((KeyValue) cmbDepartment.getSelectedItem()).getKey(),
                     ((KeyValue) cmbProject.getSelectedItem()).getKey());
+            JOptionPane.showMessageDialog(null, "Add success!");
             reloadData();
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(null, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
@@ -439,6 +441,7 @@ public class EmployeePanel extends javax.swing.JPanel {
             try {
                 if (JOptionPane.showConfirmDialog(null, "Are you sure to delete?", "Delete", JOptionPane.YES_NO_OPTION) == JOptionPane.OK_OPTION) {
                     employeeBUS.deleteEmployee(txtEmployeeNumber.getText());
+                    JOptionPane.showMessageDialog(null, "Delete success!");
                     reloadData();
                 }
             } catch (Exception ex){

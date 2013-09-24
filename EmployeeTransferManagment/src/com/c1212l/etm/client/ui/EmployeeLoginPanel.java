@@ -187,5 +187,5 @@ public class EmployeeLoginPanel extends javax.swing.JPanel {
     // End of variables declaration//GEN-END:variables
     private LoginDAO loginDAO = new LoginDAO();
     private Vector<Employee> vctList = new Vector<Employee>();
-    public static String email;
+    public static  String email;
 }

@@ -5,6 +5,7 @@
 package com.c1212l.etm.dal;
 
 import com.c1212l.etm.dto.Department;
+import com.c1212l.etm.ui.DepartmentPanel;
 import java.sql.CallableStatement;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -54,17 +55,17 @@ public class DepartmentDAO extends ConnectionTool{
     public void updateDepartment(Department department) throws ClassNotFoundException, Exception{
         initConnection();
         String error = "";
-         PreparedStatement pstmt = conn.prepareStatement("select * from department where departmentName = ?");
-        pstmt.setString(1, department.getDepartmentName());
+        PreparedStatement pstmt = conn.prepareStatement("select * from department where departmentName = ?");
+        pstmt.setString(1,DepartmentPanel.departmentName);
         if (pstmt.executeQuery().next()) {
-            error += "Error: Update Duplicate department name\n";
-        }
-        if (error.equals("")) {
             CallableStatement cs = conn.prepareCall("{call updateDepartment(?, ?, ?)}");
             cs.setInt(1, department.getDepartmentID());
             cs.setString(2, department.getDepartmentName());
             cs.setInt(3, department.getLocationID());
             cs.executeUpdate();
+        }
+        if (error.equals("")) {
+             error += "Error: Update Duplicate department name\n";
         } else {
             throw new Exception(error);
         }

@@ -130,6 +130,8 @@ public class TransferPanel extends javax.swing.JPanel {
 
         jLabel15.setText("To Location:");
 
+        txtTransferID.setEnabled(false);
+
         txtReason.setColumns(20);
         txtReason.setRows(5);
         jScrollPane1.setViewportView(txtReason);
@@ -360,10 +362,10 @@ public class TransferPanel extends javax.swing.JPanel {
             int formLocationID = ((KeyValue) cmbFromLocation.getSelectedItem()).getKey();
             int toLocationID = ((KeyValue) cmbToLocation.getSelectedItem()).getKey();
             transferBUS.addTransfer(transferTypeID, employeeID, tranReDate, tranJoinDate, requestDate, reason, true, approveDate, fromProjectID, toProjectID, fromDepartmentID, toDepartmentID, formLocationID, toLocationID);
+            JOptionPane.showMessageDialog(null, "Add success!");
             reloadData();
         } catch (Exception ex) {
-            JOptionPane.showMessageDialog(null, ex.getMessage());
-            ex.printStackTrace();
+            JOptionPane.showMessageDialog(null, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }
 
     }//GEN-LAST:event_btnAddActionPerformed
@@ -374,6 +376,7 @@ public class TransferPanel extends javax.swing.JPanel {
                 throw new Exception("Please select Transfer ID");
             }
             convertDate();
+            int transferID = Integer.parseInt(txtTransferID.getText());
             int transferTypeID = ((KeyValue) cmbTransferType.getSelectedItem()).getKey();
             int employeeID = ((KeyValue) cmbEmployee.getSelectedItem()).getKey();
             String reason = txtReason.getText();
@@ -384,11 +387,11 @@ public class TransferPanel extends javax.swing.JPanel {
             int toDepartmentID = ((KeyValue) cmbToDepartment.getSelectedItem()).getKey();
             int formLocationID = ((KeyValue) cmbFromLocation.getSelectedItem()).getKey();
             int toLocationID = ((KeyValue) cmbToLocation.getSelectedItem()).getKey();
-            transferBUS.updateTransfer(transferTypeID, transferTypeID, employeeID, tranReDate, tranJoinDate, requestDate, reason, true, approveDate, fromProjectID, toProjectID, fromDepartmentID, toDepartmentID, formLocationID, toLocationID);
+            transferBUS.updateTransfer(transferID, transferTypeID, employeeID, tranReDate, tranJoinDate, requestDate, reason, true, approveDate, fromProjectID, toProjectID, fromDepartmentID, toDepartmentID, formLocationID, toLocationID);
+            JOptionPane.showMessageDialog(null, "Update success");
             reloadData();
         } catch (Exception ex) {
-            JOptionPane.showMessageDialog(null, ex.getMessage());
-            ex.printStackTrace();
+            JOptionPane.showMessageDialog(null, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_btnUpdateActionPerformed
 
@@ -400,10 +403,12 @@ public class TransferPanel extends javax.swing.JPanel {
             try {
                 if (JOptionPane.showConfirmDialog(null, "Are you sure to delete?", "Delete", JOptionPane.YES_NO_OPTION) == JOptionPane.OK_OPTION) {
                     transferBUS.deleteTransfer(Integer.parseInt(txtTransferID.getText()));
+                    JOptionPane.showMessageDialog(null, "Delete success!");
                     reloadData();
                 }
             } catch (Exception ex){
-                JOptionPane.showMessageDialog(null, "Delete fail");
+                    JOptionPane.showMessageDialog(null, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+
             }
         }
     }//GEN-LAST:event_btnDeleteActionPerformed

@@ -32,10 +32,9 @@ public class LocationDAO extends ConnectionTool {
         closeConnection();
         return result;
     }
-    public int addLocation(Location location)throws ClassNotFoundException, Exception
+    public void addLocation(Location location)throws ClassNotFoundException, Exception
     {
         initConnection();
-        int record = 0;
         String error = "";
         PreparedStatement pstmt = conn.prepareStatement("select * from location where locationName = ?");
         pstmt.setString(1, location.getLocationName());
@@ -50,7 +49,6 @@ public class LocationDAO extends ConnectionTool {
             throw new Exception(error);
         }
         closeConnection();
-        return record;
     }
     public void updateLocation(Location location)throws ClassNotFoundException, Exception
     {

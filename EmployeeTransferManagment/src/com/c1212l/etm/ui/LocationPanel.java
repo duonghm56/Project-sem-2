@@ -179,14 +179,8 @@ public class LocationPanel extends javax.swing.JPanel {
             //            int locationID;
             //            locationID = Integer.parseInt(txtLocationID.getText());
             String locationName = txtLocationName.getText();
-            int record = locationBUS.addLocation(locationName);
-            if (record>0) {
-                JOptionPane.showMessageDialog(this, "Add success");
-            }
-            else
-            {
-                JOptionPane.showMessageDialog(this,"Add fail");
-            }
+            locationBUS.addLocation(locationName);
+            JOptionPane.showMessageDialog(this, "Add success");
             reloadData();
         } catch (Exception ex) {
                 JOptionPane.showMessageDialog(null, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);

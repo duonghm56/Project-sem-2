@@ -195,7 +195,6 @@ public class DepartmentPanel extends javax.swing.JPanel {
             try {
                 departmentBUS.addDepartment(txtDepartmentName.getText(),((KeyValue)cmbLocation.getSelectedItem()).getKey());
                 JOptionPane.showMessageDialog(null, "Insert Success!!!");
-                System.out.println(cmbLocation.getSelectedIndex());
                 reloadData();
             } catch (Exception ex) {
                    JOptionPane.showMessageDialog(null, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
@@ -211,8 +210,10 @@ public class DepartmentPanel extends javax.swing.JPanel {
             else
             {
             int locationID= ((KeyValue) cmbLocation.getSelectedItem()).getKey();
+            departmentName = txtDepartmentName.getText();
             departmentBUS.updateDepartment(Integer.parseInt(txtDepartmentID.getText()), txtDepartmentName.getText(), locationID);
-                  reloadData();
+            JOptionPane.showMessageDialog(null, "Update Success!!!");
+            reloadData();
             }
         } catch (Exception ex) {
                    JOptionPane.showMessageDialog(null, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
@@ -273,7 +274,7 @@ public class DepartmentPanel extends javax.swing.JPanel {
     DefaultTableModel tblModel;
     ArrayList<Department> lstDepartment;
     DepartmentBUS departmentBUS = new DepartmentBUS();
-
+    public static String departmentName;
     private void initTable() {
         Vector header = new Vector();
         header.add("Department ID");
