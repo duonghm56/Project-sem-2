@@ -203,20 +203,16 @@ public class DepartmentPanel extends javax.swing.JPanel {
 
     private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
         // TODO add your handling code here:
-                 try {
+        try{
             if (txtDepartmentName.getText().equals("")) {
-                throw new Exception("Please enter Employee Number");
+                throw new Exception("Please enter department name");
             }
-            else
-            {
             int locationID= ((KeyValue) cmbLocation.getSelectedItem()).getKey();
-            departmentName = txtDepartmentName.getText();
             departmentBUS.updateDepartment(Integer.parseInt(txtDepartmentID.getText()), txtDepartmentName.getText(), locationID);
             JOptionPane.showMessageDialog(null, "Update Success!!!");
             reloadData();
-            }
         } catch (Exception ex) {
-                   JOptionPane.showMessageDialog(null, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, ex.getMessage(), "Error:", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_btnUpdateActionPerformed
 
@@ -274,7 +270,6 @@ public class DepartmentPanel extends javax.swing.JPanel {
     DefaultTableModel tblModel;
     ArrayList<Department> lstDepartment;
     DepartmentBUS departmentBUS = new DepartmentBUS();
-    public static String departmentName;
     private void initTable() {
         Vector header = new Vector();
         header.add("Department ID");

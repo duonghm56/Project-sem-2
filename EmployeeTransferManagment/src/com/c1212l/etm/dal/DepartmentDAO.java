@@ -5,14 +5,12 @@
 package com.c1212l.etm.dal;
 
 import com.c1212l.etm.dto.Department;
-import com.c1212l.etm.ui.DepartmentPanel;
 import java.sql.CallableStatement;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
-import java.util.Vector;
 
 /**
  *
@@ -53,23 +51,13 @@ public class DepartmentDAO extends ConnectionTool{
         closeConnection();
     }
     public void updateDepartment(Department department) throws ClassNotFoundException, Exception{
-        initConnection();
-        String error = "";
-        PreparedStatement pstmt = conn.prepareStatement("select * from department where departmentName = ?");
-        pstmt.setString(1,DepartmentPanel.departmentName);
-        if (pstmt.executeQuery().next()) {
+            initConnection();
             CallableStatement cs = conn.prepareCall("{call updateDepartment(?, ?, ?)}");
             cs.setInt(1, department.getDepartmentID());
             cs.setString(2, department.getDepartmentName());
             cs.setInt(3, department.getLocationID());
             cs.executeUpdate();
-        }
-        if (error.equals("")) {
-             error += "Error: Update Duplicate department name\n";
-        } else {
-            throw new Exception(error);
-        }
-        closeConnection();             
+            closeConnection();             
     }
     public void deleteDepartment(Department department) throws ClassNotFoundException, Exception{
         initConnection();

@@ -76,23 +76,13 @@ public class ProjectDAO extends ConnectionTool {
 
     public void updateProject(Project project) throws ClassNotFoundException, SQLException, Exception {
         initConnection();
-        String error = "";
-        PreparedStatement pstmt = conn.prepareStatement("select * from project where projectName = ?");
-        pstmt.setString(1, project.getProjectName());
-        if (pstmt.executeQuery().next()) {
-            error += "Error: Update duplicate project name\n";
-        }
-        if (error.equals("")) {
             CallableStatement cs = conn.prepareCall("{call updateProject(?, ?, ?, ?)}");
             cs.setInt(1, project.getProjectID());
             cs.setString(2, project.getProjectName());
             cs.setDate(3, project.getCreateDate());
             cs.setDate(4, project.getEndDate());
             cs.executeUpdate();
-        } else {
-            throw new Exception(error);
-        }
-        closeConnection();
+            closeConnection();
     }
 
     public void deleteProject(Project project) throws ClassNotFoundException, SQLException, Exception {

@@ -4,9 +4,8 @@
  */
 package com.c1212l.etm.dal;
 
-import com.c1212l.etm.dto.Department;
 import com.c1212l.etm.dto.Employee;
-import com.c1212l.etm.dto.Location;
+import com.c1212l.etm.ui.EmployeePanel;
 import java.sql.CallableStatement;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -84,19 +83,7 @@ public class EmployeeDAO extends ConnectionTool {
 
     public void updateEmployee(Employee employee) throws ClassNotFoundException, Exception {
         initConnection();
-        String error = "";
-        PreparedStatement pstmt = conn.prepareStatement("select * from employee where employeeNumber = ?");
-        pstmt.setString(1, employee.getEmployeeNumber());
-        if (pstmt.executeQuery().next()) {
-            error += "Error: Update duplicate employee number\n";
-        }
-        pstmt = conn.prepareStatement("select * from employee where email= ?");
-        pstmt.setString(1, employee.getEmail());
-        if (pstmt.executeQuery().next()) {
-            error += "Error: Update duplicate employee email\n";
-        }
-        if(error.equals(""))
-        {
+ 
             CallableStatement cs = conn.prepareCall("{call updateEmployee(?, ?, ?, ?, ?, ?,?,?,?,?,?)}");
             cs.setString(1, employee.getEmployeeNumber());
             cs.setString(2, employee.getEmployeeName());
@@ -111,10 +98,6 @@ public class EmployeeDAO extends ConnectionTool {
             cs.setBoolean(11, employee.getGender());
             cs.executeUpdate();
             closeConnection();
-        }else{
-            throw new Exception(error);
- 
-        }
     }
 
     public void deleteEmployee(Employee employee) throws ClassNotFoundException, SQLException, Exception {

@@ -379,7 +379,7 @@ public class EmployeePanel extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(null, "Update success!");
             reloadData();
         } catch (Exception ex) {
-                    JOptionPane.showMessageDialog(null, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(null, ex.getMessage(), "Error:", JOptionPane.ERROR_MESSAGE);
 
         }
     }//GEN-LAST:event_btnUpdateActionPerformed
@@ -507,8 +507,7 @@ public class EmployeePanel extends javax.swing.JPanel {
     DefaultTableModel tblModel;
     ArrayList<Employee> lstEmpl;
     EmployeeBUS employeeBUS = new EmployeeBUS();
-    private Date birthday;
-
+    private  Date birthday;
     private void initTable() {
         Vector header = new Vector();
         header.add("ID");

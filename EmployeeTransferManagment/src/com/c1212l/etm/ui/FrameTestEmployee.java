@@ -43,6 +43,12 @@ public class FrameTestEmployee extends javax.swing.JFrame {
     private void initComponents() {
 
         employeePanel1 = new com.c1212l.etm.ui.EmployeePanel();
+        employeePanel2 = new com.c1212l.etm.ui.EmployeePanel();
+        employeeDAO1 = new com.c1212l.etm.dal.EmployeeDAO();
+        employeeDAO2 = new com.c1212l.etm.dal.EmployeeDAO();
+        employeeDAO3 = new com.c1212l.etm.dal.EmployeeDAO();
+        employeePanel4 = new com.c1212l.etm.ui.EmployeePanel();
+        employeePanel5 = new com.c1212l.etm.ui.EmployeePanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -51,14 +57,16 @@ public class FrameTestEmployee extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(employeePanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 20, Short.MAX_VALUE))
+                .addContainerGap()
+                .addComponent(employeePanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(employeePanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 22, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(employeePanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         pack();
@@ -99,7 +107,13 @@ public class FrameTestEmployee extends javax.swing.JFrame {
         });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private com.c1212l.etm.dal.EmployeeDAO employeeDAO1;
+    private com.c1212l.etm.dal.EmployeeDAO employeeDAO2;
+    private com.c1212l.etm.dal.EmployeeDAO employeeDAO3;
     private com.c1212l.etm.ui.EmployeePanel employeePanel1;
+    private com.c1212l.etm.ui.EmployeePanel employeePanel2;
+    private com.c1212l.etm.ui.EmployeePanel employeePanel4;
+    private com.c1212l.etm.ui.EmployeePanel employeePanel5;
     // End of variables declaration//GEN-END:variables
 
 }
