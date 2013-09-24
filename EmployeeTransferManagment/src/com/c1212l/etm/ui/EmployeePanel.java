@@ -18,6 +18,8 @@ import java.util.ArrayList;
 import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
@@ -399,6 +401,15 @@ public class EmployeePanel extends javax.swing.JPanel {
             if (txtWorkExperience.getText().equals("")) {
                 throw new Exception("Please enter Work Experience");
             }
+            if (!txtConfirmPassword.getText().equals(txtPassword.getText())) {
+                throw new Exception("ConfirmPassword must like Password");
+            }
+            Pattern pt=Pattern.compile(".+@.+\\.[a-zA-Z]+");
+            Matcher mc = pt.matcher(txtEmail.getText());
+            if (!mc.find()) {
+                throw new Exception("Email is not valid");
+            }
+            
             employeeBUS.addEmployee(
                     txtEmployeeNumber.getText(),
                     txtEmployeeName.getText(),
