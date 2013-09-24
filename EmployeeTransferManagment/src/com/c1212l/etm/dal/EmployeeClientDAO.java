@@ -32,14 +32,14 @@ public class EmployeeClientDAO  extends ConnectionTool {
             e.setFullName(rs.getString("employeeName"));
             e.setGender(rs.getBoolean("gender"));
             e.setEmail(rs.getString("email"));
-//            e.setAddress(rs.getString("address"));
+            e.setSalary(rs.getFloat("salary"));
+            e.setBirthday(rs.getDate("birthday"));
+            e.setAddress(rs.getString("address"));
             e.setCurrentDepartment(rs.getString("departmentName"));
             e.setCurrentLocation(rs.getString("locationName"));
             e.setCurrentProject(rs.getString("projectName"));
             e.setRole(rs.getString("role"));
             e.setWorkExperience(rs.getString("workExperience"));
-            e.setReason(rs.getString("reason"));
-            e.setBirthday(rs.getDate("birthday"));
             result.add(e);   
         }
         closeConnection();

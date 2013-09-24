@@ -8,6 +8,7 @@ import com.c1212l.etm.dal.EmployeeClientDAO;
 import com.c1212l.etm.dal.LoginDAO;
 import com.c1212l.etm.dto.Employee;
 import com.c1212l.etm.dto.EmployeeClient;
+import java.sql.Date;
 import java.sql.SQLException;
 import java.util.Vector;
 import java.util.logging.Level;
@@ -371,6 +372,9 @@ public class EmployeeClientUI extends javax.swing.JFrame {
                 EmployeeClient employeeClient  = vctList.elementAt(i);
                 txtFullName.setText(employeeClient.getFullName());
                 txtEmail.setText(employeeClient.getEmail());
+                txtSalary.setText(employeeClient.getSalary()+"");
+                txtBirthday.setText(employeeClient.getBirthday()+"");
+                txtAddress.setText(employeeClient.getAddress());
                 txtCurrentDepartment.setText(employeeClient.getCurrentDepartment());
                 txtCurrentProject.setText(employeeClient.getCurrentProject());
                 txtCurrentLocation.setText(employeeClient.getCurrentLocation());
@@ -382,10 +386,7 @@ public class EmployeeClientUI extends javax.swing.JFrame {
                 else if(employee.getGender() == false)
                 {
                     txtGender.setText("Female");
-                }
-                txtSalary.setText(employeeClient.getReason());
-                txtBirthday.setText(employeeClient.getBirthday().toString());
-                            
+                }               
             }
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(EmployeeClientUI.class.getName()).log(Level.SEVERE, null, ex);

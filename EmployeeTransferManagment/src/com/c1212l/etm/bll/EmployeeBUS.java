@@ -47,7 +47,7 @@ public class EmployeeBUS {
         employeeDAO.addEmployee(e);
     }
     
-    public void updateEmployee(String emplNum, String emplName,String email,float salary,Date birthday,String address, String password,String confirmPassword, String role, int workExperience, boolean gender) throws ClassNotFoundException, SQLException{
+    public void updateEmployee(String emplNum, String emplName,String email,float salary,Date birthday,String address, String password,String confirmPassword, String role, int workExperience, boolean gender) throws ClassNotFoundException, Exception{
         Employee e = new Employee();
         e.setEmployeeNumber(emplNum);
         e.setEmployeeName(emplName);

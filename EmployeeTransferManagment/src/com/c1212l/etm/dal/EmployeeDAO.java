@@ -55,6 +55,11 @@ public class EmployeeDAO extends ConnectionTool {
         if (pstmt.executeQuery().next()) {
             error += "Error: Duplicate employee number\n";
         }
+        pstmt = conn.prepareStatement("select * from employee where email= ?");
+        pstmt.setString(1, employee.getEmail());
+        if (pstmt.executeQuery().next()) {
+            error += "Error: Duplicate employee email\n";
+        }
         if (error.equals("")) {
             CallableStatement cs = conn.prepareCall("{call addEmployee(?, ?, ?, ?,?,?, ?, ?,?,?,?,?,?)}");
             cs.setString(1, employee.getEmployeeNumber());
@@ -77,22 +82,39 @@ public class EmployeeDAO extends ConnectionTool {
         closeConnection();
     }
 
-    public void updateEmployee(Employee employee) throws ClassNotFoundException, SQLException {
+    public void updateEmployee(Employee employee) throws ClassNotFoundException, Exception {
         initConnection();
-        CallableStatement cs = conn.prepareCall("{call updateEmployee(?, ?, ?, ?, ?, ?,?,?,?,?,?)}");
-        cs.setString(1, employee.getEmployeeNumber());
-        cs.setString(2, employee.getEmployeeName());
-        cs.setString(3, employee.getEmail());
-        cs.setFloat(4, employee.getSalary());
-        cs.setDate(5, employee.getBirthday());
-        cs.setString(6,employee.getAddress());
-        cs.setString(7, employee.getPassword());
-        cs.setString(8, employee.getConfirmPassword());
-        cs.setString(9, employee.getRole());
-        cs.setInt(10, employee.getWorkExperience());
-        cs.setBoolean(11, employee.getGender());
-        cs.executeUpdate();
-        closeConnection();
+        String error = "";
+        PreparedStatement pstmt = conn.prepareStatement("select * from employee where employeeNumber = ?");
+        pstmt.setString(1, employee.getEmployeeNumber());
+        if (pstmt.executeQuery().next()) {
+            error += "Error: Update duplicate employee number\n";
+        }
+        pstmt = conn.prepareStatement("select * from employee where email= ?");
+        pstmt.setString(1, employee.getEmail());
+        if (pstmt.executeQuery().next()) {
+            error += "Error: Update duplicate employee email\n";
+        }
+        if(error.equals(""))
+        {
+            CallableStatement cs = conn.prepareCall("{call updateEmployee(?, ?, ?, ?, ?, ?,?,?,?,?,?)}");
+            cs.setString(1, employee.getEmployeeNumber());
+            cs.setString(2, employee.getEmployeeName());
+            cs.setString(3, employee.getEmail());
+            cs.setFloat(4, employee.getSalary());
+            cs.setDate(5, employee.getBirthday());
+            cs.setString(6,employee.getAddress());
+            cs.setString(7, employee.getPassword());
+            cs.setString(8, employee.getConfirmPassword());
+            cs.setString(9, employee.getRole());
+            cs.setInt(10, employee.getWorkExperience());
+            cs.setBoolean(11, employee.getGender());
+            cs.executeUpdate();
+            closeConnection();
+        }else{
+            throw new Exception(error);
+ 
+        }
     }
 
     public void deleteEmployee(Employee employee) throws ClassNotFoundException, SQLException, Exception {

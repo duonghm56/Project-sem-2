@@ -14,32 +14,33 @@ public class EmployeeClient {
     private String fullName;
     private boolean gender;
     private String email;
+    private float salary;
+    private Date birthday;
     private String address;
     private String currentDepartment;
     private String currentLocation;
     private String currentProject;
     private String role;
     private String workExperience;
-    private String reason;
-    private Date birthday;
     public EmployeeClient() {
     }
 
-    public EmployeeClient(Date birthday) {
-        this.birthday = birthday;
-    }
-    
-    public EmployeeClient(String fullName, boolean gender, String email, String address, String currentDepartment, String currentLocation, String currentProject, String role, String workExperience, String reason) {
+    public EmployeeClient(String fullName, boolean gender, String email, float salary, Date birthday, String address, String currentDepartment, String currentLocation, String currentProject, String role, String workExperience) {
         this.fullName = fullName;
         this.gender = gender;
         this.email = email;
+        this.salary = salary;
+        this.birthday = birthday;
         this.address = address;
         this.currentDepartment = currentDepartment;
         this.currentLocation = currentLocation;
         this.currentProject = currentProject;
         this.role = role;
         this.workExperience = workExperience;
-        this.reason = reason;
+    }
+    
+    public EmployeeClient(Date birthday) {
+        this.birthday = birthday;
     }
 
     public Date getBirthday() {
@@ -58,7 +59,7 @@ public class EmployeeClient {
         this.fullName = fullName;
     }
 
-    public boolean isGender() {
+    public boolean getGender() {
         return gender;
     }
 
@@ -122,12 +123,12 @@ public class EmployeeClient {
         this.workExperience = workExperience;
     }
 
-    public String getReason() {
-        return reason;
+    public float getSalary() {
+        return salary;
     }
 
-    public void setReason(String reason) {
-        this.reason = reason;
+    public void setSalary(float salary) {
+        this.salary = salary;
     }
     
 }

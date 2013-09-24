@@ -234,7 +234,8 @@ public class ProjectPanel extends javax.swing.JPanel {
     private void btnEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditActionPerformed
         if (txtProjectID.getText().equals("")) {
             JOptionPane.showMessageDialog(null, "Please select project");
-        } else {
+            return;
+        } 
             try {
                 projectBUS.updateProject(
                         txtProjectID.getText(),
@@ -243,14 +244,9 @@ public class ProjectPanel extends javax.swing.JPanel {
                         txtEndDate.getText());
                 reloadData();
                 JOptionPane.showMessageDialog(null, "Update Success !!!");
-            }catch(SQLException ex){
-                if(ex.getMessage().contains("UNIQUE KEY")){
-                    JOptionPane.showMessageDialog(null, "Error: Duplicate name!", "Error", JOptionPane.ERROR_MESSAGE);
-                }
-            }catch (Exception ex) {
+            }catch(Exception ex){
                 JOptionPane.showMessageDialog(null, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
-                ex.printStackTrace();
-            }
+
         }
     }//GEN-LAST:event_btnEditActionPerformed
 

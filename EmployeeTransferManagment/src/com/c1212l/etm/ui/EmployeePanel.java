@@ -378,8 +378,8 @@ public class EmployeePanel extends javax.swing.JPanel {
                     );
             reloadData();
         } catch (Exception ex) {
-            JOptionPane.showMessageDialog(null, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
-            ex.printStackTrace();
+                    JOptionPane.showMessageDialog(null, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+
         }
     }//GEN-LAST:event_btnUpdateActionPerformed
 
