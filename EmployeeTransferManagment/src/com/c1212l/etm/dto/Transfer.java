@@ -32,26 +32,6 @@ public class Transfer {
     private int toDepartmentID;
     private int fromLocationID;
     private int toLocationID;
-    public Transfer() {
-    }
-
-    public Transfer(int transferID, int transferTypeID, int employeeID, Date transferRelievingDate, Date transferJoiningDate, Date requestDate, String reason, boolean approve, Date approveDate, int fromProjectID, int toProjectID, int fromDepartmentID, int toDepartmentID, int fromLocationID, int toLocationID) {
-        this.transferID = transferID;
-        this.transferTypeID = transferTypeID;
-        this.employeeID = employeeID;
-        this.transferRelievingDate = transferRelievingDate;
-        this.transferJoiningDate = transferJoiningDate;
-        this.requestDate = requestDate;
-        this.reason = reason;
-        this.approve = approve;
-        this.approveDate = approveDate;
-        this.fromProjectID = fromProjectID;
-        this.toProjectID = toProjectID;
-        this.fromDepartmentID = fromDepartmentID;
-        this.toDepartmentID = toDepartmentID;
-        this.fromLocationID = fromLocationID;
-        this.toLocationID = toLocationID;
-    }
 
     public int getTransferID() {
         return transferID;
@@ -109,7 +89,7 @@ public class Transfer {
         this.reason = reason;
     }
 
-    public boolean getApprove() {
+    public boolean isApprove() {
         return approve;
     }
 
@@ -173,6 +153,10 @@ public class Transfer {
         this.toLocationID = toLocationID;
     }
     
+    public Transfer() {
+    }
+
+   
      public Vector getVector(){
         Vector v = new Vector();
         v.add(transferID);
@@ -184,7 +168,7 @@ public class Transfer {
         v.add(transferJoiningDate);
         v.add(requestDate);
         v.add(reason);
-        v.add(approve?"Approve":"Unapprove");
+        v.add(approve?"Approve":"Disapprove");
         v.add(approveDate);
         Project project;
         project= new ProjectDAO().getProjectById(fromProjectID);

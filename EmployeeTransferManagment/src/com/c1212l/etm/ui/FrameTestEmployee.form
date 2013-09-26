@@ -14,6 +14,12 @@
     </Component>
     <Component class="com.c1212l.etm.ui.EmployeePanel" name="employeePanel4">
     </Component>
+    <Component class="com.c1212l.etm.ui.EmployeePanel" name="employeePanel5">
+    </Component>
+    <Component class="com.c1212l.etm.ui.EmployeePanel" name="employeePanel3">
+    </Component>
+    <Component class="com.c1212l.etm.ui.EmployeePanel" name="employeePanel7">
+    </Component>
   </NonVisualComponents>
   <Properties>
     <Property name="defaultCloseOperation" type="int" value="3"/>
@@ -39,7 +45,7 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="employeePanel5" min="-2" max="-2" attributes="0"/>
+              <Component id="employeePanel6" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="32767" attributes="0"/>
           </Group>
       </Group>
@@ -48,14 +54,14 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="employeePanel5" min="-2" max="-2" attributes="0"/>
+              <Component id="employeePanel6" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
   </Layout>
   <SubComponents>
-    <Component class="com.c1212l.etm.ui.EmployeePanel" name="employeePanel5">
+    <Component class="com.c1212l.etm.ui.EmployeePanel" name="employeePanel6">
     </Component>
   </SubComponents>
 </Form>

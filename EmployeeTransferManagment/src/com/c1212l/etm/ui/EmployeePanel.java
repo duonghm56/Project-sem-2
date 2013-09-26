@@ -404,10 +404,37 @@ public class EmployeePanel extends javax.swing.JPanel {
             if (!txtConfirmPassword.getText().equals(txtPassword.getText())) {
                 throw new Exception("ConfirmPassword must like Password");
             }
-            Pattern pt=Pattern.compile(".+@.+\\.[a-zA-Z]+");
-            Matcher mc = pt.matcher(txtEmail.getText());
-            if (!mc.find()) {
+            
+            Pattern ptEmplName = Pattern.compile("^([A-Za-z]+[\\s]?)+$");
+            Matcher mcEmplName = ptEmplName.matcher(txtEmployeeName.getText());
+            if (!mcEmplName.find()) {
+                throw new Exception("Name is not valid");
+            }
+            
+            Pattern ptEmplRole = Pattern.compile("^([A-Za-z]+[\\s]?)+$");
+            Matcher mcEmplRole = ptEmplName.matcher(txtEmployeeRole.getText());
+            if (!mcEmplRole.find()) {
+                throw new Exception("Employee Role is not valid");
+            }
+            
+            Pattern ptemail=Pattern.compile("^[\\w.-]+@[\\w.-]+\\.[A-Za-z]{2,4}$");
+            Matcher mcemail = ptemail.matcher(txtEmail.getText());
+            if (!mcemail.find()) {
                 throw new Exception("Email is not valid");
+            }
+            
+            Pattern ptEmplNumber = Pattern.compile("^E+[\\d]{4}$");
+            Matcher mcEmplNumber = ptEmplNumber.matcher(txtEmployeeNumber.getText());
+            if (!mcEmplNumber.find()) {
+                throw new Exception("Employee Number is not valid");
+            }
+            Pattern ptWorkExperience = Pattern.compile("^[\\d]{2}$");
+            Matcher mcWorkExperience = ptWorkExperience.matcher(txtWorkExperience.getText());
+            if (!mcWorkExperience.find()) {
+                throw new Exception("Work Experience is not valid");
+            }
+            if (Integer.parseInt(txtWorkExperience.getText())>50) {
+                throw new Exception("Work Experience ");
             }
             
             employeeBUS.addEmployee(

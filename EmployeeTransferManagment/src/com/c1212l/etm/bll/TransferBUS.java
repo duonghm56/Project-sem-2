@@ -25,24 +25,6 @@ public class TransferBUS {
     public ArrayList<Transfer> getAllTransfer() throws ClassNotFoundException, SQLException {
         return transferDAO.getAllTransfer();
     }
-    public void addTransfer(int transferTypeID, int employeeID, Date transferRelievingDate, Date transferJoiningDate, Date requestDate, String reason, boolean approve, Date approveDate, int fromProjectID, int toProjectID, int fromDepartmentID, int toDepartmentID, int fromLocationID, int toLocationID) throws ClassNotFoundException, SQLException{
-        Transfer transfer = new Transfer();
-        transfer.setTransferTypeID(transferTypeID);
-        transfer.setEmployeeID(employeeID);
-        transfer.setTransferRelievingDate(transferRelievingDate);
-        transfer.setTransferJoiningDate(transferJoiningDate);
-        transfer.setRequestDate(requestDate);
-        transfer.setReason(reason);
-        transfer.setApprove(approve);
-        transfer.setApproveDate(approveDate);
-        transfer.setFromProjectID(fromProjectID);
-        transfer.setToProjectID(toProjectID);
-        transfer.setFromDepartmentID(fromDepartmentID);
-        transfer.setToDepartmentID(toDepartmentID);
-        transfer.setFromLocationID(fromLocationID);
-        transfer.setToLocationID(toLocationID);
-        transferDAO.addTransfer(transfer);
-    }
     public void updateTransfer(int transferID,int transferTypeID, int employeeID, Date transferRelievingDate, Date transferJoiningDate, Date requestDate, String reason, boolean approve, Date approveDate, int fromProjectID, int toProjectID, int fromDepartmentID, int toDepartmentID, int fromLocationID, int toLocationID) throws ClassNotFoundException, SQLException{
        Transfer transfer = new Transfer();
        transfer.setTransferID(transferID);

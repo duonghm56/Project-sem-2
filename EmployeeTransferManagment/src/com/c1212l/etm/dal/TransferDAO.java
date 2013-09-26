@@ -46,26 +46,6 @@ public class TransferDAO extends ConnectionTool{
         return result;
     }
 
-       public void addTransfer(Transfer transfer) throws ClassNotFoundException, SQLException{
-        initConnection();
-        CallableStatement cs = conn.prepareCall("{call addTransfer(?, ?, ?, ?, ?, ?, ?, ?,?,?,?,?,?,?)}");
-        cs.setInt(1, transfer.getTransferTypeID());
-        cs.setInt(2, transfer.getEmployeeID());
-        cs.setDate(3, transfer.getTransferRelievingDate());
-        cs.setDate(4,transfer.getTransferJoiningDate());
-        cs.setDate(5,transfer.getRequestDate());
-        cs.setString(6, transfer.getReason());
-        cs.setBoolean(7, transfer.getApprove());
-        cs.setDate(8, transfer.getApproveDate());   
-        cs.setInt(9, transfer.getFromProjectID());
-        cs.setInt(10, transfer.getToProjectID());
-        cs.setInt(11, transfer.getFromDepartmentID()); 
-        cs.setInt(12, transfer.getToDepartmentID());
-        cs.setInt(13, transfer.getFromLocationID()); 
-        cs.setInt(14, transfer.getToLocationID());
-        cs.executeUpdate();
-        closeConnection();        
-    }
        public void updateTransfer(Transfer transfer) throws ClassNotFoundException, SQLException{
         initConnection();
         CallableStatement cs = conn.prepareCall("{call updateTransfer(?, ?, ?, ?, ?, ?, ?, ?,?,?,?,?,?,?,?)}");
@@ -76,7 +56,7 @@ public class TransferDAO extends ConnectionTool{
         cs.setDate(5,transfer.getTransferJoiningDate());
         cs.setDate(6,transfer.getRequestDate());
         cs.setString(7, transfer.getReason());
-        cs.setBoolean(8, transfer.getApprove());
+        cs.setBoolean(8, transfer.isApprove());
         cs.setDate(9, transfer.getApproveDate());   
         cs.setInt(10, transfer.getFromProjectID());
         cs.setInt(11, transfer.getToProjectID());

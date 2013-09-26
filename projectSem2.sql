@@ -8,7 +8,7 @@ create table location(
 	locationID int primary key identity,
 	locationName nvarchar(200) unique
 )
-
+drop table location
 create table department(
 	departmentID int primary key identity,
 	departmentName nvarchar(200) unique,
@@ -187,10 +187,10 @@ as begin
 end
 ------------------------------------------------------------------------
 go
-create procedure addTransfer(@transferTypeID int,@employeeID int, @transferRelievingDate Date, @transferJoiningDate Date, @requestDate Date, @reason text, @approve bit, @approveDate Date, @fromProjectID int, @toProjectID int, @fromDepartmentID int, @toDepartmentID int, @fromLocationID int, @toLocationID int)
+create procedure addTransfer(@transferTypeID int,@employeeID int, @requestDate Date, @reason text, @approve bit, @fromProjectID int, @toProjectID int, @fromDepartmentID int, @toDepartmentID int, @fromLocationID int, @toLocationID int)
 as
 begin
-	insert into [transfer] values(@transferTypeID,@employeeID, @transferRelievingDate, @transferJoiningDate, @requestDate, @reason, @approve , @approveDate , @fromProjectID, @toProjectID, @fromDepartmentID, @toDepartmentID, @fromLocationID, @toLocationID)
+	insert into [transfer](transferTypeID,employeeID,requestDate,reason,approve,fromProjectID,toProjectID,fromDepartmentID,toDepartmentID,fromLocationID,toLocationID) values(@transferTypeID,@employeeID, @requestDate, @reason, @approve , @fromProjectID, @toProjectID, @fromDepartmentID, @toDepartmentID, @fromLocationID, @toLocationID)
 end
 go
 create procedure updateTransfer(@transferID int,@transferTypeID int,@employeeID int, @transferRelievingDate Date, @transferJoiningDate Date, @requestDate Date, @reason text, @approve bit, @approveDate Date, @fromProjectID int, @toProjectID int, @fromDepartmentID int, @toDepartmentID int, @fromLocationID int, @toLocationID int)
@@ -214,4 +214,5 @@ Select * from employee Inner Join department On
          Inner Join project On project.projectID =employee.projectID
          Inner Join [transfer] On employee.employeeID = [transfer].employeeID
          Where employee.email = 'hung@gmail.com'
+Select * from transfer
          
