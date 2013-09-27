@@ -215,4 +215,11 @@ Select * from employee Inner Join department On
          Inner Join [transfer] On employee.employeeID = [transfer].employeeID
          Where employee.email = 'hung@gmail.com'
 Select * from transfer
+Select email,password from employee
+union Select email,password from admin
+go
+CREATE VIEW viewtranempl AS
+SELECT employeeName,employeeNumber,fromProjectID,toProjectID,fromDepartmentID,toDepartmentID,fromLocationID,toLocationID FROM [transfer] 
+Inner Join employee On employee.employeeID = transfer.employeeID
+
          
