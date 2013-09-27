@@ -8,7 +8,7 @@ create table location(
 	locationID int primary key identity,
 	locationName nvarchar(200) unique
 )
-drop table location
+--drop table location
 create table department(
 	departmentID int primary key identity,
 	departmentName nvarchar(200) unique,
@@ -21,7 +21,7 @@ create table project(
 	createDate date,
 	endDate date
 )
-drop table employee
+--drop table employee
 create table employee(
 	employeeID int primary key identity,
 	employeeNumber varchar(20) unique not null,
@@ -43,7 +43,7 @@ create table transferType(
 	transferTypeID int primary key identity,
 	transferTypeName nvarchar(200) not null unique
 )
-drop table [transfer]
+--drop table [transfer]
 create table [transfer](
 	transferID int primary key identity,
 	transferTypeID int references transferType(transferTypeID),
@@ -220,12 +220,16 @@ Select * from employee Inner Join department On
          Inner Join project On project.projectID =employee.projectID
          Inner Join [transfer] On employee.employeeID = [transfer].employeeID
          Where employee.email = 'hung@gmail.com'
+         
 Select * from transfer
 Select email,password from employee
 union Select email,password from admin
-go
-CREATE VIEW viewtranempl AS
-SELECT employeeName,employeeNumber,fromProjectID,toProjectID,fromDepartmentID,toDepartmentID,fromLocationID,toLocationID FROM [transfer] 
-Inner Join employee On employee.employeeID = transfer.employeeID
 
-         
+go
+
+CREATE VIEW viewtranempl AS
+SELECT [transfer].transferID, employeeName,employeeNumber,fromProjectID,toProjectID,fromDepartmentID,toDepartmentID,fromLocationID,toLocationID FROM [transfer] 
+Inner Join employee On employee.employeeID = transfer.employeeID
+ 
+
+      
