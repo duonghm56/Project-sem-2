@@ -31,26 +31,28 @@ import javax.swing.table.DefaultTableModel;
  * @author Luu Bi
  */
 public class TransferPanel extends javax.swing.JPanel {
-        public TransferPanel() {
-            try {
-                initComponents();
-                reloadData();
-                initCmbTransferType();
-                initCmbFromProject();
-                initCmbToProject();
-                initCmbFromDepartment();
-                initCmbToDepartment();
-                initCmbFromLocation();
-                initCmbToLocation();
-                initCmbApprove();
-                convertDate();
-            } catch (ClassNotFoundException ex) {
-                Logger.getLogger(TransferPanel.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (SQLException ex) {
-                Logger.getLogger(TransferPanel.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        
+
+    public TransferPanel() {
+        try {
+            initComponents();
+            reloadData();
+            initCmbTransferType();
+            initCmbFromProject();
+            initCmbToProject();
+            initCmbFromDepartment();
+            initCmbToDepartment();
+            initCmbFromLocation();
+            initCmbToLocation();
+            initCmbApprove();
+            convertDate();
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(TransferPanel.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(TransferPanel.class.getName()).log(Level.SEVERE, null, ex);
         }
+
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -95,38 +97,57 @@ public class TransferPanel extends javax.swing.JPanel {
         txtRequestDate = new javax.swing.JTextField();
         dcTranReDate = new com.toedter.calendar.JDateChooser();
         txtApproveDate = new javax.swing.JTextField();
+        btnReset = new javax.swing.JButton();
+        jLabel16 = new javax.swing.JLabel();
+        txtEmployeeNumber = new javax.swing.JTextField();
 
         setEnabled(false);
+        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setText("Transfer ID:");
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 10, -1, -1));
 
-        jLabel2.setText("Employee :");
+        jLabel2.setText("Employee Name");
+        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 100, -1, -1));
 
-        jLabel3.setText("Transfer Type:");
+        jLabel3.setText("Transfer Type");
+        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 40, -1, 10));
 
-        jLabel4.setText("Transfer Relieving Date:");
+        jLabel4.setText("Relieving Date");
+        add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 60, -1, -1));
 
-        jLabel5.setText("Transfer Joining Date:");
+        jLabel5.setText("Joining Date");
+        add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 100, -1, -1));
 
-        jLabel6.setText("Request Date:");
+        jLabel6.setText("Request Date");
+        add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 20, -1, -1));
 
-        jLabel7.setText("Reason:");
+        jLabel7.setText("Reason");
+        add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 310, -1, -1));
 
-        jLabel8.setText("Approve:");
+        jLabel8.setText("Approve");
+        add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 260, -1, -1));
 
-        jLabel9.setText("Approve Date:");
+        jLabel9.setText("Approve Date");
+        add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 230, -1, -1));
 
-        jLabel10.setText("From Project:");
+        jLabel10.setText("From Project");
+        add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 150, -1, -1));
 
-        jLabel11.setText("To Project :");
+        jLabel11.setText("To Project");
+        add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 180, -1, -1));
 
-        jLabel12.setText("From Department:");
+        jLabel12.setText("From Department");
+        add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 150, -1, -1));
 
-        jLabel13.setText("To Department :");
+        jLabel13.setText("To Department ");
+        add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 180, -1, -1));
 
-        jLabel14.setText("From Location:");
+        jLabel14.setText("From Location");
+        add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 230, -1, -1));
 
-        jLabel15.setText("To Location:");
+        jLabel15.setText("To Location");
+        add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 260, -1, -1));
 
         txtTransferID.setEnabled(false);
         txtTransferID.addActionListener(new java.awt.event.ActionListener() {
@@ -134,6 +155,8 @@ public class TransferPanel extends javax.swing.JPanel {
                 txtTransferIDActionPerformed(evt);
             }
         });
+        add(txtTransferID, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 10, 120, -1));
+        add(dcTranJoinDate, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 90, 220, 30));
 
         jScrollPane1.setVerifyInputWhenFocusTarget(false);
         jScrollPane1.setWheelScrollingEnabled(false);
@@ -144,12 +167,29 @@ public class TransferPanel extends javax.swing.JPanel {
         txtReason.setEnabled(false);
         jScrollPane1.setViewportView(txtReason);
 
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 300, 620, 80));
+
+        add(cmbFromDepartment, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 150, 220, -1));
+
+        add(cmbToProject, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 180, 200, -1));
+
+        add(cmbToDepartment, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 180, 220, -1));
+
+        add(cmbTransferType, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 40, 200, 20));
+
+        add(cmbFromProject, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 150, 200, -1));
+
+        add(cmbFromLocation, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 230, 200, -1));
+
+        add(cmbToLocation, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 260, 200, -1));
+
         btnUpdate.setText("Update");
         btnUpdate.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnUpdateActionPerformed(evt);
             }
         });
+        add(btnUpdate, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 390, -1, -1));
 
         btnDelete.setText("Delete");
         btnDelete.addActionListener(new java.awt.event.ActionListener() {
@@ -157,6 +197,7 @@ public class TransferPanel extends javax.swing.JPanel {
                 btnDeleteActionPerformed(evt);
             }
         });
+        add(btnDelete, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 390, -1, -1));
 
         jScrollPane3.setPreferredSize(new java.awt.Dimension(300, 200));
 
@@ -178,12 +219,16 @@ public class TransferPanel extends javax.swing.JPanel {
         });
         jScrollPane3.setViewportView(tbTransferData);
 
-        txtEmployeeName.setEnabled(false);
+        add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 420, 888, 120));
+
+        add(cmbApprove, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 230, 220, -1));
+
         txtEmployeeName.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtEmployeeNameActionPerformed(evt);
             }
         });
+        add(txtEmployeeName, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 100, 200, 30));
 
         txtRequestDate.setEnabled(false);
         txtRequestDate.addActionListener(new java.awt.event.ActionListener() {
@@ -191,172 +236,44 @@ public class TransferPanel extends javax.swing.JPanel {
                 txtRequestDateActionPerformed(evt);
             }
         });
+        add(txtRequestDate, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 20, 220, -1));
+        add(dcTranReDate, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 50, 220, 30));
 
         txtApproveDate.setEnabled(false);
+        add(txtApproveDate, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 260, 220, 22));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(20, 20, 20)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1)
-                    .addComponent(jLabel3)
-                    .addComponent(jLabel4)
-                    .addComponent(jLabel5)
-                    .addComponent(jLabel6)
-                    .addComponent(jLabel7)
-                    .addComponent(jLabel2))
-                .addGap(33, 33, 33)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(dcTranJoinDate, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(txtEmployeeName, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(cmbTransferType, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(txtTransferID)
-                        .addComponent(txtRequestDate, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(dcTranReDate, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(66, 66, 66)
-                        .addComponent(btnUpdate)))
-                .addGap(92, 92, 92)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnDelete)
-                    .addComponent(jLabel9)
-                    .addComponent(jLabel11)
-                    .addComponent(jLabel12)
-                    .addComponent(jLabel13)
-                    .addComponent(jLabel14)
-                    .addComponent(jLabel15)
-                    .addComponent(jLabel8)
-                    .addComponent(jLabel10))
-                .addGap(29, 29, 29)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(cmbFromDepartment, 0, 118, Short.MAX_VALUE)
-                    .addComponent(cmbToDepartment, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(cmbFromLocation, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(cmbToLocation, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(cmbFromProject, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(cmbToProject, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(cmbApprove, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(txtApproveDate))
-                .addContainerGap(52, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(34, 34, 34)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(8, 8, 8)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel8)
-                            .addComponent(cmbApprove, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtTransferID, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(56, 56, 56)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(cmbFromProject, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel10))
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel13)
-                            .addComponent(cmbToDepartment, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(6, 6, 6)
-                        .addComponent(jLabel1)
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(dcTranJoinDate, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                            .addComponent(cmbTransferType, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(jLabel3))
-                                        .addGap(14, 14, 14))
-                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                            .addComponent(txtApproveDate, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                                .addGap(8, 8, 8)
-                                                .addComponent(jLabel9)))
-                                        .addGap(13, 13, 13)))
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                                .addComponent(jLabel11)
-                                                .addComponent(cmbToProject, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                            .addGroup(layout.createSequentialGroup()
-                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                                    .addComponent(txtEmployeeName, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                    .addComponent(jLabel2))
-                                                .addGap(8, 8, 8)
-                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                                    .addComponent(jLabel4)
-                                                    .addComponent(dcTranReDate, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                                        .addGap(26, 26, 26)
-                                        .addComponent(jLabel5))
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                        .addComponent(jLabel12)
-                                        .addComponent(cmbFromDepartment, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                        .addGap(16, 16, 16)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtRequestDate, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(12, 12, 12)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel14)
-                            .addComponent(cmbFromLocation, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(cmbToLocation, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel15)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(35, 35, 35)
-                        .addComponent(jLabel7))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(12, 12, 12)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(25, 25, 25)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnUpdate)
-                    .addComponent(btnDelete))
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(4, 4, 4))
-        );
+        btnReset.setText("Reset");
+        add(btnReset, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 390, 70, -1));
+
+        jLabel16.setText("Employee Number");
+        add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 70, -1, -1));
+        add(txtEmployeeNumber, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 70, 200, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void tbTransferDataMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbTransferDataMouseClicked
-        // TODO add your handling code here:
-            int row = tbTransferData.rowAtPoint(evt.getPoint());
-            
-            txtTransferID.setText(tbTransferData.getValueAt(row,0).toString());
-            cmbTransferType.setSelectedItem(new KeyValue(0,tbTransferData.getValueAt(row,1).toString()));
-            txtEmployeeName.setText(tbTransferData.getValueAt(row,2).toString());
-//            dcTranJoinDate.setDate(transferJoiningDate);
-             txtRequestDate.setText(tbTransferData.getValueAt(row,5).toString());
-            txtReason.setText(tbTransferData.getValueAt(row,6).toString());
-            cmbApprove.setSelectedItem(new KeyValue(0, tbTransferData.getValueAt(row,7).toString()));
-            cmbFromProject.setSelectedItem(new KeyValue(0, tbTransferData.getValueAt(row,9).toString()));
-            cmbToProject.setSelectedItem(new KeyValue(0, tbTransferData.getValueAt(row,10).toString()));
-            cmbFromDepartment.setSelectedItem(new KeyValue(0, tbTransferData.getValueAt(row, 11).toString()));
-            cmbToDepartment.setSelectedItem(new KeyValue(0, tbTransferData.getValueAt(row, 12).toString()));
-            cmbFromLocation.setSelectedItem(new KeyValue(0, tbTransferData.getValueAt(row,13).toString()));
-            cmbToLocation.setSelectedItem(new KeyValue(0, tbTransferData.getValueAt(row, 14).toString()));
+        updateFieldWhenSelectTransfer();
+        /*
+         int row = tbTransferData.rowAtPoint(evt.getPoint());
+        
+         txtTransferID.setText(tbTransferData.getValueAt(row, 0).toString());
+         cmbTransferType.setSelectedItem(new KeyValue(0, tbTransferData.getValueAt(row, 1).toString()));
+         txtEmployeeName.setText(tbTransferData.getValueAt(row, 2).toString());
+         //            dcTranJoinDate.setDate(transferJoiningDate);
+         txtRequestDate.setText(tbTransferData.getValueAt(row, 5).toString());
+         txtReason.setText(tbTransferData.getValueAt(row, 6).toString());
+         cmbApprove.setSelectedItem(new KeyValue(0, tbTransferData.getValueAt(row, 7).toString()));
+         cmbFromProject.setSelectedItem(new KeyValue(0, tbTransferData.getValueAt(row, 9).toString()));
+         cmbToProject.setSelectedItem(new KeyValue(0, tbTransferData.getValueAt(row, 10).toString()));
+         cmbFromDepartment.setSelectedItem(new KeyValue(0, tbTransferData.getValueAt(row, 11).toString()));
+         cmbToDepartment.setSelectedItem(new KeyValue(0, tbTransferData.getValueAt(row, 12).toString()));
+         cmbFromLocation.setSelectedItem(new KeyValue(0, tbTransferData.getValueAt(row, 13).toString()));
+         cmbToLocation.setSelectedItem(new KeyValue(0, tbTransferData.getValueAt(row, 14).toString()));
+         */
     }//GEN-LAST:event_tbTransferDataMouseClicked
 
     private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
         // TODO add your handling code here:
-              try {
+        try {
             if (txtTransferID.getText().equals("")) {
                 throw new Exception("Please select Transfer ID");
             }
@@ -383,17 +300,17 @@ public class TransferPanel extends javax.swing.JPanel {
 
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
         // TODO add your handling code here:
-               if(txtTransferID.getText().equals("")){
+        if (txtTransferID.getText().equals("")) {
             JOptionPane.showMessageDialog(null, "Please select Transfer ID");
-        }else{
+        } else {
             try {
                 if (JOptionPane.showConfirmDialog(null, "Are you sure to delete?", "Delete", JOptionPane.YES_NO_OPTION) == JOptionPane.OK_OPTION) {
                     transferBUS.deleteTransfer(Integer.parseInt(txtTransferID.getText()));
                     JOptionPane.showMessageDialog(null, "Delete success!");
                     reloadData();
                 }
-            } catch (Exception ex){
-                    JOptionPane.showMessageDialog(null, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+            } catch (Exception ex) {
+                JOptionPane.showMessageDialog(null, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
 
             }
         }
@@ -410,9 +327,9 @@ public class TransferPanel extends javax.swing.JPanel {
     private void txtRequestDateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtRequestDateActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtRequestDateActionPerformed
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnDelete;
+    private javax.swing.JButton btnReset;
     private javax.swing.JButton btnUpdate;
     private javax.swing.JComboBox cmbApprove;
     private javax.swing.JComboBox cmbFromDepartment;
@@ -431,6 +348,7 @@ public class TransferPanel extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -444,6 +362,7 @@ public class TransferPanel extends javax.swing.JPanel {
     private javax.swing.JTable tbTransferData;
     private javax.swing.JTextField txtApproveDate;
     private javax.swing.JTextField txtEmployeeName;
+    private javax.swing.JTextField txtEmployeeNumber;
     private javax.swing.JTextArea txtReason;
     private javax.swing.JTextField txtRequestDate;
     private javax.swing.JTextField txtTransferID;
@@ -451,17 +370,23 @@ public class TransferPanel extends javax.swing.JPanel {
     DefaultTableModel tblModel;
     ArrayList<Transfer> lstTransfer;
     TransferBUS transferBUS = new TransferBUS();
-    private Date tranReDate,tranJoinDate;
+    private Date tranReDate, tranJoinDate;
+
     private void initTable() {
         Vector header = new Vector();
-        header.add("Transfer ID:");
-        header.add("Transfer Type");
-        header.add("Employee");
-        header.add("Transfer Relieving Date");
-        header.add("Transfer Joining Date");
+        //---Ko hien thi
+        header.add("ID");
+        header.add("Type");
+        //------------------------------------
+        header.add("Employee Number");
+        header.add("Name");
+        //---Ko hien thi
+        header.add("Request Date");
+        header.add("Relieving Date");
+        header.add("Joining Date");
         header.add("Request Date");
         header.add("Reason");
-        header.add("Appove");
+        //------------------------------------
         header.add("Approve Date");
         header.add("From Project");
         header.add("To Project");
@@ -469,8 +394,24 @@ public class TransferPanel extends javax.swing.JPanel {
         header.add("To Department");
         header.add("From Location");
         header.add("To Location");
+        header.add("Appove");
         tblModel = new DefaultTableModel(header, 0);
         tbTransferData.setModel(tblModel);
+
+        makeInvisibleColumn(0);
+        makeInvisibleColumn(1);
+        makeInvisibleColumn(4);
+        makeInvisibleColumn(5);
+        makeInvisibleColumn(6);
+        makeInvisibleColumn(7);
+
+    }
+
+    private void makeInvisibleColumn(int col) {
+        tbTransferData.getColumnModel().getColumn(col).setMaxWidth(0);
+        tbTransferData.getColumnModel().getColumn(col).setMinWidth(0);
+        tbTransferData.getColumnModel().getColumn(col).setPreferredWidth(0);
+        tbTransferData.getColumnModel().getColumn(col).setResizable(false);
     }
 
     private void fillData(ArrayList<Transfer> lst) {
@@ -492,92 +433,205 @@ public class TransferPanel extends javax.swing.JPanel {
             Logger.getLogger(TransferPanel.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-     private void initCmbTransferType() throws ClassNotFoundException, SQLException {
+
+    private void initCmbTransferType() throws ClassNotFoundException, SQLException {
         cmbTransferType.removeAllItems();
+        cmbTransferType.addItem(new KeyValue(-1, ""));
         TransferTypeBUS transferTypeBUS = new TransferTypeBUS();
         ArrayList<TransferType> arrTransferType = transferTypeBUS.getAllTransferType();
         for (TransferType transferType : arrTransferType) {
             cmbTransferType.addItem(new KeyValue(transferType.getTransferTypeID(), transferType.getTransferTypeName()));
         }
     }
+
     private void initCmbFromProject() throws ClassNotFoundException, SQLException {
         cmbFromProject.removeAllItems();
+        cmbFromProject.addItem(new KeyValue(-1, ""));
         ProjectBUS projectBUS = new ProjectBUS();
         ArrayList<Project> arrProject = projectBUS.getAllProject();
         for (Project p : arrProject) {
             cmbFromProject.addItem(new KeyValue(p.getProjectID(), p.getProjectName()));
         }
     }
-        private void initCmbToProject() throws ClassNotFoundException, SQLException {
+
+    private void initCmbToProject() throws ClassNotFoundException, SQLException {
         cmbToProject.removeAllItems();
+        cmbToProject.addItem(new KeyValue(-1, ""));
         ProjectBUS projectBUS = new ProjectBUS();
         ArrayList<Project> arrProject = projectBUS.getAllProject();
         for (Project p : arrProject) {
             cmbToProject.addItem(new KeyValue(p.getProjectID(), p.getProjectName()));
         }
- }
-           private void initCmbFromLocation() throws ClassNotFoundException, SQLException{
-            cmbFromLocation.removeAllItems();
-            LocationBUS locationBUS = new LocationBUS();
-            ArrayList<Location> arrLocation = locationBUS.getAllLocation();
-            for (Location location : arrLocation) {
-                 cmbFromLocation.addItem(new KeyValue(location.getLocationID(),location.getLocationName()));
-            }
-    }
-           private void initCmbToLocation() throws ClassNotFoundException, SQLException{
-            cmbToLocation.removeAllItems();
-            LocationBUS locationBUS = new LocationBUS();
-            ArrayList<Location> arrLocation = locationBUS.getAllLocation();
-            for (Location location : arrLocation) {
-                 cmbToLocation.addItem(new KeyValue(location.getLocationID(),location.getLocationName()));
-            }
-    }   
-     private void initCmbFromDepartment() throws ClassNotFoundException, SQLException{
-            cmbFromDepartment.removeAllItems();
-            DepartmentBUS departmentBUS = new DepartmentBUS();
-            ArrayList<Department> arrDepartment = departmentBUS.getAllDepartment();
-            for (Department department : arrDepartment) {
-                cmbFromDepartment.addItem(new KeyValue(department.getDepartmentID(), department.getDepartmentName()));
-            }
-    } 
-        private void initCmbToDepartment() throws ClassNotFoundException, SQLException{
-            cmbToDepartment.removeAllItems();
-            DepartmentBUS departmentBUS = new DepartmentBUS();
-            ArrayList<Department> arrDepartment = departmentBUS.getAllDepartment();
-            for (Department department : arrDepartment) {
-                cmbToDepartment.addItem(new KeyValue(department.getDepartmentID(), department.getDepartmentName()));
-            }
-    } 
-        private void initCmbApprove() {
-            cmbApprove.removeAllItems();
-            cmbApprove.addItem(new KeyValue(1, "Approve"));
-            cmbApprove.addItem(new KeyValue(0, "Disapprove"));
     }
 
-        
-        private void convertDate()
-        {
-            int tranReDateYear = dcTranReDate.getDate().getYear()+1900;
-            String temptranReDate = tranReDateYear+"-"+dcTranReDate.getDate().getMonth()+"-"+dcTranReDate.getDate().getDate();
-            tranReDate = Date.valueOf(temptranReDate);
-            
-            int tranJoinDateYear = dcTranJoinDate.getDate().getYear()+1900;
-            String temptranJoinDate = tranJoinDateYear+"-"+dcTranJoinDate.getDate().getMonth()+"-"+dcTranJoinDate.getDate().getDate();
-            tranJoinDate = Date.valueOf(temptranReDate);
-            
-            DateFormat dateFormat = new SimpleDateFormat ("yyyy-MM-dd");
-            java.util.Date date = new java.util.Date();
-            String string = dateFormat.format(date);
-            txtApproveDate.setText(string);
+    private void initCmbFromLocation() throws ClassNotFoundException, SQLException {
+        cmbFromLocation.removeAllItems();
+        cmbFromLocation.addItem(new KeyValue(-1, ""));
+        LocationBUS locationBUS = new LocationBUS();
+        ArrayList<Location> arrLocation = locationBUS.getAllLocation();
+        for (Location location : arrLocation) {
+            cmbFromLocation.addItem(new KeyValue(location.getLocationID(), location.getLocationName()));
+        }
+    }
+
+    private void initCmbToLocation() throws ClassNotFoundException, SQLException {
+        cmbToLocation.removeAllItems();
+        cmbToLocation.addItem(new KeyValue(-1, ""));
+        LocationBUS locationBUS = new LocationBUS();
+        ArrayList<Location> arrLocation = locationBUS.getAllLocation();
+        for (Location location : arrLocation) {
+            cmbToLocation.addItem(new KeyValue(location.getLocationID(), location.getLocationName()));
+        }
+    }
+
+    private void initCmbFromDepartment() throws ClassNotFoundException, SQLException {
+        cmbFromDepartment.removeAllItems();
+        cmbFromDepartment.addItem(new KeyValue(-1, ""));
+        DepartmentBUS departmentBUS = new DepartmentBUS();
+        ArrayList<Department> arrDepartment = departmentBUS.getAllDepartment();
+        for (Department department : arrDepartment) {
+            cmbFromDepartment.addItem(new KeyValue(department.getDepartmentID(), department.getDepartmentName()));
+        }
+    }
+
+    private void initCmbToDepartment() throws ClassNotFoundException, SQLException {
+        cmbToDepartment.removeAllItems();
+        cmbToDepartment.addItem(new KeyValue(-1, ""));
+        DepartmentBUS departmentBUS = new DepartmentBUS();
+        ArrayList<Department> arrDepartment = departmentBUS.getAllDepartment();
+        for (Department department : arrDepartment) {
+            cmbToDepartment.addItem(new KeyValue(department.getDepartmentID(), department.getDepartmentName()));
+        }
+    }
+
+    private void initCmbApprove() {
+        cmbApprove.removeAllItems();
+        cmbToDepartment.addItem(new KeyValue(-1, ""));
+        cmbApprove.addItem(new KeyValue(1, "Approve"));
+        cmbApprove.addItem(new KeyValue(0, "Disapprove"));
+    }
+
+    private void convertDate() {
+        int tranReDateYear = dcTranReDate.getDate().getYear() + 1900;
+        String temptranReDate = tranReDateYear + "-" + dcTranReDate.getDate().getMonth() + "-" + dcTranReDate.getDate().getDate();
+        tranReDate = Date.valueOf(temptranReDate);
+
+        int tranJoinDateYear = dcTranJoinDate.getDate().getYear() + 1900;
+        String temptranJoinDate = tranJoinDateYear + "-" + dcTranJoinDate.getDate().getMonth() + "-" + dcTranJoinDate.getDate().getDate();
+        tranJoinDate = Date.valueOf(temptranReDate);
+
+        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        java.util.Date date = new java.util.Date();
+        String string = dateFormat.format(date);
+        txtApproveDate.setText(string);
+    }
+
+    private void loadSearchData() throws ClassNotFoundException, SQLException {
+        String condition = "";
+
+        if (!txtEmployeeNumber.getText().equals("")) {
+            if (condition.contains("where")) {
+                condition += " where employeeNumber like '%" + txtEmployeeNumber.getText() + "%'";
+            } else {
+                condition += " and employeeNumber like '%" + txtEmployeeNumber.getText() + "%'";
+            }
         }
 
+        if (!txtEmployeeName.getText().equals("")) {
+            if (condition.contains("where")) {
+                condition += " where employeeName like '%" + txtEmployeeName.getText() + "%'";
+            } else {
+                condition += " and employeeName like '%" + txtEmployeeName.getText() + "%'";
+            }
+        }
+
+        KeyValue fromProject = (KeyValue) cmbFromProject.getSelectedItem();
+        if (!fromProject.getValue().equals("")) {
+            if (condition.contains("where")) {
+                condition += " where fromProjectID = " + fromProject.getKey() + "";
+            } else {
+                condition += " and fromProjectID = " + fromProject.getKey() + "";
+            }
+        }
+
+        KeyValue toProject = (KeyValue) cmbToProject.getSelectedItem();
+        if (!toProject.getValue().equals("")) {
+            if (condition.contains("where")) {
+                condition += " where toProjectID = " + toProject.getKey() + "";
+            } else {
+                condition += " and toProjectID = " + toProject.getKey() + "";
+            }
+        }
+
+        KeyValue fromDepartment = (KeyValue) cmbFromDepartment.getSelectedItem();
+        if (!fromDepartment.getValue().equals("")) {
+            if (condition.contains("where")) {
+                condition += " where fromDepartmentID = " + fromDepartment.getKey() + "";
+            } else {
+                condition += " and fromDepartmentID = " + fromDepartment.getKey() + "";
+            }
+        }
+
+        KeyValue toDepartment = (KeyValue) cmbToDepartment.getSelectedItem();
+        if (!toDepartment.getValue().equals("")) {
+            if (condition.contains("where")) {
+                condition += " where toDepartmentID = " + toDepartment.getKey() + "";
+            } else {
+                condition += " and toDepartmentID = " + toDepartment.getKey() + "";
+            }
+        }
+
+        KeyValue fromLocation = (KeyValue) cmbFromLocation.getSelectedItem();
+        if (!fromLocation.getValue().equals("")) {
+            if (condition.contains("where")) {
+                condition += " where fromLocationID = " + fromLocation.getKey() + "";
+            } else {
+                condition += " and fromLocationID = " + fromLocation.getKey() + "";
+            }
+        }
+
+        KeyValue toLocation = (KeyValue) cmbToLocation.getSelectedItem();
+        if (!toLocation.getValue().equals("")) {
+            if (condition.contains("where")) {
+                condition += " where toLocationID = " + toLocation.getKey() + "";
+            } else {
+                condition += " and toLocationID = " + toLocation.getKey() + "";
+            }
+        }
+
+        initTable();
+        lstTransfer = transferBUS.searchTransfer(condition);
+        fillData(lstTransfer);
+    }
+
+    private void updateFieldWhenSelectTransfer() {
+        int row = tbTransferData.getSelectedRow();
+
+        txtTransferID.setText(tbTransferData.getValueAt(row, 0).toString());
+        cmbTransferType.setSelectedItem(new KeyValue(0, tbTransferData.getValueAt(row, 1).toString()));
+        txtEmployeeNumber.setText(tbTransferData.getValueAt(row, 2).toString());
+        txtEmployeeName.setText(tbTransferData.getValueAt(row, 3).toString());                
+        
+        dcTranReDate.setDate(Date.valueOf(tbTransferData.getValueAt(row, 4).toString()));
+        dcTranJoinDate.setDate(Date.valueOf(tbTransferData.getValueAt(row, 5).toString()));
+        txtRequestDate.setText(tbTransferData.getValueAt(row, 6).toString());
+        txtReason.setText(tbTransferData.getValueAt(row, 7).toString());       
+        txtApproveDate.setText(tbTransferData.getValueAt(row, 8).toString());
+        
+        cmbFromProject.setSelectedItem(new KeyValue(0, tbTransferData.getValueAt(row, 9).toString()));
+        cmbToProject.setSelectedItem(new KeyValue(0, tbTransferData.getValueAt(row, 10).toString()));
+        cmbFromDepartment.setSelectedItem(new KeyValue(0, tbTransferData.getValueAt(row, 11).toString()));
+        cmbToDepartment.setSelectedItem(new KeyValue(0, tbTransferData.getValueAt(row, 12).toString()));
+        cmbFromLocation.setSelectedItem(new KeyValue(0, tbTransferData.getValueAt(row, 13).toString()));
+        cmbToLocation.setSelectedItem(new KeyValue(0, tbTransferData.getValueAt(row, 14).toString()));
+        cmbApprove.setSelectedItem(new KeyValue(0, tbTransferData.getValueAt(row, 15).toString()));
+    }
 //    private void initTextField() {
 //        txtProjectID.setText("");
 //        txtProjectName.setText("");
 //        txtCreateDate.setText("");
 //        txtEndDate.setText("");
 //    }
-
 //    private void loadSearchTransferName() throws ClassNotFoundException, SQLException {
 //        String TransferName = "";
 //        if (!txtTransferName.getText().equals("")) {

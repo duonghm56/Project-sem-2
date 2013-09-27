@@ -42,14 +42,6 @@ public class FrameTestTransfer extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        employeePanel1 = new com.c1212l.etm.ui.EmployeePanel();
-        employeePanel2 = new com.c1212l.etm.ui.EmployeePanel();
-        departmentPanel1 = new com.c1212l.etm.ui.DepartmentPanel();
-        transferPanel1 = new com.c1212l.etm.ui.TransferPanel();
-        transferPanel3 = new com.c1212l.etm.ui.TransferPanel();
-        transferPanel4 = new com.c1212l.etm.ui.TransferPanel();
-        transferPanel5 = new com.c1212l.etm.ui.TransferPanel();
-        transferPanel2 = new com.c1212l.etm.ui.TransferPanel();
         transferPanel7 = new com.c1212l.etm.ui.TransferPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -61,14 +53,14 @@ public class FrameTestTransfer extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(transferPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(49, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
                 .addComponent(transferPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addContainerGap(35, Short.MAX_VALUE))
         );
 
         pack();
@@ -109,14 +101,6 @@ public class FrameTestTransfer extends javax.swing.JFrame {
         });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private com.c1212l.etm.ui.DepartmentPanel departmentPanel1;
-    private com.c1212l.etm.ui.EmployeePanel employeePanel1;
-    private com.c1212l.etm.ui.EmployeePanel employeePanel2;
-    private com.c1212l.etm.ui.TransferPanel transferPanel1;
-    private com.c1212l.etm.ui.TransferPanel transferPanel2;
-    private com.c1212l.etm.ui.TransferPanel transferPanel3;
-    private com.c1212l.etm.ui.TransferPanel transferPanel4;
-    private com.c1212l.etm.ui.TransferPanel transferPanel5;
     private com.c1212l.etm.ui.TransferPanel transferPanel7;
     // End of variables declaration//GEN-END:variables
 

@@ -158,8 +158,47 @@ public class Transfer {
 
    
      public Vector getVector(){
+        EmployeeDAO employeeDAO = new EmployeeDAO();
+        Employee empl = employeeDAO.getEmployeeByID(employeeID);
+        
+        TransferTypeDAO transferTypeDAO = new TransferTypeDAO();
+        TransferType transferType = transferTypeDAO.getTransferTypeById(transferTypeID);
+        
+        LocationDAO locationDAO = new LocationDAO();
+        Location fromLocation = locationDAO.getLocationById(fromLocationID);
+        Location toLocation = locationDAO.getLocationById(toLocationID);
+        
+        DepartmentDAO departmentDAO = new DepartmentDAO();
+        Department fromDepartment = departmentDAO.getDepartmentByID(fromDepartmentID);
+        Department toDepartment = departmentDAO.getDepartmentByID(toDepartmentID);
+        
+        ProjectDAO projectDAO = new ProjectDAO();
+        Project fromProject = projectDAO.getProjectById(fromProjectID);
+        Project toProject = projectDAO.getProjectById(toProjectID);
+        
         Vector v = new Vector();
         v.add(transferID);
+        v.add(transferType.getTransferTypeName());        
+        v.add(empl.getEmployeeNumber());        
+        v.add(empl.getEmployeeName());    
+        
+        v.add(transferRelievingDate);
+        v.add(transferJoiningDate);
+        v.add(requestDate);
+        v.add(reason);
+        v.add(approveDate);        
+        
+        v.add(fromProject.getProjectName());
+        v.add(toProject.getProjectName());
+        v.add(fromDepartment.getDepartmentName());
+        v.add(toDepartment.getDepartmentName());
+        v.add(fromLocation.getLocationName());
+        v.add(toLocation.getLocationName());
+        v.add(approve?"Approve":"Disapprove");
+        
+        
+        return v;
+        /*v.add(transferID);
         TransferType transferType= new TransferTypeDAO().getTransferTypeById(transferTypeID);
         v.add(transferType!=null?transferType.getTransferTypeName():"undifined");
         Employee employee = new EmployeeDAO().getEmployeeByID(employeeID);
@@ -181,6 +220,7 @@ public class Transfer {
         v.add(department!=null?department.getDepartmentName():"undifined"); 
         department = new DepartmentDAO().getDepartmentByID(toDepartmentID);
         v.add(department!=null?department.getDepartmentName():"undifined"); 
+        
          
         Location location;
         location = new LocationDAO().getLocationById(fromLocationID);
@@ -188,5 +228,6 @@ public class Transfer {
         location = new LocationDAO().getLocationById(toDepartmentID);
         v.add(location!=null?location.getLocationName():"undifined"); 
         return v;
+        */
     }
 }

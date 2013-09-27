@@ -376,12 +376,11 @@ public class EmployeePanel extends javax.swing.JPanel {
                     new String(txtConfirmPassword.getPassword()),
                     txtEmployeeRole.getText(),
                     Integer.parseInt(txtWorkExperience.getText()),
-                    gender==1?true:false
-                    );
+                    gender == 1 ? true : false);
             JOptionPane.showMessageDialog(null, "Update success!");
             reloadData();
         } catch (Exception ex) {
-                    JOptionPane.showMessageDialog(null, ex.getMessage(), "Error:", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, ex.getMessage(), "Error:", JOptionPane.ERROR_MESSAGE);
 
         }
     }//GEN-LAST:event_btnUpdateActionPerformed
@@ -404,25 +403,25 @@ public class EmployeePanel extends javax.swing.JPanel {
             if (!txtConfirmPassword.getText().equals(txtPassword.getText())) {
                 throw new Exception("ConfirmPassword must like Password");
             }
-            
+
             Pattern ptEmplName = Pattern.compile("^([A-Za-z]+[\\s]?)+$");
             Matcher mcEmplName = ptEmplName.matcher(txtEmployeeName.getText());
             if (!mcEmplName.find()) {
                 throw new Exception("Name is not valid");
             }
-            
+
             Pattern ptEmplRole = Pattern.compile("^([A-Za-z]+[\\s]?)+$");
             Matcher mcEmplRole = ptEmplName.matcher(txtEmployeeRole.getText());
             if (!mcEmplRole.find()) {
                 throw new Exception("Employee Role is not valid");
             }
-            
-            Pattern ptemail=Pattern.compile("^[\\w.-]+@[\\w.-]+\\.[A-Za-z]{2,4}$");
+
+            Pattern ptemail = Pattern.compile("^[\\w.-]+@[\\w.-]+\\.[A-Za-z]{2,4}$");
             Matcher mcemail = ptemail.matcher(txtEmail.getText());
             if (!mcemail.find()) {
                 throw new Exception("Email is not valid");
             }
-            
+
             Pattern ptEmplNumber = Pattern.compile("^E+[\\d]{4}$");
             Matcher mcEmplNumber = ptEmplNumber.matcher(txtEmployeeNumber.getText());
             if (!mcEmplNumber.find()) {
@@ -433,10 +432,10 @@ public class EmployeePanel extends javax.swing.JPanel {
             if (!mcWorkExperience.find()) {
                 throw new Exception("Work Experience is not valid");
             }
-            if (Integer.parseInt(txtWorkExperience.getText())>50) {
+            if (Integer.parseInt(txtWorkExperience.getText()) > 50) {
                 throw new Exception("Work Experience ");
             }
-            
+
             employeeBUS.addEmployee(
                     txtEmployeeNumber.getText(),
                     txtEmployeeName.getText(),
@@ -463,26 +462,25 @@ public class EmployeePanel extends javax.swing.JPanel {
     }//GEN-LAST:event_tblEmployeeMouseReleased
 
     private void tblEmployeeKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tblEmployeeKeyPressed
-        
     }//GEN-LAST:event_tblEmployeeKeyPressed
 
     private void tblEmployeeKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tblEmployeeKeyReleased
-        if(evt.getKeyCode() == KeyEvent.VK_UP || evt.getKeyCode() == KeyEvent.VK_DOWN){
+        if (evt.getKeyCode() == KeyEvent.VK_UP || evt.getKeyCode() == KeyEvent.VK_DOWN) {
             updateFieldWhenSelectEmployee();
         }
     }//GEN-LAST:event_tblEmployeeKeyReleased
 
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
-        if(txtEmployeeNumber.getText().equals("")){
+        if (txtEmployeeNumber.getText().equals("")) {
             JOptionPane.showMessageDialog(null, "Please select employee");
-        }else{
+        } else {
             try {
                 if (JOptionPane.showConfirmDialog(null, "Are you sure to delete?", "Delete", JOptionPane.YES_NO_OPTION) == JOptionPane.OK_OPTION) {
                     employeeBUS.deleteEmployee(txtEmployeeNumber.getText());
                     JOptionPane.showMessageDialog(null, "Delete success!");
                     reloadData();
                 }
-            } catch (Exception ex){
+            } catch (Exception ex) {
                 JOptionPane.showMessageDialog(null, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
             }
         }
@@ -502,7 +500,6 @@ public class EmployeePanel extends javax.swing.JPanel {
     private void btnResetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnResetActionPerformed
         reloadData();
     }//GEN-LAST:event_btnResetActionPerformed
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAdd;
     private javax.swing.JButton btnDelete;
@@ -545,7 +542,8 @@ public class EmployeePanel extends javax.swing.JPanel {
     DefaultTableModel tblModel;
     ArrayList<Employee> lstEmpl;
     EmployeeBUS employeeBUS = new EmployeeBUS();
-    private  Date birthday;
+    private Date birthday;
+
     private void initTable() {
         Vector header = new Vector();
         header.add("ID");
@@ -566,7 +564,7 @@ public class EmployeePanel extends javax.swing.JPanel {
         tblEmployee.setModel(tblModel);
         //TableColumn col = tblEmployee.getColumnModel().getColumn(3);
         //tblEmployee.getColumnModel().removeColumn(col);
-        
+
         tblEmployee.getColumnModel().getColumn(3).setMaxWidth(0);
         tblEmployee.getColumnModel().getColumn(3).setMinWidth(0);
         tblEmployee.getColumnModel().getColumn(3).setPreferredWidth(0);
@@ -591,7 +589,7 @@ public class EmployeePanel extends javax.swing.JPanel {
         txtEmployeeName.setText("");
         txtEmployeeRole.setText("");
         txtPassword.setText("");
-        txtWorkExperience.setText("");        
+        txtWorkExperience.setText("");
     }
 
     private void reloadData() {
@@ -627,19 +625,19 @@ public class EmployeePanel extends javax.swing.JPanel {
     /*
      * Need Department DAL, BLL
      */
-    private void initCmbDepartment() throws ClassNotFoundException, SQLException{
-            cmbDepartment.removeAllItems();
-            DepartmentBUS departmentBUS = new DepartmentBUS();
-            ArrayList<Department> arrDepartment = departmentBUS.getAllDepartment();
-            for (Department department : arrDepartment) {
-                cmbDepartment.addItem(new KeyValue(department.getDepartmentID(), department.getDepartmentName()));
-            }
+    private void initCmbDepartment() throws ClassNotFoundException, SQLException {
+        cmbDepartment.removeAllItems();
+        DepartmentBUS departmentBUS = new DepartmentBUS();
+        ArrayList<Department> arrDepartment = departmentBUS.getAllDepartment();
+        for (Department department : arrDepartment) {
+            cmbDepartment.addItem(new KeyValue(department.getDepartmentID(), department.getDepartmentName()));
+        }
     }
-    private void convertDate()
-    {
-            int birthdayYear = dcBirthday.getDate().getYear()+1900;
-            String tempBirthday = birthdayYear+"-"+dcBirthday.getDate().getMonth()+"-"+dcBirthday.getDate().getDate();
-            birthday = Date.valueOf(tempBirthday);
+
+    private void convertDate() {
+        int birthdayYear = dcBirthday.getDate().getYear() + 1900;
+        String tempBirthday = birthdayYear + "-" + dcBirthday.getDate().getMonth() + "-" + dcBirthday.getDate().getDate();
+        birthday = Date.valueOf(tempBirthday);
     }
 
     private void updateFieldWhenSelectEmployee() {
@@ -656,10 +654,11 @@ public class EmployeePanel extends javax.swing.JPanel {
         txtEmployeeRole.setText(tblEmployee.getValueAt(selectedRow, 9).toString());
         txtWorkExperience.setText(tblEmployee.getValueAt(selectedRow, 10).toString());
         cmbGender.setSelectedItem(new KeyValue(0, tblEmployee.getValueAt(selectedRow, 11).toString()));
-        cmbProject.setSelectedItem(new KeyValue(0, tblEmployee.getValueAt(selectedRow,12).toString()));
-        cmbDepartment.setSelectedItem(new KeyValue(0, tblEmployee.getValueAt(selectedRow,13).toString()));
+        cmbProject.setSelectedItem(new KeyValue(0, tblEmployee.getValueAt(selectedRow, 12).toString()));
+        cmbDepartment.setSelectedItem(new KeyValue(0, tblEmployee.getValueAt(selectedRow, 13).toString()));
     }
-        private void loadSearchEmployeeName() throws ClassNotFoundException, SQLException {
+
+    private void loadSearchEmployeeName() throws ClassNotFoundException, SQLException {
         String employeeName = "";
         if (!txtEmployeeName.getText().equals("")) {
             if (!employeeName.contains("where")) {
@@ -670,6 +669,6 @@ public class EmployeePanel extends javax.swing.JPanel {
         }
         initTable();
         lstEmpl = employeeBUS.searchEmployee(employeeName);
-        fillData(lstEmpl);        
+        fillData(lstEmpl);
     }
 }
