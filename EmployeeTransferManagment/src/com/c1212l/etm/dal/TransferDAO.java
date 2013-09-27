@@ -47,12 +47,12 @@ public class TransferDAO extends ConnectionTool {
         closeConnection();
         return result;
     }
-    
+
     public ArrayList<Transfer> searchTransfer(String condition) throws ClassNotFoundException, SQLException {
         initConnection();
         Statement stmt = conn.createStatement();
         ResultSet rs = stmt.executeQuery("select * from [transfer] "
-                + "where transferID in ( select * from viewtranempl " + condition + ")");
+                + "where transferID in ( select transferID from viewtranempl " + condition + ")");
         ArrayList<Transfer> result = new ArrayList<>();
         while (rs.next()) {
             Transfer transfer = new Transfer();
@@ -98,21 +98,18 @@ public class TransferDAO extends ConnectionTool {
         cs.executeUpdate();
         closeConnection();
     }
-<<<<<<< HEAD
-         public void updateEmployee(Employee employee) throws ClassNotFoundException, Exception {
-            initConnection();
-            CallableStatement cs = conn.prepareCall("{call updateEmployeeTransfer(?, ?, ?)}");
-            cs.setInt(1, employee.getEmployeeID());
-            cs.setInt(2, employee.getDepartnameID());
-            cs.setInt(3, employee.getProjectID());
-            cs.executeUpdate();
-            closeConnection();
+
+    public void updateEmployee(Employee employee) throws ClassNotFoundException, Exception {
+        initConnection();
+        CallableStatement cs = conn.prepareCall("{call updateEmployeeTransfer(?, ?, ?)}");
+        cs.setInt(1, employee.getEmployeeID());
+        cs.setInt(2, employee.getDepartnameID());
+        cs.setInt(3, employee.getProjectID());
+        cs.executeUpdate();
+        closeConnection();
     }
-       public void deleteTransfer(Transfer transfer) throws ClassNotFoundException, SQLException{
-=======
 
     public void deleteTransfer(Transfer transfer) throws ClassNotFoundException, SQLException {
->>>>>>> 0fdbd88ed8b314ddecafbb22e6d332c8f933b230
         initConnection();
         CallableStatement cs = conn.prepareCall("{call deleteTransfer(?)}");
         cs.setInt(1, transfer.getTransferID());

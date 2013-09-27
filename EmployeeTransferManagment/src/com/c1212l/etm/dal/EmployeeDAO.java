@@ -66,7 +66,7 @@ public class EmployeeDAO extends ConnectionTool {
             cs.setString(3, employee.getEmail());
             cs.setFloat(4, employee.getSalary());
             cs.setDate(5, employee.getBirthday());
-            cs.setString(6,employee.getAddress());
+            cs.setString(6, employee.getAddress());
             cs.setString(7, employee.getPassword());
             cs.setString(8, employee.getConfirmPassword());
             cs.setString(9, employee.getRole());
@@ -82,21 +82,21 @@ public class EmployeeDAO extends ConnectionTool {
     }
 
     public void updateEmployee(Employee employee) throws ClassNotFoundException, Exception {
-            initConnection();
-            CallableStatement cs = conn.prepareCall("{call updateEmployee(?, ?, ?, ?, ?, ?,?,?,?,?,?)}");
-            cs.setString(1, employee.getEmployeeNumber());
-            cs.setString(2, employee.getEmployeeName());
-            cs.setString(3, employee.getEmail());
-            cs.setFloat(4, employee.getSalary());
-            cs.setDate(5, employee.getBirthday());
-            cs.setString(6,employee.getAddress());
-            cs.setString(7, employee.getPassword());
-            cs.setString(8, employee.getConfirmPassword());
-            cs.setString(9, employee.getRole());
-            cs.setInt(10, employee.getWorkExperience());
-            cs.setBoolean(11, employee.getGender());
-            cs.executeUpdate();
-            closeConnection();
+        initConnection();
+        CallableStatement cs = conn.prepareCall("{call updateEmployee(?, ?, ?, ?, ?, ?,?,?,?,?,?)}");
+        cs.setString(1, employee.getEmployeeNumber());
+        cs.setString(2, employee.getEmployeeName());
+        cs.setString(3, employee.getEmail());
+        cs.setFloat(4, employee.getSalary());
+        cs.setDate(5, employee.getBirthday());
+        cs.setString(6, employee.getAddress());
+        cs.setString(7, employee.getPassword());
+        cs.setString(8, employee.getConfirmPassword());
+        cs.setString(9, employee.getRole());
+        cs.setInt(10, employee.getWorkExperience());
+        cs.setBoolean(11, employee.getGender());
+        cs.executeUpdate();
+        closeConnection();
     }
 
     public void deleteEmployee(Employee employee) throws ClassNotFoundException, SQLException, Exception {
@@ -111,7 +111,7 @@ public class EmployeeDAO extends ConnectionTool {
             CallableStatement cs = conn.prepareCall("{call deleteEmployee(?)}");
             cs.setString(1, employee.getEmployeeNumber());
             cs.executeUpdate();
-        }else{
+        } else {
             throw new Exception(error);
         }
         closeConnection();
@@ -153,7 +153,19 @@ public class EmployeeDAO extends ConnectionTool {
             if (rs.next()) {
                 e = new Employee();
                 e.setEmployeeID(rs.getInt("employeeID"));
+                e.setEmployeeNumber(rs.getString("employeeNumber"));
                 e.setEmployeeName(rs.getString("employeeName"));
+                e.setEmail(rs.getString("email"));
+                e.setSalary(rs.getFloat("salary"));
+                e.setBirthday(rs.getDate("birthday"));
+                e.setAddress(rs.getString("address"));
+                e.setPassword(rs.getString("password"));
+                e.setConfirmPassword(rs.getString("confirmPassword"));
+                e.setRole(rs.getString("role"));
+                e.setWorkExperience(rs.getInt("workExperience"));
+                e.setGender(rs.getBoolean("gender"));
+                e.setDepartnameID(rs.getInt("departmentID"));
+                e.setProjectID(rs.getInt("projectID"));
             }
             closeConnection();
             return e;

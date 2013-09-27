@@ -179,7 +179,7 @@ public class Transfer {
         Vector v = new Vector();
         v.add(transferID);
         v.add(transferType.getTransferTypeName());        
-        v.add(empl.getEmployeeNumber());        
+        v.add(empl.getEmployeeNumber());                
         v.add(empl.getEmployeeName());    
         
         v.add(transferRelievingDate);

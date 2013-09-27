@@ -35,23 +35,9 @@ import javax.swing.table.DefaultTableModel;
 public class TransferPanel extends javax.swing.JPanel {
 
     public TransferPanel() {
-        try {
-            initComponents();
-            reloadData();
-            initCmbTransferType();
-            initCmbFromProject();
-            initCmbToProject();
-            initCmbFromDepartment();
-            initCmbToDepartment();
-            initCmbFromLocation();
-            initCmbToLocation();
-            initCmbApprove();
-            convertDate();
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(TransferPanel.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (SQLException ex) {
-            Logger.getLogger(TransferPanel.class.getName()).log(Level.SEVERE, null, ex);
-        }
+
+        initComponents();
+        reloadData();
 
     }
 
@@ -102,6 +88,7 @@ public class TransferPanel extends javax.swing.JPanel {
         btnReset = new javax.swing.JButton();
         jLabel16 = new javax.swing.JLabel();
         txtEmployeeNumber = new javax.swing.JTextField();
+        btnSearch = new javax.swing.JToggleButton();
 
         setEnabled(false);
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -171,18 +158,53 @@ public class TransferPanel extends javax.swing.JPanel {
 
         add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 300, 620, 80));
 
+        cmbFromDepartment.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cmbFromDepartmentItemStateChanged(evt);
+            }
+        });
         add(cmbFromDepartment, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 150, 220, -1));
 
+        cmbToProject.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cmbToProjectItemStateChanged(evt);
+            }
+        });
         add(cmbToProject, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 180, 200, -1));
 
+        cmbToDepartment.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cmbToDepartmentItemStateChanged(evt);
+            }
+        });
         add(cmbToDepartment, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 180, 220, -1));
 
+        cmbTransferType.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                cmbTransferTypeKeyReleased(evt);
+            }
+        });
         add(cmbTransferType, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 40, 200, 20));
 
+        cmbFromProject.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cmbFromProjectItemStateChanged(evt);
+            }
+        });
         add(cmbFromProject, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 150, 200, -1));
 
+        cmbFromLocation.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cmbFromLocationItemStateChanged(evt);
+            }
+        });
         add(cmbFromLocation, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 230, 200, -1));
 
+        cmbToLocation.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cmbToLocationItemStateChanged(evt);
+            }
+        });
         add(cmbToLocation, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 260, 200, -1));
 
         btnUpdate.setText("Update");
@@ -230,6 +252,11 @@ public class TransferPanel extends javax.swing.JPanel {
                 txtEmployeeNameActionPerformed(evt);
             }
         });
+        txtEmployeeName.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtEmployeeNameKeyReleased(evt);
+            }
+        });
         add(txtEmployeeName, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 100, 200, 30));
 
         txtRequestDate.setEnabled(false);
@@ -245,11 +272,30 @@ public class TransferPanel extends javax.swing.JPanel {
         add(txtApproveDate, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 260, 220, 22));
 
         btnReset.setText("Reset");
+        btnReset.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnResetActionPerformed(evt);
+            }
+        });
         add(btnReset, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 390, 70, -1));
 
         jLabel16.setText("Employee Number");
         add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 70, -1, -1));
+
+        txtEmployeeNumber.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtEmployeeNumberKeyReleased(evt);
+            }
+        });
         add(txtEmployeeNumber, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 70, 200, -1));
+
+        btnSearch.setText("Search Mode");
+        btnSearch.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSearchActionPerformed(evt);
+            }
+        });
+        add(btnSearch, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 390, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void tbTransferDataMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbTransferDataMouseClicked
@@ -296,7 +342,7 @@ public class TransferPanel extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(null, "Update success");
             reloadData();
         } catch (Exception ex) {
-            JOptionPane.showMessageDialog(null, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, ex.getMessage(), ex.getMessage(), JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_btnUpdateActionPerformed
 
@@ -312,7 +358,7 @@ public class TransferPanel extends javax.swing.JPanel {
                     reloadData();
                 }
             } catch (Exception ex) {
-                JOptionPane.showMessageDialog(null, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(null, ex.getMessage(), ex.getMessage(), JOptionPane.ERROR_MESSAGE);
 
             }
         }
@@ -329,9 +375,55 @@ public class TransferPanel extends javax.swing.JPanel {
     private void txtRequestDateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtRequestDateActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtRequestDateActionPerformed
+
+    private void cmbTransferTypeKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_cmbTransferTypeKeyReleased
+        loadSearchData();
+    }//GEN-LAST:event_cmbTransferTypeKeyReleased
+
+    private void txtEmployeeNumberKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtEmployeeNumberKeyReleased
+        loadSearchData();
+    }//GEN-LAST:event_txtEmployeeNumberKeyReleased
+
+    private void txtEmployeeNameKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtEmployeeNameKeyReleased
+        loadSearchData();
+    }//GEN-LAST:event_txtEmployeeNameKeyReleased
+
+    private void cmbFromProjectItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cmbFromProjectItemStateChanged
+        loadSearchData();
+    }//GEN-LAST:event_cmbFromProjectItemStateChanged
+
+    private void cmbToProjectItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cmbToProjectItemStateChanged
+        loadSearchData();
+    }//GEN-LAST:event_cmbToProjectItemStateChanged
+
+    private void cmbFromDepartmentItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cmbFromDepartmentItemStateChanged
+        loadSearchData();
+    }//GEN-LAST:event_cmbFromDepartmentItemStateChanged
+
+    private void cmbToDepartmentItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cmbToDepartmentItemStateChanged
+        loadSearchData();
+    }//GEN-LAST:event_cmbToDepartmentItemStateChanged
+
+    private void cmbFromLocationItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cmbFromLocationItemStateChanged
+        loadSearchData();
+    }//GEN-LAST:event_cmbFromLocationItemStateChanged
+
+    private void cmbToLocationItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cmbToLocationItemStateChanged
+        loadSearchData();
+    }//GEN-LAST:event_cmbToLocationItemStateChanged
+
+    private void btnResetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnResetActionPerformed
+        reloadData();
+    }//GEN-LAST:event_btnResetActionPerformed
+
+    private void btnSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchActionPerformed
+        isSearchMode = !(btnSearch.getSelectedObjects() == null);
+
+    }//GEN-LAST:event_btnSearchActionPerformed
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnDelete;
     private javax.swing.JButton btnReset;
+    private javax.swing.JToggleButton btnSearch;
     private javax.swing.JButton btnUpdate;
     private javax.swing.JComboBox cmbApprove;
     private javax.swing.JComboBox cmbFromDepartment;
@@ -372,29 +464,26 @@ public class TransferPanel extends javax.swing.JPanel {
     DefaultTableModel tblModel;
     ArrayList<Transfer> lstTransfer;
     TransferBUS transferBUS = new TransferBUS();
-<<<<<<< HEAD
-    private Date tranReDate,tranJoinDate;
-    private int employeeID;
-=======
     private Date tranReDate, tranJoinDate;
+    private int employeeID;
+    private boolean isSearchMode = false;
+    Vector header = new Vector();
 
->>>>>>> 0fdbd88ed8b314ddecafbb22e6d332c8f933b230
     private void initTable() {
-        Vector header = new Vector();
+        header = new Vector();
         //---Ko hien thi
         header.add("ID");
         header.add("Type");
         //------------------------------------
         header.add("Employee Number");
         header.add("Name");
-        //---Ko hien thi
-        header.add("Request Date");
+        //---Ko hien thi        
         header.add("Relieving Date");
         header.add("Joining Date");
         header.add("Request Date");
         header.add("Reason");
-        //------------------------------------
         header.add("Approve Date");
+        //------------------------------------        
         header.add("From Project");
         header.add("To Project");
         header.add("From Department");
@@ -421,7 +510,7 @@ public class TransferPanel extends javax.swing.JPanel {
         tbTransferData.getColumnModel().getColumn(col).setResizable(false);
     }
 
-    private void fillData(ArrayList<Transfer> lst) {
+    private void fillData(ArrayList<Transfer> lst) {        
         if (lst != null) {
             for (Transfer transfer : lst) {
                 tblModel.addRow(transfer.getVector());
@@ -431,7 +520,19 @@ public class TransferPanel extends javax.swing.JPanel {
 
     private void reloadData() {
         try {
+            btnSearch.setSelected(false);
+            isSearchMode = false;
             initTable();
+            initTextfield();
+            initCmbTransferType();
+            initCmbFromProject();
+            initCmbToProject();
+            initCmbFromDepartment();
+            initCmbToDepartment();
+            initCmbFromLocation();
+            initCmbToLocation();
+            initCmbApprove();
+            convertDate();       
             fillData(transferBUS.getAllTransfer());
 //            initTextField();
         } catch (ClassNotFoundException ex) {
@@ -533,125 +634,114 @@ public class TransferPanel extends javax.swing.JPanel {
         txtApproveDate.setText(string);
     }
 
-    private void loadSearchData() throws ClassNotFoundException, SQLException {
-        String condition = "";
+    private void loadSearchData() {
+        if (isSearchMode) {
+            String condition = "";
+            try {
 
-        if (!txtEmployeeNumber.getText().equals("")) {
-            if (condition.contains("where")) {
-                condition += " where employeeNumber like '%" + txtEmployeeNumber.getText() + "%'";
-            } else {
-                condition += " and employeeNumber like '%" + txtEmployeeNumber.getText() + "%'";
+                if (!txtEmployeeNumber.getText().equals("")) {
+                    if (!condition.contains("where")) {
+                        condition += " where employeeNumber like '%" + txtEmployeeNumber.getText() + "%' ";
+                    } else {
+                        condition += " and employeeNumber like '%" + txtEmployeeNumber.getText() + "%' ";
+                    }
+                }
+
+                if (!txtEmployeeName.getText().equals("")) {
+                    if (!condition.contains("where")) {
+                        condition += " where employeeName like '%" + txtEmployeeName.getText() + "%' ";
+                    } else {
+                        condition += " and employeeName like '%" + txtEmployeeName.getText() + "%' ";
+                    }
+                }
+
+                KeyValue fromProject = (KeyValue) cmbFromProject.getSelectedItem();
+                if (fromProject != null && !fromProject.getValue().equals("")) {
+                    if (!condition.contains("where")) {
+                        condition += " where fromProjectID = " + fromProject.getKey() + " ";
+                    } else {
+                        condition += " and fromProjectID = " + fromProject.getKey() + " ";
+                    }
+                }
+
+                KeyValue toProject = (KeyValue) cmbToProject.getSelectedItem();
+                if (toProject != null && !toProject.getValue().equals("")) {
+                    if (!condition.contains("where")) {
+                        condition += " where toProjectID = " + toProject.getKey() + " ";
+                    } else {
+                        condition += " and toProjectID = " + toProject.getKey() + " ";
+                    }
+                }
+
+                KeyValue fromDepartment = (KeyValue) cmbFromDepartment.getSelectedItem();
+                if (fromDepartment != null && !fromDepartment.getValue().equals("")) {
+                    if (!condition.contains("where")) {
+                        condition += " where fromDepartmentID = " + fromDepartment.getKey() + " ";
+                    } else {
+                        condition += " and fromDepartmentID = " + fromDepartment.getKey() + " ";
+                    }
+                }
+
+                KeyValue toDepartment = (KeyValue) cmbToDepartment.getSelectedItem();
+                if (toDepartment != null && !toDepartment.getValue().equals("")) {
+                    if (!condition.contains("where")) {
+                        condition += " where toDepartmentID = " + toDepartment.getKey() + " ";
+                    } else {
+                        condition += " and toDepartmentID = " + toDepartment.getKey() + " ";
+                    }
+                }
+
+
+                KeyValue fromLocation = (KeyValue) cmbFromLocation.getSelectedItem();
+                if (fromLocation != null && !fromLocation.getValue().equals("")) {
+                    if (!condition.contains("where")) {
+                        condition += " where fromLocationID = " + fromLocation.getKey() + " ";
+                    } else {
+                        condition += " and fromLocationID = " + fromLocation.getKey() + " ";
+                    }
+                }
+
+                KeyValue toLocation = (KeyValue) cmbToLocation.getSelectedItem();
+                if (toLocation != null && !toLocation.getValue().equals("")) {
+                    if (!condition.contains("where")) {
+                        condition += " where toLocationID = " + toLocation.getKey() + "";
+                    } else {
+                        condition += " and toLocationID = " + toLocation.getKey() + "";
+                    }
+                }
+
+                //JOptionPane.showMessageDialog(null, condition);
+
+                initTable();
+                lstTransfer = transferBUS.searchTransfer(condition);
+                fillData(lstTransfer);
+            } catch (ClassNotFoundException ex) {
+                JOptionPane.showMessageDialog(null, condition);
+                Logger.getLogger(TransferPanel.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (SQLException ex) {
+                JOptionPane.showMessageDialog(null, condition);
+                Logger.getLogger(TransferPanel.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
 
-        if (!txtEmployeeName.getText().equals("")) {
-            if (condition.contains("where")) {
-                condition += " where employeeName like '%" + txtEmployeeName.getText() + "%'";
-            } else {
-                condition += " and employeeName like '%" + txtEmployeeName.getText() + "%'";
-            }
-        }
-
-        KeyValue fromProject = (KeyValue) cmbFromProject.getSelectedItem();
-        if (!fromProject.getValue().equals("")) {
-            if (condition.contains("where")) {
-                condition += " where fromProjectID = " + fromProject.getKey() + "";
-            } else {
-                condition += " and fromProjectID = " + fromProject.getKey() + "";
-            }
-        }
-
-<<<<<<< HEAD
-         private void getEmployeeID()throws ClassNotFoundException, SQLException
-    {
-        EmployeeBUS employeeBUS = new EmployeeBUS();
-        ArrayList<Employee> arrEmployee = employeeBUS.getAllEmployees();
-        for (Employee employee : arrEmployee) {
-            if (employee.getEmployeeName().equals(txtEmployeeName.getText())) {
-                employeeID = employee.getEmployeeID();
-            }
-        }
-    }
-        private void convertDate()
-        {
-            int tranReDateYear = dcTranReDate.getDate().getYear()+1900;
-            String temptranReDate = tranReDateYear+"-"+dcTranReDate.getDate().getMonth()+"-"+dcTranReDate.getDate().getDate();
-            tranReDate = Date.valueOf(temptranReDate);
-            
-            int tranJoinDateYear = dcTranJoinDate.getDate().getYear()+1900;
-            String temptranJoinDate = tranJoinDateYear+"-"+dcTranJoinDate.getDate().getMonth()+"-"+dcTranJoinDate.getDate().getDate();
-            tranJoinDate = Date.valueOf(temptranReDate);
-            
-            DateFormat dateFormat = new SimpleDateFormat ("yyyy-MM-dd");
-            java.util.Date date = new java.util.Date();
-            String string = dateFormat.format(date);
-            txtApproveDate.setText(string);
-=======
-        KeyValue toProject = (KeyValue) cmbToProject.getSelectedItem();
-        if (!toProject.getValue().equals("")) {
-            if (condition.contains("where")) {
-                condition += " where toProjectID = " + toProject.getKey() + "";
-            } else {
-                condition += " and toProjectID = " + toProject.getKey() + "";
-            }
-        }
-
-        KeyValue fromDepartment = (KeyValue) cmbFromDepartment.getSelectedItem();
-        if (!fromDepartment.getValue().equals("")) {
-            if (condition.contains("where")) {
-                condition += " where fromDepartmentID = " + fromDepartment.getKey() + "";
-            } else {
-                condition += " and fromDepartmentID = " + fromDepartment.getKey() + "";
-            }
-        }
-
-        KeyValue toDepartment = (KeyValue) cmbToDepartment.getSelectedItem();
-        if (!toDepartment.getValue().equals("")) {
-            if (condition.contains("where")) {
-                condition += " where toDepartmentID = " + toDepartment.getKey() + "";
-            } else {
-                condition += " and toDepartmentID = " + toDepartment.getKey() + "";
-            }
-        }
-
-        KeyValue fromLocation = (KeyValue) cmbFromLocation.getSelectedItem();
-        if (!fromLocation.getValue().equals("")) {
-            if (condition.contains("where")) {
-                condition += " where fromLocationID = " + fromLocation.getKey() + "";
-            } else {
-                condition += " and fromLocationID = " + fromLocation.getKey() + "";
-            }
->>>>>>> 0fdbd88ed8b314ddecafbb22e6d332c8f933b230
-        }
-
-        KeyValue toLocation = (KeyValue) cmbToLocation.getSelectedItem();
-        if (!toLocation.getValue().equals("")) {
-            if (condition.contains("where")) {
-                condition += " where toLocationID = " + toLocation.getKey() + "";
-            } else {
-                condition += " and toLocationID = " + toLocation.getKey() + "";
-            }
-        }
-
-        initTable();
-        lstTransfer = transferBUS.searchTransfer(condition);
-        fillData(lstTransfer);
     }
 
     private void updateFieldWhenSelectTransfer() {
+        boolean oldSearchMode = isSearchMode;
+        isSearchMode = false;
         int row = tbTransferData.getSelectedRow();
 
         txtTransferID.setText(tbTransferData.getValueAt(row, 0).toString());
         cmbTransferType.setSelectedItem(new KeyValue(0, tbTransferData.getValueAt(row, 1).toString()));
         txtEmployeeNumber.setText(tbTransferData.getValueAt(row, 2).toString());
-        txtEmployeeName.setText(tbTransferData.getValueAt(row, 3).toString());                
-        
+        txtEmployeeName.setText(tbTransferData.getValueAt(row, 3).toString());
+
         dcTranReDate.setDate(Date.valueOf(tbTransferData.getValueAt(row, 4).toString()));
         dcTranJoinDate.setDate(Date.valueOf(tbTransferData.getValueAt(row, 5).toString()));
         txtRequestDate.setText(tbTransferData.getValueAt(row, 6).toString());
-        txtReason.setText(tbTransferData.getValueAt(row, 7).toString());       
+        txtReason.setText(tbTransferData.getValueAt(row, 7).toString());
         txtApproveDate.setText(tbTransferData.getValueAt(row, 8).toString());
-        
+
         cmbFromProject.setSelectedItem(new KeyValue(0, tbTransferData.getValueAt(row, 9).toString()));
         cmbToProject.setSelectedItem(new KeyValue(0, tbTransferData.getValueAt(row, 10).toString()));
         cmbFromDepartment.setSelectedItem(new KeyValue(0, tbTransferData.getValueAt(row, 11).toString()));
@@ -659,6 +749,13 @@ public class TransferPanel extends javax.swing.JPanel {
         cmbFromLocation.setSelectedItem(new KeyValue(0, tbTransferData.getValueAt(row, 13).toString()));
         cmbToLocation.setSelectedItem(new KeyValue(0, tbTransferData.getValueAt(row, 14).toString()));
         cmbApprove.setSelectedItem(new KeyValue(0, tbTransferData.getValueAt(row, 15).toString()));
+        isSearchMode = oldSearchMode;
+    }
+    
+    private void initTextfield(){
+        txtEmployeeName.setText("");
+        txtEmployeeNumber.setText("");
+        txtTransferID.setText("");        
     }
 //    private void initTextField() {
 //        txtProjectID.setText("");
