@@ -9,10 +9,8 @@ package com.c1212l.etm.dto;
  * @author Android21SDK
  */
 public class Login {
-    
        private String email;
        private String password;
-       private String emailSave;
 
     public String getEmail() {
         return email;
@@ -29,14 +27,5 @@ public class Login {
     public void setPassword(String password) {
         this.password = password;
     }
-
-    public String getEmailSave() {
-        return emailSave;
-    }
-
-    public void setEmailSave(String emailSave) {
-        this.emailSave = emailSave;
-    }
-
-
+       
    }

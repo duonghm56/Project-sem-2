@@ -17,12 +17,12 @@ import javax.swing.JOptionPane;
  *
  * @author Luu Bi
  */
-public class AdminLoginPanel extends javax.swing.JPanel {
+public class LoginPanel extends javax.swing.JPanel {
 
     /**
      * Creates new form AdminLoginPanel
      */
-    public AdminLoginPanel() {
+    public LoginPanel() {
         initComponents();
     }
 
@@ -68,31 +68,29 @@ public class AdminLoginPanel extends javax.swing.JPanel {
         lblUserName.setText("Email:");
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel1.setText("Admin Login");
+        jLabel1.setText("         Login");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(74, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblPassword)
-                            .addComponent(lblUserName))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(btnLogin)
-                                .addGap(46, 46, 46)
-                                .addComponent(btnExit2))
-                            .addComponent(txtEmail)
-                            .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(92, 92, 92))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(118, 118, 118))))
+                    .addComponent(lblPassword)
+                    .addComponent(lblUserName))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(btnLogin)
+                        .addGap(46, 46, 46)
+                        .addComponent(btnExit2))
+                    .addComponent(txtEmail)
+                    .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(13, 13, 13)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(92, 92, 92))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -134,9 +132,10 @@ public class AdminLoginPanel extends javax.swing.JPanel {
 
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
         // TODO add your handling code here:
-
+        int count = 0,count1=0;
         try{
-            vctList = loginDAO.getAdmin();
+            vctListAdmin = loginDAO.getAdmin();
+            vctListEmployee = loginDAO.getEmployee();
             if (txtEmail.getText().equals("")) {
                 JOptionPane.showMessageDialog(this, "Please enter all field");
                 return;
@@ -145,18 +144,29 @@ public class AdminLoginPanel extends javax.swing.JPanel {
                 JOptionPane.showMessageDialog(this, "Please enter all field");
                 return;
             }
-            for (int i = 0; i < vctList.size(); i++) {
-                Login login = vctList.elementAt(i);
+            for (int i = 0; i < vctListAdmin.size(); i++) {
+                Login login = vctListAdmin.elementAt(i);
                 if (txtEmail.getText().equals(login.getEmail()) && txtPassword.getText().equals(login.getPassword()) ) {
-                    JOptionPane.showMessageDialog(this, "Login success!");
-                    this.hide();
-                    AdminManager.email = login.getEmail();
-                    AdminManager adminManager = new AdminManager();
-                    adminManager.show();
+                 count ++;
                 }
-                else{
-                    JOptionPane.showMessageDialog(this, "Login fail");
+            }
+            if (count>0) {
+                JOptionPane.showMessageDialog(null, "Toi la admin");
+                return;
+            }         
+ 
+            for (int i = 0; i < vctListEmployee.size(); i++) {
+                  Login login = vctListEmployee.elementAt(i);
+                if (txtEmail.getText().equals(login.getEmail()) && txtPassword.getText().equals(login.getPassword()) ) {
+                   count1++;
                 }
+            }
+              if (count1>0) {
+                JOptionPane.showMessageDialog(null, "Toi la employee");
+                return;
+            }
+              if (count==0 || count1==0) {
+                JOptionPane.showMessageDialog(null, "Login fail!");
             }
         }catch(Exception ex){ex.printStackTrace();}
     }//GEN-LAST:event_btnLoginActionPerformed
@@ -166,18 +176,15 @@ public class AdminLoginPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_txtEmailActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnExit;
-    private javax.swing.JButton btnExit1;
     private javax.swing.JButton btnExit2;
     private javax.swing.JButton btnLogin;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
     private javax.swing.JLabel lblPassword;
     private javax.swing.JLabel lblUserName;
     private javax.swing.JTextField txtEmail;
     private javax.swing.JPasswordField txtPassword;
     // End of variables declaration//GEN-END:variables
    private LoginDAO loginDAO = new LoginDAO();
-    private Vector<Login> vctList = new Vector<Login>();
+   private Vector<Login> vctListEmployee = new Vector<Login>();
+   private Vector<Login> vctListAdmin = new Vector<Login>();
 }

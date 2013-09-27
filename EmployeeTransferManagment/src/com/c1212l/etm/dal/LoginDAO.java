@@ -19,38 +19,29 @@ public class LoginDAO extends ConnectionTool {
       public Vector<Login> getAdmin() throws ClassNotFoundException, SQLException{
         initConnection();
         Statement stmt = conn.createStatement();
-        ResultSet rs = stmt.executeQuery("Select * from [admin]");
+        ResultSet rs = stmt.executeQuery("Select email,password from [admin]");
         Vector<Login> result = new Vector<Login>();
         while(rs.next()){
-            Login login  = new Login();
-            login.setEmail(rs.getString("email"));
-            login.setPassword(rs.getString("password"));
-            result.add(login);
+            Login l = new Login();
+            l.setEmail(rs.getString("email"));
+            l.setPassword(rs.getString("password"));
+            result.add(l);
         }
         closeConnection();
         return result;
     }
-      public Vector<Employee> getEmployee() throws ClassNotFoundException, SQLException{
-         initConnection();
+       public Vector<Login> getEmployee() throws ClassNotFoundException, SQLException{
+        initConnection();
         Statement stmt = conn.createStatement();
-        ResultSet rs = stmt.executeQuery("Select * From employee");
-        Vector<Employee> result = new Vector<Employee>();
+        ResultSet rs = stmt.executeQuery("Select email,password from employee");
+        Vector<Login> result = new Vector<Login>();
         while(rs.next()){
-            Employee e = new Employee();
-            e.setEmployeeID(rs.getInt("employeeID"));
-            e.setEmployeeNumber(rs.getString("employeeNumber"));
-            e.setEmployeeName(rs.getString("employeeName"));
-            e.setEmail(rs.getString("email"));
-            e.setPassword(rs.getString("password"));
-            e.setConfirmPassword(rs.getString("confirmPassword"));
-            e.setRole(rs.getString("role"));
-            e.setWorkExperience(rs.getInt("workExperience"));
-            e.setGender(rs.getBoolean("gender"));
-            e.setDepartnameID(rs.getInt("departmentID"));
-            e.setProjectID(rs.getInt("projectID"));
-            result.add(e);
+            Login l = new Login();
+            l.setEmail(rs.getString("email"));
+            l.setPassword(rs.getString("password"));
+            result.add(l);
         }
         closeConnection();
         return result;
-    }
+    }    
 }
