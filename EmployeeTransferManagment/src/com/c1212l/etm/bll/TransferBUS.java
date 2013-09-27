@@ -6,6 +6,7 @@ package com.c1212l.etm.bll;
 
 
 import com.c1212l.etm.dal.TransferDAO;
+import com.c1212l.etm.dto.Employee;
 import com.c1212l.etm.dto.Project;
 import com.c1212l.etm.dto.Transfer;
 import java.sql.Date;
@@ -44,7 +45,13 @@ public class TransferBUS {
         transfer.setToLocationID(toLocationID);
         transferDAO.updateTransfer(transfer);
     }
-    
+    public void updateEmployeeTransfer(int employeeID,int departmentID,int projectID){
+        Employee employee = new Employee();
+        employee.setEmployeeID(employeeID);
+        employee.setDepartnameID(departmentID);
+        employee.setProjectID(projectID);
+        
+    }
     public void deleteTransfer(int transferID) throws ClassNotFoundException, SQLException{
         Transfer transfer = new Transfer();
         transfer.setTransferID(transferID);         

@@ -52,8 +52,9 @@ create table [transfer](
 	transferJoiningDate date,
 	requestDate date,
 	reason text,
-	approve bit,
+	approve int,
 	approveDate date,
+	transferLetter text,
 	fromProjectID int references project(projectID),
 	toProjectID int references project(projectID),
 	fromDepartmentID int references department(departmentID),
@@ -97,7 +98,12 @@ as begin
 		values(@emplNum, @emplName,@email,@salary,@birthday,@address, @pass,@confirmpass, @role, @workExperience, @gender, @departmentID, @projectID)
 end
 go
-
+create procedure updateEmployeeTransfer(@employeeID int ,@deparmentID int,@projectID int)
+as begin
+Update employee set departmentID = @deparmentID,projectID=@projectID
+where employeeID =@employeeID
+end
+go
 create procedure updateEmployee(@emplNum varchar(20), @emplName nvarchar(200),@email varchar(100),@salary float,@birthday date,@address nvarchar(200), @pass varchar(50),@confirmPassword varchar(100), @role nvarchar(100), @workExperience int, @gender bit)
 as begin
 	update employee set employeeName = @emplName,email=@email,salary=@salary,birthday=@birthday,[address]=@address, [password] = @pass,confirmPassword=@confirmPassword, [role] = @role,

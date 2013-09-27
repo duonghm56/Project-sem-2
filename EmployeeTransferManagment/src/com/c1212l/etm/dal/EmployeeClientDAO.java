@@ -4,7 +4,6 @@
  */
 package com.c1212l.etm.dal;
 
-import com.c1212l.etm.client.ui.EmployeeLoginPanel;
 import com.c1212l.etm.dto.Employee;
 import com.c1212l.etm.dto.EmployeeClient;
 import com.c1212l.etm.dto.Project;
@@ -25,7 +24,7 @@ public class EmployeeClientDAO  extends ConnectionTool {
 "	     employee.departmentID = department.departmentID \n" +
 "         Inner Join location On department.locationID = location.locationID\n" +
 "         Inner Join project On project.projectID =employee.projectID\n" +
-"         Where employee.email = "+"'"+EmployeeLoginPanel.email+"'");
+"         Where employee.email = "+"'"+"'");
         Vector<EmployeeClient> result = new Vector<>();
         while (rs.next()) {
             EmployeeClient e = new EmployeeClient();

@@ -82,8 +82,7 @@ public class EmployeeDAO extends ConnectionTool {
     }
 
     public void updateEmployee(Employee employee) throws ClassNotFoundException, Exception {
-        initConnection();
- 
+            initConnection();
             CallableStatement cs = conn.prepareCall("{call updateEmployee(?, ?, ?, ?, ?, ?,?,?,?,?,?)}");
             cs.setString(1, employee.getEmployeeNumber());
             cs.setString(2, employee.getEmployeeName());

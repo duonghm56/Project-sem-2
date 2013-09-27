@@ -25,7 +25,7 @@ public class EmployeeClientUI extends javax.swing.JFrame {
      */
     public EmployeeClientUI() {
         initComponents();
-        lblEmail.setText("Email:"+EmployeeLoginPanel.email);
+        lblEmail.setText("Email:");
         loadData();
     }
 

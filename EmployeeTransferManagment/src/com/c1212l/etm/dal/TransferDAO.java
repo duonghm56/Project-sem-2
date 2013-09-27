@@ -4,6 +4,7 @@
  */
 package com.c1212l.etm.dal;
 
+import com.c1212l.etm.dto.Employee;
 import com.c1212l.etm.dto.Project;
 import com.c1212l.etm.dto.Transfer;
 import java.sql.CallableStatement;
@@ -66,6 +67,15 @@ public class TransferDAO extends ConnectionTool{
         cs.setInt(15, transfer.getToLocationID());
         cs.executeUpdate();
         closeConnection();        
+    }
+         public void updateEmployee(Employee employee) throws ClassNotFoundException, Exception {
+            initConnection();
+            CallableStatement cs = conn.prepareCall("{call updateEmployeeTransfer(?, ?, ?)}");
+            cs.setInt(1, employee.getEmployeeID());
+            cs.setInt(2, employee.getDepartnameID());
+            cs.setInt(3, employee.getProjectID());
+            cs.executeUpdate();
+            closeConnection();
     }
        public void deleteTransfer(Transfer transfer) throws ClassNotFoundException, SQLException{
         initConnection();

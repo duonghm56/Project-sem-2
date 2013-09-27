@@ -5,11 +5,13 @@
 package com.c1212l.etm.ui;
 
 import com.c1212l.etm.bll.DepartmentBUS;
+import com.c1212l.etm.bll.EmployeeBUS;
 import com.c1212l.etm.bll.LocationBUS;
 import com.c1212l.etm.bll.ProjectBUS;
 import com.c1212l.etm.bll.TransferBUS;
 import com.c1212l.etm.bll.TransferTypeBUS;
 import com.c1212l.etm.dto.Department;
+import com.c1212l.etm.dto.Employee;
 import com.c1212l.etm.dto.Location;
 import com.c1212l.etm.dto.Project;
 import com.c1212l.etm.dto.Transfer;
@@ -362,7 +364,6 @@ public class TransferPanel extends javax.swing.JPanel {
             }
             int transferID = Integer.parseInt(txtTransferID.getText());
             int transferTypeID = ((KeyValue) cmbTransferType.getSelectedItem()).getKey();
-            String employeeName = txtEmployeeName.getText();
             Date requestDate = Date.valueOf(txtRequestDate.getText());
             String reason = txtReason.getText();
             Date approveDate = Date.valueOf(txtApproveDate.getText());
@@ -373,7 +374,8 @@ public class TransferPanel extends javax.swing.JPanel {
             int toDepartmentID = ((KeyValue) cmbToDepartment.getSelectedItem()).getKey();
             int formLocationID = ((KeyValue) cmbFromLocation.getSelectedItem()).getKey();
             int toLocationID = ((KeyValue) cmbToLocation.getSelectedItem()).getKey();
-            transferBUS.updateTransfer(transferID, transferTypeID, toProjectID, tranReDate, tranJoinDate, requestDate, reason, true, approveDate, fromProjectID, toProjectID, fromDepartmentID, toDepartmentID, formLocationID, toLocationID);
+            transferBUS.updateTransfer(transferID, transferTypeID, employeeID, tranReDate, tranJoinDate, requestDate, reason, true, approveDate, fromProjectID, toProjectID, fromDepartmentID, toDepartmentID, formLocationID, toLocationID);
+            transferBUS.updateEmployeeTransfer(employeeID, toDepartmentID, toProjectID);
             JOptionPane.showMessageDialog(null, "Update success");
             reloadData();
         } catch (Exception ex) {
@@ -452,6 +454,7 @@ public class TransferPanel extends javax.swing.JPanel {
     ArrayList<Transfer> lstTransfer;
     TransferBUS transferBUS = new TransferBUS();
     private Date tranReDate,tranJoinDate;
+    private int employeeID;
     private void initTable() {
         Vector header = new Vector();
         header.add("Transfer ID:");
@@ -554,7 +557,16 @@ public class TransferPanel extends javax.swing.JPanel {
             cmbApprove.addItem(new KeyValue(0, "Disapprove"));
     }
 
-        
+         private void getEmployeeID()throws ClassNotFoundException, SQLException
+    {
+        EmployeeBUS employeeBUS = new EmployeeBUS();
+        ArrayList<Employee> arrEmployee = employeeBUS.getAllEmployees();
+        for (Employee employee : arrEmployee) {
+            if (employee.getEmployeeName().equals(txtEmployeeName.getText())) {
+                employeeID = employee.getEmployeeID();
+            }
+        }
+    }
         private void convertDate()
         {
             int tranReDateYear = dcTranReDate.getDate().getYear()+1900;
