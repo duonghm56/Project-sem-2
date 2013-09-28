@@ -90,53 +90,55 @@ public class TransferPanel extends javax.swing.JPanel {
         txtEmployeeNumber = new javax.swing.JTextField();
         btnSearch = new javax.swing.JToggleButton();
 
+        setBorder(javax.swing.BorderFactory.createTitledBorder("Transfer Manager"));
         setEnabled(false);
+        setPreferredSize(new java.awt.Dimension(980, 550));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setText("Transfer ID:");
-        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 10, -1, -1));
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 30, -1, -1));
 
         jLabel2.setText("Employee Name");
-        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 100, -1, -1));
+        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 110, -1, -1));
 
         jLabel3.setText("Transfer Type");
-        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 40, -1, 10));
+        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 330, -1, 10));
 
         jLabel4.setText("Relieving Date");
-        add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 60, -1, -1));
+        add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 70, -1, -1));
 
         jLabel5.setText("Joining Date");
-        add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 100, -1, -1));
+        add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 110, -1, -1));
 
         jLabel6.setText("Request Date");
-        add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 20, -1, -1));
+        add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 30, -1, -1));
 
         jLabel7.setText("Reason");
-        add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 310, -1, -1));
+        add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 320, -1, -1));
 
         jLabel8.setText("Approve");
-        add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 260, -1, -1));
+        add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 270, -1, -1));
 
         jLabel9.setText("Approve Date");
-        add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 230, -1, -1));
+        add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 240, -1, -1));
 
         jLabel10.setText("From Project");
-        add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 150, -1, -1));
+        add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 160, -1, -1));
 
         jLabel11.setText("To Project");
-        add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 180, -1, -1));
+        add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 190, -1, -1));
 
         jLabel12.setText("From Department");
-        add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 150, -1, -1));
+        add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 160, -1, -1));
 
         jLabel13.setText("To Department ");
-        add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 180, -1, -1));
+        add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 190, -1, -1));
 
         jLabel14.setText("From Location");
-        add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 230, -1, -1));
+        add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 240, -1, -1));
 
         jLabel15.setText("To Location");
-        add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 260, -1, -1));
+        add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 270, -1, -1));
 
         txtTransferID.setEnabled(false);
         txtTransferID.addActionListener(new java.awt.event.ActionListener() {
@@ -144,8 +146,8 @@ public class TransferPanel extends javax.swing.JPanel {
                 txtTransferIDActionPerformed(evt);
             }
         });
-        add(txtTransferID, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 10, 120, -1));
-        add(dcTranJoinDate, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 90, 220, 30));
+        add(txtTransferID, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 30, 120, -1));
+        add(dcTranJoinDate, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 100, 220, 30));
 
         jScrollPane1.setVerifyInputWhenFocusTarget(false);
         jScrollPane1.setWheelScrollingEnabled(false);
@@ -156,56 +158,56 @@ public class TransferPanel extends javax.swing.JPanel {
         txtReason.setEnabled(false);
         jScrollPane1.setViewportView(txtReason);
 
-        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 300, 620, 80));
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 300, 220, 70));
 
         cmbFromDepartment.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 cmbFromDepartmentItemStateChanged(evt);
             }
         });
-        add(cmbFromDepartment, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 150, 220, -1));
+        add(cmbFromDepartment, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 160, 220, -1));
 
         cmbToProject.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 cmbToProjectItemStateChanged(evt);
             }
         });
-        add(cmbToProject, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 180, 200, -1));
+        add(cmbToProject, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 190, 200, -1));
 
         cmbToDepartment.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 cmbToDepartmentItemStateChanged(evt);
             }
         });
-        add(cmbToDepartment, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 180, 220, -1));
+        add(cmbToDepartment, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 190, 220, -1));
 
         cmbTransferType.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 cmbTransferTypeKeyReleased(evt);
             }
         });
-        add(cmbTransferType, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 40, 200, 20));
+        add(cmbTransferType, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 320, 200, 30));
 
         cmbFromProject.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 cmbFromProjectItemStateChanged(evt);
             }
         });
-        add(cmbFromProject, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 150, 200, -1));
+        add(cmbFromProject, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 160, 200, -1));
 
         cmbFromLocation.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 cmbFromLocationItemStateChanged(evt);
             }
         });
-        add(cmbFromLocation, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 230, 200, -1));
+        add(cmbFromLocation, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 240, 200, -1));
 
         cmbToLocation.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 cmbToLocationItemStateChanged(evt);
             }
         });
-        add(cmbToLocation, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 260, 200, -1));
+        add(cmbToLocation, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 270, 200, -1));
 
         btnUpdate.setText("Update");
         btnUpdate.addActionListener(new java.awt.event.ActionListener() {
@@ -213,7 +215,7 @@ public class TransferPanel extends javax.swing.JPanel {
                 btnUpdateActionPerformed(evt);
             }
         });
-        add(btnUpdate, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 390, -1, -1));
+        add(btnUpdate, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 380, -1, -1));
 
         btnDelete.setText("Delete");
         btnDelete.addActionListener(new java.awt.event.ActionListener() {
@@ -221,7 +223,7 @@ public class TransferPanel extends javax.swing.JPanel {
                 btnDeleteActionPerformed(evt);
             }
         });
-        add(btnDelete, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 390, -1, -1));
+        add(btnDelete, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 380, -1, -1));
 
         jScrollPane3.setPreferredSize(new java.awt.Dimension(300, 200));
 
@@ -243,9 +245,9 @@ public class TransferPanel extends javax.swing.JPanel {
         });
         jScrollPane3.setViewportView(tbTransferData);
 
-        add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 420, 888, 120));
+        add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 420, 940, 110));
 
-        add(cmbApprove, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 230, 220, -1));
+        add(cmbApprove, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 240, 220, -1));
 
         txtEmployeeName.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -265,11 +267,11 @@ public class TransferPanel extends javax.swing.JPanel {
                 txtRequestDateActionPerformed(evt);
             }
         });
-        add(txtRequestDate, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 20, 220, -1));
-        add(dcTranReDate, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 50, 220, 30));
+        add(txtRequestDate, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 30, 220, -1));
+        add(dcTranReDate, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 60, 220, 30));
 
         txtApproveDate.setEnabled(false);
-        add(txtApproveDate, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 260, 220, 22));
+        add(txtApproveDate, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 270, 220, 22));
 
         btnReset.setText("Reset");
         btnReset.addActionListener(new java.awt.event.ActionListener() {
@@ -277,7 +279,7 @@ public class TransferPanel extends javax.swing.JPanel {
                 btnResetActionPerformed(evt);
             }
         });
-        add(btnReset, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 390, 70, -1));
+        add(btnReset, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 380, 70, -1));
 
         jLabel16.setText("Employee Number");
         add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 70, -1, -1));
@@ -287,7 +289,7 @@ public class TransferPanel extends javax.swing.JPanel {
                 txtEmployeeNumberKeyReleased(evt);
             }
         });
-        add(txtEmployeeNumber, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 70, 200, -1));
+        add(txtEmployeeNumber, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 60, 200, 30));
 
         btnSearch.setText("Search Mode");
         btnSearch.addActionListener(new java.awt.event.ActionListener() {
@@ -295,7 +297,7 @@ public class TransferPanel extends javax.swing.JPanel {
                 btnSearchActionPerformed(evt);
             }
         });
-        add(btnSearch, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 390, -1, -1));
+        add(btnSearch, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 380, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void tbTransferDataMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbTransferDataMouseClicked

@@ -52,27 +52,33 @@ public class ProjectPanel extends javax.swing.JPanel {
         btnAdd = new javax.swing.JButton();
         btnEdit = new javax.swing.JButton();
         btnDelete = new javax.swing.JButton();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        tblProject = new javax.swing.JTable();
         lblCreateDate = new javax.swing.JLabel();
         txtCreateDate = new javax.swing.JTextField();
         lblEndDate = new javax.swing.JLabel();
         txtEndDate = new javax.swing.JTextField();
         btnReset = new javax.swing.JButton();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        tblProject = new javax.swing.JTable();
 
         setBorder(javax.swing.BorderFactory.createTitledBorder("Project Manager"));
+        setPreferredSize(new java.awt.Dimension(970, 550));
+        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         lblProjectID.setText("Project ID");
+        add(lblProjectID, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 30, -1, -1));
 
         txtProjectID.setEditable(false);
+        add(txtProjectID, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 30, 260, 30));
 
         txtProjectName.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 txtProjectNameKeyReleased(evt);
             }
         });
+        add(txtProjectName, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 80, 260, 30));
 
         lblProjectName.setText("Project Name");
+        add(lblProjectName, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 80, -1, -1));
 
         btnAdd.setText("Add");
         btnAdd.addActionListener(new java.awt.event.ActionListener() {
@@ -80,6 +86,7 @@ public class ProjectPanel extends javax.swing.JPanel {
                 btnAddActionPerformed(evt);
             }
         });
+        add(btnAdd, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 230, 70, 40));
 
         btnEdit.setText("Update");
         btnEdit.addActionListener(new java.awt.event.ActionListener() {
@@ -87,6 +94,7 @@ public class ProjectPanel extends javax.swing.JPanel {
                 btnEditActionPerformed(evt);
             }
         });
+        add(btnEdit, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 230, 70, 40));
 
         btnDelete.setText("Delete");
         btnDelete.addActionListener(new java.awt.event.ActionListener() {
@@ -94,52 +102,32 @@ public class ProjectPanel extends javax.swing.JPanel {
                 btnDeleteActionPerformed(evt);
             }
         });
-
-        tblProject.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null}
-            },
-            new String [] {
-                "Project ID", "Project Name", "Create Date", "End Date"
-            }
-        ) {
-            Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.String.class, java.lang.Object.class, java.lang.Object.class
-            };
-            boolean[] canEdit = new boolean [] {
-                true, false, true, true
-            };
-
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
-            }
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
-        tblProject.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tblProjectMouseClicked(evt);
-            }
-        });
-        jScrollPane1.setViewportView(tblProject);
+        add(btnDelete, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 230, 70, 40));
 
         lblCreateDate.setText("Created Date");
+        add(lblCreateDate, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 130, -1, -1));
 
+        txtCreateDate.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtCreateDateActionPerformed(evt);
+            }
+        });
         txtCreateDate.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 txtCreateDateKeyReleased(evt);
             }
         });
+        add(txtCreateDate, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 130, 260, 30));
 
         lblEndDate.setText("End Date");
+        add(lblEndDate, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 180, -1, -1));
 
         txtEndDate.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 txtEndDateKeyReleased(evt);
             }
         });
+        add(txtEndDate, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 180, 260, 30));
 
         btnReset.setText("Reset");
         btnReset.addActionListener(new java.awt.event.ActionListener() {
@@ -147,74 +135,27 @@ public class ProjectPanel extends javax.swing.JPanel {
                 btnResetActionPerformed(evt);
             }
         });
+        add(btnReset, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 230, 69, 40));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(52, 52, 52)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(lblProjectID)
-                            .addGap(72, 72, 72)
-                            .addComponent(txtProjectID, javax.swing.GroupLayout.DEFAULT_SIZE, 177, Short.MAX_VALUE))
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(lblProjectName)
-                            .addGap(56, 56, 56)
-                            .addComponent(txtProjectName))
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(lblCreateDate)
-                            .addGap(55, 55, 55)
-                            .addComponent(txtCreateDate))
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(lblEndDate)
-                            .addGap(76, 76, 76)
-                            .addComponent(txtEndDate)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(btnAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(10, 10, 10)
-                        .addComponent(btnEdit, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(10, 10, 10)
-                        .addComponent(btnDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnReset, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(18, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(14, 14, 14)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblProjectID)
-                    .addComponent(txtProjectID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(10, 10, 10)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblProjectName)
-                    .addComponent(txtProjectName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(10, 10, 10)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblCreateDate)
-                    .addComponent(txtCreateDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(10, 10, 10)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblEndDate)
-                    .addComponent(txtEndDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(10, 10, 10)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnAdd)
-                    .addComponent(btnEdit)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(btnDelete)
-                        .addComponent(btnReset)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-        );
+        tblProject.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        tblProject.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblProjectMouseClicked(evt);
+            }
+        });
+        jScrollPane2.setViewportView(tblProject);
+
+        add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(18, 290, 930, 240));
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
@@ -268,15 +209,6 @@ public class ProjectPanel extends javax.swing.JPanel {
             }
     }//GEN-LAST:event_btnDeleteActionPerformed
 
-    private void tblProjectMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblProjectMouseClicked
-        int selectedRow = tblProject.getSelectedRow();
-        txtProjectID.setText(tblProject.getValueAt(selectedRow, 0).toString());
-        txtProjectName.setText(tblProject.getValueAt(selectedRow, 1).toString());
-        txtCreateDate.setText(tblProject.getValueAt(selectedRow, 2) != null ? tblProject.getValueAt(selectedRow, 2).toString() : "");
-        txtEndDate.setText(tblProject.getValueAt(selectedRow, 3) != null ? tblProject.getValueAt(selectedRow, 3).toString() : "");
-
-    }//GEN-LAST:event_tblProjectMouseClicked
-
     private void txtEndDateKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtEndDateKeyReleased
         try {
             if (txtProjectID.getText().equals("")) {
@@ -316,12 +248,21 @@ public class ProjectPanel extends javax.swing.JPanel {
     private void btnResetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnResetActionPerformed
         reloadData();
     }//GEN-LAST:event_btnResetActionPerformed
+
+    private void txtCreateDateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCreateDateActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtCreateDateActionPerformed
+
+    private void tblProjectMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblProjectMouseClicked
+        updateFieldData();
+    }//GEN-LAST:event_tblProjectMouseClicked
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAdd;
     private javax.swing.JButton btnDelete;
     private javax.swing.JButton btnEdit;
     private javax.swing.JButton btnReset;
-    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JLabel lblCreateDate;
     private javax.swing.JLabel lblEndDate;
     private javax.swing.JLabel lblProjectID;
@@ -336,6 +277,14 @@ public class ProjectPanel extends javax.swing.JPanel {
     ArrayList<Project> lstProject;
     ProjectBUS projectBUS = new ProjectBUS();
 
+    private void updateFieldData(){
+        int row = tblProject.getSelectedRow();
+        txtProjectID.setText(tblProject.getValueAt(row, 0).toString());
+        txtProjectName.setText(tblProject.getValueAt(row, 1).toString());
+        txtCreateDate.setText(tblProject.getValueAt(row, 2) == null ? "" : tblProject.getValueAt(row, 2).toString());
+        txtEndDate.setText(tblProject.getValueAt(row, 3) == null ? "" : tblProject.getValueAt(row, 3).toString());
+    }
+    
     private void initTable() {
         Vector header = new Vector();
         header.add("Project ID");
