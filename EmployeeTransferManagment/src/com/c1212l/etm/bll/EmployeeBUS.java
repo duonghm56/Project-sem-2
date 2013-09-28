@@ -10,6 +10,7 @@ import com.c1212l.etm.dto.Location;
 import java.sql.Date;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Set;
 
 /**
  *
@@ -29,7 +30,7 @@ public class EmployeeBUS {
         return employeeDAO.getAllEmployee();
     }
     
-    public void addEmployee(String emplNum, String emplName,String email,float salary,Date birthday,String address, String password,String confirmPassword, String role, int workExperience, boolean gender, int departmentID, int projectID) throws ClassNotFoundException, SQLException, Exception{
+    public void addEmployee(String emplNum, String emplName,String email,float salary,Date birthday,String address, String password, String role, int workExperience, boolean gender, int departmentID, int projectID) throws ClassNotFoundException, SQLException, Exception{
         Employee e = new Employee();
         e.setEmployeeNumber(emplNum);
         e.setEmployeeName(emplName);
@@ -37,8 +38,7 @@ public class EmployeeBUS {
         e.setSalary(salary);
         e.setBirthday(birthday);
         e.setAddress(address);
-        e.setPassword(password);
-        e.setConfirmPassword(confirmPassword);
+        e.setPassword(password);        
         e.setRole(role);
         e.setWorkExperience(workExperience);
         e.setGender(gender);
@@ -47,7 +47,7 @@ public class EmployeeBUS {
         employeeDAO.addEmployee(e);
     }
     
-    public void updateEmployee(String emplNum, String emplName,String email,float salary,Date birthday,String address, String password,String confirmPassword, String role, int workExperience, boolean gender) throws ClassNotFoundException, Exception{
+    public void updateEmployee(String emplNum, String emplName,String email,float salary,Date birthday,String address, String password, String role, int workExperience, boolean gender, int departmentIP, int projectID) throws ClassNotFoundException, Exception{
         Employee e = new Employee();
         e.setEmployeeNumber(emplNum);
         e.setEmployeeName(emplName);
@@ -55,11 +55,12 @@ public class EmployeeBUS {
         e.setSalary(salary);
         e.setBirthday(birthday);
         e.setAddress(address);
-        e.setPassword(password);
-        e.setConfirmPassword(confirmPassword);
+        e.setPassword(password);        
         e.setRole(role);
         e.setWorkExperience(workExperience);
         e.setGender(gender);  
+        e.setDepartnameID(departmentIP);
+        e.setProjectID(projectID);
         employeeDAO.updateEmployee(e);
     }
     

@@ -7,8 +7,10 @@ package com.c1212l.etm.ui;
 import com.c1212l.etm.bll.DepartmentBUS;
 import com.c1212l.etm.bll.EmployeeBUS;
 import com.c1212l.etm.bll.ProjectBUS;
+import com.c1212l.etm.dal.LocationDAO;
 import com.c1212l.etm.dto.Department;
 import com.c1212l.etm.dto.Employee;
+import com.c1212l.etm.dto.Location;
 import com.c1212l.etm.dto.Project;
 import com.c1212l.etm.util.KeyValue;
 import java.awt.event.KeyEvent;
@@ -73,8 +75,6 @@ public class EmployeePanel extends javax.swing.JPanel {
         jLabel3 = new javax.swing.JLabel();
         txtEmail = new javax.swing.JTextField();
         txtPassword = new javax.swing.JPasswordField();
-        jLabel5 = new javax.swing.JLabel();
-        txtConfirmPassword = new javax.swing.JPasswordField();
         btnReset = new javax.swing.JButton();
         jLabel7 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
@@ -98,26 +98,26 @@ public class EmployeePanel extends javax.swing.JPanel {
         add(txtEmployeeName, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 70, 190, -1));
 
         jLabel11.setText("Project:");
-        add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 270, -1, -1));
+        add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 240, -1, -1));
 
         jLabel10.setText("Work Experience:");
-        add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 150, -1, -1));
-        add(txtWorkExperience, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 150, 50, -1));
-        add(txtEmployeeRole, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 180, 180, -1));
+        add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 100, -1, -1));
+        add(txtWorkExperience, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 100, 50, -1));
+        add(txtEmployeeRole, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 150, 180, -1));
 
         jLabel14.setText("Year");
-        add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 150, 26, -1));
+        add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 100, 26, -1));
 
         add(cmbGender, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 150, 100, -1));
 
         cmbProject.setModel(new javax.swing.DefaultComboBoxModel(new String[] { " " }));
-        add(cmbProject, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 270, 180, -1));
+        add(cmbProject, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 240, 180, -1));
 
         jLabel15.setText("Department");
-        add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 240, -1, -1));
+        add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 210, -1, -1));
 
         cmbDepartment.setModel(new javax.swing.DefaultComboBoxModel(new String[] { " " }));
-        add(cmbDepartment, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 240, 180, -1));
+        add(cmbDepartment, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 210, 180, -1));
 
         jLabel1.setText("Employee Number:");
         add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 100, -1, -1));
@@ -156,7 +156,7 @@ public class EmployeePanel extends javax.swing.JPanel {
         add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 70, -1, -1));
 
         jLabel6.setText("Employee Role:");
-        add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 180, -1, -1));
+        add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 150, -1, -1));
 
         tblEmployee.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -197,10 +197,6 @@ public class EmployeePanel extends javax.swing.JPanel {
         add(txtEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 40, 180, -1));
         add(txtPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 70, 180, -1));
 
-        jLabel5.setText("Confirm Password");
-        add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 100, -1, -1));
-        add(txtConfirmPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 100, 180, -1));
-
         btnReset.setText("Reset");
         btnReset.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -213,7 +209,7 @@ public class EmployeePanel extends javax.swing.JPanel {
         add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 210, -1, -1));
 
         jLabel9.setText("Salary:");
-        add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 210, -1, -1));
+        add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 180, -1, -1));
 
         jLabel12.setText("Birthday:");
         add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 180, -1, -1));
@@ -224,31 +220,20 @@ public class EmployeePanel extends javax.swing.JPanel {
 
         add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 210, 200, 80));
         add(dcBirthday, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 180, 190, -1));
-        add(txtSalary, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 210, 89, -1));
+        add(txtSalary, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 180, 89, -1));
 
         jLabel16.setText("USD");
-        add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 210, -1, -1));
+        add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 180, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
         try {
             convertDate();
-            if (txtEmployeeID.getText().equals("")) {
-                throw new Exception("Please select Employee");
-            }
-            if (txtEmployeeNumber.getText().equals("")) {
-                throw new Exception("Please enter Employee Number");
-            }
-            if (txtEmployeeName.getText().equals("")) {
-                throw new Exception("Please enter Employee Name");
-            }
-            if (txtEmployeeRole.getText().equals("")) {
-                throw new Exception("Please enter Employee Role");
-            }
-            if (txtWorkExperience.getText().equals("")) {
-                throw new Exception("Please enter Work Experience");
-            }
+            validateField();
+            
             int gender = ((KeyValue) cmbGender.getSelectedItem()).getKey();
+            int departmentID = ((KeyValue) cmbDepartment.getSelectedItem()).getKey();
+            int projectID = ((KeyValue) cmbProject.getSelectedItem()).getKey();
             employeeBUS.updateEmployee(
                     txtEmployeeNumber.getText(),
                     txtEmployeeName.getText(),
@@ -257,10 +242,11 @@ public class EmployeePanel extends javax.swing.JPanel {
                     birthday,
                     txtAddress.getText(),
                     new String(txtPassword.getPassword()),
-                    new String(txtConfirmPassword.getPassword()),
                     txtEmployeeRole.getText(),
                     Integer.parseInt(txtWorkExperience.getText()),
-                    gender == 1 ? true : false);
+                    gender == 1 ? true : false,
+                    departmentID,
+                    projectID);
             JOptionPane.showMessageDialog(null, "Update success!");
             reloadData();
         } catch (Exception ex) {
@@ -272,53 +258,7 @@ public class EmployeePanel extends javax.swing.JPanel {
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
         try {
             convertDate();
-            if (txtEmployeeNumber.getText().equals("")) {
-                throw new Exception("Please enter Employee Number");
-            }
-            if (txtEmployeeName.getText().equals("")) {
-                throw new Exception("Please enter Employee Name");
-            }
-            if (txtEmployeeRole.getText().equals("")) {
-                throw new Exception("Please enter Employee Role");
-            }
-            if (txtWorkExperience.getText().equals("")) {
-                throw new Exception("Please enter Work Experience");
-            }
-            if (!txtConfirmPassword.getText().equals(txtPassword.getText())) {
-                throw new Exception("ConfirmPassword must like Password");
-            }
-
-            Pattern ptEmplName = Pattern.compile("^([A-Za-z]+[\\s]?)+$");
-            Matcher mcEmplName = ptEmplName.matcher(txtEmployeeName.getText());
-            if (!mcEmplName.find()) {
-                throw new Exception("Name is not valid");
-            }
-
-            Pattern ptEmplRole = Pattern.compile("^([A-Za-z]+[\\s]?)+$");
-            Matcher mcEmplRole = ptEmplName.matcher(txtEmployeeRole.getText());
-            if (!mcEmplRole.find()) {
-                throw new Exception("Employee Role is not valid");
-            }
-
-            Pattern ptemail = Pattern.compile("^[\\w.-]+@[\\w.-]+\\.[A-Za-z]{2,4}$");
-            Matcher mcemail = ptemail.matcher(txtEmail.getText());
-            if (!mcemail.find()) {
-                throw new Exception("Email is not valid");
-            }
-
-            /*Pattern ptEmplNumber = Pattern.compile("^E+[\\d]{4}$");
-            Matcher mcEmplNumber = ptEmplNumber.matcher(txtEmployeeNumber.getText());
-            if (!mcEmplNumber.find()) {
-                throw new Exception("Employee Number is not valid");
-            }*/
-            Pattern ptWorkExperience = Pattern.compile("^[\\d]{1,2}$");
-            Matcher mcWorkExperience = ptWorkExperience.matcher(txtWorkExperience.getText());
-            if (!mcWorkExperience.find()) {
-                throw new Exception("Work Experience is not valid");
-            }
-            if (Integer.parseInt(txtWorkExperience.getText()) > 50) {
-                throw new Exception("Work Experience ");
-            }
+            validateField();
 
             employeeBUS.addEmployee(
                     txtEmployeeNumber.getText(),
@@ -328,7 +268,6 @@ public class EmployeePanel extends javax.swing.JPanel {
                     birthday,
                     txtAddress.getText(),
                     new String(txtPassword.getPassword()),
-                    new String(txtConfirmPassword.getPassword()),
                     txtEmployeeRole.getText(),
                     Integer.parseInt(txtWorkExperience.getText()),
                     ((KeyValue) cmbGender.getSelectedItem()).getKey() == 1 ? true : false,
@@ -384,7 +323,6 @@ public class EmployeePanel extends javax.swing.JPanel {
     private void btnResetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnResetActionPerformed
         reloadData();
     }//GEN-LAST:event_btnResetActionPerformed
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAdd;
     private javax.swing.JButton btnDelete;
@@ -405,7 +343,6 @@ public class EmployeePanel extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
@@ -414,7 +351,6 @@ public class EmployeePanel extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable tblEmployee;
     private javax.swing.JTextArea txtAddress;
-    private javax.swing.JPasswordField txtConfirmPassword;
     private javax.swing.JTextField txtEmail;
     private javax.swing.JTextField txtEmployeeID;
     private javax.swing.JTextField txtEmployeeName;
@@ -453,17 +389,18 @@ public class EmployeePanel extends javax.swing.JPanel {
         makeColumnInvisible(0);
         makeColumnInvisible(3);
         makeColumnInvisible(5);
+        makeColumnInvisible(6);
         makeColumnInvisible(7);
         makeColumnInvisible(8);
     }
 
-    private void makeColumnInvisible(int col){
+    private void makeColumnInvisible(int col) {
         tblEmployee.getColumnModel().getColumn(col).setMaxWidth(0);
         tblEmployee.getColumnModel().getColumn(col).setMinWidth(0);
         tblEmployee.getColumnModel().getColumn(col).setPreferredWidth(0);
         tblEmployee.getColumnModel().getColumn(col).setResizable(false);
     }
-    
+
     private void fillData(ArrayList<Employee> lst) {
         if (lst != null) {
             for (Employee e : lst) {
@@ -498,12 +435,14 @@ public class EmployeePanel extends javax.swing.JPanel {
 
     private void initCmbGender() {
         cmbGender.removeAllItems();
+        cmbGender.addItem(new KeyValue(-1, ""));
         cmbGender.addItem(new KeyValue(1, "Male"));
         cmbGender.addItem(new KeyValue(0, "Female"));
     }
 
     private void initCmbProject() throws ClassNotFoundException, SQLException {
         cmbProject.removeAllItems();
+        cmbProject.addItem(new KeyValue(-1, ""));
         ProjectBUS projectBUS = new ProjectBUS();
         ArrayList<Project> arrProject = projectBUS.getAllProject();
         for (Project p : arrProject) {
@@ -516,10 +455,12 @@ public class EmployeePanel extends javax.swing.JPanel {
      */
     private void initCmbDepartment() throws ClassNotFoundException, SQLException {
         cmbDepartment.removeAllItems();
+        cmbDepartment.addItem(new KeyValue(-1, ""));
         DepartmentBUS departmentBUS = new DepartmentBUS();
         ArrayList<Department> arrDepartment = departmentBUS.getAllDepartment();
         for (Department department : arrDepartment) {
-            cmbDepartment.addItem(new KeyValue(department.getDepartmentID(), department.getDepartmentName()));
+            Location location = new LocationDAO().getLocationById(department.getLocationID());
+            cmbDepartment.addItem(new KeyValue(department.getDepartmentID(), department.getDepartmentName() + " - " + location.getLocationName()));
         }
     }
 
@@ -539,12 +480,11 @@ public class EmployeePanel extends javax.swing.JPanel {
 //        dcBirthday.setDate(tblEmployee.getValueAt(selectedRow, 5).toString());
         txtAddress.setText(tblEmployee.getValueAt(selectedRow, 6).toString());
         txtPassword.setText(tblEmployee.getValueAt(selectedRow, 7).toString());
-        txtConfirmPassword.setText(tblEmployee.getValueAt(selectedRow, 8).toString());
-        txtEmployeeRole.setText(tblEmployee.getValueAt(selectedRow, 9).toString());
-        txtWorkExperience.setText(tblEmployee.getValueAt(selectedRow, 10).toString());
-        cmbGender.setSelectedItem(new KeyValue(0, tblEmployee.getValueAt(selectedRow, 11).toString()));
-        cmbProject.setSelectedItem(new KeyValue(0, tblEmployee.getValueAt(selectedRow, 12).toString()));
-        cmbDepartment.setSelectedItem(new KeyValue(0, tblEmployee.getValueAt(selectedRow, 13).toString()));
+        txtEmployeeRole.setText(tblEmployee.getValueAt(selectedRow, 8).toString());
+        txtWorkExperience.setText(tblEmployee.getValueAt(selectedRow, 9).toString());
+        cmbGender.setSelectedItem(new KeyValue(0, tblEmployee.getValueAt(selectedRow, 10).toString()));
+        cmbProject.setSelectedItem(new KeyValue(0, tblEmployee.getValueAt(selectedRow, 11).toString()));
+        cmbDepartment.setSelectedItem(new KeyValue(0, tblEmployee.getValueAt(selectedRow, 12).toString()));
     }
 
     private void loadSearchEmployeeName() throws ClassNotFoundException, SQLException {
@@ -559,5 +499,70 @@ public class EmployeePanel extends javax.swing.JPanel {
         initTable();
         lstEmpl = employeeBUS.searchEmployee(employeeName);
         fillData(lstEmpl);
+    }
+
+    @Override
+    public void validate() {
+        super.validate();
+        reloadData();
+    }
+
+    private void validateField() throws Exception {
+        if (txtEmployeeNumber.getText().equals("")) {
+            throw new Exception("Please enter Employee Number");
+        }
+        if (txtEmployeeName.getText().equals("")) {
+            throw new Exception("Please enter Employee Name");
+        }
+        if (txtEmployeeRole.getText().equals("")) {
+            throw new Exception("Please enter Employee Role");
+        }
+        if (txtWorkExperience.getText().equals("")) {
+            throw new Exception("Please enter Work Experience");
+        }
+        
+        KeyValue department = (KeyValue)cmbDepartment.getSelectedItem();
+        if(department.getValue().equals("")){
+            throw new Exception("Please select department");
+        }
+        
+        /*KeyValue department = (KeyValue)cmbDepartment.getSelectedItem();
+        if(department.getValue().equals("")){
+            throw new Exception("Please select department");
+        }*/
+                
+        
+
+        Pattern ptEmplName = Pattern.compile("^([A-Za-z]+[\\s]?)+$");
+        Matcher mcEmplName = ptEmplName.matcher(txtEmployeeName.getText());
+        if (!mcEmplName.find()) {
+            throw new Exception("Name is not valid");
+        }
+
+        Pattern ptEmplRole = Pattern.compile("^([A-Za-z]+[\\s]?)+$");
+        Matcher mcEmplRole = ptEmplRole.matcher(txtEmployeeRole.getText());
+        if (!mcEmplRole.find()) {
+            throw new Exception("Employee Role is not valid");
+        }
+
+        Pattern ptemail = Pattern.compile("^[\\w.-]+@[\\w.-]+\\.[A-Za-z]{2,4}$");
+        Matcher mcemail = ptemail.matcher(txtEmail.getText());
+        if (!mcemail.find()) {
+            throw new Exception("Email is not valid");
+        }
+
+        /*Pattern ptEmplNumber = Pattern.compile("^E+[\\d]{4}$");
+         Matcher mcEmplNumber = ptEmplNumber.matcher(txtEmployeeNumber.getText());
+         if (!mcEmplNumber.find()) {
+         throw new Exception("Employee Number is not valid");
+         }*/
+        Pattern ptWorkExperience = Pattern.compile("^[\\d]{1,2}$");
+        Matcher mcWorkExperience = ptWorkExperience.matcher(txtWorkExperience.getText());
+        if (!mcWorkExperience.find()) {
+            throw new Exception("Work Experience is not valid");
+        }
+        if (Integer.parseInt(txtWorkExperience.getText()) > 50) {
+            throw new Exception("Work Experience ");
+        }
     }
 }

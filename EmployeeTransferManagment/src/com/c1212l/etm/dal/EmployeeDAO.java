@@ -33,8 +33,7 @@ public class EmployeeDAO extends ConnectionTool {
             e.setSalary(rs.getFloat("salary"));
             e.setBirthday(rs.getDate("birthday"));
             e.setAddress(rs.getString("address"));
-            e.setPassword(rs.getString("password"));
-            e.setConfirmPassword(rs.getString("confirmPassword"));
+            e.setPassword(rs.getString("password"));            
             e.setRole(rs.getString("role"));
             e.setWorkExperience(rs.getInt("workExperience"));
             e.setGender(rs.getBoolean("gender"));
@@ -60,15 +59,14 @@ public class EmployeeDAO extends ConnectionTool {
             error += "Error: Duplicate employee email\n";
         }
         if (error.equals("")) {
-            CallableStatement cs = conn.prepareCall("{call addEmployee(?, ?, ?, ?,?,?, ?, ?,?,?,?,?,?)}");
+            CallableStatement cs = conn.prepareCall("{call addEmployee(?, ?, ?, ?,?, ?, ?,?,?,?,?,?)}");
             cs.setString(1, employee.getEmployeeNumber());
             cs.setString(2, employee.getEmployeeName());
             cs.setString(3, employee.getEmail());
             cs.setFloat(4, employee.getSalary());
             cs.setDate(5, employee.getBirthday());
             cs.setString(6, employee.getAddress());
-            cs.setString(7, employee.getPassword());
-            cs.setString(8, employee.getConfirmPassword());
+            cs.setString(7, employee.getPassword());            
             cs.setString(9, employee.getRole());
             cs.setInt(10, employee.getWorkExperience());
             cs.setBoolean(11, employee.getGender());
@@ -83,18 +81,19 @@ public class EmployeeDAO extends ConnectionTool {
 
     public void updateEmployee(Employee employee) throws ClassNotFoundException, Exception {
         initConnection();
-        CallableStatement cs = conn.prepareCall("{call updateEmployee(?, ?, ?, ?, ?, ?,?,?,?,?,?)}");
+        CallableStatement cs = conn.prepareCall("{call updateEmployee(?, ?, ?, ?, ?,?,?,?,?,?,?,?)}");
         cs.setString(1, employee.getEmployeeNumber());
         cs.setString(2, employee.getEmployeeName());
         cs.setString(3, employee.getEmail());
         cs.setFloat(4, employee.getSalary());
         cs.setDate(5, employee.getBirthday());
         cs.setString(6, employee.getAddress());
-        cs.setString(7, employee.getPassword());
-        cs.setString(8, employee.getConfirmPassword());
+        cs.setString(7, employee.getPassword());        
         cs.setString(9, employee.getRole());
         cs.setInt(10, employee.getWorkExperience());
         cs.setBoolean(11, employee.getGender());
+        cs.setInt(12, employee.getDepartnameID());
+        cs.setInt(13, employee.getProjectID());
         cs.executeUpdate();
         closeConnection();
     }
@@ -131,8 +130,7 @@ public class EmployeeDAO extends ConnectionTool {
             e.setSalary(rs.getFloat("salary"));
             e.setBirthday(rs.getDate("birthday"));
             e.setAddress(rs.getString("address"));
-            e.setPassword(rs.getString("password"));
-            e.setConfirmPassword(rs.getString("confirmPassword"));
+            e.setPassword(rs.getString("password"));            
             e.setRole(rs.getString("role"));
             e.setWorkExperience(rs.getInt("workExperience"));
             e.setGender(rs.getBoolean("gender"));
@@ -159,8 +157,7 @@ public class EmployeeDAO extends ConnectionTool {
                 e.setSalary(rs.getFloat("salary"));
                 e.setBirthday(rs.getDate("birthday"));
                 e.setAddress(rs.getString("address"));
-                e.setPassword(rs.getString("password"));
-                e.setConfirmPassword(rs.getString("confirmPassword"));
+                e.setPassword(rs.getString("password"));                
                 e.setRole(rs.getString("role"));
                 e.setWorkExperience(rs.getInt("workExperience"));
                 e.setGender(rs.getBoolean("gender"));

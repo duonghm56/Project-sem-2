@@ -22,6 +22,7 @@ create table project(
 	createDate date,
 	endDate date
 )
+
 --drop table employee
 create table employee(
 	employeeID int primary key identity,
@@ -31,8 +32,7 @@ create table employee(
 	salary float,
 	birthday date ,
 	[address] nvarchar(200),
-	[password] varchar(50) not null,
-	confirmPassword varchar(50)not null,
+	[password] varchar(50) not null,	
 	[role] nvarchar(100), 
 	workExperience int,
 	gender bit,
@@ -41,11 +41,11 @@ create table employee(
 )
 
 create table transferType(
-	transferTypeID int primary key identity,
+	transferTypeID int primary key,
 	transferTypeName nvarchar(200) not null unique
 )
-insert into transferType(transferTypeName) 
-values('Project Transfer'), ('Department Transfer'), ('Location Transfer'), ('Custom Transfer')
+insert into transferType(transferTypeID, transferTypeName) 
+values(1, 'Project Transfer'), (2, 'Department Transfer'), (3, 'Location Transfer'), (4, 'Custom Transfer')
 
 --drop table [transfer]
 create table [transfer](
@@ -104,10 +104,10 @@ as begin
 end
 go
 -- procedure for employee table
-create procedure addEmployee(@emplNum varchar(20), @emplName nvarchar(200),@email varchar(100),@salary float,@birthday date,@address nvarchar(200), @pass varchar(50),@confirmpass varchar(100), @role nvarchar(100), @workExperience int, @gender bit, @departmentID int, @projectID int)
+create procedure addEmployee(@emplNum varchar(20), @emplName nvarchar(200),@email varchar(100),@salary float,@birthday date,@address nvarchar(200), @pass varchar(50), @role nvarchar(100), @workExperience int, @gender bit, @departmentID int, @projectID int)
 as begin
-	insert into employee(employeeNumber ,employeeName,email,salary,birthday,[address], [password],confirmPassword, [role], workExperience, gender, departmentID, projectID)
-		values(@emplNum, @emplName,@email,@salary,@birthday,@address, @pass,@confirmpass, @role, @workExperience, @gender, @departmentID, @projectID)
+	insert into employee(employeeNumber ,employeeName,email,salary,birthday,[address], [password], [role], workExperience, gender, departmentID, projectID)
+		values(@emplNum, @emplName,@email,@salary,@birthday,@address, @pass, @role, @workExperience, @gender, @departmentID, @projectID)
 end
 go
 
@@ -118,10 +118,10 @@ where employeeID =@employeeID
 end
 go
 
-create procedure updateEmployee(@emplNum varchar(20), @emplName nvarchar(200),@email varchar(100),@salary float,@birthday date,@address nvarchar(200), @pass varchar(50),@confirmPassword varchar(100), @role nvarchar(100), @workExperience int, @gender bit)
+create procedure updateEmployee(@emplNum varchar(20), @emplName nvarchar(200),@email varchar(100),@salary float,@birthday date,@address nvarchar(200), @pass varchar(50), @role nvarchar(100), @workExperience int, @gender bit, @departmentID int, @projectID int)
 as begin
-	update employee set employeeName = @emplName,email=@email,salary=@salary,birthday=@birthday,[address]=@address, [password] = @pass,confirmPassword=@confirmPassword, [role] = @role,
-						workExperience = @workExperience, gender = @gender
+	update employee set employeeName = @emplName,email=@email,salary=@salary,birthday=@birthday,[address]=@address, [password] = @pass, [role] = @role,
+						workExperience = @workExperience, gender = @gender, departmentID = @departmentID, projectID = @projectID
 	where employeeNumber = @emplNum
 end
 go

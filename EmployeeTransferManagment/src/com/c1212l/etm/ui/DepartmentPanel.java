@@ -186,13 +186,17 @@ public class DepartmentPanel extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(null, "Please select department");
         } else {
             try {
-                if (JOptionPane.showConfirmDialog(null, "Are you sure to delete?", "Delete", JOptionPane.YES_NO_OPTION) == JOptionPane.OK_OPTION) {
+                if (JOptionPane.showConfirmDialog(null, "Are you sure to delete?", "Delete", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
                     departmentBUS.deleteDepartment(Integer.parseInt(txtDepartmentID.getText()));
                     reloadData();
                 }
             } catch (Exception ex) {
-                JOptionPane.showMessageDialog(null, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
-
+                if(ex.getMessage().contains("UNIQUE KEY")){
+                    JOptionPane.showMessageDialog(null, "Error: Duplicate value", "Error", JOptionPane.ERROR_MESSAGE);
+                }else{
+                    JOptionPane.showMessageDialog(null, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);                    
+                    ex.printStackTrace();
+                }
             }
         }
     }//GEN-LAST:event_btnDeleteActionPerformed

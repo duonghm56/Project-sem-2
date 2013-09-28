@@ -5,6 +5,7 @@
 package com.c1212l.etm.dto;
 
 import com.c1212l.etm.dal.DepartmentDAO;
+import com.c1212l.etm.dal.LocationDAO;
 import com.c1212l.etm.dal.ProjectDAO;
 import java.sql.Date;
 import java.util.Vector;
@@ -14,13 +15,12 @@ import java.util.Vector;
  * @author OLDPC
  */
 public class Employee {
-    
+
     private int employeeID;
     private String employeeNumber;
     private String employeeName;
     private String email;
-    private String password;
-    private String confirmPassword;
+    private String password;   
     private String role;
     private int workExperience;
     private boolean gender;
@@ -128,8 +128,8 @@ public class Employee {
     public void setAddress(String address) {
         this.address = address;
     }
-    
-    public Vector getVector(){
+
+    public Vector getVector() {
         Vector result = new Vector();
         result.add(employeeID);
         result.add(employeeNumber);
@@ -138,15 +138,19 @@ public class Employee {
         result.add(salary);
         result.add(birthday);
         result.add(address);
-        result.add(password);
-        result.add(confirmPassword);
+        result.add(password);        
         result.add(role);
         result.add(workExperience);
-        result.add(gender?"Male":"Female");
+        result.add(gender ? "Male" : "Female");
         Project project = new ProjectDAO().getProjectById(projectID);
-        result.add(project!=null?project.getProjectName():"undifined");    
+        result.add(project != null ? project.getProjectName() : "undifined");
+
         Department department = new DepartmentDAO().getDepartmentByID(departnameID);
-        result.add(department!=null?department.getDepartmentName():"undifined");  
+        Location location = new LocationDAO().getLocationById(department.getLocationID());
+        result.add(
+                department != null
+                ? department.getDepartmentName() + " - " + location.getLocationName()
+                : "undifined");
         return result;
     }
 
@@ -156,14 +160,5 @@ public class Employee {
 
     public void setEmail(String email) {
         this.email = email;
-    }
-
-    public String getConfirmPassword() {
-        return confirmPassword;
-    }
-
-    public void setConfirmPassword(String confirmPassword) {
-        this.confirmPassword = confirmPassword;
-    }
-            
+    }    
 }

@@ -875,4 +875,12 @@ public class TransferPanel extends javax.swing.JPanel {
         btnApprove.setVisible(false);
         btnDisapprove.setVisible(false);
     }
+
+    @Override
+    public void validate() {
+        super.validate();
+        reloadData();
+    }
+    
+    
 }

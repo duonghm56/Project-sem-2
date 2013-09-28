@@ -45,7 +45,7 @@ public class Department {
         v.add(departmentID);
         v.add(departmentName);
         Location location = new LocationDAO().getLocationById(locationID);
-        v.add(location!=null?location.getLocationName():"undifined"); 
+        v.add(location.getLocationName()); 
         return v;
     }
 }
