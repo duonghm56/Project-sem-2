@@ -41,10 +41,10 @@ public class LocationBUS {
         location.setLocationName(locationName);
         locationDAO.updateLocation(location);
     }
-    public int deleteLocation(int locationID)throws ClassNotFoundException, Exception
+    public void deleteLocation(int locationID)throws ClassNotFoundException, Exception
     {
         Location location = new Location();
         location.setLocationID(locationID);
-        return locationDAO.deleteLocation(location);
+        locationDAO.deleteLocation(location);
     }
 }

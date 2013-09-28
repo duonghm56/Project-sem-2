@@ -25,8 +25,8 @@ public class LocationPanel extends javax.swing.JPanel {
      */
     public LocationPanel() {
         try {
-        initComponents();
-              initTable();
+            initComponents();
+            initTable();
             lstLocation = locationBUS.getAllLocation();
             fillData(lstLocation);
         } catch (ClassNotFoundException ex) {
@@ -143,7 +143,7 @@ public class LocationPanel extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(this, "Add success");
             reloadData();
         } catch (Exception ex) {
-                JOptionPane.showMessageDialog(null, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_btnAddActionPerformed
 
@@ -157,7 +157,7 @@ public class LocationPanel extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(this, "Update success");
             reloadData();
         } catch (Exception ex) {
-                JOptionPane.showMessageDialog(null, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_btnUpdateActionPerformed
 
@@ -166,17 +166,11 @@ public class LocationPanel extends javax.swing.JPanel {
         try {
             // TODO add your handling code here:
             int locationID = Integer.parseInt(txtLocationID.getText());
-            int record = locationBUS.deleteLocation(locationID);
-            if (record>0) {
-                JOptionPane.showMessageDialog(this, "Delete success");
-            }
-            else
-            {
-                JOptionPane.showMessageDialog(this,"Delete fail");
-            }
+            locationBUS.deleteLocation(locationID);
+            JOptionPane.showMessageDialog(this, "Delete success");
             reloadData();
         } catch (Exception ex) {
-             JOptionPane.showMessageDialog(null, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
 
         }
     }//GEN-LAST:event_btnDeleteActionPerformed
@@ -187,7 +181,6 @@ public class LocationPanel extends javax.swing.JPanel {
         txtLocationID.setText(tbLocationData.getValueAt(row, 0).toString());
         txtLocationName.setText(tbLocationData.getValueAt(row, 1).toString());
     }//GEN-LAST:event_tbLocationDataMouseClicked
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAdd;
     private javax.swing.JButton btnDelete;
@@ -199,7 +192,7 @@ public class LocationPanel extends javax.swing.JPanel {
     private javax.swing.JTextField txtLocationID;
     private javax.swing.JTextField txtLocationName;
     // End of variables declaration//GEN-END:variables
-   DefaultTableModel tblModel;
+    DefaultTableModel tblModel;
     ArrayList<Location> lstLocation;
     LocationBUS locationBUS = new LocationBUS();
 
@@ -247,6 +240,6 @@ public class LocationPanel extends javax.swing.JPanel {
         }
         initTable();
         lstLocation = locationBUS.searchLocation(locationName);
-        fillData(lstLocation);        
+        fillData(lstLocation);
     }
 }

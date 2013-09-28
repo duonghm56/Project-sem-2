@@ -89,6 +89,8 @@ public class TransferPanel extends javax.swing.JPanel {
         jLabel16 = new javax.swing.JLabel();
         txtEmployeeNumber = new javax.swing.JTextField();
         btnSearch = new javax.swing.JToggleButton();
+        btnDisapprove = new javax.swing.JButton();
+        btnApprove = new javax.swing.JButton();
 
         setBorder(javax.swing.BorderFactory.createTitledBorder("Transfer Manager"));
         setEnabled(false);
@@ -160,6 +162,7 @@ public class TransferPanel extends javax.swing.JPanel {
 
         add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 300, 220, 70));
 
+        cmbFromDepartment.setEnabled(false);
         cmbFromDepartment.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 cmbFromDepartmentItemStateChanged(evt);
@@ -181,6 +184,7 @@ public class TransferPanel extends javax.swing.JPanel {
         });
         add(cmbToDepartment, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 190, 220, -1));
 
+        cmbTransferType.setEnabled(false);
         cmbTransferType.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 cmbTransferTypeKeyReleased(evt);
@@ -188,6 +192,7 @@ public class TransferPanel extends javax.swing.JPanel {
         });
         add(cmbTransferType, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 320, 200, 30));
 
+        cmbFromProject.setEnabled(false);
         cmbFromProject.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 cmbFromProjectItemStateChanged(evt);
@@ -195,6 +200,7 @@ public class TransferPanel extends javax.swing.JPanel {
         });
         add(cmbFromProject, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 160, 200, -1));
 
+        cmbFromLocation.setEnabled(false);
         cmbFromLocation.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 cmbFromLocationItemStateChanged(evt);
@@ -215,7 +221,7 @@ public class TransferPanel extends javax.swing.JPanel {
                 btnUpdateActionPerformed(evt);
             }
         });
-        add(btnUpdate, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 380, -1, -1));
+        add(btnUpdate, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 380, -1, -1));
 
         btnDelete.setText("Delete");
         btnDelete.addActionListener(new java.awt.event.ActionListener() {
@@ -223,7 +229,7 @@ public class TransferPanel extends javax.swing.JPanel {
                 btnDeleteActionPerformed(evt);
             }
         });
-        add(btnDelete, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 380, -1, -1));
+        add(btnDelete, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 380, -1, -1));
 
         jScrollPane3.setPreferredSize(new java.awt.Dimension(300, 200));
 
@@ -247,7 +253,7 @@ public class TransferPanel extends javax.swing.JPanel {
 
         add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 420, 940, 110));
 
-        add(cmbApprove, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 240, 220, -1));
+        add(cmbApprove, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 270, 220, -1));
 
         txtEmployeeName.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -271,7 +277,7 @@ public class TransferPanel extends javax.swing.JPanel {
         add(dcTranReDate, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 60, 220, 30));
 
         txtApproveDate.setEnabled(false);
-        add(txtApproveDate, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 270, 220, 22));
+        add(txtApproveDate, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 240, 220, 22));
 
         btnReset.setText("Reset");
         btnReset.addActionListener(new java.awt.event.ActionListener() {
@@ -279,7 +285,7 @@ public class TransferPanel extends javax.swing.JPanel {
                 btnResetActionPerformed(evt);
             }
         });
-        add(btnReset, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 380, 70, -1));
+        add(btnReset, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 380, 70, -1));
 
         jLabel16.setText("Employee Number");
         add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 70, -1, -1));
@@ -297,32 +303,31 @@ public class TransferPanel extends javax.swing.JPanel {
                 btnSearchActionPerformed(evt);
             }
         });
-        add(btnSearch, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 380, -1, -1));
+        add(btnSearch, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 380, -1, -1));
+
+        btnDisapprove.setText("Disapprove");
+        btnDisapprove.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDisapproveActionPerformed(evt);
+            }
+        });
+        add(btnDisapprove, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 380, -1, -1));
+
+        btnApprove.setText("Approve");
+        btnApprove.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnApproveActionPerformed(evt);
+            }
+        });
+        add(btnApprove, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 380, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void tbTransferDataMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbTransferDataMouseClicked
         updateFieldWhenSelectTransfer();
-        /*
-         int row = tbTransferData.rowAtPoint(evt.getPoint());
-        
-         txtTransferID.setText(tbTransferData.getValueAt(row, 0).toString());
-         cmbTransferType.setSelectedItem(new KeyValue(0, tbTransferData.getValueAt(row, 1).toString()));
-         txtEmployeeName.setText(tbTransferData.getValueAt(row, 2).toString());
-         //            dcTranJoinDate.setDate(transferJoiningDate);
-         txtRequestDate.setText(tbTransferData.getValueAt(row, 5).toString());
-         txtReason.setText(tbTransferData.getValueAt(row, 6).toString());
-         cmbApprove.setSelectedItem(new KeyValue(0, tbTransferData.getValueAt(row, 7).toString()));
-         cmbFromProject.setSelectedItem(new KeyValue(0, tbTransferData.getValueAt(row, 9).toString()));
-         cmbToProject.setSelectedItem(new KeyValue(0, tbTransferData.getValueAt(row, 10).toString()));
-         cmbFromDepartment.setSelectedItem(new KeyValue(0, tbTransferData.getValueAt(row, 11).toString()));
-         cmbToDepartment.setSelectedItem(new KeyValue(0, tbTransferData.getValueAt(row, 12).toString()));
-         cmbFromLocation.setSelectedItem(new KeyValue(0, tbTransferData.getValueAt(row, 13).toString()));
-         cmbToLocation.setSelectedItem(new KeyValue(0, tbTransferData.getValueAt(row, 14).toString()));
-         */
     }//GEN-LAST:event_tbTransferDataMouseClicked
 
     private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
-        // TODO add your handling code here:
+
         try {
             if (txtTransferID.getText().equals("")) {
                 throw new Exception("Please select Transfer ID");
@@ -339,12 +344,17 @@ public class TransferPanel extends javax.swing.JPanel {
             int toDepartmentID = ((KeyValue) cmbToDepartment.getSelectedItem()).getKey();
             int formLocationID = ((KeyValue) cmbFromLocation.getSelectedItem()).getKey();
             int toLocationID = ((KeyValue) cmbToLocation.getSelectedItem()).getKey();
-            transferBUS.updateTransfer(transferID, transferTypeID, employeeID, tranReDate, tranJoinDate, requestDate, reason, true, approveDate, fromProjectID, toProjectID, fromDepartmentID, toDepartmentID, formLocationID, toLocationID);
-            transferBUS.updateEmployeeTransfer(employeeID, toDepartmentID, toProjectID);
-            JOptionPane.showMessageDialog(null, "Update success");
+
+            if(isSearchMode){
+                throw new Exception("Please disable search mode before update");
+            }else{
+                transferBUS.updateTransfer(transferID, transferTypeID, tranReDate, tranJoinDate, fromProjectID, toProjectID, fromDepartmentID, toDepartmentID, formLocationID, toLocationID);
+            }
+
             reloadData();
+
         } catch (Exception ex) {
-            JOptionPane.showMessageDialog(null, ex.getMessage(), ex.getMessage(), JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_btnUpdateActionPerformed
 
@@ -360,7 +370,7 @@ public class TransferPanel extends javax.swing.JPanel {
                     reloadData();
                 }
             } catch (Exception ex) {
-                JOptionPane.showMessageDialog(null, ex.getMessage(), ex.getMessage(), JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(null, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
 
             }
         }
@@ -396,6 +406,9 @@ public class TransferPanel extends javax.swing.JPanel {
 
     private void cmbToProjectItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cmbToProjectItemStateChanged
         loadSearchData();
+        if(!isSearchMode){
+            //updateCmbTransferType();
+        }
     }//GEN-LAST:event_cmbToProjectItemStateChanged
 
     private void cmbFromDepartmentItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cmbFromDepartmentItemStateChanged
@@ -404,6 +417,9 @@ public class TransferPanel extends javax.swing.JPanel {
 
     private void cmbToDepartmentItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cmbToDepartmentItemStateChanged
         loadSearchData();
+        if(!isSearchMode){
+            //updateCmbTransferType();
+        }
     }//GEN-LAST:event_cmbToDepartmentItemStateChanged
 
     private void cmbFromLocationItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cmbFromLocationItemStateChanged
@@ -412,6 +428,9 @@ public class TransferPanel extends javax.swing.JPanel {
 
     private void cmbToLocationItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cmbToLocationItemStateChanged
         loadSearchData();
+        if(!isSearchMode){
+            //updateCmbTransferType();
+        }
     }//GEN-LAST:event_cmbToLocationItemStateChanged
 
     private void btnResetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnResetActionPerformed
@@ -422,8 +441,31 @@ public class TransferPanel extends javax.swing.JPanel {
         isSearchMode = !(btnSearch.getSelectedObjects() == null);
 
     }//GEN-LAST:event_btnSearchActionPerformed
+
+    private void btnApproveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnApproveActionPerformed
+        try {
+            int transferID = Integer.parseInt(txtTransferID.getText());
+            transferBUS.approveTransfer(transferID);
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+            Logger.getLogger(TransferPanel.class.getName()).log(Level.SEVERE, null, ex);
+        } 
+    }//GEN-LAST:event_btnApproveActionPerformed
+
+    private void btnDisapproveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDisapproveActionPerformed
+        try {
+            int transferID = Integer.parseInt(txtTransferID.getText());
+            transferBUS.disapproveTransfer(transferID);
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+            Logger.getLogger(TransferPanel.class.getName()).log(Level.SEVERE, null, ex);
+        } 
+    }//GEN-LAST:event_btnDisapproveActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnApprove;
     private javax.swing.JButton btnDelete;
+    private javax.swing.JButton btnDisapprove;
     private javax.swing.JButton btnReset;
     private javax.swing.JToggleButton btnSearch;
     private javax.swing.JButton btnUpdate;
@@ -512,7 +554,7 @@ public class TransferPanel extends javax.swing.JPanel {
         tbTransferData.getColumnModel().getColumn(col).setResizable(false);
     }
 
-    private void fillData(ArrayList<Transfer> lst) {        
+    private void fillData(ArrayList<Transfer> lst) {
         if (lst != null) {
             for (Transfer transfer : lst) {
                 tblModel.addRow(transfer.getVector());
@@ -534,7 +576,9 @@ public class TransferPanel extends javax.swing.JPanel {
             initCmbFromLocation();
             initCmbToLocation();
             initCmbApprove();
-            convertDate();       
+            convertDate();
+            enableFromCmbInSearchMode();
+            makeInvisibleBtnApproveDisapprove();
             fillData(transferBUS.getAllTransfer());
 //            initTextField();
         } catch (ClassNotFoundException ex) {
@@ -618,7 +662,8 @@ public class TransferPanel extends javax.swing.JPanel {
         cmbApprove.removeAllItems();
         cmbToDepartment.addItem(new KeyValue(-1, ""));
         cmbApprove.addItem(new KeyValue(1, "Approve"));
-        cmbApprove.addItem(new KeyValue(0, "Disapprove"));
+        cmbApprove.addItem(new KeyValue(2, "Disapprove"));
+        cmbApprove.addItem(new KeyValue(3, "Waiting Approve"));
     }
 
     private void convertDate() {
@@ -751,32 +796,83 @@ public class TransferPanel extends javax.swing.JPanel {
         cmbFromLocation.setSelectedItem(new KeyValue(0, tbTransferData.getValueAt(row, 13).toString()));
         cmbToLocation.setSelectedItem(new KeyValue(0, tbTransferData.getValueAt(row, 14).toString()));
         cmbApprove.setSelectedItem(new KeyValue(0, tbTransferData.getValueAt(row, 15).toString()));
+        
+        String approve = tbTransferData.getValueAt(row, 15).toString();
+        btnApprove.setVisible(approve.equals("Waiting Approve"));
+        btnDisapprove.setVisible(approve.equals("Waiting Approve"));
+        
         isSearchMode = oldSearchMode;
     }
-    
-    private void initTextfield(){
+
+    private void initTextfield() {
         txtEmployeeName.setText("");
         txtEmployeeNumber.setText("");
-        txtTransferID.setText("");        
+        txtTransferID.setText("");
     }
-//    private void initTextField() {
-//        txtProjectID.setText("");
-//        txtProjectName.setText("");
-//        txtCreateDate.setText("");
-//        txtEndDate.setText("");
-//    }
-//    private void loadSearchTransferName() throws ClassNotFoundException, SQLException {
-//        String TransferName = "";
-//        if (!txtTransferName.getText().equals("")) {
-//            if (!conditon.contains("where")) {
-//                conditon += " where projectName like '%" + txtProjectName.getText() + "%'";
-//            } else {
-//                conditon += " and projectName like '%" + txtProjectName.getText() + "%'";
-//            }
-//        }
-//        }
-//        initTable();
-//        lstProject = projectBUS.searchProject(conditon);
-//        fillData(lstProject);        
-//    }
+
+    private String checkFieldAndReturnTransferType() {
+        int fromProjectID = ((KeyValue) cmbFromProject.getSelectedItem()).getKey();
+        int toProjectID = ((KeyValue) cmbToProject.getSelectedItem()).getKey();
+        int fromDepartmentID = ((KeyValue) cmbFromDepartment.getSelectedItem()).getKey();
+        int toDepartmentID = ((KeyValue) cmbToDepartment.getSelectedItem()).getKey();
+        int fromLocationID = ((KeyValue) cmbFromLocation.getSelectedItem()).getKey();
+        int toLocationID = ((KeyValue) cmbToLocation.getSelectedItem()).getKey();
+
+        int[] check = {0, 0, 0};
+
+        if (fromProjectID != toProjectID) {
+            check[0] = 1;
+        }
+        if (fromDepartmentID != toDepartmentID) {
+            check[1] = 1;
+        }
+        if (fromLocationID != toLocationID) {
+            check[2] = 1;
+        }
+
+        int sum = 0;
+        for (int i = 0; i < check.length; i++) {
+            sum += check[i];
+        }
+
+        if (sum == 0) {
+            //Error: No transfer ?
+            return "";
+        } else if (sum == 1) {
+            //Transfer only one
+            if (check[0] == 1) {
+                //Project
+                return "Project Transfer";
+            }
+            if (check[1] == 1) {
+                //Department
+                return "Department Transfer";
+            }
+            if (check[2] == 1) {
+                //Location
+                return "Location Transfer";
+            }
+            //Unexpected Error
+            return "";
+        } else {
+            //Custom transfer
+            return "Custom Transfer";
+        }
+    }
+        
+    private void updateCmbTransferType() {
+        cmbTransferType.setSelectedItem(new KeyValue(0, checkFieldAndReturnTransferType()));
+    }
+
+    private void enableFromCmbInSearchMode() {
+        cmbFromProject.setEnabled(isSearchMode);
+        cmbFromDepartment.setEnabled(isSearchMode);
+        cmbFromLocation.setEnabled(isSearchMode);
+        cmbTransferType.setEnabled(isSearchMode);
+    }
+    
+    private void makeInvisibleBtnApproveDisapprove(){
+        btnApprove.setVisible(false);
+        btnDisapprove.setVisible(false);
+    }
 }

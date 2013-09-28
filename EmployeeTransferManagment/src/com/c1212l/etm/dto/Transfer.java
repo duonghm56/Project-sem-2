@@ -17,6 +17,7 @@ import java.util.Vector;
  * @author Luu Bi
  */
 public class Transfer {
+
     private int transferID;
     private int transferTypeID;
     private int employeeID;
@@ -24,7 +25,7 @@ public class Transfer {
     private Date transferJoiningDate;
     private Date requestDate;
     private String reason;
-    private boolean approve;
+    private int approve;
     private Date approveDate;
     private int fromProjectID;
     private int toProjectID;
@@ -89,11 +90,11 @@ public class Transfer {
         this.reason = reason;
     }
 
-    public boolean isApprove() {
+    public int getApprove() {
         return approve;
     }
 
-    public void setApprove(boolean approve) {
+    public void setApprove(int approve) {
         this.approve = approve;
     }
 
@@ -152,82 +153,92 @@ public class Transfer {
     public void setToLocationID(int toLocationID) {
         this.toLocationID = toLocationID;
     }
-    
+
     public Transfer() {
     }
 
-   
-     public Vector getVector(){
+    public Vector getVector() {
         EmployeeDAO employeeDAO = new EmployeeDAO();
         Employee empl = employeeDAO.getEmployeeByID(employeeID);
-        
+
         TransferTypeDAO transferTypeDAO = new TransferTypeDAO();
         TransferType transferType = transferTypeDAO.getTransferTypeById(transferTypeID);
-        
+
         LocationDAO locationDAO = new LocationDAO();
         Location fromLocation = locationDAO.getLocationById(fromLocationID);
         Location toLocation = locationDAO.getLocationById(toLocationID);
-        
+
         DepartmentDAO departmentDAO = new DepartmentDAO();
         Department fromDepartment = departmentDAO.getDepartmentByID(fromDepartmentID);
         Department toDepartment = departmentDAO.getDepartmentByID(toDepartmentID);
-        
+
         ProjectDAO projectDAO = new ProjectDAO();
         Project fromProject = projectDAO.getProjectById(fromProjectID);
         Project toProject = projectDAO.getProjectById(toProjectID);
-        
+
         Vector v = new Vector();
         v.add(transferID);
-        v.add(transferType.getTransferTypeName());        
-        v.add(empl.getEmployeeNumber());                
-        v.add(empl.getEmployeeName());    
-        
+        v.add(transferType.getTransferTypeName());
+        v.add(empl.getEmployeeNumber());
+        v.add(empl.getEmployeeName());
+
         v.add(transferRelievingDate);
         v.add(transferJoiningDate);
         v.add(requestDate);
         v.add(reason);
-        v.add(approveDate);        
-        
+        v.add(approveDate);
+
         v.add(fromProject.getProjectName());
         v.add(toProject.getProjectName());
         v.add(fromDepartment.getDepartmentName());
         v.add(toDepartment.getDepartmentName());
         v.add(fromLocation.getLocationName());
         v.add(toLocation.getLocationName());
-        v.add(approve?"Approve":"Disapprove");
-        
-        
+        switch (approve) {
+            case 1:
+                v.add("Approve");
+                break;
+            case 2:
+                v.add("Disapprove");
+                break;
+            case 3:
+                v.add("Wait Approve");
+                break;
+        }
+
+
+
         return v;
         /*v.add(transferID);
-        TransferType transferType= new TransferTypeDAO().getTransferTypeById(transferTypeID);
-        v.add(transferType!=null?transferType.getTransferTypeName():"undifined");
-        Employee employee = new EmployeeDAO().getEmployeeByID(employeeID);
-        v.add(employee!=null?employee.getEmployeeName():"undifined");
-        v.add(transferRelievingDate);
-        v.add(transferJoiningDate);
-        v.add(requestDate);
-        v.add(reason);
-        v.add(approve?"Approve":"Disapprove");
-        v.add(approveDate);
-        Project project;
-        project= new ProjectDAO().getProjectById(fromProjectID);
-        v.add(project!=null?project.getProjectName():"undifined");   
-        project = new ProjectDAO().getProjectById(toProjectID);
-        v.add(project!=null?project.getProjectName():"undifined");   
+         TransferType transferType= new TransferTypeDAO().getTransferTypeById(transferTypeID);
+         v.add(transferType!=null?transferType.getTransferTypeName():"undifined");
+         Employee employee = new EmployeeDAO().getEmployeeByID(employeeID);
+         v.add(employee!=null?employee.getEmployeeName():"undifined");
+         v.add(transferRelievingDate);
+         v.add(transferJoiningDate);
+         v.add(requestDate);
+         v.add(reason);
+         v.add(approve?"Approve":"Disapprove");
+         v.add(approveDate);
+         Project project;
+         project= new ProjectDAO().getProjectById(fromProjectID);
+         v.add(project!=null?project.getProjectName():"undifined");   
+         project = new ProjectDAO().getProjectById(toProjectID);
+         v.add(project!=null?project.getProjectName():"undifined");   
         
-        Department department;
-        department = new DepartmentDAO().getDepartmentByID(fromDepartmentID);
-        v.add(department!=null?department.getDepartmentName():"undifined"); 
-        department = new DepartmentDAO().getDepartmentByID(toDepartmentID);
-        v.add(department!=null?department.getDepartmentName():"undifined"); 
+         Department department;
+         department = new DepartmentDAO().getDepartmentByID(fromDepartmentID);
+         v.add(department!=null?department.getDepartmentName():"undifined"); 
+         department = new DepartmentDAO().getDepartmentByID(toDepartmentID);
+         v.add(department!=null?department.getDepartmentName():"undifined"); 
         
          
-        Location location;
-        location = new LocationDAO().getLocationById(fromLocationID);
-        v.add(department!=null?location.getLocationName():"undifined"); 
-        location = new LocationDAO().getLocationById(toDepartmentID);
-        v.add(location!=null?location.getLocationName():"undifined"); 
-        return v;
-        */
+         Location location;
+         location = new LocationDAO().getLocationById(fromLocationID);
+         v.add(department!=null?location.getLocationName():"undifined"); 
+         location = new LocationDAO().getLocationById(toDepartmentID);
+         v.add(location!=null?location.getLocationName():"undifined"); 
+         return v;
+         */
     }
 }

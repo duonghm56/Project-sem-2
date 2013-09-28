@@ -8,7 +8,6 @@ import com.c1212l.etm.bll.DepartmentBUS;
 import com.c1212l.etm.bll.EmployeeBUS;
 import com.c1212l.etm.bll.LocationBUS;
 import com.c1212l.etm.bll.ProjectBUS;
-import com.c1212l.etm.bll.TransferRequestBUS;
 import com.c1212l.etm.bll.TransferTypeBUS;
 import com.c1212l.etm.dto.Department;
 import com.c1212l.etm.dto.Employee;
@@ -300,7 +299,7 @@ public class TransferRequestPanel extends javax.swing.JFrame {
 
     private void btnSendActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSendActionPerformed
         // TODO add your handling code here:
-            try {
+        /*    try {
             if (txtReason.getText().equals("")) {
                 throw new Exception("Please enter Reason");
             }
@@ -319,7 +318,7 @@ public class TransferRequestPanel extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
 
         }
-
+        * */
         
     }//GEN-LAST:event_btnSendActionPerformed
 
@@ -401,7 +400,7 @@ public class TransferRequestPanel extends javax.swing.JFrame {
     private javax.swing.JTextField txtRequestDate;
     private javax.swing.JTextArea txtTransferLetter;
     // End of variables declaration//GEN-END:variables
-    TransferRequestBUS transferRequestBUS = new TransferRequestBUS();
+    //TransferRequestBUS transferRequestBUS = new TransferRequestBUS();
     private int employeeID,fromDepartmentID,fromProjectID,fromLocationID;
     
     private void initCmbTransferType() throws ClassNotFoundException, SQLException {

@@ -27,7 +27,7 @@ public class DepartmentPanel extends javax.swing.JPanel {
      * Creates new form DepartmentPanel
      */
     public DepartmentPanel() {
-        try{
+        try {
             initComponents();
             initCmbLocation();
             initTable();
@@ -38,7 +38,7 @@ public class DepartmentPanel extends javax.swing.JPanel {
         } catch (SQLException ex) {
             Logger.getLogger(ProjectPanel.class.getName()).log(Level.SEVERE, null, ex);
         }
-   
+
     }
 
     /**
@@ -67,6 +67,11 @@ public class DepartmentPanel extends javax.swing.JPanel {
 
         setBorder(javax.swing.BorderFactory.createTitledBorder("Department Manager"));
         setPreferredSize(new java.awt.Dimension(970, 550));
+        addComponentListener(new java.awt.event.ComponentAdapter() {
+            public void componentShown(java.awt.event.ComponentEvent evt) {
+                formComponentShown(evt);
+            }
+        });
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setText("Department ID");
@@ -151,22 +156,22 @@ public class DepartmentPanel extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(null, "Please enter department name");
             return;
         }
-            try {
-                departmentBUS.addDepartment(txtDepartmentName.getText(),((KeyValue)cmbLocation.getSelectedItem()).getKey());
-                JOptionPane.showMessageDialog(null, "Insert Success!!!");
-                reloadData();
-            } catch (Exception ex) {
-                   JOptionPane.showMessageDialog(null, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        try {
+            departmentBUS.addDepartment(txtDepartmentName.getText(), ((KeyValue) cmbLocation.getSelectedItem()).getKey());
+            JOptionPane.showMessageDialog(null, "Insert Success!!!");
+            reloadData();
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_btnAddActionPerformed
 
     private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
         // TODO add your handling code here:
-        try{
+        try {
             if (txtDepartmentName.getText().equals("")) {
                 throw new Exception("Please enter department name");
             }
-            int locationID= ((KeyValue) cmbLocation.getSelectedItem()).getKey();
+            int locationID = ((KeyValue) cmbLocation.getSelectedItem()).getKey();
             departmentBUS.updateDepartment(Integer.parseInt(txtDepartmentID.getText()), txtDepartmentName.getText(), locationID);
             JOptionPane.showMessageDialog(null, "Update Success!!!");
             reloadData();
@@ -177,16 +182,16 @@ public class DepartmentPanel extends javax.swing.JPanel {
 
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
         // TODO add your handling code here:
-           if(txtDepartmentID.getText().equals("")){
+        if (txtDepartmentID.getText().equals("")) {
             JOptionPane.showMessageDialog(null, "Please select department");
-        }else{
+        } else {
             try {
                 if (JOptionPane.showConfirmDialog(null, "Are you sure to delete?", "Delete", JOptionPane.YES_NO_OPTION) == JOptionPane.OK_OPTION) {
                     departmentBUS.deleteDepartment(Integer.parseInt(txtDepartmentID.getText()));
                     reloadData();
                 }
-            } catch (Exception ex){
-                    JOptionPane.showMessageDialog(null, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+            } catch (Exception ex) {
+                JOptionPane.showMessageDialog(null, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
 
             }
         }
@@ -194,16 +199,16 @@ public class DepartmentPanel extends javax.swing.JPanel {
 
     private void tbDepartmentDataMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbDepartmentDataMouseClicked
         // TODO add your handling code here:
-            int row = tbDepartmentData.rowAtPoint(evt.getPoint());
-           txtDepartmentID.setText(tbDepartmentData.getValueAt(row, 0).toString());
-           txtDepartmentName.setText(tbDepartmentData.getValueAt(row, 1).toString());
-           cmbLocation.setSelectedItem(new KeyValue(0, tbDepartmentData.getValueAt(row, 2).toString()));
+        int row = tbDepartmentData.rowAtPoint(evt.getPoint());
+        txtDepartmentID.setText(tbDepartmentData.getValueAt(row, 0).toString());
+        txtDepartmentName.setText(tbDepartmentData.getValueAt(row, 1).toString());
+        cmbLocation.setSelectedItem(new KeyValue(0, tbDepartmentData.getValueAt(row, 2).toString()));
 
     }//GEN-LAST:event_tbDepartmentDataMouseClicked
 
     private void txtDepartmentNameKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDepartmentNameKeyReleased
         // TODO add your handling code here:
-         try {
+        try {
             searchDepartmentName();
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(ProjectPanel.class.getName()).log(Level.SEVERE, null, ex);
@@ -212,6 +217,9 @@ public class DepartmentPanel extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_txtDepartmentNameKeyReleased
 
+    private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
+        
+    }//GEN-LAST:event_formComponentShown
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAdd;
     private javax.swing.JButton btnDelete;
@@ -229,6 +237,7 @@ public class DepartmentPanel extends javax.swing.JPanel {
     DefaultTableModel tblModel;
     ArrayList<Department> lstDepartment;
     DepartmentBUS departmentBUS = new DepartmentBUS();
+
     private void initTable() {
         Vector header = new Vector();
         header.add("Department ID");
@@ -262,20 +271,22 @@ public class DepartmentPanel extends javax.swing.JPanel {
         txtDepartmentID.setText("");
         txtDepartmentName.setText("");
     }
+
     private void initCmbLocation() {
-          try {
+        try {
             cmbLocation.removeAllItems();
-             LocationBUS locationBUS = new LocationBUS();
-             ArrayList<Location> arrLocation = locationBUS.getAllLocation();
-             for (Location location : arrLocation) {
-                 cmbLocation.addItem(new KeyValue(location.getLocationID(),location.getLocationName()));
-             }
+            LocationBUS locationBUS = new LocationBUS();
+            ArrayList<Location> arrLocation = locationBUS.getAllLocation();
+            for (Location location : arrLocation) {
+                cmbLocation.addItem(new KeyValue(location.getLocationID(), location.getLocationName()));
+            }
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(DepartmentPanel.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {
             Logger.getLogger(DepartmentPanel.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+
     private void searchDepartmentName() throws ClassNotFoundException, SQLException {
         String departmentName = "";
         if (!txtDepartmentName.getText().equals("")) {
@@ -285,9 +296,25 @@ public class DepartmentPanel extends javax.swing.JPanel {
                 departmentName += " and departmentName like '%" + txtDepartmentName.getText() + "%'";
             }
         }
+        initTable();
+        lstDepartment = departmentBUS.searchDepartmentName(departmentName);
+        fillData(lstDepartment);
+    }
+
+    @Override
+    public void validate() {
+        super.validate();
+        try {
+            initCmbLocation();
             initTable();
-            lstDepartment = departmentBUS.searchDepartmentName(departmentName);
-            fillData(lstDepartment);  
-        }  
+            lstDepartment = departmentBUS.getAllDepartment();
+            fillData(lstDepartment);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(DepartmentPanel.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(DepartmentPanel.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
     
 }
