@@ -277,7 +277,7 @@ public class TransferRequestPanel extends javax.swing.JFrame {
                 .addGroup(layout.createSequentialGroup()
                     .addGap(51, 51, 51)
                     .addComponent(jComboBox6, javax.swing.GroupLayout.PREFERRED_SIZE, 0, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(623, Short.MAX_VALUE)))
+                    .addContainerGap(641, Short.MAX_VALUE)))
         );
 
         pack();

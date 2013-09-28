@@ -190,8 +190,8 @@ public class Transfer {
 
         v.add(fromProject.getProjectName());
         v.add(toProject.getProjectName());
-        v.add(fromDepartment.getDepartmentName());
-        v.add(toDepartment.getDepartmentName());
+        v.add(fromDepartment.getDepartmentName() + " - " + fromLocation.getLocationName());
+        v.add(toDepartment.getDepartmentName() + " - " + toLocation.getLocationName());
         v.add(fromLocation.getLocationName());
         v.add(toLocation.getLocationName());
         

@@ -255,7 +255,7 @@ as begin
 	declare @employeeID int
 	declare @toProjectID int
 	declare @toDepartmentID int
-	select top 1 employeeID = @employeeID, toProjectID = @toProjectID, toDepartmentID = @toDepartmentID from [transfer]
+	select top 1 @employeeID = employeeID , @toProjectID = toProjectID , @toDepartmentID = toDepartmentID from [transfer]
 	where transferID = @transferID
 	
 	update employee set departmentID = @toDepartmentID, projectID = @toProjectID

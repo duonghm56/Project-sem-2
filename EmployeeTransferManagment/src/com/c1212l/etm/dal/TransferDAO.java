@@ -149,12 +149,12 @@ public class TransferDAO extends ConnectionTool {
         cs.setInt(1, transfer.getEmployeeID());
         cs.setInt(2, transfer.getTransferTypeID());
         cs.setString(3, transfer.getReason());
-        cs.setInt(5, transfer.getFromProjectID());
-        cs.setInt(6, transfer.getToProjectID());
-        cs.setInt(7, transfer.getFromDepartmentID());
-        cs.setInt(8, transfer.getToDepartmentID());
-        cs.setInt(9, transfer.getFromLocationID());
-        cs.setInt(10, transfer.getToLocationID());
+        cs.setInt(4, transfer.getFromProjectID());
+        cs.setInt(5, transfer.getToProjectID());
+        cs.setInt(6, transfer.getFromDepartmentID());
+        cs.setInt(7, transfer.getToDepartmentID());
+        cs.setInt(8, transfer.getFromLocationID());
+        cs.setInt(9, transfer.getToLocationID());
         cs.executeUpdate();
         closeConnection();
     }

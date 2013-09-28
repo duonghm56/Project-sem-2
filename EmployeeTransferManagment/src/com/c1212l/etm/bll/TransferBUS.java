@@ -31,7 +31,21 @@ public class TransferBUS {
     public ArrayList<Transfer> searchTransfer(String condition) throws ClassNotFoundException, SQLException {
         return transferDAO.searchTransfer(condition);
     }
-
+    
+    public void addTransfer(int employeeID, int transferTypeID, String reason, int fromProjectID, int toProjectID, int fromDepartmentID, int toDepartmentID, int fromLocationID, int toLocationID) throws ClassNotFoundException, SQLException{
+        Transfer transfer = new Transfer();
+        transfer.setEmployeeID(employeeID);
+        transfer.setTransferTypeID(transferTypeID);
+        transfer.setReason(reason);
+        transfer.setFromProjectID(fromProjectID);
+        transfer.setToProjectID(toProjectID);
+        transfer.setFromDepartmentID(fromDepartmentID);
+        transfer.setToDepartmentID(toDepartmentID);
+        transfer.setFromLocationID(fromLocationID);
+        transfer.setToLocationID(toLocationID);
+        transferDAO.addTransfer(transfer);
+    }
+    
     public void updateTransfer(int transferID, int transferTypeID, String transferRelievingDate, String transferJoiningDate, int fromProjectID, int toProjectID, int fromDepartmentID, int toDepartmentID, int fromLocationID, int toLocationID, int approve) throws ClassNotFoundException, SQLException {
         Date relDate;
         Date joinDate;

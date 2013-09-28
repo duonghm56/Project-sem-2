@@ -10,6 +10,7 @@ import com.c1212l.etm.bll.LocationBUS;
 import com.c1212l.etm.bll.ProjectBUS;
 import com.c1212l.etm.bll.TransferBUS;
 import com.c1212l.etm.bll.TransferTypeBUS;
+import com.c1212l.etm.dal.DepartmentDAO;
 import com.c1212l.etm.dal.LocationDAO;
 import com.c1212l.etm.dto.Department;
 import com.c1212l.etm.dto.Employee;
@@ -126,19 +127,19 @@ public class TransferPanel extends javax.swing.JPanel {
         add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 240, -1, -1));
 
         jLabel10.setText("From Project");
-        add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 160, -1, -1));
+        add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 160, -1, -1));
 
         jLabel11.setText("To Project");
-        add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 190, -1, -1));
+        add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 190, -1, -1));
 
         jLabel12.setText("From Department");
-        add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 160, -1, -1));
+        add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 160, -1, -1));
 
         jLabel13.setText("To Department ");
-        add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 190, -1, -1));
+        add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 240, -1, -1));
 
         jLabel14.setText("From Location");
-        add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 240, -1, -1));
+        add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 190, -1, -1));
 
         jLabel15.setText("To Location");
         add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 270, -1, -1));
@@ -168,21 +169,21 @@ public class TransferPanel extends javax.swing.JPanel {
                 cmbFromDepartmentItemStateChanged(evt);
             }
         });
-        add(cmbFromDepartment, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 160, 220, -1));
+        add(cmbFromDepartment, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 160, 200, -1));
 
         cmbToProject.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 cmbToProjectItemStateChanged(evt);
             }
         });
-        add(cmbToProject, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 190, 200, -1));
+        add(cmbToProject, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 190, 200, -1));
 
         cmbToDepartment.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 cmbToDepartmentItemStateChanged(evt);
             }
         });
-        add(cmbToDepartment, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 190, 220, -1));
+        add(cmbToDepartment, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 240, 200, -1));
 
         cmbTransferType.setEnabled(false);
         cmbTransferType.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -198,7 +199,7 @@ public class TransferPanel extends javax.swing.JPanel {
                 cmbFromProjectItemStateChanged(evt);
             }
         });
-        add(cmbFromProject, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 160, 200, -1));
+        add(cmbFromProject, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 160, 200, -1));
 
         cmbFromLocation.setEnabled(false);
         cmbFromLocation.addItemListener(new java.awt.event.ItemListener() {
@@ -206,7 +207,7 @@ public class TransferPanel extends javax.swing.JPanel {
                 cmbFromLocationItemStateChanged(evt);
             }
         });
-        add(cmbFromLocation, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 240, 200, -1));
+        add(cmbFromLocation, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 190, 200, -1));
 
         cmbToLocation.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
@@ -336,11 +337,11 @@ public class TransferPanel extends javax.swing.JPanel {
             int transferID = Integer.parseInt(txtTransferID.getText());
             int transferTypeID = ((KeyValue) cmbTransferType.getSelectedItem()).getKey();
             /*
-            Date requestDate = Date.valueOf(txtRequestDate.getText());
-            String reason = txtReason.getText();
-            Date approveDate = Date.valueOf(txtApproveDate.getText());
-            int approve = ((KeyValue) cmbApprove.getSelectedItem()).getKey();
-            */
+             Date requestDate = Date.valueOf(txtRequestDate.getText());
+             String reason = txtReason.getText();
+             Date approveDate = Date.valueOf(txtApproveDate.getText());
+             int approve = ((KeyValue) cmbApprove.getSelectedItem()).getKey();
+             */
             String relDate = txtRelDate.getText();
             String joinDate = txtJoinDate.getText();
             int fromProjectID = ((KeyValue) cmbFromProject.getSelectedItem()).getKey();
@@ -349,8 +350,8 @@ public class TransferPanel extends javax.swing.JPanel {
             int toDepartmentID = ((KeyValue) cmbToDepartment.getSelectedItem()).getKey();
             int formLocationID = ((KeyValue) cmbFromLocation.getSelectedItem()).getKey();
             int toLocationID = ((KeyValue) cmbToLocation.getSelectedItem()).getKey();
-            
-            int approve = ((KeyValue)cmbApprove.getSelectedItem()).getKey();
+
+            int approve = ((KeyValue) cmbApprove.getSelectedItem()).getKey();
             if (isSearchMode) {
                 throw new Exception("Please disable search mode before update");
             } else {
@@ -425,6 +426,7 @@ public class TransferPanel extends javax.swing.JPanel {
 
     private void cmbToDepartmentItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cmbToDepartmentItemStateChanged
         loadSearchData();
+        updateCmbLocationByCmbDepartment();
         if (!isSearchMode) {
             //updateCmbTransferType();
         }
@@ -545,12 +547,12 @@ public class TransferPanel extends javax.swing.JPanel {
         tblModel = new DefaultTableModel(header, 0);
         tbTransferData.setModel(tblModel);
 
-        /*makeInvisibleColumn(0);
-         makeInvisibleColumn(1);
-         makeInvisibleColumn(4);
-         makeInvisibleColumn(5);
-         makeInvisibleColumn(6);
-         makeInvisibleColumn(7);*/
+        makeInvisibleColumn(0);
+        makeInvisibleColumn(1);
+        makeInvisibleColumn(4);
+        makeInvisibleColumn(5);
+        makeInvisibleColumn(6);
+        makeInvisibleColumn(7);
 
     }
 
@@ -644,15 +646,18 @@ public class TransferPanel extends javax.swing.JPanel {
             cmbToLocation.addItem(new KeyValue(location.getLocationID(), location.getLocationName()));
         }
     }
-       
+
     private void initCmbFromDepartment() throws ClassNotFoundException, SQLException {
         cmbFromDepartment.removeAllItems();
         cmbFromDepartment.addItem(new KeyValue(-1, ""));
         DepartmentBUS departmentBUS = new DepartmentBUS();
-        LocationDAO locationDAO = new LocationDAO();                
+        LocationDAO locationDAO = new LocationDAO();
         ArrayList<Department> arrDepartment = departmentBUS.getAllDepartment();
         for (Department department : arrDepartment) {
-            cmbFromDepartment.addItem(new KeyValue(department.getDepartmentID(), department.getDepartmentName()));
+            Location location = locationDAO.getLocationById(department.getLocationID());
+            cmbFromDepartment.addItem(new KeyValue(
+                    department.getDepartmentID(),
+                    department.getDepartmentName() + " - " + location.getLocationName()));
         }
     }
 
@@ -660,9 +665,13 @@ public class TransferPanel extends javax.swing.JPanel {
         cmbToDepartment.removeAllItems();
         cmbToDepartment.addItem(new KeyValue(-1, ""));
         DepartmentBUS departmentBUS = new DepartmentBUS();
+        LocationDAO locationDAO = new LocationDAO();
         ArrayList<Department> arrDepartment = departmentBUS.getAllDepartment();
         for (Department department : arrDepartment) {
-            cmbToDepartment.addItem(new KeyValue(department.getDepartmentID(), department.getDepartmentName()));
+            Location location = locationDAO.getLocationById(department.getLocationID());
+            cmbToDepartment.addItem(new KeyValue(
+                    department.getDepartmentID(),
+                    department.getDepartmentName() + " - " + location.getLocationName()));
         }
     }
 
@@ -675,20 +684,19 @@ public class TransferPanel extends javax.swing.JPanel {
     }
 
     /*private void convertDate() {
-        int tranReDateYear = dcTranReDate.getDate().getYear() + 1900;
-        String temptranReDate = tranReDateYear + "-" + dcTranReDate.getDate().getMonth() + "-" + dcTranReDate.getDate().getDate();
-        tranReDate = Date.valueOf(temptranReDate);
+     int tranReDateYear = dcTranReDate.getDate().getYear() + 1900;
+     String temptranReDate = tranReDateYear + "-" + dcTranReDate.getDate().getMonth() + "-" + dcTranReDate.getDate().getDate();
+     tranReDate = Date.valueOf(temptranReDate);
 
-        int tranJoinDateYear = dcTranJoinDate.getDate().getYear() + 1900;
-        String temptranJoinDate = tranJoinDateYear + "-" + dcTranJoinDate.getDate().getMonth() + "-" + dcTranJoinDate.getDate().getDate();
-        tranJoinDate = Date.valueOf(temptranReDate);
+     int tranJoinDateYear = dcTranJoinDate.getDate().getYear() + 1900;
+     String temptranJoinDate = tranJoinDateYear + "-" + dcTranJoinDate.getDate().getMonth() + "-" + dcTranJoinDate.getDate().getDate();
+     tranJoinDate = Date.valueOf(temptranReDate);
 
-        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-        java.util.Date date = new java.util.Date();
-        String string = dateFormat.format(date);
-        txtApproveDate.setText(string);
-    }*/
-
+     DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+     java.util.Date date = new java.util.Date();
+     String string = dateFormat.format(date);
+     txtApproveDate.setText(string);
+     }*/
     private void loadSearchData() {
         if (isSearchMode) {
             String condition = "";
@@ -792,22 +800,20 @@ public class TransferPanel extends javax.swing.JPanel {
         txtEmployeeName.setText(tbTransferData.getValueAt(row, 3).toString());
 
         /*dcTranReDate.setDate(
-                tbTransferData.getValueAt(row, 4) != null
-                ? Date.valueOf(tbTransferData.getValueAt(row, 4).toString())
-                : new java.util.Date());
-        dcTranJoinDate.setDate(
-                tbTransferData.getValueAt(row, 5) != null
-                ? Date.valueOf(tbTransferData.getValueAt(row, 5).toString())
-                : new java.util.Date());*/
+         tbTransferData.getValueAt(row, 4) != null
+         ? Date.valueOf(tbTransferData.getValueAt(row, 4).toString())
+         : new java.util.Date());
+         dcTranJoinDate.setDate(
+         tbTransferData.getValueAt(row, 5) != null
+         ? Date.valueOf(tbTransferData.getValueAt(row, 5).toString())
+         : new java.util.Date());*/
         txtRelDate.setText(
-                tbTransferData.getValueAt(row, 4) != null ? 
-                tbTransferData.getValueAt(row, 4).toString() : ""
-                );
+                tbTransferData.getValueAt(row, 4) != null
+                ? tbTransferData.getValueAt(row, 4).toString() : "");
         txtJoinDate.setText(
-                tbTransferData.getValueAt(row, 5) != null ? 
-                tbTransferData.getValueAt(row, 5).toString() : ""
-                );
-        
+                tbTransferData.getValueAt(row, 5) != null
+                ? tbTransferData.getValueAt(row, 5).toString() : "");
+
         txtRequestDate.setText(tbTransferData.getValueAt(row, 6).toString());
         txtReason.setText(tbTransferData.getValueAt(row, 7).toString());
         txtApproveDate.setText(
@@ -917,12 +923,27 @@ public class TransferPanel extends javax.swing.JPanel {
             initCmbToDepartment();
             initCmbFromLocation();
             initCmbToLocation();
-            initCmbApprove(); 
+            initCmbApprove();
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(TransferPanel.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {
             Logger.getLogger(TransferPanel.class.getName()).log(Level.SEVERE, null, ex);
         }
 
+    }
+
+    private void updateCmbLocationByCmbDepartment() {
+        if (cmbToDepartment.getSelectedItem() != null) {
+            int toDepartmentID = ((KeyValue) cmbToDepartment.getSelectedItem()).getKey();
+            DepartmentDAO departmentDAO = new DepartmentDAO();
+            Department department = departmentDAO.getDepartmentByID(toDepartmentID);
+            if (department != null) {
+                LocationDAO locationDAO = new LocationDAO();
+                Location location = locationDAO.getLocationById(department.getLocationID());
+                cmbToLocation.setSelectedItem(new KeyValue(location.getLocationID(), location.getLocationName()));
+            } else {
+                cmbToLocation.setSelectedItem(new KeyValue(-1, ""));
+            }
+        }
     }
 }
