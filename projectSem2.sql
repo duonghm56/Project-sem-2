@@ -210,11 +210,11 @@ end
 go
 ------------------------------------------------------------------------
 ---Transfer Procedure
-create procedure addTransfer(@emplID int, @transferTypeID int, @reason text, @toProjectID int, @toDepartmentID int, @toLocationID int)
+create procedure addTransfer(@emplID int, @transferTypeID int, @reason text, @fromProjectID int, @toProjectID int, @fromDepartmentID int, @toDepartmentID int, @fromLocationID int, @toLocationID int)
 as
 begin
-	insert into [transfer](employeeID, transferTypeID, requestDate, reason, fromProjectID, toProjectID, fromDepartmentID, toDepartmentID, fromLocationID, toLocationID)
-					values(@emplID,    @transferTypeID, GETDATE(),  @reason, @fromProjectID, @toProjectID, @fromDepartmentID, @toDepartmentID, @fromLocationID, @toLocationID)
+	insert into [transfer](employeeID, transferTypeID, requestDate, reason, fromProjectID, toProjectID, fromDepartmentID, toDepartmentID, fromLocationID, toLocationID, approve)
+					values(@emplID,    @transferTypeID, GETDATE(),  @reason, @fromProjectID, @toProjectID, @fromDepartmentID, @toDepartmentID, @fromLocationID, @toLocationID, 3)
 end
 go
 
@@ -275,6 +275,18 @@ as begin
 	delete from [transfer] 
 	where transferID = @id
 end
+go
+
+CREATE VIEW viewtranempl AS
+SELECT [transfer].transferID, employeeName,employeeNumber,fromProjectID,toProjectID,fromDepartmentID,toDepartmentID,fromLocationID,toLocationID FROM [transfer] 
+Inner Join employee On employee.employeeID = transfer.employeeID
+go
+
+
+--select * from employee
+--go
+--exec addTransfer 2, 1, 'demo', 1, 2, 1, 1, 1, 1
+
 ----------------------------------------------------------------------------------------------
 
 Select * from [admin]
@@ -294,10 +306,8 @@ union Select email,password from admin
 
 go
 
-CREATE VIEW viewtranempl AS
-SELECT [transfer].transferID, employeeName,employeeNumber,fromProjectID,toProjectID,fromDepartmentID,toDepartmentID,fromLocationID,toLocationID FROM [transfer] 
-Inner Join employee On employee.employeeID = transfer.employeeID
+
  
 
       
-select * from transferType
+select * from [transfer]

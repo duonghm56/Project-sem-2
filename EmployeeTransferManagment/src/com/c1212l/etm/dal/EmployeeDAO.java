@@ -67,11 +67,11 @@ public class EmployeeDAO extends ConnectionTool {
             cs.setDate(5, employee.getBirthday());
             cs.setString(6, employee.getAddress());
             cs.setString(7, employee.getPassword());            
-            cs.setString(9, employee.getRole());
-            cs.setInt(10, employee.getWorkExperience());
-            cs.setBoolean(11, employee.getGender());
-            cs.setInt(12, employee.getDepartnameID());
-            cs.setInt(13, employee.getProjectID());
+            cs.setString(8, employee.getRole());
+            cs.setInt(9, employee.getWorkExperience());
+            cs.setBoolean(10, employee.getGender());
+            cs.setInt(11, employee.getDepartnameID());
+            cs.setInt(12, employee.getProjectID());
             cs.executeUpdate();
         } else {
             throw new Exception(error);
@@ -89,11 +89,11 @@ public class EmployeeDAO extends ConnectionTool {
         cs.setDate(5, employee.getBirthday());
         cs.setString(6, employee.getAddress());
         cs.setString(7, employee.getPassword());        
-        cs.setString(9, employee.getRole());
-        cs.setInt(10, employee.getWorkExperience());
-        cs.setBoolean(11, employee.getGender());
-        cs.setInt(12, employee.getDepartnameID());
-        cs.setInt(13, employee.getProjectID());
+        cs.setString(8, employee.getRole());
+        cs.setInt(9, employee.getWorkExperience());
+        cs.setBoolean(10, employee.getGender());
+        cs.setInt(11, employee.getDepartnameID());
+        cs.setInt(12, employee.getProjectID());
         cs.executeUpdate();
         closeConnection();
     }

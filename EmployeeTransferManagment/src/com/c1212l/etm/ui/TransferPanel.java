@@ -10,6 +10,7 @@ import com.c1212l.etm.bll.LocationBUS;
 import com.c1212l.etm.bll.ProjectBUS;
 import com.c1212l.etm.bll.TransferBUS;
 import com.c1212l.etm.bll.TransferTypeBUS;
+import com.c1212l.etm.dal.LocationDAO;
 import com.c1212l.etm.dto.Department;
 import com.c1212l.etm.dto.Employee;
 import com.c1212l.etm.dto.Location;
@@ -66,7 +67,6 @@ public class TransferPanel extends javax.swing.JPanel {
         jLabel14 = new javax.swing.JLabel();
         jLabel15 = new javax.swing.JLabel();
         txtTransferID = new javax.swing.JTextField();
-        dcTranJoinDate = new com.toedter.calendar.JDateChooser();
         jScrollPane1 = new javax.swing.JScrollPane();
         txtReason = new javax.swing.JTextArea();
         cmbFromDepartment = new javax.swing.JComboBox();
@@ -83,7 +83,6 @@ public class TransferPanel extends javax.swing.JPanel {
         cmbApprove = new javax.swing.JComboBox();
         txtEmployeeName = new javax.swing.JTextField();
         txtRequestDate = new javax.swing.JTextField();
-        dcTranReDate = new com.toedter.calendar.JDateChooser();
         txtApproveDate = new javax.swing.JTextField();
         btnReset = new javax.swing.JButton();
         jLabel16 = new javax.swing.JLabel();
@@ -91,6 +90,8 @@ public class TransferPanel extends javax.swing.JPanel {
         btnSearch = new javax.swing.JToggleButton();
         btnDisapprove = new javax.swing.JButton();
         btnApprove = new javax.swing.JButton();
+        txtRelDate = new javax.swing.JTextField();
+        txtJoinDate = new javax.swing.JTextField();
 
         setBorder(javax.swing.BorderFactory.createTitledBorder("Transfer Manager"));
         setEnabled(false);
@@ -149,7 +150,6 @@ public class TransferPanel extends javax.swing.JPanel {
             }
         });
         add(txtTransferID, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 30, 120, -1));
-        add(dcTranJoinDate, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 100, 220, 30));
 
         jScrollPane1.setVerifyInputWhenFocusTarget(false);
         jScrollPane1.setWheelScrollingEnabled(false);
@@ -274,7 +274,6 @@ public class TransferPanel extends javax.swing.JPanel {
             }
         });
         add(txtRequestDate, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 30, 220, -1));
-        add(dcTranReDate, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 60, 220, 30));
 
         txtApproveDate.setEnabled(false);
         add(txtApproveDate, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 240, 220, 22));
@@ -320,6 +319,8 @@ public class TransferPanel extends javax.swing.JPanel {
             }
         });
         add(btnApprove, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 380, -1, -1));
+        add(txtRelDate, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 70, 220, -1));
+        add(txtJoinDate, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 110, 220, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void tbTransferDataMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbTransferDataMouseClicked
@@ -334,27 +335,34 @@ public class TransferPanel extends javax.swing.JPanel {
             }
             int transferID = Integer.parseInt(txtTransferID.getText());
             int transferTypeID = ((KeyValue) cmbTransferType.getSelectedItem()).getKey();
+            /*
             Date requestDate = Date.valueOf(txtRequestDate.getText());
             String reason = txtReason.getText();
             Date approveDate = Date.valueOf(txtApproveDate.getText());
             int approve = ((KeyValue) cmbApprove.getSelectedItem()).getKey();
+            */
+            String relDate = txtRelDate.getText();
+            String joinDate = txtJoinDate.getText();
             int fromProjectID = ((KeyValue) cmbFromProject.getSelectedItem()).getKey();
             int toProjectID = ((KeyValue) cmbToProject.getSelectedItem()).getKey();
             int fromDepartmentID = ((KeyValue) cmbFromDepartment.getSelectedItem()).getKey();
             int toDepartmentID = ((KeyValue) cmbToDepartment.getSelectedItem()).getKey();
             int formLocationID = ((KeyValue) cmbFromLocation.getSelectedItem()).getKey();
             int toLocationID = ((KeyValue) cmbToLocation.getSelectedItem()).getKey();
-
-            if(isSearchMode){
+            
+            int approve = ((KeyValue)cmbApprove.getSelectedItem()).getKey();
+            if (isSearchMode) {
                 throw new Exception("Please disable search mode before update");
-            }else{
-                transferBUS.updateTransfer(transferID, transferTypeID, tranReDate, tranJoinDate, fromProjectID, toProjectID, fromDepartmentID, toDepartmentID, formLocationID, toLocationID);
+            } else {
+                System.out.println("Call update");
+                transferBUS.updateTransfer(transferID, transferTypeID, relDate, joinDate, fromProjectID, toProjectID, fromDepartmentID, toDepartmentID, formLocationID, toLocationID, approve);
             }
 
             reloadData();
 
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(null, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+            ex.printStackTrace();
         }
     }//GEN-LAST:event_btnUpdateActionPerformed
 
@@ -406,7 +414,7 @@ public class TransferPanel extends javax.swing.JPanel {
 
     private void cmbToProjectItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cmbToProjectItemStateChanged
         loadSearchData();
-        if(!isSearchMode){
+        if (!isSearchMode) {
             //updateCmbTransferType();
         }
     }//GEN-LAST:event_cmbToProjectItemStateChanged
@@ -417,7 +425,7 @@ public class TransferPanel extends javax.swing.JPanel {
 
     private void cmbToDepartmentItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cmbToDepartmentItemStateChanged
         loadSearchData();
-        if(!isSearchMode){
+        if (!isSearchMode) {
             //updateCmbTransferType();
         }
     }//GEN-LAST:event_cmbToDepartmentItemStateChanged
@@ -428,7 +436,7 @@ public class TransferPanel extends javax.swing.JPanel {
 
     private void cmbToLocationItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cmbToLocationItemStateChanged
         loadSearchData();
-        if(!isSearchMode){
+        if (!isSearchMode) {
             //updateCmbTransferType();
         }
     }//GEN-LAST:event_cmbToLocationItemStateChanged
@@ -439,29 +447,30 @@ public class TransferPanel extends javax.swing.JPanel {
 
     private void btnSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchActionPerformed
         isSearchMode = !(btnSearch.getSelectedObjects() == null);
-
+        enableFromCmbInSearchMode();
     }//GEN-LAST:event_btnSearchActionPerformed
 
     private void btnApproveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnApproveActionPerformed
         try {
             int transferID = Integer.parseInt(txtTransferID.getText());
             transferBUS.approveTransfer(transferID);
+            reloadData();
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(null, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
             Logger.getLogger(TransferPanel.class.getName()).log(Level.SEVERE, null, ex);
-        } 
+        }
     }//GEN-LAST:event_btnApproveActionPerformed
 
     private void btnDisapproveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDisapproveActionPerformed
         try {
             int transferID = Integer.parseInt(txtTransferID.getText());
             transferBUS.disapproveTransfer(transferID);
+            reloadData();
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(null, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
             Logger.getLogger(TransferPanel.class.getName()).log(Level.SEVERE, null, ex);
-        } 
+        }
     }//GEN-LAST:event_btnDisapproveActionPerformed
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnApprove;
     private javax.swing.JButton btnDelete;
@@ -477,8 +486,6 @@ public class TransferPanel extends javax.swing.JPanel {
     private javax.swing.JComboBox cmbToLocation;
     private javax.swing.JComboBox cmbToProject;
     private javax.swing.JComboBox cmbTransferType;
-    private com.toedter.calendar.JDateChooser dcTranJoinDate;
-    private com.toedter.calendar.JDateChooser dcTranReDate;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -501,15 +508,15 @@ public class TransferPanel extends javax.swing.JPanel {
     private javax.swing.JTextField txtApproveDate;
     private javax.swing.JTextField txtEmployeeName;
     private javax.swing.JTextField txtEmployeeNumber;
+    private javax.swing.JTextField txtJoinDate;
     private javax.swing.JTextArea txtReason;
+    private javax.swing.JTextField txtRelDate;
     private javax.swing.JTextField txtRequestDate;
     private javax.swing.JTextField txtTransferID;
     // End of variables declaration//GEN-END:variables
     DefaultTableModel tblModel;
     ArrayList<Transfer> lstTransfer;
     TransferBUS transferBUS = new TransferBUS();
-    private Date tranReDate, tranJoinDate;
-    private int employeeID;
     private boolean isSearchMode = false;
     Vector header = new Vector();
 
@@ -538,12 +545,12 @@ public class TransferPanel extends javax.swing.JPanel {
         tblModel = new DefaultTableModel(header, 0);
         tbTransferData.setModel(tblModel);
 
-        makeInvisibleColumn(0);
-        makeInvisibleColumn(1);
-        makeInvisibleColumn(4);
-        makeInvisibleColumn(5);
-        makeInvisibleColumn(6);
-        makeInvisibleColumn(7);
+        /*makeInvisibleColumn(0);
+         makeInvisibleColumn(1);
+         makeInvisibleColumn(4);
+         makeInvisibleColumn(5);
+         makeInvisibleColumn(6);
+         makeInvisibleColumn(7);*/
 
     }
 
@@ -566,8 +573,8 @@ public class TransferPanel extends javax.swing.JPanel {
         try {
             btnSearch.setSelected(false);
             isSearchMode = false;
-            initTable();
             initTextfield();
+            initTable();
             initCmbTransferType();
             initCmbFromProject();
             initCmbToProject();
@@ -576,7 +583,7 @@ public class TransferPanel extends javax.swing.JPanel {
             initCmbFromLocation();
             initCmbToLocation();
             initCmbApprove();
-            convertDate();
+            //convertDate();
             enableFromCmbInSearchMode();
             makeInvisibleBtnApproveDisapprove();
             fillData(transferBUS.getAllTransfer());
@@ -637,11 +644,12 @@ public class TransferPanel extends javax.swing.JPanel {
             cmbToLocation.addItem(new KeyValue(location.getLocationID(), location.getLocationName()));
         }
     }
-
+       
     private void initCmbFromDepartment() throws ClassNotFoundException, SQLException {
         cmbFromDepartment.removeAllItems();
         cmbFromDepartment.addItem(new KeyValue(-1, ""));
         DepartmentBUS departmentBUS = new DepartmentBUS();
+        LocationDAO locationDAO = new LocationDAO();                
         ArrayList<Department> arrDepartment = departmentBUS.getAllDepartment();
         for (Department department : arrDepartment) {
             cmbFromDepartment.addItem(new KeyValue(department.getDepartmentID(), department.getDepartmentName()));
@@ -666,7 +674,7 @@ public class TransferPanel extends javax.swing.JPanel {
         cmbApprove.addItem(new KeyValue(3, "Waiting Approve"));
     }
 
-    private void convertDate() {
+    /*private void convertDate() {
         int tranReDateYear = dcTranReDate.getDate().getYear() + 1900;
         String temptranReDate = tranReDateYear + "-" + dcTranReDate.getDate().getMonth() + "-" + dcTranReDate.getDate().getDate();
         tranReDate = Date.valueOf(temptranReDate);
@@ -679,7 +687,7 @@ public class TransferPanel extends javax.swing.JPanel {
         java.util.Date date = new java.util.Date();
         String string = dateFormat.format(date);
         txtApproveDate.setText(string);
-    }
+    }*/
 
     private void loadSearchData() {
         if (isSearchMode) {
@@ -783,11 +791,29 @@ public class TransferPanel extends javax.swing.JPanel {
         txtEmployeeNumber.setText(tbTransferData.getValueAt(row, 2).toString());
         txtEmployeeName.setText(tbTransferData.getValueAt(row, 3).toString());
 
-        dcTranReDate.setDate(Date.valueOf(tbTransferData.getValueAt(row, 4).toString()));
-        dcTranJoinDate.setDate(Date.valueOf(tbTransferData.getValueAt(row, 5).toString()));
+        /*dcTranReDate.setDate(
+                tbTransferData.getValueAt(row, 4) != null
+                ? Date.valueOf(tbTransferData.getValueAt(row, 4).toString())
+                : new java.util.Date());
+        dcTranJoinDate.setDate(
+                tbTransferData.getValueAt(row, 5) != null
+                ? Date.valueOf(tbTransferData.getValueAt(row, 5).toString())
+                : new java.util.Date());*/
+        txtRelDate.setText(
+                tbTransferData.getValueAt(row, 4) != null ? 
+                tbTransferData.getValueAt(row, 4).toString() : ""
+                );
+        txtJoinDate.setText(
+                tbTransferData.getValueAt(row, 5) != null ? 
+                tbTransferData.getValueAt(row, 5).toString() : ""
+                );
+        
         txtRequestDate.setText(tbTransferData.getValueAt(row, 6).toString());
         txtReason.setText(tbTransferData.getValueAt(row, 7).toString());
-        txtApproveDate.setText(tbTransferData.getValueAt(row, 8).toString());
+        txtApproveDate.setText(
+                tbTransferData.getValueAt(row, 8) != null
+                ? tbTransferData.getValueAt(row, 8).toString()
+                : "");
 
         cmbFromProject.setSelectedItem(new KeyValue(0, tbTransferData.getValueAt(row, 9).toString()));
         cmbToProject.setSelectedItem(new KeyValue(0, tbTransferData.getValueAt(row, 10).toString()));
@@ -796,11 +822,13 @@ public class TransferPanel extends javax.swing.JPanel {
         cmbFromLocation.setSelectedItem(new KeyValue(0, tbTransferData.getValueAt(row, 13).toString()));
         cmbToLocation.setSelectedItem(new KeyValue(0, tbTransferData.getValueAt(row, 14).toString()));
         cmbApprove.setSelectedItem(new KeyValue(0, tbTransferData.getValueAt(row, 15).toString()));
-        
+
         String approve = tbTransferData.getValueAt(row, 15).toString();
+
         btnApprove.setVisible(approve.equals("Waiting Approve"));
         btnDisapprove.setVisible(approve.equals("Waiting Approve"));
-        
+
+        updateCmbTransferType();
         isSearchMode = oldSearchMode;
     }
 
@@ -859,7 +887,7 @@ public class TransferPanel extends javax.swing.JPanel {
             return "Custom Transfer";
         }
     }
-        
+
     private void updateCmbTransferType() {
         cmbTransferType.setSelectedItem(new KeyValue(0, checkFieldAndReturnTransferType()));
     }
@@ -870,17 +898,31 @@ public class TransferPanel extends javax.swing.JPanel {
         cmbFromLocation.setEnabled(isSearchMode);
         cmbTransferType.setEnabled(isSearchMode);
     }
-    
-    private void makeInvisibleBtnApproveDisapprove(){
+
+    private void makeInvisibleBtnApproveDisapprove() {
         btnApprove.setVisible(false);
         btnDisapprove.setVisible(false);
     }
 
     @Override
     public void validate() {
-        super.validate();
-        reloadData();
+        try {
+            super.validate();
+            //initTable();
+            //fillData(transferBUS.getAllTransfer());
+            initCmbTransferType();
+            initCmbFromProject();
+            initCmbToProject();
+            initCmbFromDepartment();
+            initCmbToDepartment();
+            initCmbFromLocation();
+            initCmbToLocation();
+            initCmbApprove(); 
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(TransferPanel.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(TransferPanel.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
     }
-    
-    
 }

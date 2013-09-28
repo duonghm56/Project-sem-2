@@ -83,6 +83,7 @@ public class TransferDAO extends ConnectionTool {
         switch (transfer.getApprove()) {
             case 1:
                 //Approve
+                System.out.println("CALL APPROVE UPDATE");
                 cs = conn.prepareCall("{call updateForApprovedTransfer(?, ?, ?)}");
                 cs.setInt(1, transfer.getTransferID());
                 cs.setDate(2, transfer.getTransferRelievingDate());
@@ -91,6 +92,7 @@ public class TransferDAO extends ConnectionTool {
                 break;
             case 2:
                 //Disapprove
+                System.out.println("CALL DISAPPROVE UPDATE");
                 cs = conn.prepareCall("{call updateForDisapproveTransfer(?, ?, ?)}");
                 cs.setInt(1, transfer.getTransferID());
                 cs.setDate(2, transfer.getTransferRelievingDate());
@@ -99,6 +101,7 @@ public class TransferDAO extends ConnectionTool {
                 break;
             case 3:
                 //Wait Approve
+                System.out.println("CALL WAIT APPROVE UPDATE");
                 cs = conn.prepareCall("{call updateForWaitApproveTransfer(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)}");
                 cs.setInt(1, transfer.getTransferID());
                 cs.setInt(2, transfer.getTransferTypeID());

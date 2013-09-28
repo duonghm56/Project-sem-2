@@ -88,14 +88,14 @@ public class EmployeePanel extends javax.swing.JPanel {
         setBorder(javax.swing.BorderFactory.createTitledBorder("Employees Manager"));
         setPreferredSize(new java.awt.Dimension(970, 550));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-        add(txtEmployeeNumber, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 100, 190, -1));
+        add(txtEmployeeNumber, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 70, 190, -1));
 
         txtEmployeeName.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 txtEmployeeNameKeyReleased(evt);
             }
         });
-        add(txtEmployeeName, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 70, 190, -1));
+        add(txtEmployeeName, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 100, 190, -1));
 
         jLabel11.setText("Project:");
         add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 240, -1, -1));
@@ -106,7 +106,7 @@ public class EmployeePanel extends javax.swing.JPanel {
         add(txtEmployeeRole, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 150, 180, -1));
 
         jLabel14.setText("Year");
-        add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 100, 26, -1));
+        add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 100, 30, 20));
 
         add(cmbGender, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 150, 100, -1));
 
@@ -119,10 +119,10 @@ public class EmployeePanel extends javax.swing.JPanel {
         cmbDepartment.setModel(new javax.swing.DefaultComboBoxModel(new String[] { " " }));
         add(cmbDepartment, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 210, 180, -1));
 
-        jLabel1.setText("Employee Number:");
-        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 100, -1, -1));
+        jLabel1.setText("Employee Number");
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 70, -1, -1));
 
-        jLabel8.setText("Employee ID:");
+        jLabel8.setText("Employee ID");
         add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 40, -1, -1));
 
         btnUpdate.setText("Update");
@@ -153,7 +153,7 @@ public class EmployeePanel extends javax.swing.JPanel {
         add(btnDelete, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 310, -1, -1));
 
         jLabel2.setText("Employee Name:");
-        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 70, -1, -1));
+        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 100, -1, -1));
 
         jLabel6.setText("Employee Role:");
         add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 150, -1, -1));
@@ -223,7 +223,7 @@ public class EmployeePanel extends javax.swing.JPanel {
         add(txtSalary, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 180, 89, -1));
 
         jLabel16.setText("USD");
-        add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 180, -1, -1));
+        add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 180, 30, 20));
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
@@ -277,6 +277,7 @@ public class EmployeePanel extends javax.swing.JPanel {
             reloadData();
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(null, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+            ex.printStackTrace();
         }
     }//GEN-LAST:event_btnAddActionPerformed
 
@@ -374,8 +375,7 @@ public class EmployeePanel extends javax.swing.JPanel {
         header.add("Salary");
         header.add("Birthday");
         header.add("Address");
-        header.add("Password");
-        header.add("Confirm Password");
+        header.add("Password");        
         header.add("Role");
         header.add("Experience");
         header.add("Gender");
@@ -520,18 +520,24 @@ public class EmployeePanel extends javax.swing.JPanel {
         if (txtWorkExperience.getText().equals("")) {
             throw new Exception("Please enter Work Experience");
         }
-        
+        if (new String(txtPassword.getPassword()).equals("")){
+            throw new Exception("Please enter Password");
+        }
         KeyValue department = (KeyValue)cmbDepartment.getSelectedItem();
         if(department.getValue().equals("")){
             throw new Exception("Please select department");
         }
         
-        /*KeyValue department = (KeyValue)cmbDepartment.getSelectedItem();
-        if(department.getValue().equals("")){
-            throw new Exception("Please select department");
-        }*/
-                
+        KeyValue project = (KeyValue)cmbProject.getSelectedItem();
+        if(project.getValue().equals("")){
+            throw new Exception("Please select project");
+        }
         
+        KeyValue gender = (KeyValue)cmbGender.getSelectedItem();
+        if(gender.getValue().equals("")){
+            throw new Exception("Please select gender");
+        }
+                        
 
         Pattern ptEmplName = Pattern.compile("^([A-Za-z]+[\\s]?)+$");
         Matcher mcEmplName = ptEmplName.matcher(txtEmployeeName.getText());

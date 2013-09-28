@@ -194,6 +194,7 @@ public class Transfer {
         v.add(toDepartment.getDepartmentName());
         v.add(fromLocation.getLocationName());
         v.add(toLocation.getLocationName());
+        
         switch (approve) {
             case 1:
                 v.add("Approve");
@@ -202,7 +203,7 @@ public class Transfer {
                 v.add("Disapprove");
                 break;
             case 3:
-                v.add("Wait Approve");
+                v.add("Waiting Approve");
                 break;
         }
 
