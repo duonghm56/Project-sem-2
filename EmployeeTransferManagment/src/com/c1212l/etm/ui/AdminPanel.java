@@ -13,6 +13,8 @@ import java.util.ArrayList;
 import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -231,6 +233,25 @@ public class AdminPanel extends javax.swing.JPanel {
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
         // TODO add your handling code here
          try {
+             if (txtEmail.getText().equals("")) {
+                 throw new Exception("Please enter email");
+             }
+             if (txtPassword.getText().equals("")) {
+                throw new Exception("Please enter Password");
+             }
+             if (txtRole.getText().equals("")) {
+                throw new Exception("Please enter role");
+             }
+              Pattern ptemail = Pattern.compile("^[\\w.-]+@[\\w.-]+\\.[A-Za-z]{2,4}$");
+              Matcher mcemail = ptemail.matcher(txtEmail.getText());
+              if (!mcemail.find()) {
+                throw new Exception("Email is not valid");
+              }
+               Pattern ptRole = Pattern.compile("^[\\d]{1}$");
+               Matcher mcRole = ptRole.matcher(txtRole.getText());
+               if (!mcRole.find()) {
+                   throw new Exception("Role is not valid");
+               }
             String email = txtEmail.getText();
             String password = new String(txtPassword.getPassword());
             int role = Integer.parseInt(txtRole.getText());
@@ -246,13 +267,35 @@ public class AdminPanel extends javax.swing.JPanel {
     private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
         // TODO add your handling code here:
             try {
-            int id = Integer.parseInt(txtID.getText());
-            String email = txtEmail.getText();
-            String password = new String(txtPassword.getPassword());
-            int role = Integer.parseInt(txtRole.getText());
-            adminBUS.updateAdmin(id, email, password, role);
-            JOptionPane.showMessageDialog(this, "Update success!");
-            reloadData();
+               if (txtID.getText().equals("")) {
+                 throw new Exception("Please select admin");
+               }
+               if (txtEmail.getText().equals("")) {
+                 throw new Exception("Please enter email");
+               }
+               if (txtPassword.getText().equals("")) {
+                  throw new Exception("Please enter Password");
+               }
+               if (txtRole.getText().equals("")) {
+                  throw new Exception("Please enter role");
+               }
+               Pattern ptemail = Pattern.compile("^[\\w.-]+@[\\w.-]+\\.[A-Za-z]{2,4}$");
+               Matcher mcemail = ptemail.matcher(txtEmail.getText());
+               if (!mcemail.find()) {
+                 throw new Exception("Email is not valid");
+               }
+                Pattern ptRole = Pattern.compile("^[\\d]{1}$");
+                Matcher mcRole = ptRole.matcher(txtRole.getText());
+                if (!mcRole.find()) {
+                  throw new Exception("Role is not valid");
+                }
+                int id = Integer.parseInt(txtID.getText());
+                String email = txtEmail.getText();
+                String password = new String(txtPassword.getPassword());
+                int role = Integer.parseInt(txtRole.getText());
+                adminBUS.updateAdmin(id, email, password, role);
+                JOptionPane.showMessageDialog(this, "Update success!");
+                reloadData();
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(null, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }
@@ -261,6 +304,9 @@ public class AdminPanel extends javax.swing.JPanel {
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
         // TODO add your handling code here:
           try {
+            if (txtID.getText().equals("")) {
+                 throw new Exception("Please select admin");
+            }
             int id = Integer.parseInt(txtID.getText());
             adminBUS.deleteAdmin(id);
             JOptionPane.showMessageDialog(this, "Add success");

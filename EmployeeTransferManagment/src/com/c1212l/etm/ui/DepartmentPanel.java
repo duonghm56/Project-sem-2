@@ -14,6 +14,8 @@ import java.util.ArrayList;
 import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -152,11 +154,17 @@ public class DepartmentPanel extends javax.swing.JPanel {
 
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
         // TODO add your handling code here:
-        if (txtDepartmentName.getText().equals("")) {
-            JOptionPane.showMessageDialog(null, "Please enter department name");
-            return;
-        }
+       
         try {
+             if (txtDepartmentName.getText().equals("")) {
+                JOptionPane.showMessageDialog(null, "Please enter department name");
+                return;
+            }
+            Pattern ptDepartName = Pattern.compile("^([A-Za-z]+[\\s]?)+$");
+            Matcher mcDepartName = ptDepartName.matcher(txtDepartmentName.getText());
+            if (!mcDepartName.find()) {
+                 throw new Exception("Department name is not valid");
+            }
             departmentBUS.addDepartment(txtDepartmentName.getText(), ((KeyValue) cmbLocation.getSelectedItem()).getKey());
             JOptionPane.showMessageDialog(null, "Insert Success!!!");
             reloadData();
@@ -168,8 +176,16 @@ public class DepartmentPanel extends javax.swing.JPanel {
     private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
         // TODO add your handling code here:
         try {
+            if (txtDepartmentID.getText().equals("")) {
+                throw new Exception("Please select department");
+            }
             if (txtDepartmentName.getText().equals("")) {
                 throw new Exception("Please enter department name");
+            }
+            Pattern ptDepartName = Pattern.compile("^([A-Za-z]+[\\s]?)+$");
+            Matcher mcDepartName = ptDepartName.matcher(txtDepartmentName.getText());
+            if (!mcDepartName.find()) {
+                 throw new Exception("Department name is not valid");
             }
             int locationID = ((KeyValue) cmbLocation.getSelectedItem()).getKey();
             departmentBUS.updateDepartment(Integer.parseInt(txtDepartmentID.getText()), txtDepartmentName.getText(), locationID);

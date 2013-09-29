@@ -122,6 +122,7 @@ public class LoginPanel extends javax.swing.JPanel {
                 JOptionPane.YES_NO_OPTION);
             if (n == JOptionPane.YES_OPTION) {
                 //                this.dispose();
+                System.exit(0);
             } else if (n == JOptionPane.NO_OPTION) {
 
             } else {

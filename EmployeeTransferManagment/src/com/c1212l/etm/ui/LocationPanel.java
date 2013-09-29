@@ -11,6 +11,8 @@ import java.util.ArrayList;
 import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -138,6 +140,14 @@ public class LocationPanel extends javax.swing.JPanel {
             // TODO add your handling code here:
             //            int locationID;
             //            locationID = Integer.parseInt(txtLocationID.getText());
+            if (txtLocationName.getText().equals("")) {
+                throw new Exception("Please enter Location Name");
+            }
+             Pattern ptLocationName = Pattern.compile("^([A-Za-z]+[\\s]?)+$");
+             Matcher mcLocationName = ptLocationName.matcher(txtLocationName.getText());
+             if (!mcLocationName.find()) {
+                     throw new Exception("Location Name is not valid");
+             }
             String locationName = txtLocationName.getText();
             locationBUS.addLocation(locationName);
             JOptionPane.showMessageDialog(this, "Add success");
@@ -151,6 +161,17 @@ public class LocationPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
         try {
             // TODO add your handling code here:
+            if (txtLocationID.getText().equals("")) {
+                throw new Exception("Please select location");
+            }
+             if (txtLocationName.getText().equals("")) {
+                throw new Exception("Please enter Location Name");
+            }
+             Pattern ptLocationName = Pattern.compile("^([A-Za-z]+[\\s]?)+$");
+             Matcher mcLocationName = ptLocationName.matcher(txtLocationName.getText());
+             if (!mcLocationName.find()) {
+                     throw new Exception("Location Name is not valid");
+             }
             int locationID = Integer.parseInt(txtLocationID.getText());
             String locationName = txtLocationName.getText();
             locationBUS.updateLocation(locationID, locationName);
@@ -165,7 +186,9 @@ public class LocationPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
         try {
             // TODO add your handling code here:
-            
+            if (txtLocationID.getText().equals("")) {
+                throw new Exception("Please select location");
+            }
             int locationID = Integer.parseInt(txtLocationID.getText());
             locationBUS.deleteLocation(locationID);
             JOptionPane.showMessageDialog(this, "Delete success");

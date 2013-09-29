@@ -11,6 +11,8 @@ import java.util.ArrayList;
 import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -159,26 +161,36 @@ public class ProjectPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
-        if (txtProjectName.getText().equals("")) {
-            JOptionPane.showMessageDialog(null, "Please enter project name");
-            return;
-        }
-            try {
+        try{
+                if (txtProjectName.getText().equals("")) {
+                JOptionPane.showMessageDialog(null, "Please enter project name");
+                return;
+                }
+                Pattern ptProName = Pattern.compile("^([A-Za-z]+[\\s]?)+$");
+                Matcher mcProName = ptProName.matcher(txtProjectName.getText());
+                if (!mcProName.find()) {
+                     throw new Exception("Project name is not valid");
+                }
                 projectBUS.addProject(txtProjectName.getText(), txtCreateDate.getText(), txtEndDate.getText());
                 JOptionPane.showMessageDialog(null, "Add success!");
                 reloadData();
-            } catch (Exception ex) {
+        } catch (Exception ex) {
                 JOptionPane.showMessageDialog(null, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
                 ex.printStackTrace();
             }
     }//GEN-LAST:event_btnAddActionPerformed
 
     private void btnEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditActionPerformed
-        if (txtProjectID.getText().equals("")) {
-            JOptionPane.showMessageDialog(null, "Please select project");
-            return;
-        } 
-            try {
+         try{
+                if (txtProjectID.getText().equals("")) {
+                    JOptionPane.showMessageDialog(null, "Please select project");
+                    return;
+                } 
+                Pattern ptProName = Pattern.compile("^([A-Za-z]+[\\s]?)+$");
+                Matcher mcProName = ptProName.matcher(txtProjectName.getText());
+                if (!mcProName.find()) {
+                     throw new Exception("Project name is not valid");
+                }
                 projectBUS.updateProject(
                         txtProjectID.getText(),
                         txtProjectName.getText(),
