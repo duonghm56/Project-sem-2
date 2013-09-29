@@ -4,8 +4,11 @@
  */
 package com.c1212l.etm.dal;
 
+import com.c1212l.etm.bll.EmployeeBUS;
+import com.c1212l.etm.dto.ChangePassword;
 import com.c1212l.etm.dto.Employee;
 import com.c1212l.etm.ui.EmployeePanel;
+import com.c1212l.etm.ui.LoginPanel;
 import java.sql.CallableStatement;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -94,6 +97,15 @@ public class EmployeeDAO extends ConnectionTool {
         cs.setBoolean(10, employee.getGender());
         cs.setInt(11, employee.getDepartnameID());
         cs.setInt(12, employee.getProjectID());
+        cs.executeUpdate();
+        closeConnection();
+    }
+       public void changeEmployeePassword(ChangePassword changePassword) throws ClassNotFoundException, Exception {
+        initConnection();
+        CallableStatement cs = conn.prepareCall("{call changeEmployeePassword(?,?,?)}");
+        cs.setString(1,changePassword.getEmail());
+        cs.setString(2, changePassword.getOldPassword());
+        cs.setString(3, changePassword.getNewPassword());
         cs.executeUpdate();
         closeConnection();
     }

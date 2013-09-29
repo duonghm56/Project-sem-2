@@ -147,11 +147,11 @@ public class LoginPanel extends javax.swing.JPanel {
             }
             for (int i = 0; i < vctListAdmin.size(); i++) {
                 Login login = vctListAdmin.elementAt(i);
-                if (txtEmail.getText().equals(login.getEmail()) && txtPassword.getText().equals(login.getPassword()) ) {
-                    email = login.getEmail();
-                    AdminUI adminUI = new AdminUI();
-                    adminUI.show();
-                    return;
+                if (txtEmail.getText().equals(login.getEmail()) && login.getPassword().equals(txtPassword.getText())) {
+                        email = login.getEmail();
+                        AdminUI adminUI = new AdminUI();
+                        adminUI.show();
+                        return;
                 }
             }
             int i,j;
@@ -176,14 +176,20 @@ public class LoginPanel extends javax.swing.JPanel {
                 do{
                     mid=(left+right)/2;
                     Login login = vctListEmployee.elementAt(mid);
-                    if(login.getEmail().equals(txtEmail.getText())&& login.getPassword().equals(txtPassword.getText()))
+                    if(login.getEmail().equals(txtEmail.getText()))
                     {
-                        JOptionPane.showMessageDialog(null, "Login success!");
-                        this.hide();
-                        email=login.getEmail();
-                         ClientUI1 clientUI = new ClientUI1();
-                         clientUI.show();
-                        return;
+                        if (login.getPassword().equals(txtPassword.getText())) {
+                            JOptionPane.showMessageDialog(null, "Login success!");
+                            this.hide();
+                            email=login.getEmail();
+                            ClientUI1 clientUI = new ClientUI1();
+                            clientUI.show();
+                            return;
+                        }
+                        else{
+                            JOptionPane.showMessageDialog(null, "Login fail!");
+                            return;
+                        }
                     }
                     else if(login.getEmail().compareTo(txtEmail.getText())<0)
                     right=mid-1;

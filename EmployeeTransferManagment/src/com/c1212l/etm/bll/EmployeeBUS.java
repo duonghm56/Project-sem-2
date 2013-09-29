@@ -5,6 +5,7 @@
 package com.c1212l.etm.bll;
 
 import com.c1212l.etm.dal.EmployeeDAO;
+import com.c1212l.etm.dto.ChangePassword;
 import com.c1212l.etm.dto.Employee;
 import com.c1212l.etm.dto.Location;
 import java.sql.Date;
@@ -63,7 +64,14 @@ public class EmployeeBUS {
         e.setProjectID(projectID);
         employeeDAO.updateEmployee(e);
     }
-    
+        
+    public void changeEmployeePassword(String email,String oldPassword, String newPassword) throws ClassNotFoundException, Exception{
+        ChangePassword changePassword = new ChangePassword();
+        changePassword.setEmail(email);
+        changePassword.setOldPassword(oldPassword);
+        changePassword.setNewPassword(newPassword);
+        employeeDAO.changeEmployeePassword(changePassword);
+    }
     public void deleteEmployee(String emplNum) throws ClassNotFoundException, SQLException, Exception{
         Employee e = new Employee();
         e.setEmployeeNumber(emplNum);         

@@ -4,19 +4,21 @@
  */
 package com.c1212l.etm.client.ui;
 
+import com.c1212l.etm.bll.EmployeeBUS;
 import com.c1212l.etm.ui.*;
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
 /**
  *
  * @author Shady
  */
-public class ChangPassAdmin extends javax.swing.JFrame {
+public class ChangPassEmployee extends javax.swing.JFrame {
 
     /**
      * Creates new form ChangPassAdmin
      */
-    public ChangPassAdmin() {
+    public ChangPassEmployee() {
         initComponents();
     }
 
@@ -34,10 +36,10 @@ public class ChangPassAdmin extends javax.swing.JFrame {
         lblOldPassword = new javax.swing.JLabel();
         lblNewPassword = new javax.swing.JLabel();
         lblConfirmPassword = new javax.swing.JLabel();
-        txtOldPassword = new javax.swing.JTextField();
-        txtNewPassword = new javax.swing.JTextField();
-        txtConfirmPassword = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
+        txtConfirmPassword = new javax.swing.JPasswordField();
+        txtNewPassword = new javax.swing.JPasswordField();
+        txtOldPassword = new javax.swing.JPasswordField();
+        btnChangePassword = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
 
@@ -45,7 +47,7 @@ public class ChangPassAdmin extends javax.swing.JFrame {
         setTitle("Chang pass Admin");
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel1.setText("Chang pass Administrator");
+        jLabel1.setText("Chang Password Employee");
 
         jPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
@@ -55,28 +57,26 @@ public class ChangPassAdmin extends javax.swing.JFrame {
 
         lblConfirmPassword.setText("Confirm Password");
 
-        txtNewPassword.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtNewPasswordActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblOldPassword)
-                    .addComponent(lblNewPassword)
-                    .addComponent(lblConfirmPassword))
-                .addGap(21, 21, 21)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(txtOldPassword)
-                    .addComponent(txtNewPassword)
-                    .addComponent(txtConfirmPassword, javax.swing.GroupLayout.DEFAULT_SIZE, 210, Short.MAX_VALUE))
-                .addContainerGap(24, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(lblConfirmPassword)
+                        .addGap(18, 18, 18)
+                        .addComponent(txtConfirmPassword, javax.swing.GroupLayout.DEFAULT_SIZE, 93, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblOldPassword)
+                            .addComponent(lblNewPassword))
+                        .addGap(34, 34, 34)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(txtOldPassword, javax.swing.GroupLayout.DEFAULT_SIZE, 93, Short.MAX_VALUE)
+                            .addComponent(txtNewPassword))))
+                .addContainerGap(60, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -90,17 +90,17 @@ public class ChangPassAdmin extends javax.swing.JFrame {
                     .addComponent(lblNewPassword)
                     .addComponent(txtNewPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblConfirmPassword)
                     .addComponent(txtConfirmPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(20, Short.MAX_VALUE))
         );
 
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/accept.png"))); // NOI18N
-        jButton1.setText("OK");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnChangePassword.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/accept.png"))); // NOI18N
+        btnChangePassword.setText("OK");
+        btnChangePassword.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnChangePasswordActionPerformed(evt);
             }
         });
 
@@ -112,7 +112,6 @@ public class ChangPassAdmin extends javax.swing.JFrame {
             }
         });
 
-        jButton3.setIcon(new javax.swing.ImageIcon("C:\\Users\\Android21SDK\\Documents\\GitHub\\Project-sem-2\\EmployeeTransferManagment\\src\\Image\\block.png")); // NOI18N
         jButton3.setText("Exit");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -124,22 +123,24 @@ public class ChangPassAdmin extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jButton1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton3)
-                .addGap(35, 35, 35))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel1)
                 .addGap(88, 88, 88))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 69, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(35, 35, 35))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(10, 10, 10)
+                        .addComponent(btnChangePassword)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButton2)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(23, 23, 23))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -150,18 +151,14 @@ public class ChangPassAdmin extends javax.swing.JFrame {
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
+                    .addComponent(btnChangePassword)
                     .addComponent(jButton2)
-                    .addComponent(jButton3))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void txtNewPasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNewPasswordActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtNewPasswordActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
@@ -189,7 +186,7 @@ if (n == JOptionPane.YES_OPTION) {
         txtConfirmPassword.setText("");
     }//GEN-LAST:event_jButton2ActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void btnChangePasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnChangePasswordActionPerformed
         // TODO add your handling code here:
         try{
             if (txtOldPassword.getText().equals("")||txtNewPassword.getText().equals("")||txtConfirmPassword.getText().equals("")) {
@@ -199,9 +196,13 @@ if (n == JOptionPane.YES_OPTION) {
             if (!txtNewPassword.getText().equals(txtConfirmPassword.getText())) {
                 JOptionPane.showMessageDialog(this, "Phai de trung nhau !");
             }
+           String oldPassword = new String(txtOldPassword.getPassword());
+           String newPassword = new String(txtNewPassword.getPassword());
+           employeeBUS.changeEmployeePassword(LoginPanel.email,oldPassword, newPassword);
+           JOptionPane.showMessageDialog(null, "Change Password success!");
         }
         catch(Exception ex){ex.printStackTrace();}
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_btnChangePasswordActionPerformed
 
     /**
      * @param args the command line arguments
@@ -220,25 +221,25 @@ if (n == JOptionPane.YES_OPTION) {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ChangPassAdmin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ChangPassEmployee.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ChangPassAdmin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ChangPassEmployee.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ChangPassAdmin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ChangPassEmployee.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ChangPassAdmin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ChangPassEmployee.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new ChangPassAdmin().setVisible(true);
+                new ChangPassEmployee().setVisible(true);
             }
         });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton btnChangePassword;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
@@ -246,8 +247,9 @@ if (n == JOptionPane.YES_OPTION) {
     private javax.swing.JLabel lblConfirmPassword;
     private javax.swing.JLabel lblNewPassword;
     private javax.swing.JLabel lblOldPassword;
-    private javax.swing.JTextField txtConfirmPassword;
-    private javax.swing.JTextField txtNewPassword;
-    private javax.swing.JTextField txtOldPassword;
+    private javax.swing.JPasswordField txtConfirmPassword;
+    private javax.swing.JPasswordField txtNewPassword;
+    private javax.swing.JPasswordField txtOldPassword;
     // End of variables declaration//GEN-END:variables
+    EmployeeBUS employeeBUS = new EmployeeBUS();
 }
