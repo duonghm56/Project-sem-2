@@ -165,6 +165,7 @@ public class LocationPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
         try {
             // TODO add your handling code here:
+            
             int locationID = Integer.parseInt(txtLocationID.getText());
             locationBUS.deleteLocation(locationID);
             JOptionPane.showMessageDialog(this, "Delete success");

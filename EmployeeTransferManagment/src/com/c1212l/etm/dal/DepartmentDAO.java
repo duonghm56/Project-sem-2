@@ -35,22 +35,12 @@ public class DepartmentDAO extends ConnectionTool {
     }
 
     public void addDepartment(Department department) throws ClassNotFoundException, Exception {
-        initConnection();
-        String error = "";
-        /*PreparedStatement pstmt = conn.prepareStatement("select * from department where departmentName = ?");
-        pstmt.setString(1, department.getDepartmentName());
-        if (pstmt.executeQuery().next()) {
-            error += "Error: Duplicate department name\n";
-        }*/
-        if (error.equals("")) {
+            initConnection();
             CallableStatement cs = conn.prepareCall("{call addDepartment(?, ?)}");
             cs.setString(1, department.getDepartmentName());
             cs.setInt(2, department.getLocationID());
             cs.executeUpdate();
-        } else {
-            throw new Exception(error);
-        }
-        closeConnection();
+            closeConnection();
     }
 
     public void updateDepartment(Department department) throws ClassNotFoundException, Exception {

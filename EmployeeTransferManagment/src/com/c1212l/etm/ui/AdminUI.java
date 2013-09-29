@@ -13,14 +13,13 @@ import com.c1212l.etm.ui.*;
  * @author Android21SDK
  */
 public  class AdminUI extends javax.swing.JFrame {
-    protected static String email;
     /**
      * 
      * Creates new form AdminUI
      */
     public AdminUI() {
         initComponents();
-        lblEmail.setText("Email:"+email);
+        lblEmail.setText("Email:"+FrameTestLogin.email);
     }
 
     /**
@@ -51,15 +50,10 @@ public  class AdminUI extends javax.swing.JFrame {
         jLabel12 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
         panelTransfer = new javax.swing.JPanel();
-        transferPanel1 = new com.c1212l.etm.ui.TransferPanel();
         panelEmpl = new javax.swing.JPanel();
-        employeePanel1 = new com.c1212l.etm.ui.EmployeePanel();
         panelProject = new javax.swing.JPanel();
-        projectPanel1 = new com.c1212l.etm.ui.ProjectPanel();
         panelDepartment = new javax.swing.JPanel();
-        departmentPanel1 = new com.c1212l.etm.ui.DepartmentPanel();
         panelLocation = new javax.swing.JPanel();
-        locationPanel1 = new com.c1212l.etm.ui.LocationPanel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
@@ -99,7 +93,7 @@ public  class AdminUI extends javax.swing.JFrame {
                     .addComponent(jLabel3)
                     .addComponent(jLabel4)
                     .addComponent(jLabel5))
-                .addContainerGap(826, Short.MAX_VALUE))
+                .addContainerGap(830, Short.MAX_VALUE))
         );
         jPanel7Layout.setVerticalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -150,7 +144,7 @@ public  class AdminUI extends javax.swing.JFrame {
                     .addComponent(jLabel12)
                     .addComponent(jLabel11)
                     .addComponent(jLabel10))
-                .addContainerGap(515, Short.MAX_VALUE))
+                .addContainerGap(519, Short.MAX_VALUE))
         );
         jPanel8Layout.setVerticalGroup(
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -180,28 +174,18 @@ public  class AdminUI extends javax.swing.JFrame {
 
         panelTransfer.setPreferredSize(new java.awt.Dimension(990, 580));
         panelTransfer.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-        panelTransfer.add(transferPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
-
         jTabbedPane1.addTab("Transfer Manager", panelTransfer);
 
         panelEmpl.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-        panelEmpl.add(employeePanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
-
         jTabbedPane1.addTab("Employee Manager", panelEmpl);
 
         panelProject.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-        panelProject.add(projectPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
-
         jTabbedPane1.addTab("Project Manager", panelProject);
 
         panelDepartment.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-        panelDepartment.add(departmentPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
-
         jTabbedPane1.addTab("Department Manager", panelDepartment);
 
         panelLocation.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-        panelLocation.add(locationPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
-
         jTabbedPane1.addTab("Location Manager", panelLocation);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -317,8 +301,6 @@ public  class AdminUI extends javax.swing.JFrame {
         });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private com.c1212l.etm.ui.DepartmentPanel departmentPanel1;
-    private com.c1212l.etm.ui.EmployeePanel employeePanel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
@@ -345,14 +327,11 @@ public  class AdminUI extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel8;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JLabel lblEmail;
-    private com.c1212l.etm.ui.LocationPanel locationPanel1;
     private javax.swing.JPanel panelDepartment;
     private javax.swing.JPanel panelEmpl;
     private javax.swing.JPanel panelHome;
     private javax.swing.JPanel panelLocation;
     private javax.swing.JPanel panelProject;
     private javax.swing.JPanel panelTransfer;
-    private com.c1212l.etm.ui.ProjectPanel projectPanel1;
-    private com.c1212l.etm.ui.TransferPanel transferPanel1;
     // End of variables declaration//GEN-END:variables
 }

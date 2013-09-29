@@ -4,6 +4,8 @@
  */
 package com.c1212l.etm.ui;
 
+import com.c1212l.etm.client.ui.ClientUI1;
+import com.c1212l.etm.client.ui.FrameTestTransferHistory;
 import com.c1212l.etm.dal.LoginDAO;
 import com.c1212l.etm.dto.Login;
 import java.util.Vector;
@@ -154,7 +156,7 @@ public class FrameTestLogin extends javax.swing.JFrame {
 
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
         // TODO add your handling code here:
-        int count = 0,count1=0;
+        int count =0,count1=0;
         try{
             vctListAdmin = loginDAO.getAdmin();
             vctListEmployee = loginDAO.getEmployee();
@@ -169,28 +171,60 @@ public class FrameTestLogin extends javax.swing.JFrame {
             for (int i = 0; i < vctListAdmin.size(); i++) {
                 Login login = vctListAdmin.elementAt(i);
                 if (txtEmail.getText().equals(login.getEmail()) && txtPassword.getText().equals(login.getPassword()) ) {
-                    count ++;
+                    email = login.getEmail();
+                    JOptionPane.showMessageDialog(null, "Login success");
+                    this.hide();
+                    AdminUI adminUI = new AdminUI();
+                    adminUI.show();
+                    return;
                 }
             }
-            if (count>0) {
-                JOptionPane.showMessageDialog(null, "Toi la admin");
+            int i,j;
+            for(i = 0;i<vctListEmployee.size()-1 ; i++)
+            {
+                for(j = i+1 ; j < vctListEmployee.size()-1 ; j++)
+                {
+                    Login temp;
+                    Login login = vctListEmployee.elementAt(i);
+                    Login login1 = vctListEmployee.elementAt(j);
+                    if(login1.getEmail().compareTo(login.getEmail())>0)
+                    {
+                        vctListEmployee.remove(i);
+                        vctListEmployee.remove(j);
+                        temp = vctListEmployee.elementAt(j);
+                        vctListEmployee.add(j,login);
+                        vctListEmployee.add(i,temp);
+                    }
+                }
+
+                int left=0,right=vctListEmployee.size(),mid;
+                do{
+                    mid=(left+right)/2;
+                    Login login = vctListEmployee.elementAt(mid);
+                    if(login.getEmail().equals(txtEmail.getText()))
+                    {
+                        JOptionPane.showMessageDialog(null, "Login success!");
+                        this.hide();
+                        email=login.getEmail();
+                        FrameTestTransferHistory objTranHistory = new FrameTestTransferHistory();
+                        objTranHistory.show();
+//                        ClientUI1 clientUI = new ClientUI1();
+//                        clientUI.show();
+                        return;
+                    }
+                    else if(login.getEmail().compareTo(txtEmail.getText())<0)
+                    right=mid-1;
+                    else if(login.getEmail().compareTo(txtEmail.getText())>0)
+                    left=mid+1;
+                }while(left<=right);
+                JOptionPane.showMessageDialog(null, "Login fail!");
                 return;
             }
 
-            for (int i = 0; i < vctListEmployee.size(); i++) {
-                Login login = vctListEmployee.elementAt(i);
-                if (txtEmail.getText().equals(login.getEmail()) && txtPassword.getText().equals(login.getPassword()) ) {
-                    count1++;
-                }
-            }
-            if (count1>0) {
-                JOptionPane.showMessageDialog(null, "Toi la employee");
-                return;
-            }
-            if (count==0 || count1==0) {
-                JOptionPane.showMessageDialog(null, "Login fail!");
-            }
-        }catch(Exception ex){ex.printStackTrace();}
+        }catch(Exception ex){
+            ex.printStackTrace();
+        }
+
     }//GEN-LAST:event_btnLoginActionPerformed
 
     private void txtEmailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtEmailActionPerformed
@@ -241,8 +275,8 @@ public class FrameTestLogin extends javax.swing.JFrame {
     private javax.swing.JTextField txtEmail;
     private javax.swing.JPasswordField txtPassword;
     // End of variables declaration//GEN-END:variables
-    // End of variables declaration                   
-   private LoginDAO loginDAO = new LoginDAO();
+  public static String  email;
+    private LoginDAO loginDAO = new LoginDAO();
    private Vector<Login> vctListEmployee = new Vector<Login>();
    private Vector<Login> vctListAdmin = new Vector<Login>();
 }

@@ -20,7 +20,7 @@ import java.util.Vector;
  */
 public class TransferDAO extends ConnectionTool {
 
-    public ArrayList<Transfer> getAllTransfer() throws ClassNotFoundException, SQLException {
+   public ArrayList<Transfer> getAllTransfer() throws ClassNotFoundException, SQLException {
         initConnection();
         Statement stmt = conn.createStatement();
         ResultSet rs = stmt.executeQuery("select * from [transfer]");
