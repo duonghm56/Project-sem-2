@@ -5,8 +5,10 @@
 package com.c1212l.etm.ui;
 
 import com.c1212l.etm.client.ui.ClientUI1;
+import com.c1212l.etm.client.ui.FrameTestTransferHistory;
 import com.c1212l.etm.dal.LoginDAO;
 import com.c1212l.etm.dto.Login;
+import static com.c1212l.etm.ui.FrameTestLogin.email;
 import java.sql.SQLException;
 import java.util.Vector;
 import java.util.logging.Level;
@@ -132,7 +134,7 @@ public class LoginPanel extends javax.swing.JPanel {
 
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
         // TODO add your handling code here:
-     int count =0,count1=0;
+     int count =0;
         try{
             vctListAdmin = loginDAO.getAdmin();
             vctListEmployee = loginDAO.getEmployee();
@@ -145,16 +147,18 @@ public class LoginPanel extends javax.swing.JPanel {
                 return;
             }
             for (int i = 0; i < vctListAdmin.size(); i++) {
-                       Login login = vctListAdmin.elementAt(i);
-                       if (txtEmail.getText().equals(login.getEmail()) && txtPassword.getText().equals(login.getPassword()) ) {
-                               email = login.getEmail();
-                               JOptionPane.showMessageDialog(null, "Login success");
-                               this.hide();
-                               AdminUI adminUI = new AdminUI();
-                               adminUI.show();
-                               return;
-                           }
-                   }
+                Login login = vctListAdmin.elementAt(i);
+                if (txtEmail.getText().equals(login.getEmail()) && txtPassword.getText().equals(login.getPassword()) ) {
+                    email = login.getEmail();
+                    JOptionPane.showMessageDialog(null, "Login success");
+                    this.hide();
+                    FrameTestHome home = new FrameTestHome();
+                    home.show();
+//                 AdminUI adminUI = new AdminUI();
+//                    adminUI.show();
+                    return;
+                }
+            }
             int i,j;
             for(i = 0;i<vctListEmployee.size()-1 ; i++)
             {
@@ -165,26 +169,28 @@ public class LoginPanel extends javax.swing.JPanel {
                     Login login1 = vctListEmployee.elementAt(j);
                     if(login1.getEmail().compareTo(login.getEmail())>0)
                     {
-                        vctListEmployee.remove(i);
-                        vctListEmployee.remove(j);
                         temp = vctListEmployee.elementAt(j);
+                        vctListEmployee.remove(j);
                         vctListEmployee.add(j,login);
+                        vctListEmployee.remove(i);
                         vctListEmployee.add(i,temp);
                     }
                 }
-
-                int left=0,right=vctListEmployee.size(),mid;       
+            }
+                int left=0,right=vctListEmployee.size()-1,mid;
                 do{
                     mid=(left+right)/2;
                     Login login = vctListEmployee.elementAt(mid);
-                    if(login.getEmail().equals(txtEmail.getText()))
+                    if(login.getEmail().equals(txtEmail.getText())&& login.getPassword().equals(txtPassword.getText()))
                     {
-                    JOptionPane.showMessageDialog(null, "Login success!");
-                    this.hide();
-                    email=login.getEmail();
-                    ClientUI1 clientUI = new ClientUI1();
-                    clientUI.show();
-                    return;
+                        JOptionPane.showMessageDialog(null, "Login success!");
+                        this.hide();
+                        email=login.getEmail();
+                        FrameTestTransferHistory transferHistory = new FrameTestTransferHistory();
+                        transferHistory.show();
+//                         ClientUI1 clientUI = new ClientUI1();
+//                         clientUI.show();
+                        return;
                     }
                     else if(login.getEmail().compareTo(txtEmail.getText())<0)
                     right=mid-1;
@@ -192,12 +198,10 @@ public class LoginPanel extends javax.swing.JPanel {
                     left=mid+1;
                 }while(left<=right);
                 JOptionPane.showMessageDialog(null, "Login fail!");
-                return;
-                        }
-            
         }catch(Exception ex){
             ex.printStackTrace();
         }
+
 
         
     }//GEN-LAST:event_btnLoginActionPerformed

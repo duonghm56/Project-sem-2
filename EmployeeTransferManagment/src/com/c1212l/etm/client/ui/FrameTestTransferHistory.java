@@ -155,7 +155,7 @@ public class FrameTestTransferHistory extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tbTransferHistory;
     // End of variables declaration//GEN-END:variables
-    DefaultTableModel tblModel;
+       DefaultTableModel tblModel;
     ArrayList<Transfer> lstTransfer;
     TransferHistoryBUS transferHistoryBUS = new TransferHistoryBUS();
     Vector header = new Vector();
@@ -163,6 +163,7 @@ public class FrameTestTransferHistory extends javax.swing.JFrame {
     private void initTable() {
         header = new Vector();
         //---Ko hien thi
+        header.add("ID");
         header.add("Type");
         //------------------------------------
         header.add("Employee Number");
@@ -184,11 +185,25 @@ public class FrameTestTransferHistory extends javax.swing.JFrame {
         tblModel = new DefaultTableModel(header, 0);
         tbTransferHistory.setModel(tblModel);
 
+        makeInvisibleColumn(0);
+        makeInvisibleColumn(1);
+        makeInvisibleColumn(4);
+        makeInvisibleColumn(5);
+        makeInvisibleColumn(6);
+        makeInvisibleColumn(7);
 
     }
+
+    private void makeInvisibleColumn(int col) {
+        tbTransferHistory.getColumnModel().getColumn(col).setMaxWidth(0);
+        tbTransferHistory.getColumnModel().getColumn(col).setMinWidth(0);
+        tbTransferHistory.getColumnModel().getColumn(col).setPreferredWidth(0);
+        tbTransferHistory.getColumnModel().getColumn(col).setResizable(false);
+    }
+
     private void fillData(ArrayList<Transfer> lst) {
         if (lst != null) {
-            for (Transfer transfer : lst) {
+            for (Transfer transfer: lst) {
                 tblModel.addRow(transfer.getVector());
             }
         }
