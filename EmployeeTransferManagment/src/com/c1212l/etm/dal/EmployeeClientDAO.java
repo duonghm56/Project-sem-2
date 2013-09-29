@@ -8,6 +8,7 @@ import com.c1212l.etm.dto.Employee;
 import com.c1212l.etm.dto.EmployeeClient;
 import com.c1212l.etm.dto.Project;
 import com.c1212l.etm.ui.FrameTestLogin;
+import com.c1212l.etm.ui.LoginPanel;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -25,7 +26,7 @@ public class EmployeeClientDAO  extends ConnectionTool {
 "	     employee.departmentID = department.departmentID \n" +
 "         Inner Join location On department.locationID = location.locationID\n" +
 "         Inner Join project On project.projectID =employee.projectID\n" +
-"         Where employee.email = "+"'"+FrameTestLogin.email+"'");
+"         Where employee.email = "+"'"+LoginPanel.email+"'");
         Vector<EmployeeClient> result = new Vector<>();
         while (rs.next()) {
             EmployeeClient e = new EmployeeClient();

@@ -17,7 +17,7 @@ public class ClientUI1 extends javax.swing.JFrame {
      */
     public ClientUI1() {
         initComponents();
-        lblEmail.setText("Email:"+FrameTestLogin.email);
+        lblEmail.setText("Email:"+LoginPanel.email);
     }
 
     /**
@@ -29,8 +29,11 @@ public class ClientUI1 extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        transferHistoryPanel1 = new com.c1212l.etm.client.ui.TransferHistoryPanel();
         lblEmail = new javax.swing.JLabel();
         jTabbedPane1 = new javax.swing.JTabbedPane();
+        employeeClientPanel1 = new com.c1212l.etm.client.ui.EmployeeClientPanel();
+        transferHistoryPanel3 = new com.c1212l.etm.client.ui.TransferHistoryPanel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
@@ -43,7 +46,11 @@ public class ClientUI1 extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        lblEmail.setText("jLabel1");
+        lblEmail.setText("Email:");
+
+        jTabbedPane1.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
+        jTabbedPane1.addTab("Employee Profiles", employeeClientPanel1);
+        jTabbedPane1.addTab("Transfer History", transferHistoryPanel3);
 
         jMenuBar1.setMaximumSize(new java.awt.Dimension(66, 30));
         jMenuBar1.setPreferredSize(new java.awt.Dimension(30, 21));
@@ -90,8 +97,8 @@ public class ClientUI1 extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(lblEmail)
-                .addGap(0, 602, Short.MAX_VALUE))
-            .addComponent(jTabbedPane1)
+                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1003, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -147,6 +154,7 @@ public class ClientUI1 extends javax.swing.JFrame {
         });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private com.c1212l.etm.client.ui.EmployeeClientPanel employeeClientPanel1;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
@@ -158,5 +166,7 @@ public class ClientUI1 extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem8;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JLabel lblEmail;
+    private com.c1212l.etm.client.ui.TransferHistoryPanel transferHistoryPanel1;
+    private com.c1212l.etm.client.ui.TransferHistoryPanel transferHistoryPanel3;
     // End of variables declaration//GEN-END:variables
 }

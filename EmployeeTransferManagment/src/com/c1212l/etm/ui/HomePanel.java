@@ -4,9 +4,19 @@
  */
 package com.c1212l.etm.ui;
 
+import com.c1212l.etm.dal.AdminDAO;
+import com.c1212l.etm.dal.DepartmentDAO;
 import com.c1212l.etm.dal.EmployeeDAO;
+import com.c1212l.etm.dal.LocationDAO;
+import com.c1212l.etm.dal.ProjectDAO;
+import com.c1212l.etm.dal.TransferDAO;
+import com.c1212l.etm.dto.Admin;
+import com.c1212l.etm.dto.Department;
 import com.c1212l.etm.dto.Employee;
+import com.c1212l.etm.dto.Location;
 import com.c1212l.etm.dto.Login;
+import com.c1212l.etm.dto.Project;
+import com.c1212l.etm.dto.Transfer;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Vector;
@@ -24,6 +34,7 @@ public class HomePanel extends javax.swing.JPanel {
      */
     public HomePanel() {
         initComponents();
+        getInformation();
     }
 
     /**
@@ -36,28 +47,44 @@ public class HomePanel extends javax.swing.JPanel {
     private void initComponents() {
 
         jPanel7 = new javax.swing.JPanel();
-        jLabel3 = new javax.swing.JLabel();
+        lblID = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
+        lblEmailTitle = new javax.swing.JLabel();
+        lblAdminID = new javax.swing.JLabel();
+        lblEmail = new javax.swing.JLabel();
         jPanel8 = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
-        lblEmployee = new javax.swing.JLabel();
+        lblTitleEmployee = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
+        lblEmployee = new javax.swing.JLabel();
+        lblDepartment = new javax.swing.JLabel();
+        lblLocation = new javax.swing.JLabel();
+        lblProject = new javax.swing.JLabel();
+        lblApprove = new javax.swing.JLabel();
+        lblDisapprove = new javax.swing.JLabel();
+        lblWaiting = new javax.swing.JLabel();
+        lblTransferRequest = new javax.swing.JLabel();
 
         setBorder(javax.swing.BorderFactory.createTitledBorder(""));
 
         jPanel7.setBorder(javax.swing.BorderFactory.createTitledBorder("Infomation"));
 
-        jLabel3.setText("Administrator ID");
+        lblID.setText("Administrator ID");
 
         jLabel4.setText("FullName");
 
-        jLabel5.setText("Email");
+        lblEmailTitle.setText("Email");
+
+        lblAdminID.setForeground(new java.awt.Color(153, 0, 0));
+        lblAdminID.setText("jLabel1");
+
+        lblEmail.setForeground(new java.awt.Color(153, 0, 0));
+        lblEmail.setText("jLabel2");
 
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
         jPanel7.setLayout(jPanel7Layout);
@@ -66,20 +93,30 @@ public class HomePanel extends javax.swing.JPanel {
             .addGroup(jPanel7Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel3)
                     .addComponent(jLabel4)
-                    .addComponent(jLabel5))
-                .addContainerGap(489, Short.MAX_VALUE))
+                    .addGroup(jPanel7Layout.createSequentialGroup()
+                        .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblID)
+                            .addComponent(lblEmailTitle))
+                        .addGap(29, 29, 29)
+                        .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblEmail)
+                            .addComponent(lblAdminID))))
+                .addContainerGap(426, Short.MAX_VALUE))
         );
         jPanel7Layout.setVerticalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel7Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel3)
+                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblID)
+                    .addComponent(lblAdminID))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel4)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel5)
+                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblEmailTitle)
+                    .addComponent(lblEmail))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -87,19 +124,43 @@ public class HomePanel extends javax.swing.JPanel {
 
         jLabel6.setText("Total Approve Transfer Request");
 
-        jLabel7.setText("Total Not Approve Transfer Requets");
+        jLabel7.setText("Total Disapprove Transfer Requets");
 
         jLabel8.setText("Total Waiting Transfer Request");
 
         jLabel9.setText("Total Transfer Request");
 
-        lblEmployee.setText("Total Employee");
+        lblTitleEmployee.setText("Total Employee:");
 
         jLabel11.setText("Department");
 
         jLabel12.setText("Location");
 
         jLabel13.setText("Project");
+
+        lblEmployee.setForeground(new java.awt.Color(153, 0, 0));
+        lblEmployee.setText("jLabel1");
+
+        lblDepartment.setForeground(new java.awt.Color(153, 0, 0));
+        lblDepartment.setText("jLabel1");
+
+        lblLocation.setForeground(new java.awt.Color(153, 0, 0));
+        lblLocation.setText("jLabel2");
+
+        lblProject.setForeground(new java.awt.Color(153, 0, 0));
+        lblProject.setText("jLabel10");
+
+        lblApprove.setForeground(new java.awt.Color(153, 0, 0));
+        lblApprove.setText("jLabel1");
+
+        lblDisapprove.setForeground(new java.awt.Color(153, 0, 0));
+        lblDisapprove.setText("jLabel1");
+
+        lblWaiting.setForeground(new java.awt.Color(153, 0, 0));
+        lblWaiting.setText("jLabel2");
+
+        lblTransferRequest.setForeground(new java.awt.Color(153, 0, 0));
+        lblTransferRequest.setText("jLabel10");
 
         javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
         jPanel8.setLayout(jPanel8Layout);
@@ -108,17 +169,29 @@ public class HomePanel extends javax.swing.JPanel {
             .addGroup(jPanel8Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel6)
                     .addComponent(jLabel7)
                     .addComponent(jLabel8)
+                    .addComponent(jLabel6)
                     .addComponent(jLabel9))
-                .addGap(141, 141, 141)
+                .addGap(18, 18, 18)
                 .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel13)
-                    .addComponent(jLabel12)
+                    .addComponent(lblApprove)
+                    .addComponent(lblWaiting)
+                    .addComponent(lblDisapprove)
+                    .addComponent(lblTransferRequest))
+                .addGap(90, 90, 90)
+                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblTitleEmployee)
                     .addComponent(jLabel11)
+                    .addComponent(jLabel12)
+                    .addComponent(jLabel13))
+                .addGap(27, 27, 27)
+                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblProject)
+                    .addComponent(lblLocation)
+                    .addComponent(lblDepartment)
                     .addComponent(lblEmployee))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(115, Short.MAX_VALUE))
         );
         jPanel8Layout.setVerticalGroup(
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -126,19 +199,27 @@ public class HomePanel extends javax.swing.JPanel {
                 .addGap(22, 22, 22)
                 .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
-                    .addComponent(lblEmployee))
+                    .addComponent(lblTitleEmployee)
+                    .addComponent(lblEmployee)
+                    .addComponent(lblApprove))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7)
-                    .addComponent(jLabel11))
+                    .addComponent(jLabel11)
+                    .addComponent(lblDepartment)
+                    .addComponent(lblDisapprove))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel8)
-                    .addComponent(jLabel12))
+                    .addComponent(jLabel12)
+                    .addComponent(lblLocation)
+                    .addComponent(lblWaiting))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel9)
-                    .addComponent(jLabel13))
+                    .addComponent(jLabel13)
+                    .addComponent(lblProject)
+                    .addComponent(lblTransferRequest))
                 .addContainerGap(67, Short.MAX_VALUE))
         );
 
@@ -149,47 +230,98 @@ public class HomePanel extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 8, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+            .addComponent(jPanel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
                 .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(27, Short.MAX_VALUE))
+                .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel8;
+    private javax.swing.JLabel lblAdminID;
+    private javax.swing.JLabel lblApprove;
+    private javax.swing.JLabel lblDepartment;
+    private javax.swing.JLabel lblDisapprove;
+    private javax.swing.JLabel lblEmail;
+    private javax.swing.JLabel lblEmailTitle;
     private javax.swing.JLabel lblEmployee;
+    private javax.swing.JLabel lblID;
+    private javax.swing.JLabel lblLocation;
+    private javax.swing.JLabel lblProject;
+    private javax.swing.JLabel lblTitleEmployee;
+    private javax.swing.JLabel lblTransferRequest;
+    private javax.swing.JLabel lblWaiting;
     // End of variables declaration//GEN-END:variables
-    private ArrayList<Employee> vctListEmployee = new ArrayList<Employee>();
+    private ArrayList<Employee> arrListEmployee = new ArrayList<Employee>();
+    private ArrayList<Department> arrListDepartment = new ArrayList<Department>();
+    private ArrayList<Location> arrListLocation = new ArrayList<Location>();
+    private ArrayList<Project> arrListProject = new ArrayList<Project>();
+    private ArrayList<Transfer> arrListTransfer = new ArrayList<Transfer>();
+    private ArrayList<Admin> arrListAdmin = new ArrayList<Admin>();
     private EmployeeDAO employeeDAO = new EmployeeDAO();
+    private DepartmentDAO departmentDAO = new DepartmentDAO();
+    private LocationDAO locationDAO = new LocationDAO();
+    private ProjectDAO projectDAO = new ProjectDAO();
+    private TransferDAO transferDAO = new TransferDAO();
+    private AdminDAO adminDAO = new AdminDAO();
     private void getInformation()
     {
         try {
-            vctListEmployee = employeeDAO.getAllEmployee();
-            lblEmployee.setText("Total Employee:"+vctListEmployee.size());
+            int countApprove =0,countDisapprove=0,countWaiting=0,adminID = 0;
+            arrListEmployee = employeeDAO.getAllEmployee();
+            arrListDepartment = departmentDAO.getAllDepartment();
+            arrListLocation = locationDAO.getAllLocation();
+            arrListProject = projectDAO.getAllProject();
+            arrListTransfer=transferDAO.getAllTransfer();
+            arrListAdmin = adminDAO.getAllAdmin();
+            for (int i = 0; i < arrListTransfer.size(); i++) {
+                Transfer transfer = arrListTransfer.get(i);
+                if (transfer.getApprove()== 1) {
+                    countApprove++;
+                }
+                else if (transfer.getApprove()==2) {
+                    countDisapprove++;
+                }
+                else{
+                    countWaiting++;
+                }
+            }
+            for (int i = 0; i < arrListAdmin.size(); i++) {
+                Admin admin = arrListAdmin.get(i);
+                if (admin.getEmail().equals(LoginPanel.email)) {
+                    adminID=admin.getId();
+                }
+            }
+            lblAdminID.setText(adminID+"");
+            lblEmail.setText(LoginPanel.email);
+            lblApprove.setText(countApprove+"");
+            lblDisapprove.setText(countDisapprove+"");
+            lblWaiting.setText(countWaiting+"");
+            lblTransferRequest.setText(arrListTransfer.size()+"");
+            lblEmployee.setText(arrListEmployee.size()+"");
+            lblDepartment.setText(arrListDepartment.size()+"");
+            lblLocation.setText(arrListLocation.size()+"");
+            lblProject.setText(arrListProject.size()+"");
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(HomePanel.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {
             Logger.getLogger(HomePanel.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }
+    } 
     
 }

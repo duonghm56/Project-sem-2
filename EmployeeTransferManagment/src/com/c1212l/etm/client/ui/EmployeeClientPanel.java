@@ -23,6 +23,7 @@ public class EmployeeClientPanel extends javax.swing.JPanel {
      */
     public EmployeeClientPanel() {
         initComponents();
+        loadData();
     }
 
     /**

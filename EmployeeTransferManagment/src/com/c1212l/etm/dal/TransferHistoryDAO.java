@@ -8,6 +8,7 @@ import com.c1212l.etm.bll.EmployeeBUS;
 import com.c1212l.etm.dto.Employee;
 import com.c1212l.etm.dto.Transfer;
 import com.c1212l.etm.ui.FrameTestLogin;
+import com.c1212l.etm.ui.LoginPanel;
 import com.c1212l.etm.util.KeyValue;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -25,7 +26,7 @@ public class TransferHistoryDAO extends ConnectionTool {
         EmployeeBUS employeeBUS = new EmployeeBUS();
         ArrayList<Employee> arrEmployee = employeeBUS.getAllEmployees();
         for (Employee e : arrEmployee) {
-            if (e.getEmail().equals(FrameTestLogin.email)) {
+            if (e.getEmail().equals(LoginPanel.email)) {
                 employeeID = e.getEmployeeID();
             }
         }

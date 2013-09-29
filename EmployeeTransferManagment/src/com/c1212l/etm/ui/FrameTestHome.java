@@ -346,12 +346,12 @@ public class FrameTestHome extends javax.swing.JFrame {
             }
             for (int i = 0; i < arrListAdmin.size(); i++) {
                 Admin admin = arrListAdmin.get(i);
-                if (admin.getEmail().equals(FrameTestLogin.email)) {
+                if (admin.getEmail().equals(LoginPanel.email)) {
                     adminID=admin.getId();
                 }
             }
             lblAdminID.setText("Administrator ID:"+adminID);
-            lblEmail.setText("Email:"+FrameTestLogin.email);
+            lblEmail.setText("Email:"+LoginPanel.email);
             lblApprove.setText(countApprove+"");
             lblDisapprove.setText(countDisapprove+"");
             lblWaiting.setText(countWaiting+"");

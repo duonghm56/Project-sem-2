@@ -8,7 +8,6 @@ import com.c1212l.etm.client.ui.ClientUI1;
 import com.c1212l.etm.client.ui.FrameTestTransferHistory;
 import com.c1212l.etm.dal.LoginDAO;
 import com.c1212l.etm.dto.Login;
-import static com.c1212l.etm.ui.FrameTestLogin.email;
 import java.sql.SQLException;
 import java.util.Vector;
 import java.util.logging.Level;
@@ -150,12 +149,8 @@ public class LoginPanel extends javax.swing.JPanel {
                 Login login = vctListAdmin.elementAt(i);
                 if (txtEmail.getText().equals(login.getEmail()) && txtPassword.getText().equals(login.getPassword()) ) {
                     email = login.getEmail();
-                    JOptionPane.showMessageDialog(null, "Login success");
-                    this.hide();
-                    FrameTestHome home = new FrameTestHome();
-                    home.show();
-//                 AdminUI adminUI = new AdminUI();
-//                    adminUI.show();
+                    AdminUI adminUI = new AdminUI();
+                    adminUI.show();
                     return;
                 }
             }
@@ -186,10 +181,8 @@ public class LoginPanel extends javax.swing.JPanel {
                         JOptionPane.showMessageDialog(null, "Login success!");
                         this.hide();
                         email=login.getEmail();
-                        FrameTestTransferHistory transferHistory = new FrameTestTransferHistory();
-                        transferHistory.show();
-//                         ClientUI1 clientUI = new ClientUI1();
-//                         clientUI.show();
+                         ClientUI1 clientUI = new ClientUI1();
+                         clientUI.show();
                         return;
                     }
                     else if(login.getEmail().compareTo(txtEmail.getText())<0)
