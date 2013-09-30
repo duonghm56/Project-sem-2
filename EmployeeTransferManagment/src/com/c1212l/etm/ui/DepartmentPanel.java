@@ -142,7 +142,7 @@ public class DepartmentPanel extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(tbDepartmentData);
 
-        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 290, 930, 230));
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 270, 930, 230));
 
         cmbLocation.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Ha Noi", "TP.Ho Chi Minh", " " }));
         add(cmbLocation, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 160, 190, 30));

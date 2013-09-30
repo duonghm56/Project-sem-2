@@ -82,6 +82,23 @@ values  ('admin@admin.com', '1234', 1),
 		('mod2@mail.com','mod2',2)
 go
 -----------------------------------------------------------
+create procedure addAdmin(@email varchar(100), @password varchar(100), @role int)
+as begin
+	insert into [admin] values (@email, @password, @role)
+end
+go
+
+create procedure updateAdmin(@email varchar(100), @password varchar(100),@role int)
+as begin
+	update [admin] set email = @email, [password]=@password,[role] =@role
+	where email= @email 
+end
+go
+create procedure deleteAdmin(@email varchar(100))
+as begin
+	delete from [admin] where email = @email
+end
+go
 -- DuongHM write ------------------------------------------
 
 -- procedure for project table
@@ -143,6 +160,13 @@ create procedure changeEmployeeProject(@emplNum varchar(20), @projectID int)
 as begin
 	update employee set projectID = @projectID
 	where employeeNumber = @emplNum
+end
+go
+drop proc changeEmployeePassword
+create procedure changeEmployeePassword(@email varchar(100),@oldPassword varchar(100), @newPassword varchar(100))
+as begin
+	update employee set [password] = @newPassword
+	where [password] = @oldPassword and email = @email
 end
 go
 
@@ -310,4 +334,4 @@ go
  
 
       
-select * from [transfer]
+select * from employee

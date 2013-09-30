@@ -146,16 +146,50 @@ public class LoginPanel extends javax.swing.JPanel {
                 JOptionPane.showMessageDialog(this, "Please enter all field");
                 return;
             }
-            for (int i = 0; i < vctListAdmin.size(); i++) {
-                Login login = vctListAdmin.elementAt(i);
-                if (txtEmail.getText().equals(login.getEmail()) && login.getPassword().equals(txtPassword.getText())) {
-                        email = login.getEmail();
-                        AdminUI adminUI = new AdminUI();
-                        adminUI.show();
-                        return;
+               int i,j;
+            for(i = 0;i<vctListAdmin.size()-1 ; i++)
+            {
+                for(j = i+1 ; j < vctListAdmin.size()-1 ; j++)
+                {
+                    Login temp;
+                    Login login = vctListAdmin.elementAt(i);
+                    Login login1 = vctListAdmin.elementAt(j);
+                    if(login1.getEmail().compareTo(login.getEmail())>0)
+                    {
+                        temp = vctListAdmin.elementAt(j);
+                        vctListAdmin.remove(j);
+                        vctListAdmin.add(j,login);
+                        vctListAdmin.remove(i);
+                        vctListAdmin.add(i,temp);
+                    }
                 }
             }
-            int i,j;
+                int left=0,right=vctListAdmin.size()-1,mid;
+                do{
+                    mid=(left+right)/2;
+                    Login login = vctListAdmin.elementAt(mid);
+                    if(login.getEmail().equals(txtEmail.getText()))
+                    {
+                        if (login.getPassword().equals(txtPassword.getText())) {
+                            JOptionPane.showMessageDialog(null, "Login success!");
+                            this.hide();
+                            email = login.getEmail();
+                            role = login.getRole();
+                            System.out.println(role);
+                            AdminUI adminUI = new AdminUI();
+                            adminUI.show();
+                            return;
+                        }
+                        else{
+                            JOptionPane.showMessageDialog(null, "Login fail!");
+                            return;
+                        }
+                    }
+                    else if(login.getEmail().compareTo(txtEmail.getText())<0)
+                    right=mid-1;
+                    else if(login.getEmail().compareTo(txtEmail.getText())>0)
+                    left=mid+1;
+                }while(left<=right);
             for(i = 0;i<vctListEmployee.size()-1 ; i++)
             {
                 for(j = i+1 ; j < vctListEmployee.size()-1 ; j++)
@@ -173,7 +207,7 @@ public class LoginPanel extends javax.swing.JPanel {
                     }
                 }
             }
-                int left=0,right=vctListEmployee.size()-1,mid;
+                 left=0;right=vctListEmployee.size()-1;
                 do{
                     mid=(left+right)/2;
                     Login login = vctListEmployee.elementAt(mid);
@@ -219,8 +253,9 @@ public class LoginPanel extends javax.swing.JPanel {
     private javax.swing.JTextField txtEmail;
     private javax.swing.JPasswordField txtPassword;
     // End of variables declaration//GEN-END:variables
-    public static String  email;
-    private LoginDAO loginDAO = new LoginDAO();
+   public static String  email;
+   private LoginDAO loginDAO = new LoginDAO();
    private Vector<Login> vctListEmployee = new Vector<Login>();
    private Vector<Login> vctListAdmin = new Vector<Login>();
+   public static int role;
 }

@@ -6,6 +6,7 @@ package com.c1212l.etm.dal;
 
 import com.c1212l.etm.dto.Admin;
 import com.c1212l.etm.dto.Department;
+import com.c1212l.etm.ui.LoginPanel;
 import java.sql.CallableStatement;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -22,7 +23,7 @@ public class AdminDAO extends ConnectionTool {
     public ArrayList<Admin> getAllAdmin() throws ClassNotFoundException, SQLException {
         initConnection();
         Statement stt = conn.createStatement();
-        ResultSet rs = stt.executeQuery("Select * From [admin]");
+        ResultSet rs = stt.executeQuery("Select * From [admin] where [role] >"+ LoginPanel.role );
         ArrayList<Admin> result = new ArrayList<Admin>();
         while (rs.next()) {
             Admin admin = new Admin();

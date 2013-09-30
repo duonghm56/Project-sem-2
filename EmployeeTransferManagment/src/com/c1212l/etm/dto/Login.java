@@ -11,6 +11,7 @@ package com.c1212l.etm.dto;
 public class Login {
        private String email;
        private String password;
+       private int Role;
 
     public String getEmail() {
         return email;
@@ -26,6 +27,14 @@ public class Login {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public int getRole() {
+        return Role;
+    }
+
+    public void setRole(int Role) {
+        this.Role = Role;
     }
        
    }
