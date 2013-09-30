@@ -4,6 +4,7 @@
  */
 package com.c1212l.etm.client.ui;
 
+import com.c1212l.etm.bll.AdminBUS;
 import com.c1212l.etm.bll.EmployeeBUS;
 import com.c1212l.etm.ui.*;
 import java.util.ArrayList;
@@ -13,12 +14,12 @@ import javax.swing.JOptionPane;
  *
  * @author Shady
  */
-public class ChangPassEmployee extends javax.swing.JFrame {
+public class ChangePasswordUI extends javax.swing.JFrame {
 
     /**
      * Creates new form ChangPassAdmin
      */
-    public ChangPassEmployee() {
+    public ChangePasswordUI() {
         initComponents();
     }
 
@@ -209,6 +210,7 @@ if (n == JOptionPane.YES_OPTION) {
            String oldPassword = new String(txtOldPassword.getPassword());
            String newPassword = new String(txtNewPassword.getPassword());
            employeeBUS.changeEmployeePassword(LoginPanel.email,oldPassword, newPassword);
+           adminBUS.changePasswordAdmin(LoginPanel.email, oldPassword, newPassword);
            JOptionPane.showMessageDialog(null, "Change Password success!");
         }
         catch(Exception ex){ex.printStackTrace();}
@@ -231,20 +233,20 @@ if (n == JOptionPane.YES_OPTION) {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ChangPassEmployee.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ChangePasswordUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ChangPassEmployee.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ChangePasswordUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ChangPassEmployee.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ChangePasswordUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ChangPassEmployee.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ChangePasswordUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new ChangPassEmployee().setVisible(true);
+                new ChangePasswordUI().setVisible(true);
             }
         });
     }
@@ -262,4 +264,5 @@ if (n == JOptionPane.YES_OPTION) {
     private javax.swing.JPasswordField txtOldPassword;
     // End of variables declaration//GEN-END:variables
     EmployeeBUS employeeBUS = new EmployeeBUS();
+    AdminBUS adminBUS = new AdminBUS();
 }

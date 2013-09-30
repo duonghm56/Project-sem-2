@@ -5,6 +5,7 @@
 package com.c1212l.etm.dal;
 
 import com.c1212l.etm.dto.Admin;
+import com.c1212l.etm.dto.ChangePassword;
 import com.c1212l.etm.dto.Department;
 import com.c1212l.etm.ui.LoginPanel;
 import java.sql.CallableStatement;
@@ -54,7 +55,16 @@ public class AdminDAO extends ConnectionTool {
             cs.setInt(4,admin.getRole());
             cs.executeUpdate();
             closeConnection();
-    }
+       }
+         public void changePasswordAdmin(ChangePassword changePassword) throws ClassNotFoundException, Exception {
+            initConnection();
+            CallableStatement cs = conn.prepareCall("{call changePasswordAdmin(?, ?, ?)}");
+            cs.setString(1,changePassword.getEmail());
+            cs.setString(2,changePassword.getOldPassword());
+            cs.setString(3,changePassword.getNewPassword());
+            cs.executeUpdate();
+            closeConnection();
+       }
       public void deleteAdmin(Admin admin) throws ClassNotFoundException, Exception {
             initConnection();
             CallableStatement cs = conn.prepareCall("{call deleteAdmin(?)}");

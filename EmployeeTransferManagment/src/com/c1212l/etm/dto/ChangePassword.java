@@ -12,7 +12,7 @@ public class ChangePassword {
     private String email;
     private String oldPassword;
     private String newPassword;
-
+    private int Role;
     public String getOldPassword() {
         return oldPassword;
     }
@@ -35,6 +35,14 @@ public class ChangePassword {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public int getRole() {
+        return Role;
+    }
+
+    public void setRole(int Role) {
+        this.Role = Role;
     }
     
             

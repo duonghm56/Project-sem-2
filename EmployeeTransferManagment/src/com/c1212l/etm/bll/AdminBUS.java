@@ -6,6 +6,7 @@ package com.c1212l.etm.bll;
 
 import com.c1212l.etm.dal.AdminDAO;
 import com.c1212l.etm.dto.Admin;
+import com.c1212l.etm.dto.ChangePassword;
 import com.c1212l.etm.dto.Department;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -45,4 +46,11 @@ public class AdminBUS {
         admin.setId(id);
         adminDAO.deleteAdmin(admin);
     } 
+    public void changePasswordAdmin(String email,String oldPassword, String newPassword) throws ClassNotFoundException, Exception{
+        ChangePassword changePassword = new ChangePassword();
+        changePassword.setEmail(email);
+        changePassword.setOldPassword(oldPassword);
+        changePassword.setNewPassword(newPassword);
+        adminDAO.changePasswordAdmin(changePassword);
+    }
 }

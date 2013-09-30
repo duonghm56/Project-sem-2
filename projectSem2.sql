@@ -99,6 +99,13 @@ as begin
 	delete from [admin] where email = @email
 end
 go
+create procedure changePasswordAdmin(@email varchar(100),@oldPassword varchar(100),@newPassword varchar(100))
+as
+begin
+	update [admin] set [password]=@newPassword
+	where [password] = @oldPassword and email = @email
+end
+go
 -- DuongHM write ------------------------------------------
 
 -- procedure for project table
@@ -162,9 +169,9 @@ as begin
 	where employeeNumber = @emplNum
 end
 go
-drop proc changeEmployeePassword
 create procedure changeEmployeePassword(@email varchar(100),@oldPassword varchar(100), @newPassword varchar(100))
-as begin
+as 
+begin
 	update employee set [password] = @newPassword
 	where [password] = @oldPassword and email = @email
 end
