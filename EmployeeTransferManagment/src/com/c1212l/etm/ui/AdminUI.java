@@ -36,12 +36,12 @@ public  class AdminUI extends javax.swing.JFrame {
         jTabbedPane1 = new javax.swing.JTabbedPane();
         panelTransfer = new javax.swing.JPanel();
         homePanel3 = new com.c1212l.etm.ui.HomePanel();
-        panelEmpl = new javax.swing.JPanel();
-        adminPanel1 = new com.c1212l.etm.ui.AdminPanel();
         panelProject = new javax.swing.JPanel();
         panelDepartment = new javax.swing.JPanel();
         panelLocation = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
+        panelEmpl = new javax.swing.JPanel();
+        adminPanel1 = new com.c1212l.etm.ui.AdminPanel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem5 = new javax.swing.JMenuItem();
@@ -59,11 +59,6 @@ public  class AdminUI extends javax.swing.JFrame {
         panelTransfer.add(homePanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 920, 530));
 
         jTabbedPane1.addTab("Home", panelTransfer);
-
-        panelEmpl.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-        panelEmpl.add(adminPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 0, 780, 580));
-
-        jTabbedPane1.addTab("Acount Manager", panelEmpl);
 
         panelProject.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
         jTabbedPane1.addTab("Project Manager", panelProject);
@@ -86,6 +81,11 @@ public  class AdminUI extends javax.swing.JFrame {
         );
 
         jTabbedPane1.addTab("Transfer Employee", jPanel2);
+
+        panelEmpl.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        panelEmpl.add(adminPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 0, 780, 580));
+
+        jTabbedPane1.addTab("Acount Manager", panelEmpl);
 
         jMenu1.setText("File");
 

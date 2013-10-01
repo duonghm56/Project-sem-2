@@ -82,29 +82,32 @@ public class ProjectPanel extends javax.swing.JPanel {
         lblProjectName.setText("Project Name");
         add(lblProjectName, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 80, -1, -1));
 
+        btnAdd.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/1380634218_001_01.png"))); // NOI18N
         btnAdd.setText("Add");
         btnAdd.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAddActionPerformed(evt);
             }
         });
-        add(btnAdd, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 230, 70, 40));
+        add(btnAdd, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 230, 87, 35));
 
+        btnEdit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/1380634415_gtk-refresh.png"))); // NOI18N
         btnEdit.setText("Update");
         btnEdit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnEditActionPerformed(evt);
             }
         });
-        add(btnEdit, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 230, 70, 40));
+        add(btnEdit, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 230, 87, 35));
 
+        btnDelete.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/1380632326_dialog-close.png"))); // NOI18N
         btnDelete.setText("Delete");
         btnDelete.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnDeleteActionPerformed(evt);
             }
         });
-        add(btnDelete, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 230, 70, 40));
+        add(btnDelete, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 230, 87, 35));
 
         lblCreateDate.setText("Created Date");
         add(lblCreateDate, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 130, -1, -1));
@@ -131,13 +134,14 @@ public class ProjectPanel extends javax.swing.JPanel {
         });
         add(txtEndDate, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 180, 260, 30));
 
+        btnReset.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/1380633043_gtk-cancel.png"))); // NOI18N
         btnReset.setText("Reset");
         btnReset.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnResetActionPerformed(evt);
             }
         });
-        add(btnReset, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 230, 69, 40));
+        add(btnReset, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 230, 87, 35));
 
         tblProject.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {

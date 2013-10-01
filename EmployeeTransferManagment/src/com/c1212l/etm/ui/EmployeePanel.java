@@ -125,32 +125,35 @@ public class EmployeePanel extends javax.swing.JPanel {
         jLabel8.setText("Employee ID");
         add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 40, -1, -1));
 
+        btnUpdate.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/1380634415_gtk-refresh.png"))); // NOI18N
         btnUpdate.setText("Update");
         btnUpdate.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnUpdateActionPerformed(evt);
             }
         });
-        add(btnUpdate, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 310, -1, -1));
+        add(btnUpdate, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 290, 87, 35));
 
         jLabel4.setText("Password");
         add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 70, 60, -1));
 
+        btnAdd.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/1380634218_001_01.png"))); // NOI18N
         btnAdd.setText("Add");
         btnAdd.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAddActionPerformed(evt);
             }
         });
-        add(btnAdd, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 310, 59, -1));
+        add(btnAdd, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 290, 87, 35));
 
+        btnDelete.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/1380634772_001_05.png"))); // NOI18N
         btnDelete.setText("Delete");
         btnDelete.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnDeleteActionPerformed(evt);
             }
         });
-        add(btnDelete, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 310, -1, -1));
+        add(btnDelete, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 290, 87, 35));
 
         jLabel2.setText("Employee Name:");
         add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 100, -1, -1));
@@ -197,13 +200,14 @@ public class EmployeePanel extends javax.swing.JPanel {
         add(txtEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 40, 180, -1));
         add(txtPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 70, 180, -1));
 
+        btnReset.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/1380633043_gtk-cancel.png"))); // NOI18N
         btnReset.setText("Reset");
         btnReset.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnResetActionPerformed(evt);
             }
         });
-        add(btnReset, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 310, -1, -1));
+        add(btnReset, new org.netbeans.lib.awtextra.AbsoluteConstraints(870, 290, 87, 35));
 
         jLabel7.setText("Address:");
         add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 210, -1, -1));

@@ -100,29 +100,32 @@ public class DepartmentPanel extends javax.swing.JPanel {
         });
         add(txtDepartmentName, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 100, 190, 30));
 
+        btnAdd.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/1380634218_001_01.png"))); // NOI18N
         btnAdd.setText("Add");
         btnAdd.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAddActionPerformed(evt);
             }
         });
-        add(btnAdd, new org.netbeans.lib.awtextra.AbsoluteConstraints(311, 220, 60, 40));
+        add(btnAdd, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 220, 87, 35));
 
+        btnUpdate.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/1380634415_gtk-refresh.png"))); // NOI18N
         btnUpdate.setText("Update");
         btnUpdate.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnUpdateActionPerformed(evt);
             }
         });
-        add(btnUpdate, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 220, -1, 40));
+        add(btnUpdate, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 220, 87, 35));
 
+        btnDelete.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/1380632326_dialog-close.png"))); // NOI18N
         btnDelete.setText("Delete");
         btnDelete.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnDeleteActionPerformed(evt);
             }
         });
-        add(btnDelete, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 220, -1, 40));
+        add(btnDelete, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 220, 87, 35));
 
         tbDepartmentData.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {

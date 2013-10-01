@@ -24,7 +24,7 @@ public class AdminDAO extends ConnectionTool {
     public ArrayList<Admin> getAllAdmin() throws ClassNotFoundException, SQLException {
         initConnection();
         Statement stt = conn.createStatement();
-        ResultSet rs = stt.executeQuery("Select * From [admin] where [role] >"+ LoginPanel.role );
+        ResultSet rs = stt.executeQuery("Select * From [admin] where [role] >"+ LoginPanel.role+"or email ="+"'"+LoginPanel.email+"'" );
         ArrayList<Admin> result = new ArrayList<Admin>();
         while (rs.next()) {
             Admin admin = new Admin();

@@ -77,29 +77,36 @@ public class LocationPanel extends javax.swing.JPanel {
         });
         add(txtLocationName, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 120, 340, 30));
 
+        btnAdd.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/1380634218_001_01.png"))); // NOI18N
         btnAdd.setText("Add");
+        btnAdd.setMaximumSize(new java.awt.Dimension(71, 33));
+        btnAdd.setMinimumSize(new java.awt.Dimension(71, 33));
+        btnAdd.setPreferredSize(new java.awt.Dimension(75, 33));
+        btnAdd.setSelected(true);
         btnAdd.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAddActionPerformed(evt);
             }
         });
-        add(btnAdd, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 180, 70, 40));
+        add(btnAdd, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 180, 87, 35));
 
+        btnUpdate.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/1380634415_gtk-refresh.png"))); // NOI18N
         btnUpdate.setText("Update");
         btnUpdate.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnUpdateActionPerformed(evt);
             }
         });
-        add(btnUpdate, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 180, 70, 40));
+        add(btnUpdate, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 180, 87, 35));
 
+        btnDelete.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/1380634772_001_05.png"))); // NOI18N
         btnDelete.setText("Delete");
         btnDelete.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnDeleteActionPerformed(evt);
             }
         });
-        add(btnDelete, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 180, 70, 40));
+        add(btnDelete, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 180, 87, 35));
 
         jScrollPane3.setPreferredSize(new java.awt.Dimension(300, 200));
 

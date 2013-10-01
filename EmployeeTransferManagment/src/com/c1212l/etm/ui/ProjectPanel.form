@@ -70,6 +70,9 @@
     </Component>
     <Component class="javax.swing.JButton" name="btnAdd">
       <Properties>
+        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+          <Image iconType="3" name="/Image/1380634218_001_01.png"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="Add"/>
       </Properties>
       <Events>
@@ -77,12 +80,15 @@
       </Events>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="310" y="230" width="70" height="40"/>
+          <AbsoluteConstraints x="310" y="230" width="87" height="35"/>
         </Constraint>
       </Constraints>
     </Component>
     <Component class="javax.swing.JButton" name="btnEdit">
       <Properties>
+        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+          <Image iconType="3" name="/Image/1380634415_gtk-refresh.png"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="Update"/>
       </Properties>
       <Events>
@@ -90,12 +96,15 @@
       </Events>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="390" y="230" width="70" height="40"/>
+          <AbsoluteConstraints x="400" y="230" width="87" height="35"/>
         </Constraint>
       </Constraints>
     </Component>
     <Component class="javax.swing.JButton" name="btnDelete">
       <Properties>
+        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+          <Image iconType="3" name="/Image/1380632326_dialog-close.png"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="Delete"/>
       </Properties>
       <Events>
@@ -103,7 +112,7 @@
       </Events>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="470" y="230" width="70" height="40"/>
+          <AbsoluteConstraints x="490" y="230" width="87" height="35"/>
         </Constraint>
       </Constraints>
     </Component>
@@ -150,6 +159,9 @@
     </Component>
     <Component class="javax.swing.JButton" name="btnReset">
       <Properties>
+        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+          <Image iconType="3" name="/Image/1380633043_gtk-cancel.png"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="Reset"/>
       </Properties>
       <Events>
@@ -157,7 +169,7 @@
       </Events>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="550" y="230" width="69" height="40"/>
+          <AbsoluteConstraints x="580" y="230" width="87" height="35"/>
         </Constraint>
       </Constraints>
     </Component>
