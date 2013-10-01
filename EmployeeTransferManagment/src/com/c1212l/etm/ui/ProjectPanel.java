@@ -161,7 +161,7 @@ public class ProjectPanel extends javax.swing.JPanel {
         });
         jScrollPane2.setViewportView(tblProject);
 
-        add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(18, 290, 930, 240));
+        add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(8, 290, 950, 240));
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed

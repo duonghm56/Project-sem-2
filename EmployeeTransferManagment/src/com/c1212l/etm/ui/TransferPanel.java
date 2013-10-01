@@ -96,7 +96,7 @@ public class TransferPanel extends javax.swing.JPanel {
 
         setBorder(javax.swing.BorderFactory.createTitledBorder("Transfer Manager"));
         setEnabled(false);
-        setPreferredSize(new java.awt.Dimension(980, 550));
+        setPreferredSize(new java.awt.Dimension(970, 550));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setText("Transfer ID:");
@@ -253,7 +253,7 @@ public class TransferPanel extends javax.swing.JPanel {
         });
         jScrollPane3.setViewportView(tbTransferData);
 
-        add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 420, 940, 110));
+        add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 420, 950, 110));
 
         add(cmbApprove, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 270, 220, -1));
 

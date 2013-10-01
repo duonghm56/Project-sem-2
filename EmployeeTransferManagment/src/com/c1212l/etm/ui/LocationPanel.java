@@ -128,7 +128,7 @@ public class LocationPanel extends javax.swing.JPanel {
         });
         jScrollPane3.setViewportView(tbLocationData);
 
-        add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 240, 930, 280));
+        add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 240, 950, 280));
     }// </editor-fold>//GEN-END:initComponents
 
     private void txtLocationNameKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtLocationNameKeyReleased

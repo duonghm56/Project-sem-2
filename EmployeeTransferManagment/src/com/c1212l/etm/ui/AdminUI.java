@@ -31,17 +31,22 @@ public  class AdminUI extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        homePanel2 = new com.c1212l.etm.ui.HomePanel();
         jLabel2 = new javax.swing.JLabel();
         jTabbedPane1 = new javax.swing.JTabbedPane();
-        panelTransfer = new javax.swing.JPanel();
+        panelHome = new javax.swing.JPanel();
         homePanel3 = new com.c1212l.etm.ui.HomePanel();
-        panelProject = new javax.swing.JPanel();
-        panelDepartment = new javax.swing.JPanel();
-        panelLocation = new javax.swing.JPanel();
-        jPanel2 = new javax.swing.JPanel();
+        panelTransfer = new javax.swing.JPanel();
+        transferPanel1 = new com.c1212l.etm.ui.TransferPanel();
         panelEmpl = new javax.swing.JPanel();
-        adminPanel2 = new com.c1212l.etm.ui.AdminPanel();
+        employeePanel1 = new com.c1212l.etm.ui.EmployeePanel();
+        panelProject = new javax.swing.JPanel();
+        projectPanel1 = new com.c1212l.etm.ui.ProjectPanel();
+        panelDepartment = new javax.swing.JPanel();
+        departmentPanel1 = new com.c1212l.etm.ui.DepartmentPanel();
+        panelLocation = new javax.swing.JPanel();
+        locationPanel1 = new com.c1212l.etm.ui.LocationPanel();
+        panelAccountManager = new javax.swing.JPanel();
+        adminPanel1 = new com.c1212l.etm.ui.AdminPanel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem5 = new javax.swing.JMenuItem();
@@ -51,41 +56,75 @@ public  class AdminUI extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Employee Transfer Managment");
-        setPreferredSize(new java.awt.Dimension(1024, 768));
         setResizable(false);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 618, 1009, -1));
 
-        panelTransfer.setPreferredSize(new java.awt.Dimension(990, 580));
-        panelTransfer.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-        panelTransfer.add(homePanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 920, 530));
+        panelHome.setPreferredSize(new java.awt.Dimension(990, 590));
+        panelHome.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        panelHome.add(homePanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 970, 530));
 
-        jTabbedPane1.addTab("Home", panelTransfer);
+        jTabbedPane1.addTab("Home", panelHome);
+
+        javax.swing.GroupLayout panelTransferLayout = new javax.swing.GroupLayout(panelTransfer);
+        panelTransfer.setLayout(panelTransferLayout);
+        panelTransferLayout.setHorizontalGroup(
+            panelTransferLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelTransferLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(transferPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        panelTransferLayout.setVerticalGroup(
+            panelTransferLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelTransferLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(transferPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        jTabbedPane1.addTab("Transfer Employee", panelTransfer);
+
+        javax.swing.GroupLayout panelEmplLayout = new javax.swing.GroupLayout(panelEmpl);
+        panelEmpl.setLayout(panelEmplLayout);
+        panelEmplLayout.setHorizontalGroup(
+            panelEmplLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelEmplLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(employeePanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        panelEmplLayout.setVerticalGroup(
+            panelEmplLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelEmplLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(employeePanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        jTabbedPane1.addTab("Employee Manager", panelEmpl);
 
         panelProject.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        panelProject.add(projectPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
+
         jTabbedPane1.addTab("Project Manager", panelProject);
 
         panelDepartment.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        panelDepartment.add(departmentPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
+
         jTabbedPane1.addTab("Department Manager", panelDepartment);
 
         panelLocation.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        panelLocation.add(locationPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 970, -1));
+
         jTabbedPane1.addTab("Location Manager", panelLocation);
 
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1024, Short.MAX_VALUE)
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 580, Short.MAX_VALUE)
-        );
+        panelAccountManager.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        panelAccountManager.add(adminPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 970, -1));
 
-        jTabbedPane1.addTab("Transfer Employee", jPanel2);
+        jTabbedPane1.addTab("Acount Manager", panelAccountManager);
 
-        panelEmpl.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-        panelEmpl.add(adminPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 10, -1, 570));
-
-        jTabbedPane1.addTab("Acount Manager", panelEmpl);
+        getContentPane().add(jTabbedPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 980, 590));
 
         jMenu1.setText("File");
 
@@ -110,26 +149,7 @@ public  class AdminUI extends javax.swing.JFrame {
 
         setJMenuBar(jMenuBar1);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 1009, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-            .addComponent(jTabbedPane1, javax.swing.GroupLayout.Alignment.TRAILING)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jTabbedPane1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel2)
-                .addGap(0, 0, 0))
-        );
-
-        pack();
+        setBounds(0, 0, 999, 655);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
@@ -173,8 +193,9 @@ public  class AdminUI extends javax.swing.JFrame {
         });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private com.c1212l.etm.ui.AdminPanel adminPanel2;
-    private com.c1212l.etm.ui.HomePanel homePanel2;
+    private com.c1212l.etm.ui.AdminPanel adminPanel1;
+    private com.c1212l.etm.ui.DepartmentPanel departmentPanel1;
+    private com.c1212l.etm.ui.EmployeePanel employeePanel1;
     private com.c1212l.etm.ui.HomePanel homePanel3;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JMenu jMenu1;
@@ -183,12 +204,16 @@ public  class AdminUI extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu4;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem5;
-    private javax.swing.JPanel jPanel2;
     private javax.swing.JTabbedPane jTabbedPane1;
+    private com.c1212l.etm.ui.LocationPanel locationPanel1;
+    private javax.swing.JPanel panelAccountManager;
     private javax.swing.JPanel panelDepartment;
     private javax.swing.JPanel panelEmpl;
+    private javax.swing.JPanel panelHome;
     private javax.swing.JPanel panelLocation;
     private javax.swing.JPanel panelProject;
     private javax.swing.JPanel panelTransfer;
+    private com.c1212l.etm.ui.ProjectPanel projectPanel1;
+    private com.c1212l.etm.ui.TransferPanel transferPanel1;
     // End of variables declaration//GEN-END:variables
 }
