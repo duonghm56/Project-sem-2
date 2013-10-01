@@ -60,6 +60,8 @@ public  class AdminUI extends javax.swing.JFrame {
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
         getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 618, 1009, -1));
 
+        jTabbedPane1.setTabPlacement(javax.swing.JTabbedPane.LEFT);
+
         panelHome.setPreferredSize(new java.awt.Dimension(990, 590));
         panelHome.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
         panelHome.add(homePanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 970, 530));
@@ -72,14 +74,14 @@ public  class AdminUI extends javax.swing.JFrame {
             panelTransferLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelTransferLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(transferPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(transferPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 962, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(15, Short.MAX_VALUE))
         );
         panelTransferLayout.setVerticalGroup(
             panelTransferLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelTransferLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(transferPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(transferPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 537, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -124,7 +126,7 @@ public  class AdminUI extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("Acount Manager", panelAccountManager);
 
-        getContentPane().add(jTabbedPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 980, 590));
+        getContentPane().add(jTabbedPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1110, 560));
 
         jMenu1.setText("File");
 
@@ -149,7 +151,7 @@ public  class AdminUI extends javax.swing.JFrame {
 
         setJMenuBar(jMenuBar1);
 
-        setBounds(0, 0, 999, 655);
+        setBounds(0, 0, 1126, 629);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed

@@ -48,6 +48,15 @@ public class ClientTransferPanel extends javax.swing.JPanel {
 
     }
 
+    public Employee getEmployee() {
+        return employee;
+    }
+
+    public void setEmployee(Employee employee) {
+        this.employee = employee;
+    }
+
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -190,6 +199,11 @@ public class ClientTransferPanel extends javax.swing.JPanel {
         add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 80, -1, -1));
 
         btnGenerate.setText("Generate");
+        btnGenerate.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGenerateActionPerformed(evt);
+            }
+        });
         add(btnGenerate, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 580, 80, 40));
 
         cmbToProject.addItemListener(new java.awt.event.ItemListener() {
@@ -252,6 +266,52 @@ public class ClientTransferPanel extends javax.swing.JPanel {
     private void cmbToLocationItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cmbToLocationItemStateChanged
         updateCmbTransferType();
     }//GEN-LAST:event_cmbToLocationItemStateChanged
+
+    private void btnGenerateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGenerateActionPerformed
+        ProjectDAO projectDAO = new ProjectDAO();
+        DepartmentDAO departmentDAO = new DepartmentDAO();
+        LocationDAO locationDAO = new LocationDAO();
+        
+        String content="";
+        content += "Dear Manager, \n\n";
+        content += "My name is " + employee.getEmployeeName();
+        content += "My employee number is " + employee.getEmployeeNumber() + "\n";
+        content += "Now, I work at: \n";
+        Department fromDept = departmentDAO.getDepartmentByID(employee.getDepartnameID());        
+        content += " - Department: " + fromDept.getDepartmentName() + " in " + locationDAO.getLocationById(fromDept.getLocationID()).getLocationName() + "\n";        
+        content += " - Project: " + projectDAO.getProjectById(employee.getProjectID()).getProjectName() + "\n\n";
+        
+        switch(checkFieldAndReturnTransferType()){
+            case "Project Transfer":                
+                content += "I would like to transfer from " + ((KeyValue)cmbFromProject.getSelectedItem()).getValue()
+                        + " to " + ((KeyValue)cmbToProject.getSelectedItem()).getValue() + "\n";                
+                break;
+            case "Department Transfer":
+                content += "I would like to transfer from " + ((KeyValue)cmbFromDepartment.getSelectedItem()).getValue()
+                        + " to " + ((KeyValue)cmbToDepartment.getSelectedItem()).getValue() + "\n";
+                break;
+            case "Location Transfer":
+                content += "I would like to transfer from " + ((KeyValue)cmbFromLocation.getSelectedItem()).getValue()
+                        + " to " + ((KeyValue)cmbToLocation.getSelectedItem()).getValue() + "\n";
+                break;
+            case "Custom Transfer":
+                content += "I would like to transfer: \n";
+                content += " - From " + ((KeyValue)cmbFromProject.getSelectedItem()).getValue()
+                        + " to " + ((KeyValue)cmbToProject.getSelectedItem()).getValue() + "\n";
+                content += " - From " + ((KeyValue)cmbFromDepartment.getSelectedItem()).getValue()
+                        + " to " + ((KeyValue)cmbToDepartment.getSelectedItem()).getValue() + "\n";
+                content += " - From " + ((KeyValue)cmbFromLocation.getSelectedItem()).getValue()
+                        + " to " + ((KeyValue)cmbToLocation.getSelectedItem()).getValue() + "\n";
+                break;
+        }
+        content += "\nMy reason is: " + txtReason.getText() + "\n\n";
+        content += "I hope this transfer will be accepted soon\n\n";
+        
+        content += "Your faithfully,\n";
+        content += employee.getEmployeeName()+".";
+        txtTransferLetter.setText(content);
+    }//GEN-LAST:event_btnGenerateActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnGenerate;
     private javax.swing.JButton btnReset;

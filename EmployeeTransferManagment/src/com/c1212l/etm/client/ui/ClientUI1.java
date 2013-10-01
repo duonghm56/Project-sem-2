@@ -34,6 +34,8 @@ public class ClientUI1 extends javax.swing.JFrame {
         lblEmail = new javax.swing.JLabel();
         jTabbedPane1 = new javax.swing.JTabbedPane();
         employeeClientPanel1 = new com.c1212l.etm.client.ui.EmployeeClientPanel();
+        TransferRequest = new javax.swing.JPanel();
+        clientTransferPanel1 = new com.c1212l.etm.client.ui.ClientTransferPanel();
         transferHistoryPanel3 = new com.c1212l.etm.client.ui.TransferHistoryPanel();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
@@ -53,6 +55,25 @@ public class ClientUI1 extends javax.swing.JFrame {
 
         jTabbedPane1.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
         jTabbedPane1.addTab("Employee Profiles", employeeClientPanel1);
+
+        javax.swing.GroupLayout TransferRequestLayout = new javax.swing.GroupLayout(TransferRequest);
+        TransferRequest.setLayout(TransferRequestLayout);
+        TransferRequestLayout.setHorizontalGroup(
+            TransferRequestLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(TransferRequestLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(clientTransferPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(250, Short.MAX_VALUE))
+        );
+        TransferRequestLayout.setVerticalGroup(
+            TransferRequestLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(TransferRequestLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(clientTransferPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        jTabbedPane1.addTab("Transfer Request", TransferRequest);
         jTabbedPane1.addTab("Transfer History", transferHistoryPanel3);
 
         jButton1.setText("jButton1");
@@ -124,7 +145,7 @@ public class ClientUI1 extends javax.swing.JFrame {
                 .addGap(235, 235, 235)
                 .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
-            .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 997, Short.MAX_VALUE)
+            .addComponent(jTabbedPane1)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -134,7 +155,7 @@ public class ClientUI1 extends javax.swing.JFrame {
                     .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(lblEmail, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 497, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jTabbedPane1)
                 .addContainerGap())
         );
 
@@ -195,6 +216,8 @@ public class ClientUI1 extends javax.swing.JFrame {
         });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel TransferRequest;
+    private com.c1212l.etm.client.ui.ClientTransferPanel clientTransferPanel1;
     private com.c1212l.etm.client.ui.EmployeeClientPanel employeeClientPanel1;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
