@@ -88,7 +88,7 @@ public class LocationPanel extends javax.swing.JPanel {
                 btnAddActionPerformed(evt);
             }
         });
-        add(btnAdd, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 180, 87, 35));
+        add(btnAdd, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 180, 80, 35));
 
         btnUpdate.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/1380634415_gtk-refresh.png"))); // NOI18N
         btnUpdate.setText("Update");
@@ -97,7 +97,7 @@ public class LocationPanel extends javax.swing.JPanel {
                 btnUpdateActionPerformed(evt);
             }
         });
-        add(btnUpdate, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 180, 87, 35));
+        add(btnUpdate, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 180, 90, 35));
 
         btnDelete.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/1380634772_001_05.png"))); // NOI18N
         btnDelete.setText("Delete");
@@ -106,7 +106,7 @@ public class LocationPanel extends javax.swing.JPanel {
                 btnDeleteActionPerformed(evt);
             }
         });
-        add(btnDelete, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 180, 87, 35));
+        add(btnDelete, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 180, 85, 35));
 
         jScrollPane3.setPreferredSize(new java.awt.Dimension(300, 200));
 

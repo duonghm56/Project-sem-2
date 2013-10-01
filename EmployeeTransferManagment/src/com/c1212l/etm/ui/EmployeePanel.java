@@ -12,6 +12,8 @@ import com.c1212l.etm.dto.Department;
 import com.c1212l.etm.dto.Employee;
 import com.c1212l.etm.dto.Location;
 import com.c1212l.etm.dto.Project;
+import com.c1212l.etm.ui.ProjectPanel;
+import com.c1212l.etm.ui.ProjectPanel;
 import com.c1212l.etm.util.KeyValue;
 import java.awt.event.KeyEvent;
 import java.sql.Date;
@@ -132,7 +134,7 @@ public class EmployeePanel extends javax.swing.JPanel {
                 btnUpdateActionPerformed(evt);
             }
         });
-        add(btnUpdate, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 290, 87, 35));
+        add(btnUpdate, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 290, 90, 35));
 
         jLabel4.setText("Password");
         add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 70, 60, -1));
@@ -144,7 +146,7 @@ public class EmployeePanel extends javax.swing.JPanel {
                 btnAddActionPerformed(evt);
             }
         });
-        add(btnAdd, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 290, 87, 35));
+        add(btnAdd, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 290, 80, 35));
 
         btnDelete.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/1380634772_001_05.png"))); // NOI18N
         btnDelete.setText("Delete");
@@ -153,7 +155,7 @@ public class EmployeePanel extends javax.swing.JPanel {
                 btnDeleteActionPerformed(evt);
             }
         });
-        add(btnDelete, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 290, 87, 35));
+        add(btnDelete, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 290, 85, 35));
 
         jLabel2.setText("Employee Name:");
         add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 100, -1, -1));
@@ -207,7 +209,7 @@ public class EmployeePanel extends javax.swing.JPanel {
                 btnResetActionPerformed(evt);
             }
         });
-        add(btnReset, new org.netbeans.lib.awtextra.AbsoluteConstraints(870, 290, 87, 35));
+        add(btnReset, new org.netbeans.lib.awtextra.AbsoluteConstraints(870, 290, 85, 35));
 
         jLabel7.setText("Address:");
         add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 210, -1, -1));

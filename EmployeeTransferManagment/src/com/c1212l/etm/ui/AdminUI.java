@@ -41,7 +41,7 @@ public  class AdminUI extends javax.swing.JFrame {
         panelLocation = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         panelEmpl = new javax.swing.JPanel();
-        adminPanel1 = new com.c1212l.etm.ui.AdminPanel();
+        adminPanel2 = new com.c1212l.etm.ui.AdminPanel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem5 = new javax.swing.JMenuItem();
@@ -83,7 +83,7 @@ public  class AdminUI extends javax.swing.JFrame {
         jTabbedPane1.addTab("Transfer Employee", jPanel2);
 
         panelEmpl.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-        panelEmpl.add(adminPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 0, 780, 580));
+        panelEmpl.add(adminPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 10, -1, 570));
 
         jTabbedPane1.addTab("Acount Manager", panelEmpl);
 
@@ -173,7 +173,7 @@ public  class AdminUI extends javax.swing.JFrame {
         });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private com.c1212l.etm.ui.AdminPanel adminPanel1;
+    private com.c1212l.etm.ui.AdminPanel adminPanel2;
     private com.c1212l.etm.ui.HomePanel homePanel2;
     private com.c1212l.etm.ui.HomePanel homePanel3;
     private javax.swing.JLabel jLabel2;

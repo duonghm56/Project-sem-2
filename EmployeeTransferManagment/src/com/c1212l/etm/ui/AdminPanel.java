@@ -172,7 +172,7 @@ public class AdminPanel extends javax.swing.JPanel {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(131, 131, 131)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(btnAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(jLabel5)
                                 .addComponent(jLabel4)
@@ -189,11 +189,11 @@ public class AdminPanel extends javax.swing.JPanel {
                                     .addComponent(jLabel8)))
                             .addGroup(layout.createSequentialGroup()
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(btnUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(btnUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(btnDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(btnDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(btnReset)))))
+                                .addComponent(btnReset, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addContainerGap(130, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -292,13 +292,28 @@ public class AdminPanel extends javax.swing.JPanel {
                 if (!mcRole.find()) {
                   throw new Exception("Role is not valid");
                 }
-                int id = Integer.parseInt(txtID.getText());
-                String email = txtEmail.getText();
-                String password = new String(txtPassword.getPassword());
-                int role = Integer.parseInt(txtRole.getText());
-                adminBUS.updateAdmin(id, email, password, role);
-                JOptionPane.showMessageDialog(this, "Update success!");
-                reloadData();
+                if (Integer.parseInt(txtRole.getText())> LoginPanel.role ) {
+                    int id = Integer.parseInt(txtID.getText());
+                    String email = txtEmail.getText();
+                    String password = new String(txtPassword.getPassword());
+                    int role = Integer.parseInt(txtRole.getText());
+                    adminBUS.updateAdmin(id, email, password, role);
+                    JOptionPane.showMessageDialog(this, "Update success!");
+                    reloadData();
+                }
+                else if(Integer.parseInt(txtRole.getText())== LoginPanel.role && txtEmail.getText().equals(LoginPanel.email)){
+                    int id = Integer.parseInt(txtID.getText());
+                    String email = txtEmail.getText();
+                    String password = new String(txtPassword.getPassword());
+                    int role = Integer.parseInt(txtRole.getText());
+                    adminBUS.updateAdmin(id, email, password, role);
+                    JOptionPane.showMessageDialog(this, "Update success!");
+                    reloadData();
+                }
+                else
+                {
+                    JOptionPane.showMessageDialog(null, "Update fail!");
+                }
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(null, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }
@@ -310,10 +325,15 @@ public class AdminPanel extends javax.swing.JPanel {
             if (txtID.getText().equals("")) {
                  throw new Exception("Please select admin");
             }
+            if (Integer.parseInt(txtRole.getText())> LoginPanel.role) {
             int id = Integer.parseInt(txtID.getText());
             adminBUS.deleteAdmin(id);
             JOptionPane.showMessageDialog(this, "Add success");
             reloadData();
+            }
+            else{
+                    JOptionPane.showMessageDialog(null, "Delete fail!");
+            }
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(null, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }

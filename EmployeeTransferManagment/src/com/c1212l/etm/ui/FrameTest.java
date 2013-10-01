@@ -29,7 +29,18 @@ public class FrameTest extends javax.swing.JFrame {
         adminPanel1 = new com.c1212l.etm.ui.AdminPanel();
         locationPanel1 = new com.c1212l.etm.ui.LocationPanel();
         locationPanel2 = new com.c1212l.etm.ui.LocationPanel();
-        locationPanel4 = new com.c1212l.etm.ui.LocationPanel();
+        employeePanel1 = new com.c1212l.etm.ui.EmployeePanel();
+        employeePanel2 = new com.c1212l.etm.ui.EmployeePanel();
+        employeePanel3 = new com.c1212l.etm.ui.EmployeePanel();
+        employeePanel5 = new com.c1212l.etm.ui.EmployeePanel();
+        employeePanel6 = new com.c1212l.etm.ui.EmployeePanel();
+        employeePanel7 = new com.c1212l.etm.ui.EmployeePanel();
+        employeePanel8 = new com.c1212l.etm.ui.EmployeePanel();
+        employeePanel4 = new com.c1212l.etm.ui.EmployeePanel();
+        employeePanel9 = new com.c1212l.etm.ui.EmployeePanel();
+        employeePanel10 = new com.c1212l.etm.ui.EmployeePanel();
+        employeePanel11 = new com.c1212l.etm.ui.EmployeePanel();
+        employeePanel12 = new com.c1212l.etm.ui.EmployeePanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -39,15 +50,15 @@ public class FrameTest extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(locationPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(43, Short.MAX_VALUE))
+                .addComponent(employeePanel12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(locationPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(47, Short.MAX_VALUE))
+                .addComponent(employeePanel12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -89,8 +100,19 @@ public class FrameTest extends javax.swing.JFrame {
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private com.c1212l.etm.ui.AdminPanel adminPanel1;
+    private com.c1212l.etm.ui.EmployeePanel employeePanel1;
+    private com.c1212l.etm.ui.EmployeePanel employeePanel10;
+    private com.c1212l.etm.ui.EmployeePanel employeePanel11;
+    private com.c1212l.etm.ui.EmployeePanel employeePanel12;
+    private com.c1212l.etm.ui.EmployeePanel employeePanel2;
+    private com.c1212l.etm.ui.EmployeePanel employeePanel3;
+    private com.c1212l.etm.ui.EmployeePanel employeePanel4;
+    private com.c1212l.etm.ui.EmployeePanel employeePanel5;
+    private com.c1212l.etm.ui.EmployeePanel employeePanel6;
+    private com.c1212l.etm.ui.EmployeePanel employeePanel7;
+    private com.c1212l.etm.ui.EmployeePanel employeePanel8;
+    private com.c1212l.etm.ui.EmployeePanel employeePanel9;
     private com.c1212l.etm.ui.LocationPanel locationPanel1;
     private com.c1212l.etm.ui.LocationPanel locationPanel2;
-    private com.c1212l.etm.ui.LocationPanel locationPanel4;
     // End of variables declaration//GEN-END:variables
 }

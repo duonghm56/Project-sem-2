@@ -107,7 +107,7 @@ public class DepartmentPanel extends javax.swing.JPanel {
                 btnAddActionPerformed(evt);
             }
         });
-        add(btnAdd, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 220, 87, 35));
+        add(btnAdd, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 220, 80, 35));
 
         btnUpdate.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/1380634415_gtk-refresh.png"))); // NOI18N
         btnUpdate.setText("Update");
@@ -116,7 +116,7 @@ public class DepartmentPanel extends javax.swing.JPanel {
                 btnUpdateActionPerformed(evt);
             }
         });
-        add(btnUpdate, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 220, 87, 35));
+        add(btnUpdate, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 220, 90, 35));
 
         btnDelete.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/1380632326_dialog-close.png"))); // NOI18N
         btnDelete.setText("Delete");
@@ -125,7 +125,7 @@ public class DepartmentPanel extends javax.swing.JPanel {
                 btnDeleteActionPerformed(evt);
             }
         });
-        add(btnDelete, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 220, 87, 35));
+        add(btnDelete, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 220, 85, 35));
 
         tbDepartmentData.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {

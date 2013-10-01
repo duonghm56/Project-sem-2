@@ -8,6 +8,28 @@
     </Component>
     <Component class="com.c1212l.etm.ui.LocationPanel" name="locationPanel2">
     </Component>
+    <Component class="com.c1212l.etm.ui.EmployeePanel" name="employeePanel1">
+    </Component>
+    <Component class="com.c1212l.etm.ui.EmployeePanel" name="employeePanel2">
+    </Component>
+    <Component class="com.c1212l.etm.ui.EmployeePanel" name="employeePanel3">
+    </Component>
+    <Component class="com.c1212l.etm.ui.EmployeePanel" name="employeePanel5">
+    </Component>
+    <Component class="com.c1212l.etm.ui.EmployeePanel" name="employeePanel6">
+    </Component>
+    <Component class="com.c1212l.etm.ui.EmployeePanel" name="employeePanel7">
+    </Component>
+    <Component class="com.c1212l.etm.ui.EmployeePanel" name="employeePanel8">
+    </Component>
+    <Component class="com.c1212l.etm.ui.EmployeePanel" name="employeePanel4">
+    </Component>
+    <Component class="com.c1212l.etm.ui.EmployeePanel" name="employeePanel9">
+    </Component>
+    <Component class="com.c1212l.etm.ui.EmployeePanel" name="employeePanel10">
+    </Component>
+    <Component class="com.c1212l.etm.ui.EmployeePanel" name="employeePanel11">
+    </Component>
   </NonVisualComponents>
   <Properties>
     <Property name="defaultCloseOperation" type="int" value="3"/>
@@ -33,8 +55,8 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="locationPanel4" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="43" max="32767" attributes="0"/>
+              <Component id="employeePanel12" min="-2" max="-2" attributes="0"/>
+              <EmptySpace max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -42,14 +64,14 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="locationPanel4" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="47" max="32767" attributes="0"/>
+              <Component id="employeePanel12" min="-2" max="-2" attributes="0"/>
+              <EmptySpace max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
   </Layout>
   <SubComponents>
-    <Component class="com.c1212l.etm.ui.LocationPanel" name="locationPanel4">
+    <Component class="com.c1212l.etm.ui.EmployeePanel" name="employeePanel12">
     </Component>
   </SubComponents>
 </Form>

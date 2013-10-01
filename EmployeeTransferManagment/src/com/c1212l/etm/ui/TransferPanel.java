@@ -222,15 +222,16 @@ public class TransferPanel extends javax.swing.JPanel {
                 btnUpdateActionPerformed(evt);
             }
         });
-        add(btnUpdate, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 380, -1, -1));
+        add(btnUpdate, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 370, 90, 35));
 
+        btnDelete.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/1380634772_001_05.png"))); // NOI18N
         btnDelete.setText("Delete");
         btnDelete.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnDeleteActionPerformed(evt);
             }
         });
-        add(btnDelete, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 380, -1, -1));
+        add(btnDelete, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 370, 85, 35));
 
         jScrollPane3.setPreferredSize(new java.awt.Dimension(300, 200));
 
@@ -279,13 +280,14 @@ public class TransferPanel extends javax.swing.JPanel {
         txtApproveDate.setEnabled(false);
         add(txtApproveDate, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 240, 220, 22));
 
+        btnReset.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/1380633043_gtk-cancel.png"))); // NOI18N
         btnReset.setText("Reset");
         btnReset.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnResetActionPerformed(evt);
             }
         });
-        add(btnReset, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 380, 70, -1));
+        add(btnReset, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 370, 85, 35));
 
         jLabel16.setText("Employee Number");
         add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 70, -1, -1));
@@ -297,13 +299,14 @@ public class TransferPanel extends javax.swing.JPanel {
         });
         add(txtEmployeeNumber, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 60, 200, 30));
 
+        btnSearch.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/1380638463_search.png"))); // NOI18N
         btnSearch.setText("Search Mode");
         btnSearch.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnSearchActionPerformed(evt);
             }
         });
-        add(btnSearch, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 380, -1, -1));
+        add(btnSearch, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 370, 115, 35));
 
         btnDisapprove.setText("Disapprove");
         btnDisapprove.addActionListener(new java.awt.event.ActionListener() {

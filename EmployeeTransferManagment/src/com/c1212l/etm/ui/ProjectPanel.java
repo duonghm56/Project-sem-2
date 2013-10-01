@@ -89,7 +89,7 @@ public class ProjectPanel extends javax.swing.JPanel {
                 btnAddActionPerformed(evt);
             }
         });
-        add(btnAdd, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 230, 87, 35));
+        add(btnAdd, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 230, 80, 35));
 
         btnEdit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/1380634415_gtk-refresh.png"))); // NOI18N
         btnEdit.setText("Update");
@@ -98,7 +98,7 @@ public class ProjectPanel extends javax.swing.JPanel {
                 btnEditActionPerformed(evt);
             }
         });
-        add(btnEdit, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 230, 87, 35));
+        add(btnEdit, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 230, 90, 35));
 
         btnDelete.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/1380632326_dialog-close.png"))); // NOI18N
         btnDelete.setText("Delete");
@@ -107,7 +107,7 @@ public class ProjectPanel extends javax.swing.JPanel {
                 btnDeleteActionPerformed(evt);
             }
         });
-        add(btnDelete, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 230, 87, 35));
+        add(btnDelete, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 230, 85, 35));
 
         lblCreateDate.setText("Created Date");
         add(lblCreateDate, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 130, -1, -1));
@@ -141,7 +141,7 @@ public class ProjectPanel extends javax.swing.JPanel {
                 btnResetActionPerformed(evt);
             }
         });
-        add(btnReset, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 230, 87, 35));
+        add(btnReset, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 230, 85, 35));
 
         tblProject.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {

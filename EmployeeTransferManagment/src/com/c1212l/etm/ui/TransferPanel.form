@@ -340,12 +340,15 @@
       </Events>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="180" y="380" width="-1" height="-1"/>
+          <AbsoluteConstraints x="230" y="370" width="90" height="35"/>
         </Constraint>
       </Constraints>
     </Component>
     <Component class="javax.swing.JButton" name="btnDelete">
       <Properties>
+        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+          <Image iconType="3" name="/Image/1380634772_001_05.png"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="Delete"/>
       </Properties>
       <Events>
@@ -353,7 +356,7 @@
       </Events>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="250" y="380" width="-1" height="-1"/>
+          <AbsoluteConstraints x="330" y="370" width="85" height="35"/>
         </Constraint>
       </Constraints>
     </Component>
@@ -439,6 +442,9 @@
     </Component>
     <Component class="javax.swing.JButton" name="btnReset">
       <Properties>
+        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+          <Image iconType="3" name="/Image/1380633043_gtk-cancel.png"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="Reset"/>
       </Properties>
       <Events>
@@ -446,7 +452,7 @@
       </Events>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="320" y="380" width="70" height="-1"/>
+          <AbsoluteConstraints x="420" y="370" width="85" height="35"/>
         </Constraint>
       </Constraints>
     </Component>
@@ -472,6 +478,9 @@
     </Component>
     <Component class="javax.swing.JToggleButton" name="btnSearch">
       <Properties>
+        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+          <Image iconType="3" name="/Image/1380638463_search.png"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="Search Mode"/>
       </Properties>
       <Events>
@@ -479,7 +488,7 @@
       </Events>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="80" y="380" width="-1" height="-1"/>
+          <AbsoluteConstraints x="110" y="370" width="115" height="35"/>
         </Constraint>
       </Constraints>
     </Component>
