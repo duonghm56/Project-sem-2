@@ -168,21 +168,10 @@ public class ChangePasswordUI extends javax.swing.JFrame {
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
-        try{
-               int n = JOptionPane.showConfirmDialog(
-                            this, "Do you want Exit?",
-                            "Message Dialog",
-                            JOptionPane.YES_NO_OPTION);
-if (n == JOptionPane.YES_OPTION) {
+   
     this.dispose();
-} else if (n == JOptionPane.NO_OPTION) {
 
-} else {
 
-    
-}
-           }
-           catch(Exception ex){ex.printStackTrace();}
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -208,14 +197,19 @@ if (n == JOptionPane.YES_OPTION) {
                 return;
             }
             if (!txtNewPassword.getText().equals(txtConfirmPassword.getText())) {
-                JOptionPane.showMessageDialog(this, "Phai de trung nhau !");
+                JOptionPane.showMessageDialog(this, "New Password must validate ComfirmPassword!");
                 return;
             }
-           String oldPassword = new String(txtOldPassword.getPassword());
-           String newPassword = new String(txtNewPassword.getPassword());
-           employeeBUS.changeEmployeePassword(LoginPanel.email,oldPassword, newPassword);
-           adminBUS.changePasswordAdmin(LoginPanel.email, oldPassword, newPassword);
-           JOptionPane.showMessageDialog(null, "Change Password success!");
+            String oldPassword = new String(txtOldPassword.getPassword());
+            if (oldPassword.equals(LoginFrame.password)) {
+                  String newPassword = new String(txtNewPassword.getPassword());
+                  employeeBUS.changeEmployeePassword(LoginFrame.email,oldPassword, newPassword);
+                  adminBUS.changePasswordAdmin(LoginFrame.email, oldPassword, newPassword);
+                  JOptionPane.showMessageDialog(null, "Change Password success!");
+            }
+            else{
+                JOptionPane.showMessageDialog(null, "Old Password is not valid");
+            }
         }
         catch(Exception ex){ex.printStackTrace();}
     }//GEN-LAST:event_btnChangePasswordActionPerformed

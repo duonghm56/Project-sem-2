@@ -83,7 +83,6 @@ public class EmployeePanel extends javax.swing.JPanel {
         jLabel12 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         txtAddress = new javax.swing.JTextArea();
-        dcBirthday = new com.toedter.calendar.JDateChooser();
         txtSalary = new javax.swing.JTextField();
         jLabel16 = new javax.swing.JLabel();
 
@@ -225,7 +224,6 @@ public class EmployeePanel extends javax.swing.JPanel {
         jScrollPane1.setViewportView(txtAddress);
 
         add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 210, 200, 80));
-        add(dcBirthday, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 180, 190, -1));
         add(txtSalary, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 180, 89, -1));
 
         jLabel16.setText("USD");
@@ -338,7 +336,6 @@ public class EmployeePanel extends javax.swing.JPanel {
     private javax.swing.JComboBox cmbDepartment;
     private javax.swing.JComboBox cmbGender;
     private javax.swing.JComboBox cmbProject;
-    private com.toedter.calendar.JDateChooser dcBirthday;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -471,9 +468,9 @@ public class EmployeePanel extends javax.swing.JPanel {
     }
 
     private void convertDate() {
-        int birthdayYear = dcBirthday.getDate().getYear() + 1900;
-        String tempBirthday = birthdayYear + "-" + dcBirthday.getDate().getMonth() + "-" + dcBirthday.getDate().getDate();
-        birthday = Date.valueOf(tempBirthday);
+//        int birthdayYear = dcBirthday.getDate().getYear() + 1900;
+//        String tempBirthday = birthdayYear + "-" + dcBirthday.getDate().getMonth() + "-" + dcBirthday.getDate().getDate();
+//        birthday = Date.valueOf(tempBirthday);
     }
 
     private void updateFieldWhenSelectEmployee() {

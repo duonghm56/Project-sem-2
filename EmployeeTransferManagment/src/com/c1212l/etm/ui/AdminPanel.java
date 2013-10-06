@@ -62,6 +62,7 @@ public class AdminPanel extends javax.swing.JPanel {
         txtID = new javax.swing.JTextField();
         txtEmail = new javax.swing.JTextField();
         txtRole = new javax.swing.JTextField();
+        jLabel8 = new javax.swing.JLabel();
         btnAdd = new javax.swing.JButton();
         btnUpdate = new javax.swing.JButton();
         btnDelete = new javax.swing.JButton();
@@ -89,34 +90,26 @@ public class AdminPanel extends javax.swing.JPanel {
         ));
         jScrollPane1.setViewportView(jTable1);
 
-        setBorder(javax.swing.BorderFactory.createTitledBorder("Account Manager"));
-        setPreferredSize(new java.awt.Dimension(980, 550));
-        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
         jLabel3.setText("ID:");
-        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 50, 30, 30));
 
         jLabel4.setText("Email:");
-        add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 100, -1, 10));
 
         jLabel5.setText("Password:");
-        add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 160, -1, 10));
 
         jLabel6.setText("Role");
-        add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 200, -1, 10));
 
         txtID.setEnabled(false);
-        add(txtID, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 50, 260, 30));
 
         txtEmail.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 txtEmailKeyReleased(evt);
             }
         });
-        add(txtEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 100, 260, 30));
-        add(txtRole, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 200, 260, 30));
 
-        btnAdd.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel8.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel8.setText("Admin Manager");
+
+        btnAdd.setBackground(new java.awt.Color(102, 255, 204));
         btnAdd.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/1380634218_001_01.png"))); // NOI18N
         btnAdd.setText("Add");
         btnAdd.addActionListener(new java.awt.event.ActionListener() {
@@ -124,7 +117,6 @@ public class AdminPanel extends javax.swing.JPanel {
                 btnAddActionPerformed(evt);
             }
         });
-        add(btnAdd, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 250, 80, 35));
 
         btnUpdate.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/1380634415_gtk-refresh.png"))); // NOI18N
         btnUpdate.setText("Update");
@@ -133,7 +125,6 @@ public class AdminPanel extends javax.swing.JPanel {
                 btnUpdateActionPerformed(evt);
             }
         });
-        add(btnUpdate, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 250, 90, 35));
 
         btnDelete.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/1380632326_dialog-close.png"))); // NOI18N
         btnDelete.setText("Delete");
@@ -142,7 +133,6 @@ public class AdminPanel extends javax.swing.JPanel {
                 btnDeleteActionPerformed(evt);
             }
         });
-        add(btnDelete, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 250, 85, 35));
 
         tbAdminData.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -162,8 +152,6 @@ public class AdminPanel extends javax.swing.JPanel {
         });
         jScrollPane2.setViewportView(tbAdminData);
 
-        add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(8, 307, 950, 210));
-
         btnReset.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/1380633043_gtk-cancel.png"))); // NOI18N
         btnReset.setText("Reset");
         btnReset.addActionListener(new java.awt.event.ActionListener() {
@@ -171,8 +159,73 @@ public class AdminPanel extends javax.swing.JPanel {
                 btnResetActionPerformed(evt);
             }
         });
-        add(btnReset, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 250, 85, 35));
-        add(txtPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 150, 260, 30));
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
+        this.setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(90, 90, 90)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(131, 131, 131)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(btnAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabel5)
+                                .addComponent(jLabel4)
+                                .addComponent(jLabel3)
+                                .addComponent(jLabel6)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(41, 41, 41)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(txtRole, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtID, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel8)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(btnUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(btnDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(btnReset, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addContainerGap(130, Short.MAX_VALUE))
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jLabel8)
+                .addGap(61, 61, 61)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel3))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel4)
+                    .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel5))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel6)
+                    .addComponent(txtRole, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(37, 37, 37)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnReset, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 241, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(38, Short.MAX_VALUE))
+        );
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
@@ -197,13 +250,12 @@ public class AdminPanel extends javax.swing.JPanel {
                if (!mcRole.find()) {
                    throw new Exception("Role is not valid");
                }
-             if (LoginPanel.role<Integer.parseInt(txtRole.getText())) {
+             if (LoginFrame.role<Integer.parseInt(txtRole.getText())) {
                   String email = txtEmail.getText();
                   String password = new String(txtPassword.getPassword());
                   int role = Integer.parseInt(txtRole.getText());
                   adminBUS.addAdmin(email, password, role);
-                  JOptionPane.showMessageDialog(this, "Add success");
-                 reloadData();
+                  reloadData();
              }
              else{
                  JOptionPane.showMessageDialog(null, "Add fail");
@@ -239,7 +291,7 @@ public class AdminPanel extends javax.swing.JPanel {
                 if (!mcRole.find()) {
                   throw new Exception("Role is not valid");
                 }
-                if (Integer.parseInt(txtRole.getText())> LoginPanel.role ) {
+                if (Integer.parseInt(txtRole.getText())> LoginFrame.role ) {
                     int id = Integer.parseInt(txtID.getText());
                     String email = txtEmail.getText();
                     String password = new String(txtPassword.getPassword());
@@ -248,13 +300,12 @@ public class AdminPanel extends javax.swing.JPanel {
                     JOptionPane.showMessageDialog(this, "Update success!");
                     reloadData();
                 }
-                else if(Integer.parseInt(txtRole.getText())== LoginPanel.role && txtEmail.getText().equals(LoginPanel.email)){
+                else if(Integer.parseInt(txtRole.getText())== LoginFrame.role && txtEmail.getText().equals(LoginFrame.email)){
                     int id = Integer.parseInt(txtID.getText());
                     String email = txtEmail.getText();
                     String password = new String(txtPassword.getPassword());
                     int role = Integer.parseInt(txtRole.getText());
                     adminBUS.updateAdmin(id, email, password, role);
-                    JOptionPane.showMessageDialog(this, "Update success!");
                     reloadData();
                 }
                 else
@@ -272,14 +323,15 @@ public class AdminPanel extends javax.swing.JPanel {
             if (txtID.getText().equals("")) {
                  throw new Exception("Please select admin");
             }
-            if (Integer.parseInt(txtRole.getText())> LoginPanel.role) {
-            int id = Integer.parseInt(txtID.getText());
-            adminBUS.deleteAdmin(id);
-            JOptionPane.showMessageDialog(this, "Add success");
-            reloadData();
-            }
+            if (JOptionPane.showConfirmDialog(null, "Are you sure to delete?", "Delete", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
+                 if (Integer.parseInt(txtRole.getText())> LoginFrame.role) {
+                    int id = Integer.parseInt(txtID.getText());
+                    adminBUS.deleteAdmin(id);
+                    reloadData(); 
+               }
             else{
-                    JOptionPane.showMessageDialog(null, "Delete fail!");
+                JOptionPane.showMessageDialog(null, "Delete fail!");
+            }
             }
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(null, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
@@ -326,6 +378,7 @@ public class AdminPanel extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jTable1;
