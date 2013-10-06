@@ -12,8 +12,6 @@ import com.c1212l.etm.dto.Department;
 import com.c1212l.etm.dto.Employee;
 import com.c1212l.etm.dto.Location;
 import com.c1212l.etm.dto.Project;
-import com.c1212l.etm.ui.ProjectPanel;
-import com.c1212l.etm.ui.ProjectPanel;
 import com.c1212l.etm.util.KeyValue;
 import java.awt.event.KeyEvent;
 import java.sql.Date;
