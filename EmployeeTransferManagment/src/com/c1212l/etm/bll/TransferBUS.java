@@ -30,7 +30,7 @@ public class TransferBUS {
         return transferDAO.searchTransfer(condition);
     }
     
-    public void addTransfer(int employeeID, int transferTypeID, String reason, int fromProjectID, int toProjectID, int fromDepartmentID, int toDepartmentID, int fromLocationID, int toLocationID) throws ClassNotFoundException, SQLException{
+    public void addTransfer(int employeeID, int transferTypeID, String reason, int fromProjectID, int toProjectID, int fromDepartmentID, int toDepartmentID, int fromLocationID, int toLocationID, String letter) throws ClassNotFoundException, SQLException{
         Transfer transfer = new Transfer();
         transfer.setEmployeeID(employeeID);
         transfer.setTransferTypeID(transferTypeID);
@@ -41,6 +41,7 @@ public class TransferBUS {
         transfer.setToDepartmentID(toDepartmentID);
         transfer.setFromLocationID(fromLocationID);
         transfer.setToLocationID(toLocationID);
+        transfer.setLetter(letter);
         transferDAO.addTransfer(transfer);
     }
     

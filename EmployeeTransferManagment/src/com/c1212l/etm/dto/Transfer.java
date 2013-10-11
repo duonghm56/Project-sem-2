@@ -33,6 +33,7 @@ public class Transfer {
     private int toDepartmentID;
     private int fromLocationID;
     private int toLocationID;
+    private String letter;
 
     public int getTransferID() {
         return transferID;
@@ -154,6 +155,16 @@ public class Transfer {
         this.toLocationID = toLocationID;
     }
 
+    public String getLetter() {
+        return letter;
+    }
+
+    public void setLetter(String letter) {
+        this.letter = letter;
+    }
+
+    
+    
     public Transfer() {
     }
 

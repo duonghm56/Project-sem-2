@@ -29,7 +29,7 @@ public class EmployeeBUS {
         return employeeDAO.getAllEmployee();
     }
     
-    public void addEmployee(String emplNum, String emplName,String email,float salary,Date birthday,String address, String password, String role, int workExperience, boolean gender, int departmentID, int projectID) throws ClassNotFoundException, SQLException, Exception{
+    public void addEmployee(String emplNum, String emplName,String email,float salary,Date birthday,String address, String password, String role, int workExperience, boolean gender, int departmentID, int projectID, String photo) throws ClassNotFoundException, SQLException, Exception{
         Employee e = new Employee();
         e.setEmployeeNumber(emplNum);
         e.setEmployeeName(emplName);
@@ -43,10 +43,11 @@ public class EmployeeBUS {
         e.setGender(gender);
         e.setDepartnameID(departmentID);
         e.setProjectID(projectID);
+        e.setPhoto(photo);
         employeeDAO.addEmployee(e);
     }
     
-    public void updateEmployee(String emplNum, String emplName,String email,float salary,Date birthday,String address, String password, String role, int workExperience, boolean gender, int departmentIP, int projectID) throws ClassNotFoundException, Exception{
+    public void updateEmployee(String emplNum, String emplName,String email,float salary,Date birthday,String address, String password, String role, int workExperience, boolean gender, int departmentIP, int projectID, String photo) throws ClassNotFoundException, Exception{
         Employee e = new Employee();
         e.setEmployeeNumber(emplNum);
         e.setEmployeeName(emplName);
@@ -60,6 +61,7 @@ public class EmployeeBUS {
         e.setGender(gender);  
         e.setDepartnameID(departmentIP);
         e.setProjectID(projectID);
+        e.setPhoto(photo);
         employeeDAO.updateEmployee(e);
     }
         

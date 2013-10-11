@@ -42,6 +42,7 @@ public class TransferDAO extends ConnectionTool {
             transfer.setToDepartmentID(rs.getInt("toDepartmentID"));
             transfer.setFromLocationID(rs.getInt("fromLocationID"));
             transfer.setToLocationID(rs.getInt("toLocationID"));
+            transfer.setLetter(rs.getString("letter"));
             result.add(transfer);
         }
         closeConnection();
@@ -71,6 +72,7 @@ public class TransferDAO extends ConnectionTool {
             transfer.setToDepartmentID(rs.getInt("toDepartmentID"));
             transfer.setFromLocationID(rs.getInt("fromLocationID"));
             transfer.setToLocationID(rs.getInt("toLocationID"));
+            transfer.setLetter(rs.getString("letter"));
             result.add(transfer);
         }
         closeConnection();
@@ -145,7 +147,7 @@ public class TransferDAO extends ConnectionTool {
 
     public void addTransfer(Transfer transfer) throws ClassNotFoundException, SQLException {
         initConnection();
-        CallableStatement cs = conn.prepareCall("{call addTransfer(?, ?, ?, ?, ?, ?, ?, ?, ?)}");
+        CallableStatement cs = conn.prepareCall("{call addTransfer(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)}");
         cs.setInt(1, transfer.getEmployeeID());
         cs.setInt(2, transfer.getTransferTypeID());
         cs.setString(3, transfer.getReason());
@@ -155,6 +157,7 @@ public class TransferDAO extends ConnectionTool {
         cs.setInt(7, transfer.getToDepartmentID());
         cs.setInt(8, transfer.getFromLocationID());
         cs.setInt(9, transfer.getToLocationID());
+        cs.setString(10, transfer.getLetter());
         cs.executeUpdate();
         closeConnection();
     }

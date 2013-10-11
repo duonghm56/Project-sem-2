@@ -235,7 +235,7 @@ public class EmployeePanel extends javax.swing.JPanel {
             int gender = ((KeyValue) cmbGender.getSelectedItem()).getKey();
             int departmentID = ((KeyValue) cmbDepartment.getSelectedItem()).getKey();
             int projectID = ((KeyValue) cmbProject.getSelectedItem()).getKey();
-            employeeBUS.updateEmployee(
+            /*employeeBUS.updateEmployee(
                     txtEmployeeNumber.getText(),
                     txtEmployeeName.getText(),
                     txtEmail.getText(),
@@ -248,7 +248,7 @@ public class EmployeePanel extends javax.swing.JPanel {
                     gender == 1 ? true : false,
                     departmentID,
                     projectID);
-            reloadData();
+            reloadData();*/
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(null, ex.getMessage(), "Error:", JOptionPane.ERROR_MESSAGE);
 
@@ -260,7 +260,7 @@ public class EmployeePanel extends javax.swing.JPanel {
             convertDate();
             validateField();
 
-            employeeBUS.addEmployee(
+            /*employeeBUS.addEmployee(
                     txtEmployeeNumber.getText(),
                     txtEmployeeName.getText(),
                     txtEmail.getText(),
@@ -273,7 +273,7 @@ public class EmployeePanel extends javax.swing.JPanel {
                     ((KeyValue) cmbGender.getSelectedItem()).getKey() == 1 ? true : false,
                     ((KeyValue) cmbDepartment.getSelectedItem()).getKey(),
                     ((KeyValue) cmbProject.getSelectedItem()).getKey());
-            reloadData();
+            reloadData();*/
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(null, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
             ex.printStackTrace();

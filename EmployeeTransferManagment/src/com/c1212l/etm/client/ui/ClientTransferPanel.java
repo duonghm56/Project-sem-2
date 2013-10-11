@@ -235,10 +235,11 @@ public class ClientTransferPanel extends javax.swing.JPanel {
             int toDepartmentID = ((KeyValue) cmbToDepartment.getSelectedItem()).getKey();
             int fromLocationID = ((KeyValue) cmbFromLocation.getSelectedItem()).getKey();
             int toLocationID = ((KeyValue) cmbToLocation.getSelectedItem()).getKey();
+            String letter = txtTransferLetter.getText();
             if (transferTypeID == -1) {
                 throw new Exception("You didn't choose to transfer");
             } else {
-                transferBUS.addTransfer(employeeID, transferTypeID, reason, fromProjectID, toProjectID, fromDepartmentID, toDepartmentID, fromLocationID, toLocationID);
+                transferBUS.addTransfer(employeeID, transferTypeID, reason, fromProjectID, toProjectID, fromDepartmentID, toDepartmentID, fromLocationID, toLocationID, letter);
                 JOptionPane.showMessageDialog(null, "Your request has been sent", "Success", JOptionPane.INFORMATION_MESSAGE);
             }
         }catch(Exception ex){

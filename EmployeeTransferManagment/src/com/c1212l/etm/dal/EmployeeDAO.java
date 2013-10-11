@@ -39,6 +39,7 @@ public class EmployeeDAO extends ConnectionTool {
             e.setGender(rs.getBoolean("gender"));
             e.setDepartnameID(rs.getInt("departmentID"));
             e.setProjectID(rs.getInt("projectID"));
+            e.setPhoto(rs.getString("photo"));
             result.add(e);
         }
         closeConnection();
@@ -59,7 +60,7 @@ public class EmployeeDAO extends ConnectionTool {
             error += "Error: Duplicate employee email\n";
         }
         if (error.equals("")) {
-            CallableStatement cs = conn.prepareCall("{call addEmployee(?, ?, ?, ?,?, ?, ?,?,?,?,?,?)}");
+            CallableStatement cs = conn.prepareCall("{call addEmployee(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)}");
             cs.setString(1, employee.getEmployeeNumber());
             cs.setString(2, employee.getEmployeeName());
             cs.setString(3, employee.getEmail());
@@ -72,6 +73,7 @@ public class EmployeeDAO extends ConnectionTool {
             cs.setBoolean(10, employee.getGender());
             cs.setInt(11, employee.getDepartnameID());
             cs.setInt(12, employee.getProjectID());
+            cs.setString(13,employee.getPhoto());
             cs.executeUpdate();
         } else {
             throw new Exception(error);
@@ -81,7 +83,7 @@ public class EmployeeDAO extends ConnectionTool {
 
     public void updateEmployee(Employee employee) throws ClassNotFoundException, Exception {
         initConnection();
-        CallableStatement cs = conn.prepareCall("{call updateEmployee(?, ?, ?, ?, ?,?,?,?,?,?,?,?)}");
+        CallableStatement cs = conn.prepareCall("{call updateEmployee(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)}");
         cs.setString(1, employee.getEmployeeNumber());
         cs.setString(2, employee.getEmployeeName());
         cs.setString(3, employee.getEmail());
@@ -94,6 +96,7 @@ public class EmployeeDAO extends ConnectionTool {
         cs.setBoolean(10, employee.getGender());
         cs.setInt(11, employee.getDepartnameID());
         cs.setInt(12, employee.getProjectID());
+        cs.setString(13,employee.getPhoto());
         cs.executeUpdate();
         closeConnection();
     }
@@ -145,6 +148,7 @@ public class EmployeeDAO extends ConnectionTool {
             e.setGender(rs.getBoolean("gender"));
             e.setDepartnameID(rs.getInt("departmentID"));
             e.setProjectID(rs.getInt("projectID"));
+            e.setPhoto(rs.getString("photo"));
             result.add(e);
         }
         closeConnection();
@@ -172,6 +176,7 @@ public class EmployeeDAO extends ConnectionTool {
                 e.setGender(rs.getBoolean("gender"));
                 e.setDepartnameID(rs.getInt("departmentID"));
                 e.setProjectID(rs.getInt("projectID"));
+                e.setPhoto(rs.getString("photo"));
             }
             closeConnection();
             return e;

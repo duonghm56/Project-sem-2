@@ -29,6 +29,7 @@ public class Employee {
     private String address;
     private Date birthday;
     private float salary;
+    private String photo;
 
     public Employee() {
     }
@@ -151,6 +152,7 @@ public class Employee {
                 department != null
                 ? department.getDepartmentName() + " - " + location.getLocationName()
                 : "undifined");
+        result.add(photo);
         return result;
     }
 
@@ -160,5 +162,15 @@ public class Employee {
 
     public void setEmail(String email) {
         this.email = email;
-    }    
+    }   
+
+    public String getPhoto() {
+        return photo;
+    }
+
+    public void setPhoto(String photo) {
+        this.photo = photo;
+    }
+    
+    
 }

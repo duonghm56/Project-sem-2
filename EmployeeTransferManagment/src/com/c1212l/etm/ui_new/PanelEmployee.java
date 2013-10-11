@@ -4,6 +4,22 @@
  */
 package com.c1212l.etm.ui_new;
 
+import com.c1212l.etm.bll.DepartmentBUS;
+import com.c1212l.etm.bll.EmployeeBUS;
+import com.c1212l.etm.bll.ProjectBUS;
+import com.c1212l.etm.dal.LocationDAO;
+import com.c1212l.etm.dto.Department;
+import com.c1212l.etm.dto.Employee;
+import com.c1212l.etm.dto.Location;
+import com.c1212l.etm.dto.Project;
+import com.c1212l.etm.util.KeyValue;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.Vector;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author DUONGHM
@@ -15,6 +31,7 @@ public class PanelEmployee extends javax.swing.JPanel {
      */
     public PanelEmployee() {
         initComponents();
+        reloadData();
     }
 
     /**
@@ -56,9 +73,9 @@ public class PanelEmployee extends javax.swing.JPanel {
         lblTotlalSalary = new javax.swing.JLabel();
         rightPanel = new javax.swing.JPanel();
         toolBarButton = new javax.swing.JToolBar();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        btnAdd = new javax.swing.JButton();
+        btnUpdate = new javax.swing.JButton();
+        btnDelete = new javax.swing.JButton();
         panelBasicInfor = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         txtNumber = new javax.swing.JTextField();
@@ -260,7 +277,7 @@ public class PanelEmployee extends javax.swing.JPanel {
                 .addGroup(panelTotalInforLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel35)
                     .addComponent(lblTotlalSalary))
-                .addContainerGap(19, Short.MAX_VALUE))
+                .addContainerGap(47, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout leftPanelLayout = new javax.swing.GroupLayout(leftPanel);
@@ -290,37 +307,34 @@ public class PanelEmployee extends javax.swing.JPanel {
 
         toolBarButton.setRollover(true);
 
-        jButton1.setText("jButton1");
-        jButton1.setFocusable(false);
-        jButton1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButton1.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        toolBarButton.add(jButton1);
+        btnAdd.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image_new/new1_32.png"))); // NOI18N
+        btnAdd.setText("Add");
+        btnAdd.setFocusable(false);
+        btnAdd.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        btnAdd.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        toolBarButton.add(btnAdd);
 
-        jButton2.setText("jButton2");
-        jButton2.setFocusable(false);
-        jButton2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButton2.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        toolBarButton.add(jButton2);
+        btnUpdate.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image_new/save_32.png"))); // NOI18N
+        btnUpdate.setText("Update");
+        btnUpdate.setFocusable(false);
+        btnUpdate.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        btnUpdate.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        toolBarButton.add(btnUpdate);
 
-        jButton3.setText("jButton3");
-        jButton3.setFocusable(false);
-        jButton3.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButton3.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        toolBarButton.add(jButton3);
+        btnDelete.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image_new/delete_32.png"))); // NOI18N
+        btnDelete.setText("Delete");
+        btnDelete.setFocusable(false);
+        btnDelete.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        btnDelete.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        toolBarButton.add(btnDelete);
 
         panelBasicInfor.setBorder(javax.swing.BorderFactory.createTitledBorder("Basic Information"));
 
         jLabel1.setText("Employee Number");
 
-        txtNumber.setText("jTextField1");
-
         jLabel2.setText("Employee Name");
 
-        txtName.setText("jTextField1");
-
         jLabel3.setText("Email");
-
-        txtEmail.setText("jTextField1");
 
         jLabel13.setText("Gender");
 
@@ -330,11 +344,7 @@ public class PanelEmployee extends javax.swing.JPanel {
 
         jLabel6.setText("Address");
 
-        txtAddress.setText("jTextField1");
-
         jLabel12.setText("Photo");
-
-        txtPhoto.setText("jTextField1");
 
         javax.swing.GroupLayout panelBasicInforLayout = new javax.swing.GroupLayout(panelBasicInfor);
         panelBasicInfor.setLayout(panelBasicInforLayout);
@@ -355,54 +365,62 @@ public class PanelEmployee extends javax.swing.JPanel {
                     .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(panelBasicInforLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel13)
-                    .addComponent(jLabel4)
-                    .addComponent(jLabel6)
-                    .addComponent(jLabel12))
-                .addGap(18, 18, 18)
-                .addGroup(panelBasicInforLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(panelBasicInforLayout.createSequentialGroup()
+                        .addGroup(panelBasicInforLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel13)
+                            .addComponent(jLabel6)
+                            .addComponent(jLabel12))
+                        .addGap(19, 19, 19))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelBasicInforLayout.createSequentialGroup()
+                        .addComponent(jLabel4)
+                        .addGap(18, 18, 18)))
+                .addGroup(panelBasicInforLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(txtAddress)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, panelBasicInforLayout.createSequentialGroup()
                         .addGap(0, 2, Short.MAX_VALUE)
                         .addGroup(panelBasicInforLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(cmbGender, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(dcBirthday, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(txtAddress)
+                            .addComponent(dcBirthday, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addComponent(txtPhoto))
-                .addGap(69, 69, 69))
+                .addGap(24, 24, 24))
         );
         panelBasicInforLayout.setVerticalGroup(
             panelBasicInforLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelBasicInforLayout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelBasicInforLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(panelBasicInforLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(txtNumber, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel13)
-                    .addComponent(cmbGender, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(panelBasicInforLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(panelBasicInforLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel2)
-                        .addComponent(txtName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel4))
-                    .addComponent(dcBirthday, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(panelBasicInforLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel3)
-                    .addComponent(jLabel6)
-                    .addComponent(txtAddress, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGroup(panelBasicInforLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(panelBasicInforLayout.createSequentialGroup()
-                        .addGap(5, 5, 5)
-                        .addGroup(panelBasicInforLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel5)))
-                    .addGroup(panelBasicInforLayout.createSequentialGroup()
+                        .addGroup(panelBasicInforLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel13)
+                            .addComponent(cmbGender, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(dcBirthday, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(panelBasicInforLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel6)
+                            .addComponent(txtAddress, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(panelBasicInforLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel12)
-                            .addComponent(txtPhoto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                            .addComponent(txtPhoto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(panelBasicInforLayout.createSequentialGroup()
+                        .addGroup(panelBasicInforLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel1)
+                            .addComponent(txtNumber, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(panelBasicInforLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel2)
+                            .addComponent(txtName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel4))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(panelBasicInforLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel3))
+                        .addGap(5, 5, 5)
+                        .addGroup(panelBasicInforLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel5))))
+                .addContainerGap())
         );
 
         panelWorkInfor.setBorder(javax.swing.BorderFactory.createTitledBorder("Work Information"));
@@ -499,6 +517,11 @@ public class PanelEmployee extends javax.swing.JPanel {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        tblEmployee.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                tblEmployeeMouseReleased(evt);
+            }
+        });
         jScrollPane2.setViewportView(tblEmployee);
 
         javax.swing.GroupLayout panelTableLayout = new javax.swing.GroupLayout(panelTable);
@@ -517,8 +540,7 @@ public class PanelEmployee extends javax.swing.JPanel {
             .addGap(0, 155, Short.MAX_VALUE)
             .addGroup(panelTableLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelTableLayout.createSequentialGroup()
-                    .addContainerGap(20, Short.MAX_VALUE)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 144, Short.MAX_VALUE)
                     .addContainerGap()))
         );
 
@@ -527,31 +549,33 @@ public class PanelEmployee extends javax.swing.JPanel {
         rightPanelLayout.setHorizontalGroup(
             rightPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(rightPanelLayout.createSequentialGroup()
-                .addComponent(toolBarButton, javax.swing.GroupLayout.PREFERRED_SIZE, 268, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(36, 36, 36)
-                .addComponent(txtEmployeeID, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
-            .addGroup(rightPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(rightPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addComponent(panelTable, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(panelWorkInfor, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(panelBasicInfor, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(rightPanelLayout.createSequentialGroup()
+                .addComponent(toolBarButton, javax.swing.GroupLayout.PREFERRED_SIZE, 268, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(36, 36, 36)
+                .addComponent(txtEmployeeID, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         rightPanelLayout.setVerticalGroup(
             rightPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(rightPanelLayout.createSequentialGroup()
                 .addGroup(rightPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(toolBarButton, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtEmployeeID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(rightPanelLayout.createSequentialGroup()
+                        .addComponent(txtEmployeeID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 22, Short.MAX_VALUE))
+                    .addComponent(toolBarButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(panelBasicInfor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(panelWorkInfor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(panelTable, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         jSplitPane1.setRightComponent(rightPanel);
@@ -572,14 +596,19 @@ public class PanelEmployee extends javax.swing.JPanel {
                 .addComponent(jSplitPane1))
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void tblEmployeeMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblEmployeeMouseReleased
+        updateFieldWhenSelectEmployee();
+    }//GEN-LAST:event_tblEmployeeMouseReleased
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnAdd;
+    private javax.swing.JButton btnDelete;
+    private javax.swing.JButton btnUpdate;
     private javax.swing.JComboBox cmbDepartment;
     private javax.swing.JComboBox cmbGender;
     private javax.swing.JComboBox cmbProject;
     private com.toedter.calendar.JDateChooser dcBirthday;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -641,4 +670,119 @@ public class PanelEmployee extends javax.swing.JPanel {
     private javax.swing.JTextField txtSalary;
     private javax.swing.JTextField txtWorkExperience;
     // End of variables declaration//GEN-END:variables
+    DefaultTableModel tblModel;
+    ArrayList<Employee> lstEmpl;
+    EmployeeBUS employeeBUS = new EmployeeBUS();
+    
+    private void initTable() {
+        Vector header = new Vector();
+        header.add("ID");
+        header.add("Number");
+        header.add("Name");
+        header.add("Email");
+        header.add("Salary");
+        header.add("Birthday");
+        header.add("Address");
+        header.add("Password");        
+        header.add("Role");
+        header.add("Experience");
+        header.add("Gender");
+        header.add("Project");
+        header.add("Department");
+        header.add("Photo");
+        tblModel = new DefaultTableModel(header, 0);
+        tblEmployee.setModel(tblModel);
+        //TableColumn col = tblEmployee.getColumnModel().getColumn(3);
+        //tblEmployee.getColumnModel().removeColumn(col);
+
+        makeColumnInvisible(0);
+        makeColumnInvisible(3);
+        makeColumnInvisible(5);
+        makeColumnInvisible(6);
+        makeColumnInvisible(7);
+        makeColumnInvisible(8);
+    }
+
+    private void makeColumnInvisible(int col) {
+        tblEmployee.getColumnModel().getColumn(col).setMaxWidth(0);
+        tblEmployee.getColumnModel().getColumn(col).setMinWidth(0);
+        tblEmployee.getColumnModel().getColumn(col).setPreferredWidth(0);
+        tblEmployee.getColumnModel().getColumn(col).setResizable(false);
+    }
+
+    private void fillData(ArrayList<Employee> lst) {
+        if (lst != null) {
+            for (Employee e : lst) {
+                tblModel.addRow(e.getVector());
+            }
+        }
+    }
+    
+    private void initTextField() {
+        txtEmployeeID.setText("");
+        txtNumber.setText("");
+        txtName.setText("");
+        txtEmployeeRole.setText("");
+        txtPassword.setText("");
+        txtWorkExperience.setText("");
+    }
+    
+    private void initCmbGender() {
+        cmbGender.removeAllItems();
+        cmbGender.addItem(new KeyValue(-1, ""));
+        cmbGender.addItem(new KeyValue(1, "Male"));
+        cmbGender.addItem(new KeyValue(0, "Female"));
+    }
+    
+    private void initCmbProject() throws ClassNotFoundException, SQLException {
+        cmbProject.removeAllItems();
+        cmbProject.addItem(new KeyValue(-1, ""));
+        ProjectBUS projectBUS = new ProjectBUS();
+        ArrayList<Project> arrProject = projectBUS.getAllProject();
+        for (Project p : arrProject) {
+            cmbProject.addItem(new KeyValue(p.getProjectID(), p.getProjectName()));
+        }
+    }
+    
+    private void initCmbDepartment() throws ClassNotFoundException, SQLException {
+        cmbDepartment.removeAllItems();
+        cmbDepartment.addItem(new KeyValue(-1, ""));
+        DepartmentBUS departmentBUS = new DepartmentBUS();
+        ArrayList<Department> arrDepartment = departmentBUS.getAllDepartment();
+        for (Department department : arrDepartment) {
+            Location location = new LocationDAO().getLocationById(department.getLocationID());
+            cmbDepartment.addItem(new KeyValue(department.getDepartmentID(), department.getDepartmentName() + " - " + location.getLocationName()));
+        }
+    }
+    
+    private void reloadData() {
+        try {
+            initTable();
+            fillData(employeeBUS.getAllEmployees());
+            initTextField();
+            initCmbGender();
+            initCmbProject();
+            initCmbDepartment();
+        } catch(Exception ex){
+            ex.printStackTrace();
+        }
+    }
+    
+    private void updateFieldWhenSelectEmployee() {
+        int selectedRow = tblEmployee.getSelectedRow();
+        txtEmployeeID.setText(tblEmployee.getValueAt(selectedRow, 0).toString());
+        txtNumber.setText(tblEmployee.getValueAt(selectedRow, 1).toString());
+        txtName.setText(tblEmployee.getValueAt(selectedRow, 2).toString());
+        txtEmail.setText(tblEmployee.getValueAt(selectedRow, 3).toString());
+        txtSalary.setText(tblEmployee.getValueAt(selectedRow, 4).toString());
+//        dcBirthday.setDate(tblEmployee.getValueAt(selectedRow, 5).toString());
+        txtAddress.setText(tblEmployee.getValueAt(selectedRow, 6).toString());
+        txtPassword.setText(tblEmployee.getValueAt(selectedRow, 7).toString());
+        txtEmployeeRole.setText(tblEmployee.getValueAt(selectedRow, 8).toString());
+        txtWorkExperience.setText(tblEmployee.getValueAt(selectedRow, 9).toString());
+        cmbGender.setSelectedItem(new KeyValue(0, tblEmployee.getValueAt(selectedRow, 10).toString()));
+        cmbProject.setSelectedItem(new KeyValue(0, tblEmployee.getValueAt(selectedRow, 11).toString()));
+        cmbDepartment.setSelectedItem(new KeyValue(0, tblEmployee.getValueAt(selectedRow, 12).toString()));
+    }
+    
 }
