@@ -12,8 +12,6 @@ import com.c1212l.etm.dto.Department;
 import com.c1212l.etm.dto.Employee;
 import com.c1212l.etm.dto.Location;
 import com.c1212l.etm.dto.Project;
-import com.c1212l.etm.ui.ProjectPanel;
-import com.c1212l.etm.ui.ProjectPanel;
 import com.c1212l.etm.util.KeyValue;
 import java.awt.event.KeyEvent;
 import java.sql.Date;
@@ -26,7 +24,6 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableColumn;
 
 /**
  *
@@ -251,7 +248,6 @@ public class EmployeePanel extends javax.swing.JPanel {
                     gender == 1 ? true : false,
                     departmentID,
                     projectID);
-            JOptionPane.showMessageDialog(null, "Update success!");
             reloadData();
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(null, ex.getMessage(), "Error:", JOptionPane.ERROR_MESSAGE);
@@ -277,7 +273,6 @@ public class EmployeePanel extends javax.swing.JPanel {
                     ((KeyValue) cmbGender.getSelectedItem()).getKey() == 1 ? true : false,
                     ((KeyValue) cmbDepartment.getSelectedItem()).getKey(),
                     ((KeyValue) cmbProject.getSelectedItem()).getKey());
-            JOptionPane.showMessageDialog(null, "Add success!");
             reloadData();
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(null, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
@@ -305,7 +300,6 @@ public class EmployeePanel extends javax.swing.JPanel {
             try {
                 if (JOptionPane.showConfirmDialog(null, "Are you sure to delete?", "Delete", JOptionPane.YES_NO_OPTION) == JOptionPane.OK_OPTION) {
                     employeeBUS.deleteEmployee(txtEmployeeNumber.getText());
-                    JOptionPane.showMessageDialog(null, "Delete success!");
                     reloadData();
                 }
             } catch (Exception ex) {

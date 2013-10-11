@@ -122,7 +122,7 @@ public  class AdminUI extends javax.swing.JFrame {
         jTabbedPane1.addTab("Location Manager", panelLocation);
 
         panelAccountManager.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-        panelAccountManager.add(adminPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 970, -1));
+        panelAccountManager.add(adminPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 0, 970, -1));
 
         jTabbedPane1.addTab("Acount Manager", panelAccountManager);
 

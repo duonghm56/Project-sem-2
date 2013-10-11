@@ -9,14 +9,13 @@ import com.c1212l.etm.ui.LoginFrame;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.Vector;
 
 /**
  *
  * @author Android21SDK
  */
 public class EmployeeClientDAO  extends ConnectionTool {
-    public Vector<EmployeeClient> getEmployeeClient() throws ClassNotFoundException, SQLException {
+    public EmployeeClient getEmployeeClient() throws ClassNotFoundException, SQLException {
         initConnection();
         Statement stmt = conn.createStatement();
         ResultSet rs = stmt.executeQuery("Select * from employee Inner Join department On \n" +
@@ -24,9 +23,8 @@ public class EmployeeClientDAO  extends ConnectionTool {
 "         Inner Join location On department.locationID = location.locationID\n" +
 "         Inner Join project On project.projectID =employee.projectID\n" +
 "         Where employee.email = "+"'"+LoginFrame.email+"'");
-        Vector<EmployeeClient> result = new Vector<>();
+        EmployeeClient e = new EmployeeClient();
         while (rs.next()) {
-            EmployeeClient e = new EmployeeClient();
             e.setFullName(rs.getString("employeeName"));
             e.setGender(rs.getBoolean("gender"));
             e.setEmail(rs.getString("email"));
@@ -37,10 +35,9 @@ public class EmployeeClientDAO  extends ConnectionTool {
             e.setCurrentLocation(rs.getString("locationName"));
             e.setCurrentProject(rs.getString("projectName"));
             e.setRole(rs.getString("role"));
-            e.setWorkExperience(rs.getString("workExperience"));
-            result.add(e);   
+            e.setWorkExperience(rs.getString("workExperience")); 
         }
         closeConnection();
-        return result;
+        return e;
     }
 }

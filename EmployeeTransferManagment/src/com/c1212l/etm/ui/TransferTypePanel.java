@@ -24,16 +24,10 @@ public class TransferTypePanel extends javax.swing.JPanel {
      * Creates new form TransferTypePanel
      */
     public TransferTypePanel() {
-         try {
             initComponents();
             initTable();
-            lstTransferType = transferTypeBUS.getAllTransferType();
-            fillData(lstTransferType);
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(ProjectPanel.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (SQLException ex) {
-            Logger.getLogger(ProjectPanel.class.getName()).log(Level.SEVERE, null, ex);
-        }
+            reloadData();
+    
     }
 
     /**
@@ -210,7 +204,6 @@ public class TransferTypePanel extends javax.swing.JPanel {
                         Integer.parseInt(txtTransferTypeID.getText()),
                         txtTransferTypeName.getText());
                 reloadData();
-                JOptionPane.showMessageDialog(null, "Update Success !!!");
             } catch (Exception ex) {
                 JOptionPane.showMessageDialog(null, "Update Fail !!!");
                 ex.printStackTrace();

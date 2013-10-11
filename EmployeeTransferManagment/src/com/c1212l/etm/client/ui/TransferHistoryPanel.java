@@ -6,6 +6,7 @@ package com.c1212l.etm.client.ui;
 
 import com.c1212l.etm.bll.TransferHistoryBUS;
 import com.c1212l.etm.dto.Transfer;
+import com.c1212l.etm.ui.ProjectPanel;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Vector;
@@ -23,15 +24,9 @@ public class TransferHistoryPanel extends javax.swing.JPanel {
      * Creates new form TransferHistoryPanel
      */
     public TransferHistoryPanel() {
-        try {
             initComponents();
             initTable();
-             fillData(transferHistoryBUS.getTransferHistory());
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(TransferHistoryPanel.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (SQLException ex) {
-            Logger.getLogger(TransferHistoryPanel.class.getName()).log(Level.SEVERE, null, ex);
-        }
+            reloadData();
     }
 
     /**
@@ -146,6 +141,16 @@ public class TransferHistoryPanel extends javax.swing.JPanel {
             for (Transfer transfer: lst) {
                 tblModel.addRow(transfer.getVector());
             }
+        }
+    }
+       private void reloadData() {
+        try {
+            initTable();
+            fillData(transferHistoryBUS.getTransferHistory());
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(ProjectPanel.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(ProjectPanel.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 }

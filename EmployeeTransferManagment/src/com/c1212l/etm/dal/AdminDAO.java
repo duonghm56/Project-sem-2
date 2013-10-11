@@ -8,7 +8,6 @@ import com.c1212l.etm.dto.Admin;
 import com.c1212l.etm.dto.ChangePassword;
 import com.c1212l.etm.ui.LoginFrame;
 import java.sql.CallableStatement;
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;

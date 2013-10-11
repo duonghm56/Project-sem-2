@@ -9,8 +9,6 @@ import com.c1212l.etm.dal.ProjectDAO;
 import java.sql.Date;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *

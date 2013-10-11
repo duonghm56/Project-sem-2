@@ -378,7 +378,6 @@ public class TransferPanel extends javax.swing.JPanel {
             try {
                 if (JOptionPane.showConfirmDialog(null, "Are you sure to delete?", "Delete", JOptionPane.YES_NO_OPTION) == JOptionPane.OK_OPTION) {
                     transferBUS.deleteTransfer(Integer.parseInt(txtTransferID.getText()));
-                    JOptionPane.showMessageDialog(null, "Delete success!");
                     reloadData();
                 }
             } catch (Exception ex) {

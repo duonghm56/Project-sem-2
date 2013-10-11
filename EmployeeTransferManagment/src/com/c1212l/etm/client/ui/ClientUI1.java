@@ -32,8 +32,8 @@ public class ClientUI1 extends javax.swing.JFrame {
         transferHistoryPanel1 = new com.c1212l.etm.client.ui.TransferHistoryPanel();
         lblEmail = new javax.swing.JLabel();
         jTabbedPane1 = new javax.swing.JTabbedPane();
-        employeeClientPanel1 = new com.c1212l.etm.client.ui.EmployeeClientPanel();
         transferHistoryPanel3 = new com.c1212l.etm.client.ui.TransferHistoryPanel();
+        employeeClientPanel1 = new com.c1212l.etm.client.ui.EmployeeClientPanel();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
@@ -51,8 +51,8 @@ public class ClientUI1 extends javax.swing.JFrame {
         lblEmail.setText("Email:");
 
         jTabbedPane1.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
-        jTabbedPane1.addTab("Employee Profiles", employeeClientPanel1);
         jTabbedPane1.addTab("Transfer History", transferHistoryPanel3);
+        jTabbedPane1.addTab("Employee Profiles", employeeClientPanel1);
 
         jButton1.setText("jButton1");
 

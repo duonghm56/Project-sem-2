@@ -4,10 +4,8 @@
  */
 package com.c1212l.etm.dal;
 
-import com.c1212l.etm.bll.EmployeeBUS;
 import com.c1212l.etm.dto.ChangePassword;
 import com.c1212l.etm.dto.Employee;
-import com.c1212l.etm.ui.EmployeePanel;
 import java.sql.CallableStatement;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;

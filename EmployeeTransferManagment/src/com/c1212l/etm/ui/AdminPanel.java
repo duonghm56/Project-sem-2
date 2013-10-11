@@ -6,8 +6,6 @@ package com.c1212l.etm.ui;
 
 import com.c1212l.etm.bll.AdminBUS;
 import com.c1212l.etm.dto.Admin;
-import com.c1212l.etm.dto.Location;
-import com.c1212l.etm.util.KeyValue;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Vector;
@@ -28,17 +26,10 @@ public class AdminPanel extends javax.swing.JPanel {
      * Creates new form AdminPanel
      */
     public AdminPanel() {
-          try {
             initComponents();
             initTextField();
             initTable();
-            lstAdmin = adminBUS.getAllAdmin();
-            fillData(lstAdmin);
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(ProjectPanel.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (SQLException ex) {
-            Logger.getLogger(ProjectPanel.class.getName()).log(Level.SEVERE, null, ex);
-        }
+            reloadData();
     }
 
     /**
@@ -297,7 +288,6 @@ public class AdminPanel extends javax.swing.JPanel {
                     String password = new String(txtPassword.getPassword());
                     int role = Integer.parseInt(txtRole.getText());
                     adminBUS.updateAdmin(id, email, password, role);
-                    JOptionPane.showMessageDialog(this, "Update success!");
                     reloadData();
                 }
                 else if(Integer.parseInt(txtRole.getText())== LoginFrame.role && txtEmail.getText().equals(LoginFrame.email)){

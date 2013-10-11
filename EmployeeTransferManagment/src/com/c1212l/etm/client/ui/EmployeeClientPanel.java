@@ -4,6 +4,7 @@
  */
 package com.c1212l.etm.client.ui;
 
+import com.c1212l.etm.bll.EmployeeClientBUS;
 import com.c1212l.etm.dal.EmployeeClientDAO;
 import com.c1212l.etm.dto.Employee;
 import com.c1212l.etm.dto.EmployeeClient;
@@ -22,8 +23,14 @@ public class EmployeeClientPanel extends javax.swing.JPanel {
      * Creates new form EmployeeClientPanel
      */
     public EmployeeClientPanel() {
-        initComponents();
-        loadData();
+        try {
+            initComponents();
+            loadData();
+        } catch (SQLException ex) {
+            Logger.getLogger(EmployeeClientPanel.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(EmployeeClientPanel.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
@@ -35,163 +42,110 @@ public class EmployeeClientPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        txtCurrentDepartment = new javax.swing.JTextField();
-        txtWorkExperience = new javax.swing.JTextField();
-        txtCurrentLocation = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        txtSalary = new javax.swing.JTextField();
-        txtEmail = new javax.swing.JTextField();
-        jLabel13 = new javax.swing.JLabel();
-        txtBirthday = new javax.swing.JTextField();
-        txtGender = new javax.swing.JTextField();
-        txtFullName = new javax.swing.JTextField();
-        jLabel12 = new javax.swing.JLabel();
-        jLabel10 = new javax.swing.JLabel();
-        jLabel11 = new javax.swing.JLabel();
+        lblTitle4 = new javax.swing.JLabel();
+        lblTitle3 = new javax.swing.JLabel();
+        lblTitle1 = new javax.swing.JLabel();
+        lblTitle2 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
-        txtCurrentProject = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
-        txtRole = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
-        txtAddress = new javax.swing.JTextField();
+        lblFullName = new javax.swing.JLabel();
+        lblGender = new javax.swing.JLabel();
+        lblBirthday = new javax.swing.JLabel();
+        lblEmail = new javax.swing.JLabel();
+        lblAddress = new javax.swing.JLabel();
+        lblCurrentDepartment = new javax.swing.JLabel();
+        lblCurrentProject = new javax.swing.JLabel();
+        lblCurrentLocation = new javax.swing.JLabel();
+        lblRole = new javax.swing.JLabel();
+        lblWorkExperience = new javax.swing.JLabel();
+        lblSalary = new javax.swing.JLabel();
 
         setBorder(javax.swing.BorderFactory.createTitledBorder("User Profile"));
-
-        txtCurrentDepartment.setEnabled(false);
-
-        txtWorkExperience.setEnabled(false);
-
-        txtCurrentLocation.setEnabled(false);
+        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel6.setText("Email");
+        add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(42, 135, -1, -1));
 
         jLabel7.setText("Address");
+        add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(42, 167, -1, -1));
 
         jLabel5.setText("Birthday");
+        add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(42, 103, -1, -1));
 
-        txtSalary.setEnabled(false);
+        lblTitle4.setText("Salary");
+        add(lblTitle4, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 190, -1, -1));
 
-        txtEmail.setEnabled(false);
+        lblTitle3.setText("Work Experience");
+        add(lblTitle3, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 160, -1, -1));
 
-        jLabel13.setText("Salary");
+        lblTitle1.setText("Current Location");
+        add(lblTitle1, new org.netbeans.lib.awtextra.AbsoluteConstraints(489, 103, -1, -1));
 
-        txtBirthday.setEnabled(false);
-
-        txtGender.setEnabled(false);
-
-        txtFullName.setEnabled(false);
-
-        jLabel12.setText("Work Experience");
-
-        jLabel10.setText("Current Location");
-
-        jLabel11.setText("Role");
+        lblTitle2.setText("Role");
+        add(lblTitle2, new org.netbeans.lib.awtextra.AbsoluteConstraints(489, 135, -1, -1));
 
         jLabel9.setText("Current Project");
-
-        txtCurrentProject.setEnabled(false);
+        add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(489, 71, -1, -1));
 
         jLabel4.setText("Gender");
+        add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(42, 71, -1, -1));
 
         jLabel8.setText("Current Department");
-
-        txtRole.setEnabled(false);
+        add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(489, 39, -1, -1));
 
         jLabel3.setText("Full Name:");
+        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(42, 39, -1, -1));
 
-        txtAddress.setEnabled(false);
+        lblFullName.setForeground(new java.awt.Color(153, 0, 0));
+        lblFullName.setText("jLabel1");
+        add(lblFullName, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 40, -1, -1));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(36, 36, 36)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel3)
-                    .addComponent(jLabel4)
-                    .addComponent(jLabel5)
-                    .addComponent(jLabel6)
-                    .addComponent(jLabel7))
-                .addGap(55, 55, 55)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(txtFullName)
-                    .addComponent(txtGender, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
-                    .addComponent(txtBirthday)
-                    .addComponent(txtEmail)
-                    .addComponent(txtAddress))
-                .addGap(142, 142, 142)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel8)
-                    .addComponent(jLabel9)
-                    .addComponent(jLabel10)
-                    .addComponent(jLabel11)
-                    .addComponent(jLabel12)
-                    .addComponent(jLabel13))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(txtCurrentDepartment)
-                    .addComponent(txtWorkExperience)
-                    .addComponent(txtCurrentLocation, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(txtRole, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtSalary)
-                    .addComponent(txtCurrentProject))
-                .addGap(126, 126, 126))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(20, 20, 20)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(txtFullName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel8)
-                    .addComponent(txtCurrentDepartment, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
-                    .addComponent(txtGender, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel9)
-                    .addComponent(txtCurrentProject, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel5)
-                            .addComponent(txtBirthday, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel10))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel6)
-                            .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel7)
-                            .addComponent(txtAddress, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel11)
-                            .addComponent(txtRole, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(27, 27, 27)
-                        .addComponent(txtCurrentLocation, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel12)
-                    .addComponent(txtWorkExperience, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel13)
-                    .addComponent(txtSalary, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
+        lblGender.setForeground(new java.awt.Color(153, 0, 0));
+        lblGender.setText("jLabel2");
+        add(lblGender, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 70, -1, -1));
+
+        lblBirthday.setForeground(new java.awt.Color(153, 0, 0));
+        lblBirthday.setText("jLabel14");
+        add(lblBirthday, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 100, -1, -1));
+
+        lblEmail.setForeground(new java.awt.Color(153, 0, 0));
+        lblEmail.setText("jLabel15");
+        add(lblEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 130, -1, -1));
+
+        lblAddress.setForeground(new java.awt.Color(153, 0, 0));
+        lblAddress.setText("jLabel16");
+        add(lblAddress, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 170, -1, -1));
+
+        lblCurrentDepartment.setForeground(new java.awt.Color(153, 0, 0));
+        lblCurrentDepartment.setText("jLabel17");
+        add(lblCurrentDepartment, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 40, -1, -1));
+
+        lblCurrentProject.setForeground(new java.awt.Color(153, 0, 0));
+        lblCurrentProject.setText("jLabel18");
+        add(lblCurrentProject, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 70, -1, -1));
+
+        lblCurrentLocation.setForeground(new java.awt.Color(153, 0, 0));
+        lblCurrentLocation.setText("jLabel19");
+        add(lblCurrentLocation, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 100, -1, -1));
+
+        lblRole.setForeground(new java.awt.Color(153, 0, 0));
+        lblRole.setText("jLabel20");
+        add(lblRole, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 130, -1, -1));
+
+        lblWorkExperience.setForeground(new java.awt.Color(153, 0, 0));
+        lblWorkExperience.setText("jLabel21");
+        add(lblWorkExperience, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 160, -1, -1));
+
+        lblSalary.setForeground(new java.awt.Color(153, 0, 0));
+        lblSalary.setText("jLabel22");
+        add(lblSalary, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 190, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel12;
-    private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -199,49 +153,45 @@ public class EmployeeClientPanel extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
-    private javax.swing.JTextField txtAddress;
-    private javax.swing.JTextField txtBirthday;
-    private javax.swing.JTextField txtCurrentDepartment;
-    private javax.swing.JTextField txtCurrentLocation;
-    private javax.swing.JTextField txtCurrentProject;
-    private javax.swing.JTextField txtEmail;
-    private javax.swing.JTextField txtFullName;
-    private javax.swing.JTextField txtGender;
-    private javax.swing.JTextField txtRole;
-    private javax.swing.JTextField txtSalary;
-    private javax.swing.JTextField txtWorkExperience;
+    private javax.swing.JLabel lblAddress;
+    private javax.swing.JLabel lblBirthday;
+    private javax.swing.JLabel lblCurrentDepartment;
+    private javax.swing.JLabel lblCurrentLocation;
+    private javax.swing.JLabel lblCurrentProject;
+    private javax.swing.JLabel lblEmail;
+    private javax.swing.JLabel lblFullName;
+    private javax.swing.JLabel lblGender;
+    private javax.swing.JLabel lblRole;
+    private javax.swing.JLabel lblSalary;
+    private javax.swing.JLabel lblTitle1;
+    private javax.swing.JLabel lblTitle2;
+    private javax.swing.JLabel lblTitle3;
+    private javax.swing.JLabel lblTitle4;
+    private javax.swing.JLabel lblWorkExperience;
     // End of variables declaration//GEN-END:variables
-   private EmployeeClientDAO emplClientDAO = new EmployeeClientDAO();
-    private Vector<EmployeeClient> vctList = new Vector<EmployeeClient>();
-    private Employee employee= new Employee();
-    private void loadData()
+   private EmployeeClientBUS emplClientBUS = new EmployeeClientBUS();
+//   private Employee employee = new Employee();
+    private void loadData() throws SQLException, ClassNotFoundException
     {
-        try {
-            vctList = emplClientDAO.getEmployeeClient();
-            for (int i = 0; i < vctList.size(); i++) {
-                EmployeeClient employeeClient  = vctList.elementAt(i);
-                txtFullName.setText(employeeClient.getFullName());
-                txtEmail.setText(employeeClient.getEmail());
-                txtSalary.setText(employeeClient.getSalary()+"");
-                txtBirthday.setText(employeeClient.getBirthday()+"");
-                txtAddress.setText(employeeClient.getAddress());
-                txtCurrentDepartment.setText(employeeClient.getCurrentDepartment());
-                txtCurrentProject.setText(employeeClient.getCurrentProject());
-                txtCurrentLocation.setText(employeeClient.getCurrentLocation());
-                txtRole.setText(employeeClient.getRole());
-                txtWorkExperience.setText(employeeClient.getWorkExperience());
-                if (employee.getGender() == true) {
-                    txtGender.setText("Male");
+            EmployeeClient employeeClient = emplClientBUS.getEmployeeClient();
+ 
+                lblFullName.setText(employeeClient.getFullName());
+                lblEmail.setText(employeeClient.getEmail());
+                lblSalary.setText(employeeClient.getSalary()+"");
+                lblBirthday.setText(employeeClient.getBirthday()+"");
+                lblAddress.setText(employeeClient.getAddress());
+                lblCurrentDepartment.setText(employeeClient.getCurrentDepartment());
+                lblCurrentProject.setText(employeeClient.getCurrentProject());
+                lblCurrentLocation.setText(employeeClient.getCurrentLocation());
+                lblRole.setText(employeeClient.getRole());
+                lblWorkExperience.setText(employeeClient.getWorkExperience());
+                if (employeeClient.getGender() == true) {
+                    lblGender.setText("Male");
                 }
-                else if(employee.getGender() == false)
+                else if(employeeClient.getGender() == false)
                 {
-                    txtGender.setText("Female");
+                    lblGender.setText("Female");
                 }               
             }
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(EmployeeClientUI.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (SQLException ex) {
-            Logger.getLogger(EmployeeClientUI.class.getName()).log(Level.SEVERE, null, ex);
-        }
+  
     }
-}

@@ -29,18 +29,10 @@ public class DepartmentPanel extends javax.swing.JPanel {
      * Creates new form DepartmentPanel
      */
     public DepartmentPanel() {
-        try {
             initComponents();
             initCmbLocation();
             initTable();
-            lstDepartment = departmentBUS.getAllDepartment();
-            fillData(lstDepartment);
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(ProjectPanel.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (SQLException ex) {
-            Logger.getLogger(ProjectPanel.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
+            reloadData();
     }
 
     /**
@@ -169,7 +161,6 @@ public class DepartmentPanel extends javax.swing.JPanel {
                  throw new Exception("Department name is not valid");
             }
             departmentBUS.addDepartment(txtDepartmentName.getText(), ((KeyValue) cmbLocation.getSelectedItem()).getKey());
-            JOptionPane.showMessageDialog(null, "Insert Success!!!");
             reloadData();
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(null, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
@@ -192,7 +183,6 @@ public class DepartmentPanel extends javax.swing.JPanel {
             }
             int locationID = ((KeyValue) cmbLocation.getSelectedItem()).getKey();
             departmentBUS.updateDepartment(Integer.parseInt(txtDepartmentID.getText()), txtDepartmentName.getText(), locationID);
-            JOptionPane.showMessageDialog(null, "Update Success!!!");
             reloadData();
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(null, ex.getMessage(), "Error:", JOptionPane.ERROR_MESSAGE);

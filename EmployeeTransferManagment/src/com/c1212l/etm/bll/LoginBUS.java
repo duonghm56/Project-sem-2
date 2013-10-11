@@ -5,11 +5,8 @@
 package com.c1212l.etm.bll;
 
 import com.c1212l.etm.dal.LoginDAO;
-import com.c1212l.etm.dto.Employee;
 import com.c1212l.etm.dto.Login;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.Vector;
 
 /**
  *

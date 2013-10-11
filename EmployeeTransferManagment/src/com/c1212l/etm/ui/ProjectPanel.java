@@ -26,16 +26,10 @@ public class ProjectPanel extends javax.swing.JPanel {
      * Creates new form ProjectPanel
      */
     public ProjectPanel() {
-        try {
             initComponents();
             initTable();
-            lstProject = projectBUS.getAllProject();
-            fillData(lstProject);
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(ProjectPanel.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (SQLException ex) {
-            Logger.getLogger(ProjectPanel.class.getName()).log(Level.SEVERE, null, ex);
-        }
+            reloadData();
+    
     }
 
     /**
@@ -176,7 +170,6 @@ public class ProjectPanel extends javax.swing.JPanel {
                      throw new Exception("Project name is not valid");
                 }
                 projectBUS.addProject(txtProjectName.getText(), txtCreateDate.getText(), txtEndDate.getText());
-                JOptionPane.showMessageDialog(null, "Add success!");
                 reloadData();
         } catch (Exception ex) {
                 JOptionPane.showMessageDialog(null, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
@@ -200,7 +193,6 @@ public class ProjectPanel extends javax.swing.JPanel {
                         txtProjectName.getText(),
                         txtCreateDate.getText(),
                         txtEndDate.getText());
-                JOptionPane.showMessageDialog(null, "Update Success !!!");
                 reloadData();
             }catch(Exception ex){
                 JOptionPane.showMessageDialog(null, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
@@ -216,7 +208,6 @@ public class ProjectPanel extends javax.swing.JPanel {
             try {
                 if (JOptionPane.showConfirmDialog(null, "Are you sure to delete?", "Delete", JOptionPane.YES_NO_OPTION) == JOptionPane.OK_OPTION) {
                     projectBUS.deleteProject(txtProjectID.getText());
-                    JOptionPane.showMessageDialog(null, "Delete success!");
                     reloadData();
                 }
             } catch (Exception ex) {

@@ -4,22 +4,15 @@
  */
 package com.c1212l.etm.ui;
 
-import com.c1212l.etm.dal.AdminDAO;
-import com.c1212l.etm.dal.DepartmentDAO;
-import com.c1212l.etm.dal.EmployeeDAO;
-import com.c1212l.etm.dal.LocationDAO;
-import com.c1212l.etm.dal.ProjectDAO;
-import com.c1212l.etm.dal.TransferDAO;
+import com.c1212l.etm.bll.AdminBUS;
+import com.c1212l.etm.bll.DepartmentBUS;
+import com.c1212l.etm.bll.EmployeeBUS;
+import com.c1212l.etm.bll.LocationBUS;
+import com.c1212l.etm.bll.ProjectBUS;
+import com.c1212l.etm.bll.TransferBUS;
 import com.c1212l.etm.dto.Admin;
-import com.c1212l.etm.dto.Department;
-import com.c1212l.etm.dto.Employee;
-import com.c1212l.etm.dto.Location;
-import com.c1212l.etm.dto.Login;
-import com.c1212l.etm.dto.Project;
 import com.c1212l.etm.dto.Transfer;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -267,30 +260,20 @@ public class HomePanel extends javax.swing.JPanel {
     private javax.swing.JLabel lblTransferRequest;
     private javax.swing.JLabel lblWaiting;
     // End of variables declaration//GEN-END:variables
-    private ArrayList<Employee> arrListEmployee = new ArrayList<Employee>();
-    private ArrayList<Department> arrListDepartment = new ArrayList<Department>();
-    private ArrayList<Location> arrListLocation = new ArrayList<Location>();
-    private ArrayList<Project> arrListProject = new ArrayList<Project>();
-    private ArrayList<Transfer> arrListTransfer = new ArrayList<Transfer>();
-    private ArrayList<Admin> arrListAdmin = new ArrayList<Admin>();
-    private EmployeeDAO employeeDAO = new EmployeeDAO();
-    private DepartmentDAO departmentDAO = new DepartmentDAO();
-    private LocationDAO locationDAO = new LocationDAO();
-    private ProjectDAO projectDAO = new ProjectDAO();
-    private TransferDAO transferDAO = new TransferDAO();
-    private AdminDAO adminDAO = new AdminDAO();
+
+    private EmployeeBUS employeeBUS = new EmployeeBUS();
+    private DepartmentBUS departmentBUS = new DepartmentBUS();
+    private LocationBUS locationBUS = new LocationBUS();
+    private ProjectBUS projectBUS = new ProjectBUS();
+    private TransferBUS transferBUS = new TransferBUS();
+    private AdminBUS adminBUS = new AdminBUS();
     private void getInformation()
     {
         try {
             int countApprove =0,countDisapprove=0,countWaiting=0,adminID = 0;
-            arrListEmployee = employeeDAO.getAllEmployee();
-            arrListDepartment = departmentDAO.getAllDepartment();
-            arrListLocation = locationDAO.getAllLocation();
-            arrListProject = projectDAO.getAllProject();
-            arrListTransfer=transferDAO.getAllTransfer();
-            arrListAdmin = adminDAO.getAllAdmin();
-            for (int i = 0; i < arrListTransfer.size(); i++) {
-                Transfer transfer = arrListTransfer.get(i);
+     
+            for (int i = 0; i <transferBUS.getAllTransfer().size(); i++) {
+                Transfer transfer = transferBUS.getAllTransfer().get(i);
                 if (transfer.getApprove()== 1) {
                     countApprove++;
                 }
@@ -301,8 +284,8 @@ public class HomePanel extends javax.swing.JPanel {
                     countWaiting++;
                 }
             }
-            for (int i = 0; i < arrListAdmin.size(); i++) {
-                Admin admin = arrListAdmin.get(i);
+            for (int i = 0; i < adminBUS.getAllAdmin().size(); i++) {
+                Admin admin = adminBUS.getAllAdmin().get(i);
                 if (admin.getEmail().equals(LoginFrame.email)) {
                     adminID=admin.getId();
                 }
@@ -312,11 +295,11 @@ public class HomePanel extends javax.swing.JPanel {
             lblApprove.setText(countApprove+"");
             lblDisapprove.setText(countDisapprove+"");
             lblWaiting.setText(countWaiting+"");
-            lblTransferRequest.setText(arrListTransfer.size()+"");
-            lblEmployee.setText(arrListEmployee.size()+"");
-            lblDepartment.setText(arrListDepartment.size()+"");
-            lblLocation.setText(arrListLocation.size()+"");
-            lblProject.setText(arrListProject.size()+"");
+            lblTransferRequest.setText(transferBUS.getAllTransfer().size()+"");
+            lblEmployee.setText(employeeBUS.getAllEmployees().size()+"");
+            lblDepartment.setText(departmentBUS.getAllDepartment().size()+"");
+            lblLocation.setText(locationBUS.getAllLocation().size()+"");
+            lblProject.setText(projectBUS.getAllProject().size()+"");
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(HomePanel.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {

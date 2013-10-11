@@ -5,8 +5,6 @@
 package com.c1212l.etm.bll;
 
 import com.c1212l.etm.dal.TransferDAO;
-import com.c1212l.etm.dto.Employee;
-import com.c1212l.etm.dto.Project;
 import com.c1212l.etm.dto.Transfer;
 import java.sql.Date;
 import java.sql.SQLException;

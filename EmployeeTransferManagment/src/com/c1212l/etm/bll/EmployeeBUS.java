@@ -7,11 +7,9 @@ package com.c1212l.etm.bll;
 import com.c1212l.etm.dal.EmployeeDAO;
 import com.c1212l.etm.dto.ChangePassword;
 import com.c1212l.etm.dto.Employee;
-import com.c1212l.etm.dto.Location;
 import java.sql.Date;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Set;
 
 /**
  *

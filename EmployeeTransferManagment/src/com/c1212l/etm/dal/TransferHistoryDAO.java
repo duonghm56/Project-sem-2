@@ -8,7 +8,6 @@ import com.c1212l.etm.bll.EmployeeBUS;
 import com.c1212l.etm.dto.Employee;
 import com.c1212l.etm.dto.Transfer;
 import com.c1212l.etm.ui.LoginFrame;
-import com.c1212l.etm.util.KeyValue;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;

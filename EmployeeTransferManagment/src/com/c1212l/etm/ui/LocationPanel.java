@@ -26,16 +26,9 @@ public class LocationPanel extends javax.swing.JPanel {
      * Creates new form Location
      */
     public LocationPanel() {
-        try {
             initComponents();
             initTable();
-            lstLocation = locationBUS.getAllLocation();
-            fillData(lstLocation);
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(ProjectPanel.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (SQLException ex) {
-            Logger.getLogger(ProjectPanel.class.getName()).log(Level.SEVERE, null, ex);
-        }
+            reloadData();
     }
 
     /**
@@ -157,7 +150,6 @@ public class LocationPanel extends javax.swing.JPanel {
              }
             String locationName = txtLocationName.getText();
             locationBUS.addLocation(locationName);
-            JOptionPane.showMessageDialog(this, "Add success");
             reloadData();
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(null, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
@@ -182,7 +174,6 @@ public class LocationPanel extends javax.swing.JPanel {
             int locationID = Integer.parseInt(txtLocationID.getText());
             String locationName = txtLocationName.getText();
             locationBUS.updateLocation(locationID, locationName);
-            JOptionPane.showMessageDialog(this, "Update success");
             reloadData();
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(null, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
@@ -196,10 +187,11 @@ public class LocationPanel extends javax.swing.JPanel {
             if (txtLocationID.getText().equals("")) {
                 throw new Exception("Please select location");
             }
-            int locationID = Integer.parseInt(txtLocationID.getText());
-            locationBUS.deleteLocation(locationID);
-            JOptionPane.showMessageDialog(this, "Delete success");
-            reloadData();
+            if (JOptionPane.showConfirmDialog(null, "Are you sure to delete?", "Delete", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
+                int locationID = Integer.parseInt(txtLocationID.getText());
+                locationBUS.deleteLocation(locationID);
+                reloadData();
+            }
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(null, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
 

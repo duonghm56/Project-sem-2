@@ -5,13 +5,8 @@
 package com.c1212l.etm.bll;
 
 import com.c1212l.etm.dal.EmployeeClientDAO;
-import com.c1212l.etm.dal.EmployeeDAO;
-import com.c1212l.etm.dto.Employee;
 import com.c1212l.etm.dto.EmployeeClient;
-import com.c1212l.etm.dto.Transfer;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.Vector;
 
 /**
  *
@@ -23,9 +18,7 @@ public class EmployeeClientBUS {
     public EmployeeClientBUS() {
         employeeClientDAO = new EmployeeClientDAO();
     }
-    public Vector<EmployeeClient>getEmployeeClient() throws ClassNotFoundException, SQLException{
-        
+    public EmployeeClient getEmployeeClient() throws ClassNotFoundException, SQLException{
         return employeeClientDAO.getEmployeeClient();
-        
     }
 }

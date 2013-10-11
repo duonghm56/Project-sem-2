@@ -67,13 +67,12 @@ create table [transfer](
 	toLocationID int references location(locationID)
 )
 go
-
 create table [admin]
 (
 	id int identity primary key,
 	email varchar(100) unique not null,
 	[password] varchar(100)not null,
-	[role] int
+	[role] int not null
 )
 go
 insert into [admin](email, [password], [role])
