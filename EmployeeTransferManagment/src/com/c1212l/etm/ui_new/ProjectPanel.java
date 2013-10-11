@@ -4,17 +4,30 @@
  */
 package com.c1212l.etm.ui_new;
 
+import com.c1212l.etm.bll.ProjectBUS;
+import com.c1212l.etm.dto.Project;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.Vector;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author Luu Bi
  */
-public class Project extends javax.swing.JPanel {
+public class ProjectPanel extends javax.swing.JPanel {
 
     /**
      * Creates new form Project
      */
-    public Project() {
+    public ProjectPanel() {
         initComponents();
+        reloadData();
     }
 
     /**
@@ -33,17 +46,17 @@ public class Project extends javax.swing.JPanel {
         jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
         txtProjectName = new javax.swing.JTextField();
-        jDateChooser1 = new com.toedter.calendar.JDateChooser();
-        jDateChooser2 = new com.toedter.calendar.JDateChooser();
+        dcCreateDate = new com.toedter.calendar.JDateChooser();
+        dcEndDate = new com.toedter.calendar.JDateChooser();
         jCheckBox1 = new javax.swing.JCheckBox();
         jCheckBox2 = new javax.swing.JCheckBox();
         jPanel4 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tblProject = new javax.swing.JTable();
         jToolBar1 = new javax.swing.JToolBar();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        btnAdd = new javax.swing.JButton();
+        btnUpdate = new javax.swing.JButton();
+        btnDelete = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
@@ -69,7 +82,7 @@ public class Project extends javax.swing.JPanel {
 
         jLabel9.setText("Project Name:");
 
-        jLabel10.setText("Start Date:");
+        jLabel10.setText("Create Date:");
 
         jLabel11.setText("End Date");
 
@@ -90,8 +103,8 @@ public class Project extends javax.swing.JPanel {
                 .addGap(26, 26, 26)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(txtProjectName)
-                    .addComponent(jDateChooser1, javax.swing.GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE)
-                    .addComponent(jDateChooser2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(dcCreateDate, javax.swing.GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE)
+                    .addComponent(dcEndDate, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jCheckBox1)
@@ -110,14 +123,14 @@ public class Project extends javax.swing.JPanel {
                                 .addComponent(txtProjectName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGap(30, 30, 30)
                             .addComponent(jLabel10))
-                        .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(dcCreateDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGap(44, 44, 44)
                         .addComponent(jCheckBox1)))
                 .addGap(22, 22, 22)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel11)
-                    .addComponent(jDateChooser2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(dcEndDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jCheckBox2))
                 .addContainerGap(34, Short.MAX_VALUE))
         );
@@ -127,7 +140,7 @@ public class Project extends javax.swing.JPanel {
 
         jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder("List Project"));
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tblProject.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -138,7 +151,12 @@ public class Project extends javax.swing.JPanel {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        tblProject.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblProjectMouseClicked(evt);
+            }
+        });
+        jScrollPane1.setViewportView(tblProject);
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -160,23 +178,38 @@ public class Project extends javax.swing.JPanel {
 
         jToolBar1.setRollover(true);
 
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image_new/add.gif"))); // NOI18N
-        jButton1.setFocusable(false);
-        jButton1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButton1.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jToolBar1.add(jButton1);
+        btnAdd.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image_new/add.gif"))); // NOI18N
+        btnAdd.setFocusable(false);
+        btnAdd.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnAdd.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnAdd.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAddActionPerformed(evt);
+            }
+        });
+        jToolBar1.add(btnAdd);
 
-        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image_new/edit.png"))); // NOI18N
-        jButton2.setFocusable(false);
-        jButton2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButton2.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jToolBar1.add(jButton2);
+        btnUpdate.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image_new/edit.png"))); // NOI18N
+        btnUpdate.setFocusable(false);
+        btnUpdate.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnUpdate.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnUpdate.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnUpdateActionPerformed(evt);
+            }
+        });
+        jToolBar1.add(btnUpdate);
 
-        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image_new/delete1.png"))); // NOI18N
-        jButton3.setFocusable(false);
-        jButton3.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButton3.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jToolBar1.add(jButton3);
+        btnDelete.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image_new/delete1.png"))); // NOI18N
+        btnDelete.setFocusable(false);
+        btnDelete.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnDelete.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnDelete.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDeleteActionPerformed(evt);
+            }
+        });
+        jToolBar1.add(btnDelete);
 
         jToolBar1.setBounds(30, 10, 150, 30);
         jLayeredPane2.add(jToolBar1, javax.swing.JLayeredPane.DEFAULT_LAYER);
@@ -325,14 +358,79 @@ public class Project extends javax.swing.JPanel {
             .addComponent(jSplitPane1, javax.swing.GroupLayout.Alignment.TRAILING)
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
+        // TODO add your handling code here:
+             try{
+                if (txtProjectName.getText().equals("")) {
+                JOptionPane.showMessageDialog(null, "Please enter project name");
+                return;
+                }
+                Pattern ptProName = Pattern.compile("^([A-Za-z]+[\\s]?)+$");
+                Matcher mcProName = ptProName.matcher(txtProjectName.getText());
+                if (!mcProName.find()) {
+                     throw new Exception("Project name is not valid");
+                }
+                reloadData();
+        } catch (Exception ex) {
+                JOptionPane.showMessageDialog(null, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+                ex.printStackTrace();
+            }
+    }//GEN-LAST:event_btnAddActionPerformed
+
+    private void tblProjectMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblProjectMouseClicked
+        // TODO add your handling code here:
+         updateFieldData();
+    }//GEN-LAST:event_tblProjectMouseClicked
+
+    private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
+        // TODO add your handling code here:
+           try{
+                if (txtProjectName.getText().equals("")) {
+                    JOptionPane.showMessageDialog(null, "Project name is not null");
+                    return;
+                } 
+                Pattern ptProName = Pattern.compile("^([A-Za-z]+[\\s]?)+$");
+                Matcher mcProName = ptProName.matcher(txtProjectName.getText());
+                if (!mcProName.find()) {
+                     throw new Exception("Project name is not valid");
+                }
+           
+                reloadData();
+            }catch(Exception ex){
+                JOptionPane.showMessageDialog(null, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+
+        }
+    }//GEN-LAST:event_btnUpdateActionPerformed
+
+    private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
+        // TODO add your handling code here:
+  
+            try {
+                if (JOptionPane.showConfirmDialog(null, "Are you sure to delete?", "Delete", JOptionPane.YES_NO_OPTION) == JOptionPane.OK_OPTION) {
+                    if (Integer.parseInt(projectID)!=0) {
+                      projectBUS.deleteProject(projectID);
+                      reloadData();
+                    }
+                    else
+                    {
+                        JOptionPane.showMessageDialog(null, "Please select project");
+                    }
+                }
+            } catch (Exception ex) {
+                JOptionPane.showMessageDialog(null, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+                ex.printStackTrace();
+            }
+    }//GEN-LAST:event_btnDeleteActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
+    private javax.swing.JButton btnAdd;
+    private javax.swing.JButton btnDelete;
+    private javax.swing.JButton btnUpdate;
+    private com.toedter.calendar.JDateChooser dcCreateDate;
+    private com.toedter.calendar.JDateChooser dcEndDate;
     private javax.swing.JCheckBox jCheckBox1;
     private javax.swing.JCheckBox jCheckBox2;
-    private com.toedter.calendar.JDateChooser jDateChooser1;
-    private com.toedter.calendar.JDateChooser jDateChooser2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -359,8 +457,83 @@ public class Project extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSplitPane jSplitPane1;
-    private javax.swing.JTable jTable1;
     private javax.swing.JToolBar jToolBar1;
+    private javax.swing.JTable tblProject;
     private javax.swing.JTextField txtProjectName;
     // End of variables declaration//GEN-END:variables
+    DefaultTableModel tblModel;
+    ArrayList<Project> lstProject;
+    ProjectBUS projectBUS = new ProjectBUS();
+    private String projectID;
+
+    private void updateFieldData(){
+        int row = tblProject.getSelectedRow();
+        projectID = tblProject.getValueAt(row, 0).toString();
+        txtProjectName.setText(tblProject.getValueAt(row, 1).toString());
+        dcCreateDate.setDateFormatString(tblProject.getValueAt(row, 2) == null ? "" : tblProject.getValueAt(row, 2).toString());
+        dcEndDate.setDateFormatString(tblProject.getValueAt(row, 3) == null ? "" : tblProject.getValueAt(row, 3).toString());
+    }
+    
+    private void initTable() {
+        Vector header = new Vector();
+        header.add("Project ID");
+        header.add("Project Name");
+        header.add("Created Date");
+        header.add("End Date");
+        tblModel = new DefaultTableModel(header, 0);
+        tblProject.setModel(tblModel);
+    }
+
+    private void fillData(ArrayList<Project> lst) {
+        if (lst != null) {
+            for (Project p : lst) {
+                tblModel.addRow(p.getVector());
+            }
+        }
+    }
+
+    private void reloadData() {
+        try {
+            initTable();
+            fillData(projectBUS.getAllProject());
+            initTextField();
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(com.c1212l.etm.ui.ProjectPanel.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(com.c1212l.etm.ui.ProjectPanel.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    private void initTextField() {
+        txtProjectName.setText("");
+    }
+
+    private void loadSearchData() throws ClassNotFoundException, SQLException {
+        String conditon = "";
+        if (!txtProjectName.getText().equals("")) {
+            if (!conditon.contains("where")) {
+                conditon += " where projectName like '%" + txtProjectName.getText() + "%'";
+            } else {
+                conditon += " and projectName like '%" + txtProjectName.getText() + "%'";
+            }
+        }
+//        if (!txtCreateDate.getText().equals("")) {
+//            if (conditon.contains("where")) {
+//                conditon += " and convert(varchar(25), createDate, 126) like '" + txtCreateDate.getText() + "%'";
+//            } else {
+//                conditon += " where convert(varchar(25), createDate, 126) like '" + txtCreateDate.getText() + "%'";
+//            }
+//        }
+//        if (!txtEndDate.getText().equals("")) {
+//            if (conditon.contains("where")) {
+//                conditon += " and convert(varchar(25), endDate, 126) like '" + txtEndDate.getText() + "%'";
+//            } else {
+//                conditon += " where convert(varchar(25), endDate, 126) like '" + txtEndDate.getText() + "%'";
+//            }
+//        }
+        //JOptionPane.showMessageDialog(null, conditon);
+        initTable();
+        lstProject = projectBUS.searchProject(conditon);
+        fillData(lstProject);
+    }
 }

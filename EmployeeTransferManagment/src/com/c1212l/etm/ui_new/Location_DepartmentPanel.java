@@ -4,6 +4,23 @@
  */
 package com.c1212l.etm.ui_new;
 
+import com.c1212l.etm.bll.DepartmentBUS;
+import com.c1212l.etm.bll.LocationBUS;
+import com.c1212l.etm.dto.Department;
+import com.c1212l.etm.dto.Location;
+import com.c1212l.etm.ui.DepartmentPanel;
+import com.c1212l.etm.ui.ProjectPanel;
+import com.c1212l.etm.util.KeyValue;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.Vector;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author Luu Bi
@@ -15,6 +32,7 @@ public class Location_DepartmentPanel extends javax.swing.JPanel {
      */
     public Location_DepartmentPanel() {
         initComponents();
+        reloadData();
     }
 
     /**
@@ -30,25 +48,25 @@ public class Location_DepartmentPanel extends javax.swing.JPanel {
         jSplitPane2 = new javax.swing.JSplitPane();
         jLayeredPane1 = new javax.swing.JLayeredPane();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jList1 = new javax.swing.JList();
+        lstLocation = new javax.swing.JList();
         jToolBar3 = new javax.swing.JToolBar();
-        jButton5 = new javax.swing.JButton();
-        jButton6 = new javax.swing.JButton();
-        jButton7 = new javax.swing.JButton();
+        btnAddLocation = new javax.swing.JButton();
+        btnUpdateLocation = new javax.swing.JButton();
+        btnDeleteLocation = new javax.swing.JButton();
         jLayeredPane2 = new javax.swing.JLayeredPane();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         txtDepartmentName = new javax.swing.JTextField();
-        txtLocation = new javax.swing.JComboBox();
+        cmbLocation = new javax.swing.JComboBox();
         jToolBar1 = new javax.swing.JToolBar();
         jToolBar2 = new javax.swing.JToolBar();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        btnAddDepartment = new javax.swing.JButton();
+        btnUpdateDepartment = new javax.swing.JButton();
+        btnDeleteDepartment = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tbDepartment = new javax.swing.JTable();
 
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("List Department"));
 
@@ -57,40 +75,40 @@ public class Location_DepartmentPanel extends javax.swing.JPanel {
 
         jSplitPane2.setDividerLocation(100);
 
-        jList1.setModel(new javax.swing.AbstractListModel() {
+        lstLocation.setModel(new javax.swing.AbstractListModel() {
             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
             public int getSize() { return strings.length; }
             public Object getElementAt(int i) { return strings[i]; }
         });
-        jScrollPane1.setViewportView(jList1);
+        jScrollPane1.setViewportView(lstLocation);
 
         jScrollPane1.setBounds(20, 40, 50, 220);
         jLayeredPane1.add(jScrollPane1, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jToolBar3.setRollover(true);
 
-        jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image_new/add.gif"))); // NOI18N
-        jButton5.setFocusable(false);
-        jButton5.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButton5.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jButton5.addActionListener(new java.awt.event.ActionListener() {
+        btnAddLocation.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image_new/add.gif"))); // NOI18N
+        btnAddLocation.setFocusable(false);
+        btnAddLocation.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnAddLocation.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnAddLocation.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton5ActionPerformed(evt);
+                btnAddLocationActionPerformed(evt);
             }
         });
-        jToolBar3.add(jButton5);
+        jToolBar3.add(btnAddLocation);
 
-        jButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image_new/edit.png"))); // NOI18N
-        jButton6.setFocusable(false);
-        jButton6.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButton6.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jToolBar3.add(jButton6);
+        btnUpdateLocation.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image_new/edit.png"))); // NOI18N
+        btnUpdateLocation.setFocusable(false);
+        btnUpdateLocation.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnUpdateLocation.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jToolBar3.add(btnUpdateLocation);
 
-        jButton7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image_new/delete1.png"))); // NOI18N
-        jButton7.setFocusable(false);
-        jButton7.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButton7.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jToolBar3.add(jButton7);
+        btnDeleteLocation.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image_new/delete1.png"))); // NOI18N
+        btnDeleteLocation.setFocusable(false);
+        btnDeleteLocation.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnDeleteLocation.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jToolBar3.add(btnDeleteLocation);
 
         jToolBar3.setBounds(0, 360, 130, 40);
         jLayeredPane1.add(jToolBar3, javax.swing.JLayeredPane.DEFAULT_LAYER);
@@ -107,39 +125,54 @@ public class Location_DepartmentPanel extends javax.swing.JPanel {
         jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 90, -1, -1));
         jPanel1.add(txtDepartmentName, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 30, 130, -1));
 
-        txtLocation.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jPanel1.add(txtLocation, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 90, 130, -1));
+        cmbLocation.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jPanel1.add(cmbLocation, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 90, 130, -1));
 
         jPanel1.setBounds(20, 80, 450, 160);
         jLayeredPane2.add(jPanel1, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jToolBar1.setRollover(true);
-        jToolBar1.setBounds(20, 10, 100, 25);
+        jToolBar1.setBounds(20, 10, 13, 2);
         jLayeredPane2.add(jToolBar1, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jToolBar2.setRollover(true);
 
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image_new/add.gif"))); // NOI18N
-        jButton1.setFocusable(false);
-        jButton1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButton1.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jToolBar2.add(jButton1);
+        btnAddDepartment.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image_new/add.gif"))); // NOI18N
+        btnAddDepartment.setFocusable(false);
+        btnAddDepartment.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnAddDepartment.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnAddDepartment.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAddDepartmentActionPerformed(evt);
+            }
+        });
+        jToolBar2.add(btnAddDepartment);
 
-        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image_new/edit.png"))); // NOI18N
-        jButton2.setFocusable(false);
-        jButton2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButton2.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jToolBar2.add(jButton2);
+        btnUpdateDepartment.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image_new/edit.png"))); // NOI18N
+        btnUpdateDepartment.setFocusable(false);
+        btnUpdateDepartment.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnUpdateDepartment.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnUpdateDepartment.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnUpdateDepartmentActionPerformed(evt);
+            }
+        });
+        jToolBar2.add(btnUpdateDepartment);
 
-        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image_new/delete1.png"))); // NOI18N
-        jToolBar2.add(jButton3);
+        btnDeleteDepartment.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image_new/delete1.png"))); // NOI18N
+        btnDeleteDepartment.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDeleteDepartmentActionPerformed(evt);
+            }
+        });
+        jToolBar2.add(btnDeleteDepartment);
 
         jToolBar2.setBounds(30, 10, 120, 30);
         jLayeredPane2.add(jToolBar2, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder("List Department"));
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tbDepartment.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -150,7 +183,12 @@ public class Location_DepartmentPanel extends javax.swing.JPanel {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane2.setViewportView(jTable1);
+        tbDepartment.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tbDepartmentMouseClicked(evt);
+            }
+        });
+        jScrollPane2.setViewportView(tbDepartment);
 
         jPanel3.add(jScrollPane2);
 
@@ -162,33 +200,189 @@ public class Location_DepartmentPanel extends javax.swing.JPanel {
         add(jSplitPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 663, 500));
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+    private void btnAddLocationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddLocationActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton5ActionPerformed
+    }//GEN-LAST:event_btnAddLocationActionPerformed
+
+    private void btnAddDepartmentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddDepartmentActionPerformed
+        // TODO add your handling code here:
+           try {
+             if (txtDepartmentName.getText().equals("")) {
+                JOptionPane.showMessageDialog(null, "Please enter department name");
+                return;
+            }
+            Pattern ptDepartName = Pattern.compile("^([A-Za-z]+[\\s]?)+$");
+            Matcher mcDepartName = ptDepartName.matcher(txtDepartmentName.getText());
+            if (!mcDepartName.find()) {
+                 throw new Exception("Department name is not valid");
+            }
+            departmentBUS.addDepartment(txtDepartmentName.getText(), ((KeyValue) cmbLocation.getSelectedItem()).getKey());
+            reloadData();
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_btnAddDepartmentActionPerformed
+
+    private void btnUpdateDepartmentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateDepartmentActionPerformed
+        // TODO add your handling code here:
+            try {
+            if (txtDepartmentName.getText().equals("")) {
+                throw new Exception("Please enter department name");
+            }
+            Pattern ptDepartName = Pattern.compile("^([A-Za-z]+[\\s]?)+$");
+            Matcher mcDepartName = ptDepartName.matcher(txtDepartmentName.getText());
+            if (!mcDepartName.find()) {
+                 throw new Exception("Department name is not valid");
+            }
+            if (departmentID!=0) {
+                int locationID = ((KeyValue) cmbLocation.getSelectedItem()).getKey();
+                departmentBUS.updateDepartment(departmentID, txtDepartmentName.getText(), locationID);
+                reloadData();
+            }
+            else{
+                JOptionPane.showMessageDialog(null, "Please select department");
+            }
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, ex.getMessage(), "Error:", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_btnUpdateDepartmentActionPerformed
+
+    private void tbDepartmentMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbDepartmentMouseClicked
+        // TODO add your handling code here:
+        int row = tbDepartment.rowAtPoint(evt.getPoint());
+         departmentID = Integer.parseInt(tbDepartment.getValueAt(row, 0).toString());
+        txtDepartmentName.setText(tbDepartment.getValueAt(row, 1).toString());
+        cmbLocation.setSelectedItem(new KeyValue(0, tbDepartment.getValueAt(row, 2).toString()));
+    }//GEN-LAST:event_tbDepartmentMouseClicked
+
+    private void btnDeleteDepartmentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteDepartmentActionPerformed
+        // TODO add your handling code here:
+
+            try {
+                if (JOptionPane.showConfirmDialog(null, "Are you sure to delete?", "Delete", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
+                    if (departmentID!=0){
+                        departmentBUS.deleteDepartment(departmentID);
+                        reloadData();
+                    }
+                    else{
+                         JOptionPane.showMessageDialog(null, "Please select department");
+                    }
+                }
+            } catch (Exception ex) {
+                if(ex.getMessage().contains("UNIQUE KEY")){
+                    JOptionPane.showMessageDialog(null, "Error: Duplicate value", "Error", JOptionPane.ERROR_MESSAGE);
+                }else{
+                    JOptionPane.showMessageDialog(null, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);                    
+                    ex.printStackTrace();
+                }
+            }
+    }//GEN-LAST:event_btnDeleteDepartmentActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton5;
-    private javax.swing.JButton jButton6;
-    private javax.swing.JButton jButton7;
+    private javax.swing.JButton btnAddDepartment;
+    private javax.swing.JButton btnAddLocation;
+    private javax.swing.JButton btnDeleteDepartment;
+    private javax.swing.JButton btnDeleteLocation;
+    private javax.swing.JButton btnUpdateDepartment;
+    private javax.swing.JButton btnUpdateLocation;
+    private javax.swing.JComboBox cmbLocation;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLayeredPane jLayeredPane1;
     private javax.swing.JLayeredPane jLayeredPane2;
-    private javax.swing.JList jList1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JSplitPane jSplitPane2;
-    private javax.swing.JTable jTable1;
     private javax.swing.JToolBar jToolBar1;
     private javax.swing.JToolBar jToolBar2;
     private javax.swing.JToolBar jToolBar3;
+    private javax.swing.JList lstLocation;
+    private javax.swing.JTable tbDepartment;
     private javax.swing.JTextField txtDepartmentName;
-    private javax.swing.JComboBox txtLocation;
     // End of variables declaration//GEN-END:variables
+    DefaultTableModel tblModel;
+    ArrayList<Department> lstDepartment;
+    DepartmentBUS departmentBUS = new DepartmentBUS();
+    private int  departmentID;
+    private void initTable() {
+        Vector header = new Vector();
+        header.add("Department ID");
+        header.add("Department Name");
+        header.add("Location Name");
+        tblModel = new DefaultTableModel(header, 0);
+        tbDepartment.setModel(tblModel);
+    }
+
+    private void fillData(ArrayList<Department> lst) {
+        if (lst != null) {
+            for (Department d : lst) {
+                tblModel.addRow(d.getVector());
+            }
+        }
+    }
+
+    private void reloadData() {
+        try {
+            initTable();
+            fillData(departmentBUS.getAllDepartment());
+            initTextField();
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(ProjectPanel.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(ProjectPanel.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    private void initTextField() {
+        txtDepartmentName.setText("");
+    }
+
+    private void initCmbLocation() {
+        try {
+            cmbLocation.removeAllItems();
+            LocationBUS locationBUS = new LocationBUS();
+            ArrayList<Location> arrLocation = locationBUS.getAllLocation();
+            for (Location location : arrLocation) {
+                cmbLocation.addItem(new KeyValue(location.getLocationID(), location.getLocationName()));
+            }
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(DepartmentPanel.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(DepartmentPanel.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    private void searchDepartmentName() throws ClassNotFoundException, SQLException {
+        String departmentName = "";
+        if (!txtDepartmentName.getText().equals("")) {
+            if (!departmentName.contains("where")) {
+                departmentName += " where departmentName like '%" + txtDepartmentName.getText() + "%'";
+            } else {
+                departmentName += " and departmentName like '%" + txtDepartmentName.getText() + "%'";
+            }
+        }
+        initTable();
+        lstDepartment = departmentBUS.searchDepartmentName(departmentName);
+        fillData(lstDepartment);
+    }
+
+    @Override
+    public void validate() {
+        super.validate();
+        try {
+            initCmbLocation();
+            initTable();
+            lstDepartment = departmentBUS.getAllDepartment();
+            fillData(lstDepartment);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(DepartmentPanel.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(DepartmentPanel.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    
 }
