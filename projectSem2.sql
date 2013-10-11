@@ -30,6 +30,7 @@ create table employee(
 	employeeName nvarchar(200) not null,
 	email varchar(100) unique not null,
 	salary float,
+	photo varchar(100),
 	birthday date ,
 	[address] nvarchar(200),
 	[password] varchar(50) not null,	
@@ -56,6 +57,7 @@ create table [transfer](
 	transferJoiningDate date,
 	requestDate date,
 	reason text,
+	letter text,
 	approve int,
 	approveDate date,
 	transferLetter text,
@@ -127,24 +129,24 @@ as begin
 end
 go
 -- procedure for employee table
-create procedure addEmployee(@emplNum varchar(20), @emplName nvarchar(200),@email varchar(100),@salary float,@birthday date,@address nvarchar(200), @pass varchar(50), @role nvarchar(100), @workExperience int, @gender bit, @departmentID int, @projectID int)
+create procedure addEmployee(@emplNum varchar(20), @emplName nvarchar(200),@email varchar(100),@salary float,@birthday date,@address nvarchar(200), @pass varchar(50), @role nvarchar(100), @workExperience int, @gender bit, @departmentID int, @projectID int, @photo varchar(100))
 as begin
-	insert into employee(employeeNumber ,employeeName,email,salary,birthday,[address], [password], [role], workExperience, gender, departmentID, projectID)
-		values(@emplNum, @emplName,@email,@salary,@birthday,@address, @pass, @role, @workExperience, @gender, @departmentID, @projectID)
+	insert into employee(employeeNumber ,employeeName,email,salary,birthday,[address], [password], [role], workExperience, gender, departmentID, projectID, photo)
+		values(@emplNum, @emplName,@email,@salary,@birthday,@address, @pass, @role, @workExperience, @gender, @departmentID, @projectID, @photo)
 end
 go
 
-create procedure updateEmployeeTransfer(@employeeID int ,@deparmentID int,@projectID int)
+create procedure updateEmployeeTransfer(@employeeID int ,@deparmentID int,@projectID int, @photo varchar(100))
 as begin
-Update employee set departmentID = @deparmentID,projectID=@projectID
+Update employee set departmentID = @deparmentID, projectID=@projectID, photo=@photo
 where employeeID =@employeeID
 end
 go
 
-create procedure updateEmployee(@emplNum varchar(20), @emplName nvarchar(200),@email varchar(100),@salary float,@birthday date,@address nvarchar(200), @pass varchar(50), @role nvarchar(100), @workExperience int, @gender bit, @departmentID int, @projectID int)
+create procedure updateEmployee(@emplNum varchar(20), @emplName nvarchar(200),@email varchar(100),@salary float,@birthday date,@address nvarchar(200), @pass varchar(50), @role nvarchar(100), @workExperience int, @gender bit, @departmentID int, @projectID int, @photo varchar(100))
 as begin
 	update employee set employeeName = @emplName,email=@email,salary=@salary,birthday=@birthday,[address]=@address, [password] = @pass, [role] = @role,
-						workExperience = @workExperience, gender = @gender, departmentID = @departmentID, projectID = @projectID
+						workExperience = @workExperience, gender = @gender, departmentID = @departmentID, projectID = @projectID, photo=@photo
 	where employeeNumber = @emplNum
 end
 go
@@ -240,11 +242,11 @@ end
 go
 ------------------------------------------------------------------------
 ---Transfer Procedure
-create procedure addTransfer(@emplID int, @transferTypeID int, @reason text, @fromProjectID int, @toProjectID int, @fromDepartmentID int, @toDepartmentID int, @fromLocationID int, @toLocationID int)
+create procedure addTransfer(@emplID int, @transferTypeID int, @reason text, @fromProjectID int, @toProjectID int, @fromDepartmentID int, @toDepartmentID int, @fromLocationID int, @toLocationID int, @letter text)
 as
 begin
-	insert into [transfer](employeeID, transferTypeID, requestDate, reason, fromProjectID, toProjectID, fromDepartmentID, toDepartmentID, fromLocationID, toLocationID, approve)
-					values(@emplID,    @transferTypeID, GETDATE(),  @reason, @fromProjectID, @toProjectID, @fromDepartmentID, @toDepartmentID, @fromLocationID, @toLocationID, 3)
+	insert into [transfer](employeeID, transferTypeID, requestDate, reason, fromProjectID, toProjectID, fromDepartmentID, toDepartmentID, fromLocationID, toLocationID, approve, letter)
+					values(@emplID,    @transferTypeID, GETDATE(),  @reason, @fromProjectID, @toProjectID, @fromDepartmentID, @toDepartmentID, @fromLocationID, @toLocationID, 3, @letter)
 end
 go
 
@@ -313,31 +315,55 @@ Inner Join employee On employee.employeeID = transfer.employeeID
 go
 
 
+--------------------------------------------------------------------------
+--Demo Data--
+insert into location(locationName) values('Ha Noi'), ('Da Nang'), ('Ho Chi Minh'), ('Nha Trang')
+go
+insert into department(departmentName, locationID) values
+('Marketing', 1), ('Accouting', 1), ('Techical', 1), ('Production', 1),
+('Marketing', 2), ('Production', 2),
+('Production', 3), ('Technical', 3),
+('Marketing', 4)
+go
+insert into project(projectName, createDate, endDate) values
+('project 101', '2013-5-6', '2015-5-6'),
+('project 102', '2012-5-7', ''),
+('project 104', '2016-7-4', ''),
+('project 302', '2013-6-5', '2013-9-9')
+go
+insert into employee(employeeNumber ,employeeName,email,salary,birthday,[address], [password], [role], workExperience, gender, departmentID, projectID, photo) values
+ ('B1101', 'Nguyen Van A', 'user01@gmail.com', 1000,'1990-5-9', 'ABC 123', '1234', 'Manager', 3, 1, 1, 1, ''),
+ ('B1102', 'Tran Thi B', 'user02@gmail.com', 2000,'1985-4-3', '254 IEO', '9999', 'Director', 5, 0, 2, 1, '')
+go
+ 
+
+--------------------------------------------------------------------------
+
 --select * from employee
 --go
 --exec addTransfer 2, 1, 'demo', 1, 2, 1, 1, 1, 1
 
 ----------------------------------------------------------------------------------------------
 
-Select * from [admin]
-Insert Into [admin] Values('luunguyenvan93@yahoo.com','12345')
-Select * from [transfer]
-Select * from employee
-Select * from employee Inner Join department On 
-	     employee.departmentID = department.departmentID 
-         Inner Join location On department.locationID = location.locationID
-         Inner Join project On project.projectID =employee.projectID
-         Inner Join [transfer] On employee.employeeID = [transfer].employeeID
-         Where employee.email = 'hung@gmail.com'
+--Select * from [admin]
+--Insert Into [admin] Values('luunguyenvan93@yahoo.com','12345')
+--Select * from [transfer]
+--Select * from employee
+--Select * from employee Inner Join department On 
+--	     employee.departmentID = department.departmentID 
+--         Inner Join location On department.locationID = location.locationID
+--         Inner Join project On project.projectID =employee.projectID
+--         Inner Join [transfer] On employee.employeeID = [transfer].employeeID
+--         Where employee.email = 'hung@gmail.com'
          
-Select * from transfer
-Select email,password from employee
-union Select email,password from admin
+--Select * from transfer
+--Select email,password from employee
+--union Select email,password from admin
 
-go
+--go
 
 
  
 
       
-select * from employee
+--select * from employee

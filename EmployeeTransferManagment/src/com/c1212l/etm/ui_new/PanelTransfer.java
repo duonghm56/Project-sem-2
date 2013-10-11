@@ -239,9 +239,6 @@ public class PanelTransfer extends javax.swing.JPanel {
             }
         });
 
-        txtTransferID.setText("jTextField1");
-        txtTransferID.setPreferredSize(new java.awt.Dimension(0, 0));
-
         javax.swing.GroupLayout panelBasicInforLayout = new javax.swing.GroupLayout(panelBasicInfor);
         panelBasicInfor.setLayout(panelBasicInforLayout);
         panelBasicInforLayout.setHorizontalGroup(
