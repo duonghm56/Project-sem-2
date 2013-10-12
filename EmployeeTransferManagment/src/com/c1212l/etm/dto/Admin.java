@@ -51,8 +51,18 @@ public class Admin {
         Vector v = new Vector();
         v.add(id);
         v.add(email);
-        v.add(password);
-        v.add(role);
+        v.add(password); 
+        switch (role) {
+            case 1:
+                v.add("Admin 1");
+                break;
+            case 2:
+                v.add("Admin 2");
+                break;
+            case 3:
+                v.add("Admin 3");
+                break;
+        }
         return v;
     }
 }

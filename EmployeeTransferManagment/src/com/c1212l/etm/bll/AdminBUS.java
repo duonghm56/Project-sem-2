@@ -19,9 +19,12 @@ public class AdminBUS {
     public AdminBUS() {
         adminDAO= new AdminDAO();
     }
-      public ArrayList<Admin> searchAdminEmail(String email) throws ClassNotFoundException, SQLException {
+   public ArrayList<Admin> searchAdminEmail(String email) throws ClassNotFoundException, SQLException {
         return adminDAO.searchAdminEmail(email);
     }
+   public ArrayList<Admin> searchAdminRole(int role) throws ClassNotFoundException, SQLException {
+        return adminDAO.searchAdminRole(role);
+    }  
     public ArrayList<Admin> getAllAdmin() throws ClassNotFoundException, SQLException{
         return adminDAO.getAllAdmin();
     }

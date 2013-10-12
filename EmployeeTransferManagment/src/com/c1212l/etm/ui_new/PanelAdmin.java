@@ -4,6 +4,19 @@
  */
 package com.c1212l.etm.ui_new;
 
+import com.c1212l.etm.bll.AdminBUS;
+import com.c1212l.etm.dto.Admin;
+import com.c1212l.etm.util.KeyValue;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.Vector;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author Luu Bi
@@ -15,6 +28,9 @@ public class PanelAdmin extends javax.swing.JPanel {
      */
     public PanelAdmin() {
         initComponents();
+        initTextField();
+        initTable();
+        reloadData();
     }
 
     /**
@@ -33,17 +49,17 @@ public class PanelAdmin extends javax.swing.JPanel {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
-        jComboBox1 = new javax.swing.JComboBox();
+        txtEmail = new javax.swing.JTextField();
+        cmbRole = new javax.swing.JComboBox();
+        txtPassword = new javax.swing.JPasswordField();
         jToolBar1 = new javax.swing.JToolBar();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
+        btnAdd = new javax.swing.JButton();
+        btnUpdate = new javax.swing.JButton();
+        btnDelete = new javax.swing.JButton();
+        btnReset = new javax.swing.JButton();
         panelTable = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tbAdmin = new javax.swing.JTable();
 
         javax.swing.GroupLayout panelLeftLayout = new javax.swing.GroupLayout(panelLeft);
         panelLeft.setLayout(panelLeftLayout);
@@ -66,7 +82,13 @@ public class PanelAdmin extends javax.swing.JPanel {
 
         jLabel3.setText("Role");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        txtEmail.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtEmailKeyReleased(evt);
+            }
+        });
+
+        cmbRole.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         javax.swing.GroupLayout panelBasicInfoLayout = new javax.swing.GroupLayout(panelBasicInfo);
         panelBasicInfo.setLayout(panelBasicInfoLayout);
@@ -80,9 +102,9 @@ public class PanelAdmin extends javax.swing.JPanel {
                     .addComponent(jLabel2))
                 .addGap(34, 34, 34)
                 .addGroup(panelBasicInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.DEFAULT_SIZE, 190, Short.MAX_VALUE)
-                    .addComponent(jTextField2))
+                    .addComponent(cmbRole, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtPassword, javax.swing.GroupLayout.DEFAULT_SIZE, 162, Short.MAX_VALUE)
+                    .addComponent(txtEmail))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         panelBasicInfoLayout.setVerticalGroup(
@@ -90,53 +112,87 @@ public class PanelAdmin extends javax.swing.JPanel {
             .addGroup(panelBasicInfoLayout.createSequentialGroup()
                 .addGap(13, 13, 13)
                 .addGroup(panelBasicInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(panelBasicInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(panelBasicInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cmbRole, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jToolBar1.setRollover(true);
 
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image_new/add.gif"))); // NOI18N
-        jButton1.setFocusable(false);
-        jButton1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButton1.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnAdd.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image_new/new1_32.png"))); // NOI18N
+        btnAdd.setText("Add");
+        btnAdd.setFocusable(false);
+        btnAdd.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        btnAdd.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        btnAdd.setMaximumSize(new java.awt.Dimension(61, 39));
+        btnAdd.setMinimumSize(new java.awt.Dimension(61, 39));
+        btnAdd.setPreferredSize(new java.awt.Dimension(61, 39));
+        btnAdd.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnAddActionPerformed(evt);
             }
         });
-        jToolBar1.add(jButton1);
+        jToolBar1.add(btnAdd);
 
-        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image_new/edit.png"))); // NOI18N
-        jButton2.setFocusable(false);
-        jButton2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButton2.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jToolBar1.add(jButton2);
+        btnUpdate.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image_new/edit.png"))); // NOI18N
+        btnUpdate.setText("Update");
+        btnUpdate.setFocusable(false);
+        btnUpdate.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        btnUpdate.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        btnUpdate.setMaximumSize(new java.awt.Dimension(77, 39));
+        btnUpdate.setMinimumSize(new java.awt.Dimension(77, 39));
+        btnUpdate.setPreferredSize(new java.awt.Dimension(77, 39));
+        btnUpdate.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnUpdateActionPerformed(evt);
+            }
+        });
+        jToolBar1.add(btnUpdate);
 
-        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image_new/delete1.png"))); // NOI18N
-        jButton3.setFocusable(false);
-        jButton3.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButton3.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jToolBar1.add(jButton3);
+        btnDelete.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image_new/delete_32.png"))); // NOI18N
+        btnDelete.setText("Delete");
+        btnDelete.setFocusable(false);
+        btnDelete.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        btnDelete.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        btnDelete.setMaximumSize(new java.awt.Dimension(65, 31));
+        btnDelete.setMinimumSize(new java.awt.Dimension(65, 31));
+        btnDelete.setPreferredSize(new java.awt.Dimension(65, 31));
+        btnDelete.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnDelete.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDeleteActionPerformed(evt);
+            }
+        });
+        jToolBar1.add(btnDelete);
 
-        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image_new/reset.png"))); // NOI18N
-        jButton4.setFocusable(false);
-        jButton4.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButton4.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jToolBar1.add(jButton4);
+        btnReset.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image_new/arrow_undo.png"))); // NOI18N
+        btnReset.setText("Reset");
+        btnReset.setFocusable(false);
+        btnReset.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        btnReset.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        btnReset.setInheritsPopupMenu(true);
+        btnReset.setMaximumSize(new java.awt.Dimension(75, 39));
+        btnReset.setMinimumSize(new java.awt.Dimension(75, 39));
+        btnReset.setPreferredSize(new java.awt.Dimension(75, 39));
+        btnReset.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnReset.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnResetActionPerformed(evt);
+            }
+        });
+        jToolBar1.add(btnReset);
 
         panelTable.setBorder(javax.swing.BorderFactory.createTitledBorder("List Admin"));
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tbAdmin.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -147,7 +203,7 @@ public class PanelAdmin extends javax.swing.JPanel {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(tbAdmin);
 
         javax.swing.GroupLayout panelTableLayout = new javax.swing.GroupLayout(panelTable);
         panelTable.setLayout(panelTableLayout);
@@ -213,28 +269,176 @@ public class PanelAdmin extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+                       try {
+             if (txtEmail.getText().equals("")) {
+                 throw new Exception("Please enter email");
+             }
+             if (txtPassword.getText().equals("")) {
+                throw new Exception("Please enter Password");
+             }
+              Pattern ptemail = Pattern.compile("^[\\w.-]+@[\\w.-]+\\.[A-Za-z]{2,4}$");
+              Matcher mcemail = ptemail.matcher(txtEmail.getText());
+              if (!mcemail.find()) {
+                throw new Exception("Email is not valid");
+              }
+                  String email = txtEmail.getText();
+                  String password = new String(txtPassword.getPassword());
+                  int role = ((KeyValue) cmbRole.getSelectedItem()).getKey();
+                  adminBUS.addAdmin(email, password, role);
+                  reloadData();
+     
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_btnAddActionPerformed
+
+    private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
+        // TODO add your handling code here:
+                   try {
+            if (id == null) {
+                 throw new Exception("Please select admin");
+            }
+            if (JOptionPane.showConfirmDialog(null, "Are you sure to delete?", "Delete", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
+                    adminBUS.deleteAdmin(Integer.parseInt(id));
+                    reloadData(); 
+          
+            }
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_btnDeleteActionPerformed
+
+    private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
+        // TODO add your handling code here:
+                try {
+               if (id == null) {
+                 throw new Exception("Please select admin");
+               }
+               if (txtEmail.getText().equals("")) {
+                 throw new Exception("Please enter email");
+               }
+               if (txtPassword.getText().equals("")) {
+                  throw new Exception("Please enter Password");
+               }
+ 
+               Pattern ptemail = Pattern.compile("^[\\w.-]+@[\\w.-]+\\.[A-Za-z]{2,4}$");
+               Matcher mcemail = ptemail.matcher(txtEmail.getText());
+               if (!mcemail.find()) {
+                 throw new Exception("Email is not valid");
+               }
+                    int role = ((KeyValue) cmbRole.getSelectedItem()).getKey();
+                    String email = txtEmail.getText();
+                    String password = new String(txtPassword.getPassword());
+                    adminBUS.updateAdmin(Integer.parseInt(id), email, password, role);
+                    reloadData();
+                
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_btnUpdateActionPerformed
+
+    private void txtEmailKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtEmailKeyReleased
+        // TODO add your handling code here:
+        try {
+            loadSearchAdminEmail();
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(com.c1212l.etm.ui.ProjectPanel.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(com.c1212l.etm.ui.ProjectPanel.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_txtEmailKeyReleased
+
+    private void btnResetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnResetActionPerformed
+        // TODO add your handling code here:
+        txtEmail.setText("");
+        txtPassword.setText("");
+    }//GEN-LAST:event_btnResetActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JComboBox jComboBox1;
+    private javax.swing.JButton btnAdd;
+    private javax.swing.JButton btnDelete;
+    private javax.swing.JButton btnReset;
+    private javax.swing.JButton btnUpdate;
+    private javax.swing.JComboBox cmbRole;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSplitPane jSplitPane2;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
     private javax.swing.JToolBar jToolBar1;
     private javax.swing.JPanel panelBasicInfo;
     private javax.swing.JPanel panelLeft;
     private javax.swing.JPanel panelRight;
     private javax.swing.JPanel panelTable;
+    private javax.swing.JTable tbAdmin;
+    private javax.swing.JTextField txtEmail;
+    private javax.swing.JPasswordField txtPassword;
     // End of variables declaration//GEN-END:variables
+     DefaultTableModel tblModel;
+  ArrayList<Admin> lstAdmin;
+  AdminBUS adminBUS = new AdminBUS();
+  private String id;
+    private void initTable() {
+        Vector header = new Vector();
+        header.add("Admin ID");
+        header.add("Email");
+        header.add("Password");
+        header.add("Role");
+        tblModel = new DefaultTableModel(header, 0);
+        tbAdmin.setModel(tblModel);
+    }
+
+    private void fillData(ArrayList<Admin> lst) {
+        if (lst != null) {
+            for (Admin l : lst) {
+                tblModel.addRow(l.getVector());
+            }
+        }
+    }
+
+    private void reloadData() {
+        try {
+            initTable();
+            initCmbRole();
+            fillData(adminBUS.getAllAdmin());
+            initTextField();
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(com.c1212l.etm.ui.ProjectPanel.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(com.c1212l.etm.ui.ProjectPanel.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    private void initTextField() {
+
+        txtEmail.setText("");
+        txtPassword.setText("");
+    }
+
+    private void loadSearchAdminEmail() throws ClassNotFoundException, SQLException {
+        String email = "";
+        if (!txtEmail.getText().equals("")) {
+            if (!email.contains("where")) {
+                email += " where email like '%" + txtEmail.getText() + "%'";
+            } else {
+                email += " and email like '%" + txtEmail.getText() + "%'";
+            }
+        }
+    }
+   private void loadSearchAdminRole() throws ClassNotFoundException, SQLException {
+        String role = "";
+            if (!role.contains("where")) {
+                role += " where role = " + cmbRole.getSelectedIndex()+1;
+            } else {
+                role += " and role = " +  cmbRole.getSelectedIndex()+1;
+            }
+    }
+   private void initCmbRole() {
+        cmbRole.removeAllItems();
+        cmbRole.addItem(new KeyValue(1, "Admin 1"));
+        cmbRole.addItem(new KeyValue(2, "Admin 2"));
+        cmbRole.addItem(new KeyValue(3, "Admin 3"));
+    }
 }

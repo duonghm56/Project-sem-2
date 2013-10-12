@@ -86,5 +86,22 @@ public class AdminDAO extends ConnectionTool {
         closeConnection();
         return result;
     }
+         public ArrayList<Admin> searchAdminRole(int role) throws ClassNotFoundException, SQLException {
+        initConnection();
+        Statement stmt = conn.createStatement();
+        ResultSet rs = stmt.executeQuery("select * from [admin] " + role);
+        ArrayList<Admin> result = new ArrayList<Admin>();
+        while (rs.next()) {
+            Admin admin = new Admin();
+            admin.setId(rs.getInt("id"));
+            admin.setEmail(rs.getString("email"));
+            admin.setPassword(rs.getString("password"));
+            admin.setRole(rs.getInt("role"));
+            result.add(admin);
+        }
+        closeConnection();
+        return result;
+    }
+      
 
 }
