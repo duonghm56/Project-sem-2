@@ -2,8 +2,9 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.c1212l.etm.client.ui;
+package com.c1212l.etm.client.ui_new;
 
+import com.c1212l.etm.client.ui.*;
 import com.c1212l.etm.bll.TransferHistoryBUS;
 import com.c1212l.etm.dto.Transfer;
 import com.c1212l.etm.ui.ProjectPanel;

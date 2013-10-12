@@ -18,7 +18,6 @@ public class MyUtil {
         Format formatter = new SimpleDateFormat("yyyy-MM-dd");
         return formatter.format(dc.getDate());
     }
-    
     public static String getDateStr(JDateChooser dc, JCheckBox cb){
         if(!cb.isSelected()){
             Format formatter = new SimpleDateFormat("yyyy-MM-dd");

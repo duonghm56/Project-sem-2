@@ -18,6 +18,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -33,6 +34,7 @@ public class Location_DepartmentPanel extends javax.swing.JPanel {
     public Location_DepartmentPanel() {
         initComponents();
         reloadData();
+        reloadDataList();
     }
 
     /**
@@ -82,7 +84,7 @@ public class Location_DepartmentPanel extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(lstLocation);
 
-        jScrollPane1.setBounds(20, 40, 50, 220);
+        jScrollPane1.setBounds(0, 0, 100, 360);
         jLayeredPane1.add(jScrollPane1, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jToolBar3.setRollover(true);
@@ -115,6 +117,8 @@ public class Location_DepartmentPanel extends javax.swing.JPanel {
 
         jSplitPane2.setLeftComponent(jLayeredPane1);
 
+        jLayeredPane2.setAlignmentX(0.0F);
+
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Basic Infor"));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -137,10 +141,14 @@ public class Location_DepartmentPanel extends javax.swing.JPanel {
 
         jToolBar2.setRollover(true);
 
-        btnAddDepartment.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image_new/add.gif"))); // NOI18N
+        btnAddDepartment.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image_new/mail_new.png"))); // NOI18N
+        btnAddDepartment.setText("Add");
         btnAddDepartment.setFocusable(false);
-        btnAddDepartment.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        btnAddDepartment.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnAddDepartment.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        btnAddDepartment.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        btnAddDepartment.setMaximumSize(new java.awt.Dimension(61, 39));
+        btnAddDepartment.setMinimumSize(new java.awt.Dimension(61, 39));
+        btnAddDepartment.setPreferredSize(new java.awt.Dimension(61, 39));
         btnAddDepartment.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAddDepartmentActionPerformed(evt);
@@ -148,10 +156,14 @@ public class Location_DepartmentPanel extends javax.swing.JPanel {
         });
         jToolBar2.add(btnAddDepartment);
 
-        btnUpdateDepartment.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image_new/edit.png"))); // NOI18N
+        btnUpdateDepartment.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image_new/save_32.png"))); // NOI18N
+        btnUpdateDepartment.setText("Update");
         btnUpdateDepartment.setFocusable(false);
-        btnUpdateDepartment.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        btnUpdateDepartment.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnUpdateDepartment.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        btnUpdateDepartment.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        btnUpdateDepartment.setMaximumSize(new java.awt.Dimension(77, 39));
+        btnUpdateDepartment.setMinimumSize(new java.awt.Dimension(77, 39));
+        btnUpdateDepartment.setPreferredSize(new java.awt.Dimension(77, 39));
         btnUpdateDepartment.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnUpdateDepartmentActionPerformed(evt);
@@ -160,6 +172,11 @@ public class Location_DepartmentPanel extends javax.swing.JPanel {
         jToolBar2.add(btnUpdateDepartment);
 
         btnDeleteDepartment.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image_new/delete1.png"))); // NOI18N
+        btnDeleteDepartment.setText("Delete");
+        btnDeleteDepartment.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        btnDeleteDepartment.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        btnDeleteDepartment.setMaximumSize(new java.awt.Dimension(65, 39));
+        btnDeleteDepartment.setMinimumSize(new java.awt.Dimension(65, 39));
         btnDeleteDepartment.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnDeleteDepartmentActionPerformed(evt);
@@ -167,7 +184,7 @@ public class Location_DepartmentPanel extends javax.swing.JPanel {
         });
         jToolBar2.add(btnDeleteDepartment);
 
-        jToolBar2.setBounds(30, 10, 120, 30);
+        jToolBar2.setBounds(30, 10, 210, 30);
         jLayeredPane2.add(jToolBar2, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder("List Department"));
@@ -304,8 +321,13 @@ public class Location_DepartmentPanel extends javax.swing.JPanel {
     private javax.swing.JTextField txtDepartmentName;
     // End of variables declaration//GEN-END:variables
     DefaultTableModel tblModel;
+    DefaultListModel lstModel;
     ArrayList<Department> lstDepartment;
+    ArrayList<Location> listLocation;
     DepartmentBUS departmentBUS = new DepartmentBUS();
+    LocationBUS locationBUS = new LocationBUS();
+    
+    
     private int  departmentID;
     private void initTable() {
         Vector header = new Vector();
@@ -327,6 +349,7 @@ public class Location_DepartmentPanel extends javax.swing.JPanel {
     private void reloadData() {
         try {
             initTable();
+            initCmbLocation();
             fillData(departmentBUS.getAllDepartment());
             initTextField();
         } catch (ClassNotFoundException ex) {
@@ -335,7 +358,25 @@ public class Location_DepartmentPanel extends javax.swing.JPanel {
             Logger.getLogger(ProjectPanel.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-
+    private void fillDataList(ArrayList<Location> lst)
+    {
+        if (lst != null) {
+            lstModel = new DefaultListModel();
+            for(Location location:lst){
+                lstModel.addElement(location.getLocationName());
+            }
+            lstLocation.setModel(lstModel);
+        }
+    }
+    private void reloadDataList(){
+        try {
+            fillDataList(locationBUS.getAllLocation());
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(Location_DepartmentPanel.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(Location_DepartmentPanel.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
     private void initTextField() {
         txtDepartmentName.setText("");
     }
@@ -354,6 +395,7 @@ public class Location_DepartmentPanel extends javax.swing.JPanel {
             Logger.getLogger(DepartmentPanel.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+   
 
     private void searchDepartmentName() throws ClassNotFoundException, SQLException {
         String departmentName = "";
