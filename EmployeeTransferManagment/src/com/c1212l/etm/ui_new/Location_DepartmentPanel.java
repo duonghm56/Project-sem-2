@@ -46,36 +46,27 @@ public class Location_DepartmentPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel2 = new javax.swing.JPanel();
-        jSplitPane2 = new javax.swing.JSplitPane();
-        jLayeredPane1 = new javax.swing.JLayeredPane();
+        jSplitPane1 = new javax.swing.JSplitPane();
+        leftPanel = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         lstLocation = new javax.swing.JList();
         jToolBar3 = new javax.swing.JToolBar();
         btnAddLocation = new javax.swing.JButton();
         btnUpdateLocation = new javax.swing.JButton();
         btnDeleteLocation = new javax.swing.JButton();
-        jLayeredPane2 = new javax.swing.JLayeredPane();
-        jPanel1 = new javax.swing.JPanel();
+        rightPanel = new javax.swing.JPanel();
+        panelBasicInfor = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         txtDepartmentName = new javax.swing.JTextField();
         cmbLocation = new javax.swing.JComboBox();
-        jToolBar1 = new javax.swing.JToolBar();
-        jToolBar2 = new javax.swing.JToolBar();
+        toolBar = new javax.swing.JToolBar();
         btnAddDepartment = new javax.swing.JButton();
         btnUpdateDepartment = new javax.swing.JButton();
         btnDeleteDepartment = new javax.swing.JButton();
-        jPanel3 = new javax.swing.JPanel();
+        panelTable = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         tbDepartment = new javax.swing.JTable();
-
-        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("List Department"));
-
-        setPreferredSize(new java.awt.Dimension(1000, 500));
-        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jSplitPane2.setDividerLocation(100);
 
         lstLocation.setModel(new javax.swing.AbstractListModel() {
             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
@@ -83,9 +74,6 @@ public class Location_DepartmentPanel extends javax.swing.JPanel {
             public Object getElementAt(int i) { return strings[i]; }
         });
         jScrollPane1.setViewportView(lstLocation);
-
-        jScrollPane1.setBounds(0, 0, 100, 360);
-        jLayeredPane1.add(jScrollPane1, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jToolBar3.setRollover(true);
 
@@ -112,34 +100,61 @@ public class Location_DepartmentPanel extends javax.swing.JPanel {
         btnDeleteLocation.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         jToolBar3.add(btnDeleteLocation);
 
-        jToolBar3.setBounds(0, 360, 130, 40);
-        jLayeredPane1.add(jToolBar3, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        javax.swing.GroupLayout leftPanelLayout = new javax.swing.GroupLayout(leftPanel);
+        leftPanel.setLayout(leftPanelLayout);
+        leftPanelLayout.setHorizontalGroup(
+            leftPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jToolBar3, javax.swing.GroupLayout.DEFAULT_SIZE, 160, Short.MAX_VALUE)
+            .addComponent(jScrollPane1)
+        );
+        leftPanelLayout.setVerticalGroup(
+            leftPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, leftPanelLayout.createSequentialGroup()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 391, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jToolBar3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
 
-        jSplitPane2.setLeftComponent(jLayeredPane1);
+        jSplitPane1.setLeftComponent(leftPanel);
 
-        jLayeredPane2.setAlignmentX(0.0F);
+        panelBasicInfor.setBorder(javax.swing.BorderFactory.createTitledBorder("Basic Infor"));
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Basic Infor"));
-        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        jLabel1.setText("Department Name");
 
-        jLabel1.setText("Department Name:");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 30, -1, -1));
-
-        jLabel2.setText("Location:");
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 90, -1, -1));
-        jPanel1.add(txtDepartmentName, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 30, 130, -1));
+        jLabel2.setText("Location");
 
         cmbLocation.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jPanel1.add(cmbLocation, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 90, 130, -1));
 
-        jPanel1.setBounds(20, 80, 450, 160);
-        jLayeredPane2.add(jPanel1, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        javax.swing.GroupLayout panelBasicInforLayout = new javax.swing.GroupLayout(panelBasicInfor);
+        panelBasicInfor.setLayout(panelBasicInforLayout);
+        panelBasicInforLayout.setHorizontalGroup(
+            panelBasicInforLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelBasicInforLayout.createSequentialGroup()
+                .addGap(39, 39, 39)
+                .addGroup(panelBasicInforLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel1)
+                    .addComponent(jLabel2))
+                .addGap(49, 49, 49)
+                .addGroup(panelBasicInforLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(txtDepartmentName, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cmbLocation, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        panelBasicInforLayout.setVerticalGroup(
+            panelBasicInforLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelBasicInforLayout.createSequentialGroup()
+                .addGap(11, 11, 11)
+                .addGroup(panelBasicInforLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(txtDepartmentName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(panelBasicInforLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(cmbLocation, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2))
+                .addContainerGap(14, Short.MAX_VALUE))
+        );
 
-        jToolBar1.setRollover(true);
-        jToolBar1.setBounds(20, 10, 13, 2);
-        jLayeredPane2.add(jToolBar1, javax.swing.JLayeredPane.DEFAULT_LAYER);
-
-        jToolBar2.setRollover(true);
+        toolBar.setRollover(true);
 
         btnAddDepartment.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image_new/mail_new.png"))); // NOI18N
         btnAddDepartment.setText("Add");
@@ -148,13 +163,12 @@ public class Location_DepartmentPanel extends javax.swing.JPanel {
         btnAddDepartment.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         btnAddDepartment.setMaximumSize(new java.awt.Dimension(61, 39));
         btnAddDepartment.setMinimumSize(new java.awt.Dimension(61, 39));
-        btnAddDepartment.setPreferredSize(new java.awt.Dimension(61, 39));
         btnAddDepartment.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAddDepartmentActionPerformed(evt);
             }
         });
-        jToolBar2.add(btnAddDepartment);
+        toolBar.add(btnAddDepartment);
 
         btnUpdateDepartment.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image_new/save_32.png"))); // NOI18N
         btnUpdateDepartment.setText("Update");
@@ -163,13 +177,12 @@ public class Location_DepartmentPanel extends javax.swing.JPanel {
         btnUpdateDepartment.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         btnUpdateDepartment.setMaximumSize(new java.awt.Dimension(77, 39));
         btnUpdateDepartment.setMinimumSize(new java.awt.Dimension(77, 39));
-        btnUpdateDepartment.setPreferredSize(new java.awt.Dimension(77, 39));
         btnUpdateDepartment.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnUpdateDepartmentActionPerformed(evt);
             }
         });
-        jToolBar2.add(btnUpdateDepartment);
+        toolBar.add(btnUpdateDepartment);
 
         btnDeleteDepartment.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image_new/delete1.png"))); // NOI18N
         btnDeleteDepartment.setText("Delete");
@@ -182,12 +195,9 @@ public class Location_DepartmentPanel extends javax.swing.JPanel {
                 btnDeleteDepartmentActionPerformed(evt);
             }
         });
-        jToolBar2.add(btnDeleteDepartment);
+        toolBar.add(btnDeleteDepartment);
 
-        jToolBar2.setBounds(30, 10, 210, 30);
-        jLayeredPane2.add(jToolBar2, javax.swing.JLayeredPane.DEFAULT_LAYER);
-
-        jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder("List Department"));
+        panelTable.setBorder(javax.swing.BorderFactory.createTitledBorder("List Department"));
 
         tbDepartment.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -207,14 +217,59 @@ public class Location_DepartmentPanel extends javax.swing.JPanel {
         });
         jScrollPane2.setViewportView(tbDepartment);
 
-        jPanel3.add(jScrollPane2);
+        javax.swing.GroupLayout panelTableLayout = new javax.swing.GroupLayout(panelTable);
+        panelTable.setLayout(panelTableLayout);
+        panelTableLayout.setHorizontalGroup(
+            panelTableLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelTableLayout.createSequentialGroup()
+                .addGap(5, 5, 5)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 465, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        panelTableLayout.setVerticalGroup(
+            panelTableLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelTableLayout.createSequentialGroup()
+                .addGap(5, 5, 5)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 211, Short.MAX_VALUE)
+                .addContainerGap())
+        );
 
-        jPanel3.setBounds(20, 260, 460, 230);
-        jLayeredPane2.add(jPanel3, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        javax.swing.GroupLayout rightPanelLayout = new javax.swing.GroupLayout(rightPanel);
+        rightPanel.setLayout(rightPanelLayout);
+        rightPanelLayout.setHorizontalGroup(
+            rightPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(toolBar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(rightPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(rightPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(panelTable, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(panelBasicInfor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
+        );
+        rightPanelLayout.setVerticalGroup(
+            rightPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, rightPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(toolBar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(panelBasicInfor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(panelTable, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+        );
 
-        jSplitPane2.setRightComponent(jLayeredPane2);
+        jSplitPane1.setRightComponent(rightPanel);
 
-        add(jSplitPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 663, 500));
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
+        this.setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jSplitPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 719, Short.MAX_VALUE)
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jSplitPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 432, Short.MAX_VALUE)
+        );
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAddLocationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddLocationActionPerformed
@@ -305,19 +360,17 @@ public class Location_DepartmentPanel extends javax.swing.JPanel {
     private javax.swing.JComboBox cmbLocation;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLayeredPane jLayeredPane1;
-    private javax.swing.JLayeredPane jLayeredPane2;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JSplitPane jSplitPane2;
-    private javax.swing.JToolBar jToolBar1;
-    private javax.swing.JToolBar jToolBar2;
+    private javax.swing.JSplitPane jSplitPane1;
     private javax.swing.JToolBar jToolBar3;
+    private javax.swing.JPanel leftPanel;
     private javax.swing.JList lstLocation;
+    private javax.swing.JPanel panelBasicInfor;
+    private javax.swing.JPanel panelTable;
+    private javax.swing.JPanel rightPanel;
     private javax.swing.JTable tbDepartment;
+    private javax.swing.JToolBar toolBar;
     private javax.swing.JTextField txtDepartmentName;
     // End of variables declaration//GEN-END:variables
     DefaultTableModel tblModel;
