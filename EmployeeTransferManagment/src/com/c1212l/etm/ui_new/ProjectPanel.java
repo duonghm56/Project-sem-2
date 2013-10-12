@@ -5,6 +5,8 @@
 package com.c1212l.etm.ui_new;
 
 import com.c1212l.etm.bll.ProjectBUS;
+import com.c1212l.etm.dal.EmployeeDAO;
+import com.c1212l.etm.dal.ProjectDAO;
 import com.c1212l.etm.dto.Project;
 import com.c1212l.etm.util.MyUtil;
 import java.sql.Date;
@@ -42,8 +44,25 @@ public class ProjectPanel extends javax.swing.JPanel {
     private void initComponents() {
 
         jSplitPane1 = new javax.swing.JSplitPane();
-        jLayeredPane2 = new javax.swing.JLayeredPane();
+        leftPanel = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        lblTotal = new javax.swing.JLabel();
+        lblFinished = new javax.swing.JLabel();
+        lblUnfinished = new javax.swing.JLabel();
+        jPanel2 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        lblName = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        lblStartDate = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        lblEndDate = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        lblTotalEmpl = new javax.swing.JLabel();
+        rightPanel = new javax.swing.JPanel();
+        panelBasicInfor = new javax.swing.JPanel();
         jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
@@ -52,35 +71,145 @@ public class ProjectPanel extends javax.swing.JPanel {
         dcEndDate = new com.toedter.calendar.JDateChooser();
         chkCreateDateUnknow = new javax.swing.JCheckBox();
         chkEndDateUnknow = new javax.swing.JCheckBox();
-        jPanel4 = new javax.swing.JPanel();
+        panelTable = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tbProject = new javax.swing.JTable();
-        jToolBar1 = new javax.swing.JToolBar();
+        toolBar = new javax.swing.JToolBar();
         btnAdd = new javax.swing.JButton();
         btnUpdate = new javax.swing.JButton();
         btnDelete = new javax.swing.JButton();
-        jPanel1 = new javax.swing.JPanel();
-        jPanel2 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
-        jLabel12 = new javax.swing.JLabel();
-        jLabel13 = new javax.swing.JLabel();
-        jLabel14 = new javax.swing.JLabel();
-        jLabel15 = new javax.swing.JLabel();
-        jLabel16 = new javax.swing.JLabel();
-        jLabel17 = new javax.swing.JLabel();
-        jLabel18 = new javax.swing.JLabel();
-        jLabel19 = new javax.swing.JLabel();
+        btnRefresh = new javax.swing.JButton();
 
-        jSplitPane1.setDividerLocation(150);
+        jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder("Total Project Infor"));
 
-        jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder("Basic Infor"));
+        jLabel2.setText("Total Project");
+
+        jLabel4.setText("Finished");
+
+        jLabel6.setText("Unfinished");
+
+        lblTotal.setText("jLabel8");
+
+        lblFinished.setText("jLabel12");
+
+        lblUnfinished.setText("jLabel13");
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel2)
+                    .addComponent(jLabel4)
+                    .addComponent(jLabel6))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblUnfinished)
+                    .addComponent(lblFinished)
+                    .addComponent(lblTotal))
+                .addContainerGap(31, Short.MAX_VALUE))
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(lblTotal))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel4)
+                    .addComponent(lblFinished))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel6)
+                    .addComponent(lblUnfinished))
+                .addContainerGap(37, Short.MAX_VALUE))
+        );
+
+        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Project  Infor"));
+
+        jLabel1.setText("Name");
+
+        jLabel3.setText("Start Date");
+
+        jLabel5.setText("End Date");
+
+        jLabel7.setText("Total Empl");
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(jLabel3)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(lblStartDate))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(jLabel5)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(lblEndDate))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(lblName))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(jLabel7)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(lblTotalEmpl)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(lblName))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3)
+                    .addComponent(lblStartDate))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel5)
+                    .addComponent(lblEndDate))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel7)
+                    .addComponent(lblTotalEmpl))
+                .addContainerGap(92, Short.MAX_VALUE))
+        );
+
+        javax.swing.GroupLayout leftPanelLayout = new javax.swing.GroupLayout(leftPanel);
+        leftPanel.setLayout(leftPanelLayout);
+        leftPanelLayout.setHorizontalGroup(
+            leftPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(leftPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(leftPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
+        );
+        leftPanelLayout.setVerticalGroup(
+            leftPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, leftPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+
+        jSplitPane1.setLeftComponent(leftPanel);
+
+        panelBasicInfor.setBorder(javax.swing.BorderFactory.createTitledBorder("Basic Infor"));
 
         jLabel9.setText("Project Name:");
 
@@ -92,56 +221,53 @@ public class ProjectPanel extends javax.swing.JPanel {
 
         chkEndDateUnknow.setText("Unknow");
 
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(80, 80, 80)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel9)
+        javax.swing.GroupLayout panelBasicInforLayout = new javax.swing.GroupLayout(panelBasicInfor);
+        panelBasicInfor.setLayout(panelBasicInforLayout);
+        panelBasicInforLayout.setHorizontalGroup(
+            panelBasicInforLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelBasicInforLayout.createSequentialGroup()
+                .addGap(66, 66, 66)
+                .addGroup(panelBasicInforLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel10)
+                    .addComponent(jLabel9)
                     .addComponent(jLabel11))
-                .addGap(26, 26, 26)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGap(40, 40, 40)
+                .addGroup(panelBasicInforLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(txtProjectName)
-                    .addComponent(dcCreateDate, javax.swing.GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE)
-                    .addComponent(dcEndDate, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(dcEndDate, javax.swing.GroupLayout.DEFAULT_SIZE, 183, Short.MAX_VALUE)
+                    .addComponent(dcCreateDate, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(chkCreateDateUnknow)
-                    .addComponent(chkEndDateUnknow))
-                .addContainerGap(53, Short.MAX_VALUE))
+                .addGroup(panelBasicInforLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(chkCreateDateUnknow, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(chkEndDateUnknow, javax.swing.GroupLayout.Alignment.TRAILING))
+                .addGap(53, 53, 53))
         );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
+        panelBasicInforLayout.setVerticalGroup(
+            panelBasicInforLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelBasicInforLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addGroup(jPanel3Layout.createSequentialGroup()
-                            .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(jLabel9)
-                                .addComponent(txtProjectName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGap(30, 30, 30)
-                            .addComponent(jLabel10))
-                        .addComponent(dcCreateDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGap(44, 44, 44)
-                        .addComponent(chkCreateDateUnknow)))
-                .addGap(25, 25, 25)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(panelBasicInforLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel9)
+                    .addComponent(txtProjectName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(panelBasicInforLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(panelBasicInforLayout.createSequentialGroup()
+                        .addGroup(panelBasicInforLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(dcCreateDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(chkCreateDateUnknow))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(panelBasicInforLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(dcEndDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(chkEndDateUnknow))
+                        .addContainerGap(22, Short.MAX_VALUE))
+                    .addGroup(panelBasicInforLayout.createSequentialGroup()
+                        .addComponent(jLabel10)
+                        .addGap(18, 18, 18)
                         .addComponent(jLabel11)
-                        .addComponent(dcEndDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(chkEndDateUnknow))
-                .addContainerGap(31, Short.MAX_VALUE))
+                        .addGap(0, 0, Short.MAX_VALUE))))
         );
 
-        jPanel3.setBounds(10, 70, 460, 180);
-        jLayeredPane2.add(jPanel3, javax.swing.JLayeredPane.DEFAULT_LAYER);
-
-        jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder("List Project"));
+        panelTable.setBorder(javax.swing.BorderFactory.createTitledBorder("List Project"));
 
         tbProject.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -161,25 +287,28 @@ public class ProjectPanel extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(tbProject);
 
-        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
-        jPanel4.setLayout(jPanel4Layout);
-        jPanel4Layout.setHorizontalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+        javax.swing.GroupLayout panelTableLayout = new javax.swing.GroupLayout(panelTable);
+        panelTable.setLayout(panelTableLayout);
+        panelTableLayout.setHorizontalGroup(
+            panelTableLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+            .addGroup(panelTableLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(panelTableLayout.createSequentialGroup()
+                    .addContainerGap()
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 471, Short.MAX_VALUE)
+                    .addContainerGap()))
         );
-        jPanel4Layout.setVerticalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel4Layout.createSequentialGroup()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 221, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+        panelTableLayout.setVerticalGroup(
+            panelTableLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 193, Short.MAX_VALUE)
+            .addGroup(panelTableLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(panelTableLayout.createSequentialGroup()
+                    .addContainerGap()
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 171, Short.MAX_VALUE)
+                    .addContainerGap()))
         );
 
-        jPanel4.setBounds(10, 260, 450, 230);
-        jLayeredPane2.add(jPanel4, javax.swing.JLayeredPane.DEFAULT_LAYER);
-
-        jToolBar1.setRollover(true);
+        toolBar.setRollover(true);
 
         btnAdd.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image_new/mail_new.png"))); // NOI18N
         btnAdd.setText("Add");
@@ -189,13 +318,12 @@ public class ProjectPanel extends javax.swing.JPanel {
         btnAdd.setInheritsPopupMenu(true);
         btnAdd.setMaximumSize(new java.awt.Dimension(61, 39));
         btnAdd.setMinimumSize(new java.awt.Dimension(61, 39));
-        btnAdd.setPreferredSize(new java.awt.Dimension(61, 39));
         btnAdd.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAddActionPerformed(evt);
             }
         });
-        jToolBar1.add(btnAdd);
+        toolBar.add(btnAdd);
 
         btnUpdate.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image_new/save_32.png"))); // NOI18N
         btnUpdate.setText("Update");
@@ -204,13 +332,12 @@ public class ProjectPanel extends javax.swing.JPanel {
         btnUpdate.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         btnUpdate.setMaximumSize(new java.awt.Dimension(77, 39));
         btnUpdate.setMinimumSize(new java.awt.Dimension(77, 39));
-        btnUpdate.setPreferredSize(new java.awt.Dimension(77, 39));
         btnUpdate.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnUpdateActionPerformed(evt);
             }
         });
-        jToolBar1.add(btnUpdate);
+        toolBar.add(btnUpdate);
 
         btnDelete.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image_new/delete_32.png"))); // NOI18N
         btnDelete.setText("Delete");
@@ -219,237 +346,138 @@ public class ProjectPanel extends javax.swing.JPanel {
         btnDelete.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         btnDelete.setMaximumSize(new java.awt.Dimension(65, 39));
         btnDelete.setMinimumSize(new java.awt.Dimension(65, 39));
-        btnDelete.setPreferredSize(new java.awt.Dimension(65, 39));
         btnDelete.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnDeleteActionPerformed(evt);
             }
         });
-        jToolBar1.add(btnDelete);
+        toolBar.add(btnDelete);
 
-        jToolBar1.setBounds(30, 10, 240, 40);
-        jLayeredPane2.add(jToolBar1, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        btnRefresh.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/1380633043_gtk-cancel.png"))); // NOI18N
+        btnRefresh.setText("Refresh");
+        btnRefresh.setFocusable(false);
+        btnRefresh.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        btnRefresh.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        btnRefresh.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRefreshActionPerformed(evt);
+            }
+        });
+        toolBar.add(btnRefresh);
 
-        jSplitPane1.setRightComponent(jLayeredPane2);
-
-        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Project  Infor"));
-
-        jLabel1.setText("Name:");
-
-        jLabel2.setText("jLabel2");
-
-        jLabel3.setText("Start Date:");
-
-        jLabel4.setText("jLabel4");
-
-        jLabel5.setText("End Date:");
-
-        jLabel6.setText("jLabel6");
-
-        jLabel7.setText("Total Employee");
-
-        jLabel8.setText("jLabel8");
-
-        jLabel12.setText("Total Project");
-
-        jLabel13.setText("jLabel13");
-
-        jLabel14.setText("Finished Project");
-
-        jLabel15.setText("Unfinished  Project");
-
-        jLabel16.setText("jLabel16");
-
-        jLabel17.setText("jLabel17");
-
-        jLabel18.setText("jLabel18");
-
-        jLabel19.setText("jLabel19");
-
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jLabel14)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel17))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jLabel15)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel16))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jLabel13)
-                        .addGap(39, 39, 39)
-                        .addComponent(jLabel18))
-                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
-                            .addComponent(jLabel1)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel2))
-                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
-                            .addComponent(jLabel3)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel4))
-                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
-                            .addComponent(jLabel5)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel6))
-                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
-                            .addComponent(jLabel7)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(jLabel8))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addComponent(jLabel12)
-                .addGap(18, 18, 18)
-                .addComponent(jLabel19)
-                .addGap(39, 39, 39))
+        javax.swing.GroupLayout rightPanelLayout = new javax.swing.GroupLayout(rightPanel);
+        rightPanel.setLayout(rightPanelLayout);
+        rightPanelLayout.setHorizontalGroup(
+            rightPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(rightPanelLayout.createSequentialGroup()
+                .addGroup(rightPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(toolBar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(rightPanelLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(rightPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(panelBasicInfor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(panelTable, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                .addContainerGap())
         );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(31, 31, 31)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(jLabel2))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(jLabel4))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel5)
-                    .addComponent(jLabel6))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel7)
-                    .addComponent(jLabel8))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel12)
-                    .addComponent(jLabel19))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel13)
-                    .addComponent(jLabel18))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel14)
-                    .addComponent(jLabel17))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel15)
-                    .addComponent(jLabel16))
-                .addContainerGap(114, Short.MAX_VALUE))
+        rightPanelLayout.setVerticalGroup(
+            rightPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(rightPanelLayout.createSequentialGroup()
+                .addComponent(toolBar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(panelBasicInfor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(panelTable, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGap(0, 92, Short.MAX_VALUE)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-        );
-
-        jSplitPane1.setLeftComponent(jPanel1);
+        jSplitPane1.setRightComponent(rightPanel);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jSplitPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 643, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jSplitPane1)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jSplitPane1, javax.swing.GroupLayout.Alignment.TRAILING)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jSplitPane1)
+                .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
-        // TODO add your handling code here:
-             try{
-                if (txtProjectName.getText().equals("")) {
+        try {
+            if (txtProjectName.getText().equals("")) {
                 JOptionPane.showMessageDialog(null, "Please enter project name");
                 return;
-                }
-                Pattern ptProName = Pattern.compile("^([A-Za-z]+[\\s]?)+$");
-                Matcher mcProName = ptProName.matcher(txtProjectName.getText());
-                if (!mcProName.find()) {
-                     throw new Exception("Project name is not valid");
-                }
-                String endDate = MyUtil.getDateStr(dcEndDate, chkEndDateUnknow);
-                String createDate = MyUtil.getDateStr(dcCreateDate, chkCreateDateUnknow);
-                projectBUS.addProject(txtProjectName.getText(), createDate, endDate);
-                reloadData();
-        } catch (Exception ex) {
-                JOptionPane.showMessageDialog(null, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
-                ex.printStackTrace();
             }
+            String endDate = MyUtil.getDateStr(dcEndDate, chkEndDateUnknow);
+            String createDate = MyUtil.getDateStr(dcCreateDate, chkCreateDateUnknow);
+            projectBUS.addProject(txtProjectName.getText(), createDate, endDate);
+            reloadData();
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+            ex.printStackTrace();
+        }
     }//GEN-LAST:event_btnAddActionPerformed
 
     private void tbProjectMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbProjectMouseClicked
-        // TODO add your handling code here:
-         updateFieldData();
+        updateFieldData();
     }//GEN-LAST:event_tbProjectMouseClicked
 
     private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
         // TODO add your handling code here:
-           try{
-                if (projectID == null) {
-                   JOptionPane.showMessageDialog(null, "Please select project");
-                   return;
-                }
-                if (txtProjectName.getText().equals("")) {
-                    JOptionPane.showMessageDialog(null, "Project name is not null");
-                    return;
-                } 
-                Pattern ptProName = Pattern.compile("^([A-Za-z]+[\\s]?)+$");
-                Matcher mcProName = ptProName.matcher(txtProjectName.getText());
-                if (!mcProName.find()) {
-                     throw new Exception("Project name is not valid");
-                }
-                String endDate = MyUtil.getDateStr(dcEndDate, chkEndDateUnknow);
-                String createDate = MyUtil.getDateStr(dcCreateDate, chkCreateDateUnknow);
-                projectBUS.updateProject(projectID, txtProjectName.getText(), createDate, endDate);
-                reloadData();
-            }catch(Exception ex){
-                JOptionPane.showMessageDialog(null, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        try {
+            if (projectID == null) {
+                JOptionPane.showMessageDialog(null, "Please select project");
+                return;
+            }
+            if (txtProjectName.getText().equals("")) {
+                JOptionPane.showMessageDialog(null, "Project name is not null");
+                return;
+            }
+            String endDate = MyUtil.getDateStr(dcEndDate, chkEndDateUnknow);
+            String createDate = MyUtil.getDateStr(dcCreateDate, chkCreateDateUnknow);
+            projectBUS.updateProject(projectID, txtProjectName.getText(), createDate, endDate);
+            reloadData();
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
 
         }
     }//GEN-LAST:event_btnUpdateActionPerformed
 
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
         // TODO add your handling code here:
-            try {
-                if (projectID == null) {
-                    JOptionPane.showMessageDialog(null, "Please select project");
-                    return;
-                }
-                if (JOptionPane.showConfirmDialog(null, "Are you sure to delete?", "Delete", JOptionPane.YES_NO_OPTION) == JOptionPane.OK_OPTION) {
-                    if (Integer.parseInt(projectID)!=0) {
-                      projectBUS.deleteProject(projectID);
-                      reloadData();
-                    }
-                }
-            } catch (Exception ex) {
-                JOptionPane.showMessageDialog(null, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
-                ex.printStackTrace();
+        try {
+            if (projectID == null) {
+                JOptionPane.showMessageDialog(null, "Please select project");
+                return;
             }
+            if (JOptionPane.showConfirmDialog(null, "Are you sure to delete?", "Delete", JOptionPane.YES_NO_OPTION) == JOptionPane.OK_OPTION) {
+                if (Integer.parseInt(projectID) != 0) {
+                    projectBUS.deleteProject(projectID);
+                    reloadData();
+                }
+            }
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+            ex.printStackTrace();
+        }
     }//GEN-LAST:event_btnDeleteActionPerformed
+
+    private void btnRefreshActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRefreshActionPerformed
+        reloadData();
+    }//GEN-LAST:event_btnRefreshActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAdd;
     private javax.swing.JButton btnDelete;
+    private javax.swing.JButton btnRefresh;
     private javax.swing.JButton btnUpdate;
     private javax.swing.JCheckBox chkCreateDateUnknow;
     private javax.swing.JCheckBox chkEndDateUnknow;
@@ -458,31 +486,30 @@ public class ProjectPanel extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel12;
-    private javax.swing.JLabel jLabel13;
-    private javax.swing.JLabel jLabel14;
-    private javax.swing.JLabel jLabel15;
-    private javax.swing.JLabel jLabel16;
-    private javax.swing.JLabel jLabel17;
-    private javax.swing.JLabel jLabel18;
-    private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
-    private javax.swing.JLayeredPane jLayeredPane2;
-    private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSplitPane jSplitPane1;
-    private javax.swing.JToolBar jToolBar1;
+    private javax.swing.JLabel lblEndDate;
+    private javax.swing.JLabel lblFinished;
+    private javax.swing.JLabel lblName;
+    private javax.swing.JLabel lblStartDate;
+    private javax.swing.JLabel lblTotal;
+    private javax.swing.JLabel lblTotalEmpl;
+    private javax.swing.JLabel lblUnfinished;
+    private javax.swing.JPanel leftPanel;
+    private javax.swing.JPanel panelBasicInfor;
+    private javax.swing.JPanel panelTable;
+    private javax.swing.JPanel rightPanel;
     private javax.swing.JTable tbProject;
+    private javax.swing.JToolBar toolBar;
     private javax.swing.JTextField txtProjectName;
     // End of variables declaration//GEN-END:variables
     DefaultTableModel tblModel;
@@ -490,14 +517,32 @@ public class ProjectPanel extends javax.swing.JPanel {
     ProjectBUS projectBUS = new ProjectBUS();
     private String projectID;
 
-    private void updateFieldData(){
+    private void updateFieldData() {
         int row = tbProject.getSelectedRow();
         projectID = tbProject.getValueAt(row, 0).toString();
         txtProjectName.setText(tbProject.getValueAt(row, 1).toString());
-        dcCreateDate.setDate(Date.valueOf(tbProject.getValueAt(row, 2).toString()));
-        dcEndDate.setDate(Date.valueOf(tbProject.getValueAt(row, 3).toString()));
+        
+        if(tbProject.getValueAt(row, 2) == null){
+            chkCreateDateUnknow.setSelected(true);
+        }else{
+            chkCreateDateUnknow.setSelected(false);
+            dcCreateDate.setDate(Date.valueOf(tbProject.getValueAt(row, 2).toString()));
+        }
+        
+        if(tbProject.getValueAt(row, 3) == null){
+            chkEndDateUnknow.setSelected(true);
+        }else{
+            chkEndDateUnknow.setSelected(false);
+            dcEndDate.setDate(Date.valueOf(tbProject.getValueAt(row, 3).toString()));
+        } 
+        
+        lblName.setText(tbProject.getValueAt(row, 1).toString());
+        lblStartDate.setText(tbProject.getValueAt(row, 2)==null?"Unknown":tbProject.getValueAt(row, 2).toString());
+        lblEndDate.setText(tbProject.getValueAt(row, 3)==null?"Unknown":tbProject.getValueAt(row, 3).toString());
+        ProjectDAO projectDAO = new ProjectDAO();
+        lblTotalEmpl.setText(""+projectDAO.getTotalEmplByProjectID(Integer.parseInt(projectID)));
     }
-    
+
     private void initTable() {
         Vector header = new Vector();
         header.add("Project ID");
@@ -507,7 +552,14 @@ public class ProjectPanel extends javax.swing.JPanel {
         tblModel = new DefaultTableModel(header, 0);
         tbProject.setModel(tblModel);
     }
-
+    
+    private void initLabel(){
+        ProjectDAO projectDAO = new ProjectDAO();
+        lblTotal.setText(""+projectDAO.getTotalProject());
+        lblFinished.setText(""+projectDAO.getTotalFinishedProject());
+        lblUnfinished.setText(""+projectDAO.getTotalUnfinishedProject());
+    }
+    
     private void fillData(ArrayList<Project> lst) {
         if (lst != null) {
             for (Project p : lst) {
@@ -515,12 +567,27 @@ public class ProjectPanel extends javax.swing.JPanel {
             }
         }
     }
+    
+    private void initTextField() {
+        txtProjectName.setText("");
+    }
+    
+    private void initDc(){
+        dcCreateDate.setDate(new java.util.Date());
+        chkCreateDateUnknow.setSelected(false);
+        dcEndDate.setDate(new java.util.Date());
+        chkEndDateUnknow.setSelected(false);
+    }
+
+    
 
     private void reloadData() {
         try {
             initTable();
             fillData(projectBUS.getAllProject());
             initTextField();
+            initLabel();
+            initDc();
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(com.c1212l.etm.ui.ProjectPanel.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {
@@ -528,9 +595,7 @@ public class ProjectPanel extends javax.swing.JPanel {
         }
     }
 
-    private void initTextField() {
-        txtProjectName.setText("");
-    }
+    
 
     private void loadSearchData() throws ClassNotFoundException, SQLException {
         String conditon = "";

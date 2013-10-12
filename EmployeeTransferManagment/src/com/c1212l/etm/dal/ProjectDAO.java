@@ -13,6 +13,8 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.TimeZone;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -128,5 +130,81 @@ public class ProjectDAO extends ConnectionTool {
         } catch (Exception ex) {
             return null;
         }
+    }
+    
+    public int getTotalEmplByProjectID(int id){
+        try {
+            initConnection();
+            Statement stmt = conn.createStatement();
+            ResultSet rs = stmt.executeQuery("select count(*) from employee where projectID = " + id);
+            int r = 0;
+            if(rs.next()){
+                r = rs.getInt(1);
+            }
+            closeConnection();
+            return r;
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(ProjectDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(ProjectDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return 0;
+    }
+    
+    public int getTotalProject(){
+        try {
+            initConnection();
+            Statement stmt = conn.createStatement();
+            ResultSet rs = stmt.executeQuery("select count(*) from project");
+            int r = 0;
+            if(rs.next()){
+                r = rs.getInt(1);
+            }
+            closeConnection();
+            return r;
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(ProjectDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(ProjectDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return 0;
+    }
+    
+    public int getTotalFinishedProject(){
+        try {
+            initConnection();
+            Statement stmt = conn.createStatement();
+            ResultSet rs = stmt.executeQuery("select count(*) from project where endDate <= GETDATE()");
+            int r = 0;
+            if(rs.next()){
+                r = rs.getInt(1);
+            }
+            closeConnection();
+            return r;
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(ProjectDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(ProjectDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return 0;
+    }
+    
+    public int getTotalUnfinishedProject(){
+        try {
+            initConnection();
+            Statement stmt = conn.createStatement();
+            ResultSet rs = stmt.executeQuery("select count(*) from project where endDate > GETDATE() or endDate is null");
+            int r = 0;
+            if(rs.next()){
+                r = rs.getInt(1);
+            }
+            closeConnection();
+            return r;
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(ProjectDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(ProjectDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return 0;
     }
 }
