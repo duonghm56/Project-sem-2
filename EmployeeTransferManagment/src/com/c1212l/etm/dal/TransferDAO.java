@@ -161,4 +161,71 @@ public class TransferDAO extends ConnectionTool {
         cs.executeUpdate();
         closeConnection();
     }
+    
+    public void makeNewTrasnfer(Transfer transfer) throws ClassNotFoundException, SQLException{
+        initConnection();
+        CallableStatement cs = conn.prepareCall("{call makeNewTransfer(?, ?, ?, ?, ?, ?, ?, ?, ?, ? ,?, ?)}");                
+        cs.setInt(1, transfer.getEmployeeID());
+        cs.setInt(2, transfer.getTransferTypeID());
+        cs.setDate(3, transfer.getRequestDate());
+        cs.setDate(4, transfer.getTransferRelievingDate());
+        cs.setDate(5, transfer.getTransferJoiningDate());
+        cs.setDate(6, transfer.getApproveDate());
+        cs.setInt(7, transfer.getFromProjectID());
+        cs.setInt(8, transfer.getToProjectID());
+        cs.setInt(9, transfer.getFromDepartmentID());
+        cs.setInt(10, transfer.getToDepartmentID());
+        cs.setInt(11, transfer.getFromLocationID());
+        cs.setInt(12, transfer.getToLocationID());
+        cs.executeUpdate();
+        closeConnection();
+    }
+    
+    public int getTotalNumberTransfer() throws ClassNotFoundException, SQLException{
+        initConnection();
+        Statement stmt = conn.createStatement();
+        ResultSet rs = stmt.executeQuery("select dbo.getTotalNumberTransfer ()");       
+        int r = 0;
+        if(rs.next()){            
+            r = rs.getInt("");
+        }
+        closeConnection();
+        return r;
+    }
+    
+    public int getTotalWaitapproveNumberTransfer() throws ClassNotFoundException, SQLException{
+        initConnection();
+        Statement stmt = conn.createStatement();
+        ResultSet rs = stmt.executeQuery("select dbo.getTotalWaitapproveNumberTransfer ()");
+        int r = 0;
+        if(rs.next()){
+            r = rs.getInt("");
+        }
+        closeConnection();
+        return r;
+    }
+    
+    public int getTotalApproveNumberTransfer() throws ClassNotFoundException, SQLException{
+        initConnection();
+        Statement stmt = conn.createStatement();
+        ResultSet rs = stmt.executeQuery("select dbo.getTotalApproveNumberTransfer ()");
+        int r = 0;
+        if(rs.next()){
+            r = rs.getInt(1);
+        }
+        closeConnection();
+        return r;
+    }
+    
+    public int getTotalDisapproveNumberTransfer() throws ClassNotFoundException, SQLException{
+        initConnection();
+        Statement stmt = conn.createStatement();
+        ResultSet rs = stmt.executeQuery("select dbo.getTotalDisapproveNumberTransfer ()");
+        int r = 0;
+        if(rs.next()){
+            r = rs.getInt(1);
+        }
+        closeConnection();
+        return r;
+    }
 }

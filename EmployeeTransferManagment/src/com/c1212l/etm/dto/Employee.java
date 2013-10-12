@@ -172,5 +172,20 @@ public class Employee {
         this.photo = photo;
     }
     
+    public String getEmployeeDepartment(){
+        Department department = new DepartmentDAO().getDepartmentByID(departnameID);
+        Location location = new LocationDAO().getLocationById(department.getLocationID());
+        return department.getDepartmentName() + " - " + location.getLocationName();
+    }
     
+    public String getEmployeeLocation(){
+        Department department = new DepartmentDAO().getDepartmentByID(departnameID);
+        Location location = new LocationDAO().getLocationById(department.getLocationID());
+        return location.getLocationName();
+    }
+    
+    public String getEmployeeProject(){
+        Project project = new ProjectDAO().getProjectById(projectID);
+        return project.getProjectName();
+    }
 }

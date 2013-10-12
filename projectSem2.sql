@@ -178,6 +178,42 @@ begin
 end
 go
 
+create function getTotalNumberEmployee () returns int
+as 
+begin
+	declare @total int
+	select @total = count(*) from employee
+	return @total
+end
+go
+
+create function getTotalMaleNumberEmployee () returns int
+as 
+begin
+	declare @total int
+	select @total = count(*) from employee where gender = 1
+	return @total
+end
+go
+
+create function getTotalFemaleNumberEmployee () returns int
+as 
+begin
+	declare @total int
+	select @total = count(*) from employee where gender = 0
+	return @total
+end
+go
+
+create function getTotalSalaryEmployee () returns int
+as 
+begin
+	declare @total int
+	select @total = sum(salary) from employee
+	return @total
+end
+go
+
 -----------------------------------------------------------
 
 create procedure addLocation(@locationName nvarchar(200))
@@ -242,6 +278,14 @@ end
 go
 ------------------------------------------------------------------------
 ---Transfer Procedure
+create procedure makeNewTransfer(@emplID int, @transferTypeID int, @requestDate date, @relievingDate date, @joiningDate date, @approveDate date, @fromProjectID int, @toProjectID int, @fromDepartmentID int, @toDepartmentID int, @fromLocationID int, @toLocationID int)
+as 
+begin
+	insert into [transfer](employeeID, transferTypeID, requestDate, transferRelievingDate, transferJoiningDate, approveDate, fromProjectID, toProjectID, fromDepartmentID, toDepartmentID, fromLocationID, toLocationID, approve)
+					values(@emplID,    @transferTypeID, @requestDate, @relievingDate,      @joiningDate,        @approveDate, @fromProjectID, @toProjectID, @fromDepartmentID, @toDepartmentID, @fromLocationID, @toLocationID, 3)
+end
+go
+
 create procedure addTransfer(@emplID int, @transferTypeID int, @reason text, @fromProjectID int, @toProjectID int, @fromDepartmentID int, @toDepartmentID int, @fromLocationID int, @toLocationID int, @letter text)
 as
 begin
@@ -309,6 +353,38 @@ as begin
 end
 go
 
+create function getTotalNumberTransfer() returns int as
+begin
+	declare @total int
+	select @total = COUNT(*) from [transfer]
+	return @total
+end
+go
+
+create function getTotalApproveNumberTransfer() returns int as
+begin
+	declare @total int
+	select @total = COUNT(*) from [transfer] where approve=1
+	return @total
+end
+go
+
+create function getTotalDisapproveNumberTransfer() returns int as
+begin
+	declare @total int
+	select @total = COUNT(*) from [transfer] where approve=2
+	return @total
+end
+go
+
+create function getTotalWaitapproveNumberTransfer() returns int as
+begin
+	declare @total int
+	select @total = COUNT(*) from [transfer] where approve=3
+	return @total
+end
+go
+
 CREATE VIEW viewtranempl AS
 SELECT [transfer].transferID, employeeName,employeeNumber,fromProjectID,toProjectID,fromDepartmentID,toDepartmentID,fromLocationID,toLocationID FROM [transfer] 
 Inner Join employee On employee.employeeID = transfer.employeeID
@@ -369,3 +445,6 @@ select * from transfer
 --select * from employee
 select departmentID, departmentName, locationName from department join location on department.locationID=location.locationID
 select * from department where departmentID=1
+select * from transfer
+
+select total = COUNT(*) from [transfer]

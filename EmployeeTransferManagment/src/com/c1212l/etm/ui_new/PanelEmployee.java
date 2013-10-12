@@ -7,6 +7,7 @@ package com.c1212l.etm.ui_new;
 import com.c1212l.etm.bll.DepartmentBUS;
 import com.c1212l.etm.bll.EmployeeBUS;
 import com.c1212l.etm.bll.ProjectBUS;
+import com.c1212l.etm.dal.EmployeeDAO;
 import com.c1212l.etm.dal.LocationDAO;
 import com.c1212l.etm.dto.Department;
 import com.c1212l.etm.dto.Employee;
@@ -51,12 +52,10 @@ public class PanelEmployee extends javax.swing.JPanel {
         jSplitPane1 = new javax.swing.JSplitPane();
         leftPanel = new javax.swing.JPanel();
         panelInfor = new javax.swing.JPanel();
-        jScrollPane3 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
         jLabel8 = new javax.swing.JLabel();
         lblName = new javax.swing.JLabel();
         jLabel17 = new javax.swing.JLabel();
-        lblAge = new javax.swing.JLabel();
+        lblBirthday = new javax.swing.JLabel();
         jLabel19 = new javax.swing.JLabel();
         lblNumber = new javax.swing.JLabel();
         jLabel21 = new javax.swing.JLabel();
@@ -67,6 +66,7 @@ public class PanelEmployee extends javax.swing.JPanel {
         jLabel26 = new javax.swing.JLabel();
         lblDep = new javax.swing.JLabel();
         lblProject = new javax.swing.JLabel();
+        lblImage = new javax.swing.JLabel();
         panelTotalInfor = new javax.swing.JPanel();
         jLabel29 = new javax.swing.JLabel();
         jLabel30 = new javax.swing.JLabel();
@@ -99,8 +99,6 @@ public class PanelEmployee extends javax.swing.JPanel {
         jLabel6 = new javax.swing.JLabel();
         dcBirthday = new com.toedter.calendar.JDateChooser();
         txtAddress = new javax.swing.JTextField();
-        jLabel12 = new javax.swing.JLabel();
-        txtPhoto = new javax.swing.JTextField();
         panelWorkInfor = new javax.swing.JPanel();
         jLabel7 = new javax.swing.JLabel();
         txtEmployeeRole = new javax.swing.JTextField();
@@ -120,38 +118,22 @@ public class PanelEmployee extends javax.swing.JPanel {
 
         panelInfor.setBorder(javax.swing.BorderFactory.createTitledBorder("Information"));
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jTextArea1.setText("Hinh anh nam o day");
-        jScrollPane3.setViewportView(jTextArea1);
-
         jLabel8.setText("Name");
 
-        lblName.setText("jLabel12");
-
-        jLabel17.setText("Age");
-
-        lblAge.setText("jLabel18");
+        jLabel17.setText("Birthday");
 
         jLabel19.setText("Number");
 
-        lblNumber.setText("jLabel20");
-
         jLabel21.setText("Email");
 
-        lblEmail.setText("jLabel22");
-
         jLabel23.setText("Role");
-
-        lblRole.setText("jLabel24");
 
         jLabel25.setText("Dep");
 
         jLabel26.setText("Project");
 
-        lblDep.setText("jLabel27");
-
-        lblProject.setText("jLabel28");
+        lblImage.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image_new/319.png"))); // NOI18N
+        lblImage.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
         javax.swing.GroupLayout panelInforLayout = new javax.swing.GroupLayout(panelInfor);
         panelInfor.setLayout(panelInforLayout);
@@ -160,55 +142,53 @@ public class PanelEmployee extends javax.swing.JPanel {
             .addGroup(panelInforLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(panelInforLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelInforLayout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(panelInforLayout.createSequentialGroup()
                         .addGroup(panelInforLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel8)
                             .addComponent(jLabel17)
                             .addComponent(jLabel21)
                             .addComponent(jLabel23)
-                            .addComponent(jLabel25))
+                            .addComponent(jLabel25)
+                            .addComponent(jLabel26))
                         .addGap(18, 18, 18)
                         .addGroup(panelInforLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(lblName, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(panelInforLayout.createSequentialGroup()
                                 .addGroup(panelInforLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(lblProject)
                                     .addComponent(lblDep)
                                     .addComponent(lblRole)
                                     .addComponent(lblEmail)
-                                    .addComponent(lblAge))
+                                    .addComponent(lblBirthday))
                                 .addGap(0, 0, Short.MAX_VALUE))))
                     .addGroup(panelInforLayout.createSequentialGroup()
-                        .addGroup(panelInforLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(panelInforLayout.createSequentialGroup()
-                                .addComponent(jLabel19)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(lblNumber))
-                            .addGroup(panelInforLayout.createSequentialGroup()
-                                .addComponent(jLabel26)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(lblProject)))
+                        .addComponent(jLabel19)
+                        .addGap(21, 21, 21)
+                        .addComponent(lblNumber)
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
+            .addGroup(panelInforLayout.createSequentialGroup()
+                .addGap(24, 24, 24)
+                .addComponent(lblImage, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         panelInforLayout.setVerticalGroup(
             panelInforLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelInforLayout.createSequentialGroup()
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addContainerGap()
+                .addComponent(lblImage, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(panelInforLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel19)
                     .addComponent(lblNumber))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(panelInforLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblName)
-                    .addComponent(jLabel8))
+                .addGroup(panelInforLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel8)
+                    .addComponent(lblName))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(panelInforLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel17)
-                    .addComponent(lblAge))
+                    .addComponent(lblBirthday))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(panelInforLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel21)
@@ -246,6 +226,8 @@ public class PanelEmployee extends javax.swing.JPanel {
 
         lblTotlalSalary.setText("jLabel36");
 
+        txtEmployeeID.setPreferredSize(new java.awt.Dimension(0, 0));
+
         javax.swing.GroupLayout panelTotalInforLayout = new javax.swing.GroupLayout(panelTotalInfor);
         panelTotalInfor.setLayout(panelTotalInforLayout);
         panelTotalInforLayout.setHorizontalGroup(
@@ -266,7 +248,7 @@ public class PanelEmployee extends javax.swing.JPanel {
                             .addComponent(lblMale)
                             .addComponent(lblTotalEmpl)))
                     .addComponent(txtEmployeeID, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(45, Short.MAX_VALUE))
         );
         panelTotalInforLayout.setVerticalGroup(
             panelTotalInforLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -289,7 +271,7 @@ public class PanelEmployee extends javax.swing.JPanel {
                     .addComponent(lblTotlalSalary))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(txtEmployeeID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(23, Short.MAX_VALUE))
+                .addContainerGap(28, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout leftPanelLayout = new javax.swing.GroupLayout(leftPanel);
@@ -299,10 +281,8 @@ public class PanelEmployee extends javax.swing.JPanel {
             .addGroup(leftPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(leftPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, leftPanelLayout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(panelInfor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(panelTotalInfor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(panelTotalInfor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(panelInfor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         leftPanelLayout.setVerticalGroup(
@@ -395,8 +375,6 @@ public class PanelEmployee extends javax.swing.JPanel {
 
         jLabel6.setText("Address");
 
-        jLabel12.setText("Photo");
-
         javax.swing.GroupLayout panelBasicInforLayout = new javax.swing.GroupLayout(panelBasicInfor);
         panelBasicInfor.setLayout(panelBasicInforLayout);
         panelBasicInforLayout.setHorizontalGroup(
@@ -419,8 +397,7 @@ public class PanelEmployee extends javax.swing.JPanel {
                     .addGroup(panelBasicInforLayout.createSequentialGroup()
                         .addGroup(panelBasicInforLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel13)
-                            .addComponent(jLabel6)
-                            .addComponent(jLabel12))
+                            .addComponent(jLabel6))
                         .addGap(19, 19, 19))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelBasicInforLayout.createSequentialGroup()
                         .addComponent(jLabel4)
@@ -431,8 +408,7 @@ public class PanelEmployee extends javax.swing.JPanel {
                         .addGap(0, 2, Short.MAX_VALUE)
                         .addGroup(panelBasicInforLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(cmbGender, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(dcBirthday, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(txtPhoto))
+                            .addComponent(dcBirthday, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(24, 24, 24))
         );
         panelBasicInforLayout.setVerticalGroup(
@@ -449,11 +425,7 @@ public class PanelEmployee extends javax.swing.JPanel {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(panelBasicInforLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel6)
-                            .addComponent(txtAddress, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(panelBasicInforLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel12)
-                            .addComponent(txtPhoto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(txtAddress, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(panelBasicInforLayout.createSequentialGroup()
                         .addGroup(panelBasicInforLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel1)
@@ -588,10 +560,10 @@ public class PanelEmployee extends javax.swing.JPanel {
         );
         panelTableLayout.setVerticalGroup(
             panelTableLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 155, Short.MAX_VALUE)
+            .addGap(0, 149, Short.MAX_VALUE)
             .addGroup(panelTableLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelTableLayout.createSequentialGroup()
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 144, Short.MAX_VALUE)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 138, Short.MAX_VALUE)
                     .addContainerGap()))
         );
 
@@ -613,7 +585,7 @@ public class PanelEmployee extends javax.swing.JPanel {
         rightPanelLayout.setVerticalGroup(
             rightPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(rightPanelLayout.createSequentialGroup()
-                .addComponent(toolBarButton, javax.swing.GroupLayout.DEFAULT_SIZE, 49, Short.MAX_VALUE)
+                .addComponent(toolBarButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(panelBasicInfor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -649,7 +621,7 @@ public class PanelEmployee extends javax.swing.JPanel {
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
         try {
             validateField();
-            String photo = txtPhoto.getText();  
+            String photo = "";//txtPhoto.getText();  
             Date birthday = MyUtil.getDate(dcBirthday);
             employeeBUS.addEmployee(
                     txtNumber.getText(),
@@ -681,7 +653,7 @@ public class PanelEmployee extends javax.swing.JPanel {
             int departmentID = ((KeyValue) cmbDepartment.getSelectedItem()).getKey();
             int projectID = ((KeyValue) cmbProject.getSelectedItem()).getKey();
             Date birthday = MyUtil.getDate(dcBirthday);
-            String photo = txtPhoto.getText();
+            String photo = "";//txtPhoto.getText();
             employeeBUS.updateEmployee(
                     txtNumber.getText(),
                     txtName.getText(),
@@ -739,7 +711,6 @@ public class PanelEmployee extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
@@ -763,13 +734,12 @@ public class PanelEmployee extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JSplitPane jSplitPane1;
-    private javax.swing.JTextArea jTextArea1;
-    private javax.swing.JLabel lblAge;
+    private javax.swing.JLabel lblBirthday;
     private javax.swing.JLabel lblDep;
     private javax.swing.JLabel lblEmail;
     private javax.swing.JLabel lblFemale;
+    private javax.swing.JLabel lblImage;
     private javax.swing.JLabel lblMale;
     private javax.swing.JLabel lblName;
     private javax.swing.JLabel lblNumber;
@@ -793,7 +763,6 @@ public class PanelEmployee extends javax.swing.JPanel {
     private javax.swing.JTextField txtName;
     private javax.swing.JTextField txtNumber;
     private javax.swing.JPasswordField txtPassword;
-    private javax.swing.JTextField txtPhoto;
     private javax.swing.JTextField txtSalary;
     private javax.swing.JTextField txtWorkExperience;
     // End of variables declaration//GEN-END:variables
@@ -856,7 +825,10 @@ public class PanelEmployee extends javax.swing.JPanel {
         txtEmployeeRole.setText("");
         txtPassword.setText("");
         txtWorkExperience.setText("");
-        txtPhoto.setText("");        
+        txtEmail.setText("");
+        txtAddress.setText("");
+        dcBirthday.setDate(new java.util.Date());
+        //txtPhoto.setText("");        
     }
     
     private void initCmbGender() {
@@ -887,8 +859,17 @@ public class PanelEmployee extends javax.swing.JPanel {
         }
     }
     
+    private void initLabel() throws ClassNotFoundException, SQLException{
+        EmployeeDAO employeeDAO = new EmployeeDAO();
+        lblTotalEmpl.setText("" + employeeDAO.getTotalNumberEmployee());
+        lblMale.setText("" + employeeDAO.getTotalMaleNumberEmployee());
+        lblFemale.setText("" + employeeDAO.getTotalFemaleNumberEmployee());
+        lblTotlalSalary.setText("" + employeeDAO.getTotalSalaryEmployee() + " USD");        
+    }
+    
     private void reloadData() {
         try {
+            initLabel();
             initTable();
             fillData(employeeBUS.getAllEmployees());
             initTextField();
@@ -915,7 +896,22 @@ public class PanelEmployee extends javax.swing.JPanel {
         cmbGender.setSelectedItem(new KeyValue(0, tblEmployee.getValueAt(selectedRow, 10).toString()));
         cmbProject.setSelectedItem(new KeyValue(0, tblEmployee.getValueAt(selectedRow, 11).toString()));
         cmbDepartment.setSelectedItem(new KeyValue(0, tblEmployee.getValueAt(selectedRow, 12).toString()));
-        txtPhoto.setText(tblEmployee.getValueAt(selectedRow, 13).toString());
+        //txtPhoto.setText(tblEmployee.getValueAt(selectedRow, 13).toString());
+        
+        lblNumber.setText(tblEmployee.getValueAt(selectedRow, 1).toString());
+        lblName.setText(tblEmployee.getValueAt(selectedRow, 2).toString());
+        lblEmail.setText(tblEmployee.getValueAt(selectedRow, 3).toString());
+        lblBirthday.setText(tblEmployee.getValueAt(selectedRow, 5).toString());
+        lblRole.setText(tblEmployee.getValueAt(selectedRow, 8).toString());
+        lblDep.setText(tblEmployee.getValueAt(selectedRow, 12).toString());
+        lblProject.setText(tblEmployee.getValueAt(selectedRow, 11).toString());
+        
+        if(tblEmployee.getValueAt(selectedRow, 10).toString().equals("Male")){
+            lblImage.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image_new/319.png")));
+        }else if(tblEmployee.getValueAt(selectedRow, 10).toString().equals("Female")){
+            lblImage.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image_new/Female_guestblogger1.png")));
+        }
+                
     }
     
     private void validateField() throws Exception {

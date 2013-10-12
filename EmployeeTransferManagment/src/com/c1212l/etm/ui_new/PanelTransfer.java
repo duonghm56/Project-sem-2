@@ -10,8 +10,11 @@ import com.c1212l.etm.bll.ProjectBUS;
 import com.c1212l.etm.bll.TransferBUS;
 import com.c1212l.etm.bll.TransferTypeBUS;
 import com.c1212l.etm.dal.DepartmentDAO;
+import com.c1212l.etm.dal.EmployeeDAO;
 import com.c1212l.etm.dal.LocationDAO;
+import com.c1212l.etm.dal.TransferDAO;
 import com.c1212l.etm.dto.Department;
+import com.c1212l.etm.dto.Employee;
 import com.c1212l.etm.dto.Location;
 import com.c1212l.etm.dto.Transfer;
 import com.c1212l.etm.dto.TransferType;
@@ -21,6 +24,8 @@ import java.sql.Date;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Vector;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -56,13 +61,14 @@ public class PanelTransfer extends javax.swing.JPanel {
         jLabel29 = new javax.swing.JLabel();
         jLabel30 = new javax.swing.JLabel();
         jLabel31 = new javax.swing.JLabel();
-        jLabel32 = new javax.swing.JLabel();
-        jLabel33 = new javax.swing.JLabel();
-        jLabel34 = new javax.swing.JLabel();
+        lblTotalTransfer = new javax.swing.JLabel();
+        lblTotalApprove = new javax.swing.JLabel();
+        lblTotalDisapprove = new javax.swing.JLabel();
         jLabel35 = new javax.swing.JLabel();
-        jLabel36 = new javax.swing.JLabel();
+        lblTotalWaiting = new javax.swing.JLabel();
         rightPanel = new javax.swing.JPanel();
         toolBarButton = new javax.swing.JToolBar();
+        btnAdd = new javax.swing.JButton();
         btnUpdate = new javax.swing.JButton();
         btnDelete = new javax.swing.JButton();
         btnRefresh = new javax.swing.JButton();
@@ -81,6 +87,7 @@ public class PanelTransfer extends javax.swing.JPanel {
         jLabel38 = new javax.swing.JLabel();
         cmbFromProject = new javax.swing.JComboBox();
         txtTransferID = new javax.swing.JTextField();
+        btnLoadEmpl = new javax.swing.JButton();
         panelTable = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         tbTransferData = new javax.swing.JTable();
@@ -106,12 +113,12 @@ public class PanelTransfer extends javax.swing.JPanel {
         cbApproveDateUnknown = new javax.swing.JCheckBox();
         cmbApprove = new javax.swing.JComboBox();
         jLabel8 = new javax.swing.JLabel();
+        cbRequestDateUnknown = new javax.swing.JCheckBox();
 
         panelInfor.setBorder(javax.swing.BorderFactory.createTitledBorder("Letter"));
 
         txtLetter.setColumns(20);
         txtLetter.setRows(5);
-        txtLetter.setText("Thu nam o day");
         jScrollPane3.setViewportView(txtLetter);
 
         javax.swing.GroupLayout panelInforLayout = new javax.swing.GroupLayout(panelInfor);
@@ -129,21 +136,21 @@ public class PanelTransfer extends javax.swing.JPanel {
 
         panelTotalInfor.setBorder(javax.swing.BorderFactory.createTitledBorder("Total Information"));
 
-        jLabel29.setText("Total Transfer Request");
+        jLabel29.setText("Total Transfer");
 
         jLabel30.setText("Total Approve");
 
         jLabel31.setText("Total Disapprove");
 
-        jLabel32.setText("jLabel32");
+        lblTotalTransfer.setText("jLabel32");
 
-        jLabel33.setText("jLabel33");
+        lblTotalApprove.setText("jLabel33");
 
-        jLabel34.setText("jLabel34");
+        lblTotalDisapprove.setText("jLabel34");
 
         jLabel35.setText("Total Waiting Approve");
 
-        jLabel36.setText("jLabel36");
+        lblTotalWaiting.setText("jLabel36");
 
         javax.swing.GroupLayout panelTotalInforLayout = new javax.swing.GroupLayout(panelTotalInfor);
         panelTotalInfor.setLayout(panelTotalInforLayout);
@@ -158,11 +165,11 @@ public class PanelTransfer extends javax.swing.JPanel {
                     .addComponent(jLabel35))
                 .addGap(18, 18, 18)
                 .addGroup(panelTotalInforLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel36)
-                    .addComponent(jLabel34)
-                    .addComponent(jLabel33)
-                    .addComponent(jLabel32))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(lblTotalWaiting)
+                    .addComponent(lblTotalDisapprove)
+                    .addComponent(lblTotalApprove)
+                    .addComponent(lblTotalTransfer))
+                .addContainerGap(14, Short.MAX_VALUE))
         );
         panelTotalInforLayout.setVerticalGroup(
             panelTotalInforLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -170,20 +177,20 @@ public class PanelTransfer extends javax.swing.JPanel {
                 .addContainerGap()
                 .addGroup(panelTotalInforLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel29)
-                    .addComponent(jLabel32))
+                    .addComponent(lblTotalTransfer))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(panelTotalInforLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel30)
-                    .addComponent(jLabel33))
+                    .addComponent(lblTotalApprove))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(panelTotalInforLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel31)
-                    .addComponent(jLabel34))
+                    .addComponent(lblTotalDisapprove))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(panelTotalInforLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel35)
-                    .addComponent(jLabel36))
-                .addContainerGap(37, Short.MAX_VALUE))
+                    .addComponent(lblTotalWaiting))
+                .addContainerGap(42, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout leftPanelLayout = new javax.swing.GroupLayout(leftPanel);
@@ -210,6 +217,18 @@ public class PanelTransfer extends javax.swing.JPanel {
         jSplitPane1.setLeftComponent(leftPanel);
 
         toolBarButton.setRollover(true);
+
+        btnAdd.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image_new/new1_32.png"))); // NOI18N
+        btnAdd.setText("New");
+        btnAdd.setFocusable(false);
+        btnAdd.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        btnAdd.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        btnAdd.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAddActionPerformed(evt);
+            }
+        });
+        toolBarButton.add(btnAdd);
 
         btnUpdate.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image_new/save_32.png"))); // NOI18N
         btnUpdate.setText("Update");
@@ -287,11 +306,7 @@ public class PanelTransfer extends javax.swing.JPanel {
 
         jLabel1.setText("Employee Number");
 
-        txtNumber.setText("jTextField1");
-
         jLabel2.setText("Employee Name");
-
-        txtName.setText("jTextField1");
 
         jLabel13.setText("Department");
 
@@ -317,6 +332,15 @@ public class PanelTransfer extends javax.swing.JPanel {
             }
         });
 
+        txtTransferID.setPreferredSize(new java.awt.Dimension(0, 0));
+
+        btnLoadEmpl.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image_new/next-icon.png"))); // NOI18N
+        btnLoadEmpl.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLoadEmplActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout panelBasicInforLayout = new javax.swing.GroupLayout(panelBasicInfor);
         panelBasicInfor.setLayout(panelBasicInforLayout);
         panelBasicInforLayout.setHorizontalGroup(
@@ -327,11 +351,14 @@ public class PanelTransfer extends javax.swing.JPanel {
                     .addComponent(jLabel1)
                     .addComponent(jLabel2))
                 .addGap(18, 18, 18)
-                .addGroup(panelBasicInforLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(panelBasicInforLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(txtName, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtNumber, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelBasicInforLayout.createSequentialGroup()
+                        .addComponent(txtNumber)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnLoadEmpl, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(txtTransferID, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 68, Short.MAX_VALUE)
                 .addGroup(panelBasicInforLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel38)
                     .addComponent(jLabel13)
@@ -347,11 +374,13 @@ public class PanelTransfer extends javax.swing.JPanel {
             panelBasicInforLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelBasicInforLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(panelBasicInforLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(txtNumber, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cmbFromLocation, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel37))
+                .addGroup(panelBasicInforLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelBasicInforLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel1)
+                        .addComponent(txtNumber, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(cmbFromLocation, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel37))
+                    .addComponent(btnLoadEmpl, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(panelBasicInforLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
@@ -365,7 +394,7 @@ public class PanelTransfer extends javax.swing.JPanel {
                     .addComponent(txtTransferID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
 
-        panelTable.setBorder(javax.swing.BorderFactory.createTitledBorder("List Employee"));
+        panelTable.setBorder(javax.swing.BorderFactory.createTitledBorder("List Transfer"));
 
         tbTransferData.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -397,172 +426,73 @@ public class PanelTransfer extends javax.swing.JPanel {
         panelTableLayout.setVerticalGroup(
             panelTableLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelTableLayout.createSequentialGroup()
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 116, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Transfer Information"));
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel3.setText("Request Date");
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 40, -1, -1));
 
         jLabel4.setText("Relieving Date");
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 70, -1, -1));
 
         jLabel5.setText("Joining Date");
-
-        cbRelievingDateUnknown.setText("Null");
-
-        cbJoiningDateUnknown.setText("Null");
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 100, -1, -1));
+        jPanel1.add(dcRequestDate, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 40, -1, -1));
+        jPanel1.add(dcRelievingDate, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 70, -1, -1));
+        jPanel1.add(dcJoiningDate, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 100, -1, -1));
+        jPanel1.add(cbRelievingDateUnknown, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 70, 20, -1));
+        jPanel1.add(cbJoiningDateUnknown, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 100, 20, -1));
 
         jLabel15.setText("To Location");
+        jPanel1.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 30, -1, -1));
 
         cmbToLocation.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 cmbToLocationItemStateChanged(evt);
             }
         });
+        jPanel1.add(cmbToLocation, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 30, 166, -1));
 
         jLabel14.setText("To Department ");
+        jPanel1.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 60, -1, -1));
 
         cmbToDepartment.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 cmbToDepartmentItemStateChanged(evt);
             }
         });
+        jPanel1.add(cmbToDepartment, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 60, 166, -1));
 
         jLabel11.setText("To Project");
+        jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 90, -1, -1));
 
         cmbToProject.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 cmbToProjectItemStateChanged(evt);
             }
         });
+        jPanel1.add(cmbToProject, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 90, 165, -1));
 
         jLabel6.setText("Transfer Type");
+        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 120, -1, -1));
 
-        cmbTransferType.setEnabled(false);
-        cmbTransferType.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                cmbTransferTypeKeyReleased(evt);
-            }
-        });
+        jPanel1.add(cmbTransferType, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 120, 160, -1));
 
         jLabel7.setText("ApproveDate");
-
-        cbApproveDateUnknown.setText("Null");
+        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 130, -1, -1));
+        jPanel1.add(dcApproveDate, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 130, -1, -1));
+        jPanel1.add(cbApproveDateUnknown, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 130, 20, -1));
 
         cmbApprove.setEnabled(false);
+        jPanel1.add(cmbApprove, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 150, 160, -1));
 
         jLabel8.setText("Approve");
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel4)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel5))
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(dcRelievingDate, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(dcJoiningDate, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(dcRequestDate, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel7)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(dcApproveDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(cbJoiningDateUnknown)
-                    .addComponent(cbRelievingDateUnknown)
-                    .addComponent(cbApproveDateUnknown))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel14, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel15)
-                            .addComponent(jLabel11))
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(14, 14, 14)
-                                .addComponent(cmbToLocation, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(10, 10, 10))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(cmbToProject, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(cmbToDepartment, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addContainerGap())))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel6)
-                        .addGap(22, 22, 22)
-                        .addComponent(cmbTransferType, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap())))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(170, 170, 170)
-                .addComponent(jLabel8)
-                .addGap(18, 18, 18)
-                .addComponent(cmbApprove, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel3)
-                            .addComponent(dcRequestDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(6, 6, 6)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel4)
-                                    .addComponent(dcRelievingDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(6, 6, 6)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel5)
-                                    .addComponent(dcJoiningDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(cbRelievingDateUnknown)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(cbJoiningDateUnknown))))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(cmbToLocation, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel15))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(cmbToDepartment, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel14))
-                        .addGap(8, 8, 8)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(cmbToProject, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel11))))
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(7, 7, 7)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(cbApproveDateUnknown)
-                            .addComponent(dcApproveDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel7)))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(cmbTransferType, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel6))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel8)
-                    .addComponent(cmbApprove, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-        );
+        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 150, -1, -1));
+        jPanel1.add(cbRequestDateUnknown, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 40, 20, -1));
 
         javax.swing.GroupLayout rightPanelLayout = new javax.swing.GroupLayout(rightPanel);
         rightPanel.setLayout(rightPanelLayout);
@@ -586,9 +516,9 @@ public class PanelTransfer extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(panelBasicInfor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(5, 5, 5)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 184, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(panelTable, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(panelTable, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
@@ -625,13 +555,12 @@ public class PanelTransfer extends javax.swing.JPanel {
 
     private void cmbToDepartmentItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cmbToDepartmentItemStateChanged
         updateCmbLocationByCmbDepartment();
+        updateCmbTransferType();
     }//GEN-LAST:event_cmbToDepartmentItemStateChanged
 
     private void cmbToProjectItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cmbToProjectItemStateChanged
+        updateCmbTransferType();
     }//GEN-LAST:event_cmbToProjectItemStateChanged
-
-    private void cmbTransferTypeKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_cmbTransferTypeKeyReleased
-    }//GEN-LAST:event_cmbTransferTypeKeyReleased
 
     private void tbTransferDataMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbTransferDataMouseReleased
         updateFieldWhenSelectTransfer();
@@ -717,16 +646,55 @@ public class PanelTransfer extends javax.swing.JPanel {
         loadSearchData();
     }//GEN-LAST:event_btnSearchActionPerformed
 
+    private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
+        try {
+            validateField();
+            String emplNum = txtNumber.getText();
+            int transferTypeID = ((KeyValue) cmbTransferType.getSelectedItem()).getKey();
+            Date requestDate = MyUtil.getDate(dcRequestDate, cbRequestDateUnknown);
+            Date relievingDate = MyUtil.getDate(dcRelievingDate, cbRelievingDateUnknown);
+            Date joingingDate = MyUtil.getDate(dcJoiningDate, cbJoiningDateUnknown);
+            Date approveDate = MyUtil.getDate(dcApproveDate, cbApproveDateUnknown);
+            int fromProjectID = ((KeyValue) cmbFromProject.getSelectedItem()).getKey();
+            int toProjectID = ((KeyValue) cmbToProject.getSelectedItem()).getKey();
+            int fromDepartmentID = ((KeyValue) cmbFromDepartment.getSelectedItem()).getKey();
+            int toDepartmentID = ((KeyValue) cmbToDepartment.getSelectedItem()).getKey();
+            int formLocationID = ((KeyValue) cmbFromLocation.getSelectedItem()).getKey();
+            int toLocationID = ((KeyValue) cmbToLocation.getSelectedItem()).getKey();
+            transferBUS.makeNewTransfer(emplNum, transferTypeID, requestDate, relievingDate, joingingDate, approveDate, fromProjectID, toProjectID, fromDepartmentID, toDepartmentID, formLocationID, toLocationID);
+            reloadData();
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+            ex.printStackTrace();
+        }
+
+    }//GEN-LAST:event_btnAddActionPerformed
+
+    private void btnLoadEmplActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoadEmplActionPerformed
+        try {
+            EmployeeDAO employeeDAO = new EmployeeDAO();
+            Employee empl = employeeDAO.getEmployeeByNumber(txtNumber.getText());
+            txtName.setText(empl.getEmployeeName());
+            cmbFromLocation.setSelectedItem(new KeyValue(0, empl.getEmployeeLocation()));
+            cmbFromDepartment.setSelectedItem(new KeyValue(0, empl.getEmployeeDepartment()));
+            cmbFromProject.setSelectedItem(new KeyValue(0, empl.getEmployeeProject()));
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, "Cannot find this employee in database", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_btnLoadEmplActionPerformed
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnAdd;
     private javax.swing.JButton btnApprove;
     private javax.swing.JButton btnDelete;
     private javax.swing.JButton btnDisapprove;
+    private javax.swing.JButton btnLoadEmpl;
     private javax.swing.JButton btnRefresh;
     private javax.swing.JButton btnSearch;
     private javax.swing.JButton btnUpdate;
     private javax.swing.JCheckBox cbApproveDateUnknown;
     private javax.swing.JCheckBox cbJoiningDateUnknown;
     private javax.swing.JCheckBox cbRelievingDateUnknown;
+    private javax.swing.JCheckBox cbRequestDateUnknown;
     private javax.swing.JComboBox cmbApprove;
     private javax.swing.JComboBox cmbFromDepartment;
     private javax.swing.JComboBox cmbFromLocation;
@@ -749,11 +717,7 @@ public class PanelTransfer extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel30;
     private javax.swing.JLabel jLabel31;
-    private javax.swing.JLabel jLabel32;
-    private javax.swing.JLabel jLabel33;
-    private javax.swing.JLabel jLabel34;
     private javax.swing.JLabel jLabel35;
-    private javax.swing.JLabel jLabel36;
     private javax.swing.JLabel jLabel37;
     private javax.swing.JLabel jLabel38;
     private javax.swing.JLabel jLabel4;
@@ -765,6 +729,10 @@ public class PanelTransfer extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JSplitPane jSplitPane1;
+    private javax.swing.JLabel lblTotalApprove;
+    private javax.swing.JLabel lblTotalDisapprove;
+    private javax.swing.JLabel lblTotalTransfer;
+    private javax.swing.JLabel lblTotalWaiting;
     private javax.swing.JPanel leftPanel;
     private javax.swing.JPanel panelBasicInfor;
     private javax.swing.JPanel panelInfor;
@@ -923,10 +891,44 @@ public class PanelTransfer extends javax.swing.JPanel {
         txtName.setText("");
         txtNumber.setText("");
         txtTransferID.setText("");
+        txtLetter.setText("");
     }
 
+    private void initRequestDate(){
+        dcRequestDate.setDate(new java.util.Date());
+        cbRequestDateUnknown.setSelected(false);
+    }
+    private void initRelievingDate(){
+        dcRelievingDate.setDate(new java.util.Date());
+        cbRelievingDateUnknown.setSelected(false);
+    }
+    private void initJoiningDate(){
+        dcJoiningDate.setDate(new java.util.Date());
+        cbJoiningDateUnknown.setSelected(false);
+    }
+    private void initApproveDate(){
+        dcApproveDate.setDate(new java.util.Date());
+        cbApproveDateUnknown.setSelected(false);
+    }
+    private void initAllDate(){
+        initRequestDate();
+        initRelievingDate();
+        initJoiningDate();
+        initApproveDate();
+    }
+    
+    private void initLabel() throws ClassNotFoundException, SQLException{
+        TransferDAO transferDAO = new TransferDAO();
+        lblTotalTransfer.setText(""+transferDAO.getTotalNumberTransfer());
+        lblTotalApprove.setText(""+transferDAO.getTotalApproveNumberTransfer());
+        lblTotalDisapprove.setText(""+transferDAO.getTotalDisapproveNumberTransfer());
+        lblTotalWaiting.setText(""+transferDAO.getTotalWaitapproveNumberTransfer());
+    }
+    
     private void reloadData() {
         try {
+            initLabel();
+            initAllDate();
             initTextfield();
             initTable();
             initCmbTransferType();
@@ -946,52 +948,56 @@ public class PanelTransfer extends javax.swing.JPanel {
     }
 
     private String checkFieldAndReturnTransferType() {
-        int fromProjectID = ((KeyValue) cmbFromProject.getSelectedItem()).getKey();
-        int toProjectID = ((KeyValue) cmbToProject.getSelectedItem()).getKey();
-        int fromDepartmentID = ((KeyValue) cmbFromDepartment.getSelectedItem()).getKey();
-        int toDepartmentID = ((KeyValue) cmbToDepartment.getSelectedItem()).getKey();
-        int fromLocationID = ((KeyValue) cmbFromLocation.getSelectedItem()).getKey();
-        int toLocationID = ((KeyValue) cmbToLocation.getSelectedItem()).getKey();
+        try {
+            int fromProjectID = ((KeyValue) cmbFromProject.getSelectedItem()).getKey();
+            int toProjectID = ((KeyValue) cmbToProject.getSelectedItem()).getKey();
+            int fromDepartmentID = ((KeyValue) cmbFromDepartment.getSelectedItem()).getKey();
+            int toDepartmentID = ((KeyValue) cmbToDepartment.getSelectedItem()).getKey();
+            int fromLocationID = ((KeyValue) cmbFromLocation.getSelectedItem()).getKey();
+            int toLocationID = ((KeyValue) cmbToLocation.getSelectedItem()).getKey();
 
-        int[] check = {0, 0, 0};
+            int[] check = {0, 0, 0};
 
-        if (fromProjectID != toProjectID) {
-            check[0] = 1;
-        }
-        if (fromDepartmentID != toDepartmentID) {
-            check[1] = 1;
-        }
-        if (fromLocationID != toLocationID) {
-            check[2] = 1;
-        }
+            if (fromProjectID != toProjectID) {
+                check[0] = 1;
+            }
+            if (fromDepartmentID != toDepartmentID) {
+                check[1] = 1;
+            }
+            if (fromLocationID != toLocationID) {
+                check[2] = 1;
+            }
 
-        int sum = 0;
-        for (int i = 0; i < check.length; i++) {
-            sum += check[i];
-        }
+            int sum = 0;
+            for (int i = 0; i < check.length; i++) {
+                sum += check[i];
+            }
 
-        if (sum == 0) {
-            //Error: No transfer ?
+            if (sum == 0) {
+                //Error: No transfer ?
+                return "";
+            } else if (sum == 1) {
+                //Transfer only one
+                if (check[0] == 1) {
+                    //Project
+                    return "Project Transfer";
+                }
+                if (check[1] == 1) {
+                    //Department
+                    return "Department Transfer";
+                }
+                if (check[2] == 1) {
+                    //Location
+                    return "Location Transfer";
+                }
+                //Unexpected Error
+                return "";
+            } else {
+                //Custom transfer
+                return "Custom Transfer";
+            }
+        } catch (Exception ex) {
             return "";
-        } else if (sum == 1) {
-            //Transfer only one
-            if (check[0] == 1) {
-                //Project
-                return "Project Transfer";
-            }
-            if (check[1] == 1) {
-                //Department
-                return "Department Transfer";
-            }
-            if (check[2] == 1) {
-                //Location
-                return "Location Transfer";
-            }
-            //Unexpected Error
-            return "";
-        } else {
-            //Custom transfer
-            return "Custom Transfer";
         }
     }
 
@@ -1023,7 +1029,14 @@ public class PanelTransfer extends javax.swing.JPanel {
             dcJoiningDate.setDate(Date.valueOf(tbTransferData.getValueAt(row, 5).toString()));
         }
 
-        dcRequestDate.setDate(Date.valueOf(tbTransferData.getValueAt(row, 6).toString()));
+
+        if (tbTransferData.getValueAt(row, 6) == null) {
+            cbRequestDateUnknown.setSelected(true);
+        } else {
+            cbRequestDateUnknown.setSelected(false);
+            dcRequestDate.setDate(Date.valueOf(tbTransferData.getValueAt(row, 6).toString()));
+        }
+
 
         if (tbTransferData.getValueAt(row, 8) == null) {
             cbApproveDateUnknown.setSelected(true);
@@ -1042,7 +1055,7 @@ public class PanelTransfer extends javax.swing.JPanel {
         cmbToLocation.setSelectedItem(new KeyValue(0, tbTransferData.getValueAt(row, 14).toString()));
         cmbApprove.setSelectedItem(new KeyValue(0, tbTransferData.getValueAt(row, 15).toString()));
 
-        txtLetter.setText(tbTransferData.getValueAt(row, 16).toString());
+        txtLetter.setText(tbTransferData.getValueAt(row, 16)==null?"":tbTransferData.getValueAt(row, 16).toString());
         String approve = tbTransferData.getValueAt(row, 15).toString();
 
         btnApprove.setVisible(approve.equals("Waiting Approve"));
@@ -1153,6 +1166,45 @@ public class PanelTransfer extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(null, ex.getMessage());
             ex.printStackTrace();
         }
+
+    }
+
+    private void validateField() throws Exception {
+        if (txtNumber.getText().equals("")) {
+            throw new Exception("Please enter Employee Number");
+        }
+
+        KeyValue department = (KeyValue) cmbFromDepartment.getSelectedItem();
+        if (department.getValue().equals("")) {
+            throw new Exception("Please select Department");
+        }
+
+        KeyValue toDepartment = (KeyValue) cmbToDepartment.getSelectedItem();
+        if (toDepartment.getValue().equals("")) {
+            throw new Exception("Please select To Department");
+        }
+
+        KeyValue location = (KeyValue) cmbFromLocation.getSelectedItem();
+        if (location.getValue().equals("")) {
+            throw new Exception("Please select Location");
+        }
+
+        KeyValue toLocation = (KeyValue) cmbToLocation.getSelectedItem();
+        if (toLocation.getValue().equals("")) {
+            throw new Exception("Please select To Location");
+        }
+
+        KeyValue project = (KeyValue) cmbFromProject.getSelectedItem();
+        if (project.getValue().equals("")) {
+            throw new Exception("Please select Project");
+        }
+
+        KeyValue toProject = (KeyValue) cmbToLocation.getSelectedItem();
+        if (toProject.getValue().equals("")) {
+            throw new Exception("Please select To Project");
+        }
+
+
 
     }
 }

@@ -32,4 +32,8 @@ public class MyUtil {
         return java.sql.Date.valueOf(getDateStr(dc));
     }
     
+    public static java.sql.Date getDate(JDateChooser dc, JCheckBox cb){        
+        return java.sql.Date.valueOf(getDateStr(dc, cb));
+    }
+    
 }

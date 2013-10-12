@@ -33,7 +33,7 @@ public class EmployeeDAO extends ConnectionTool {
             e.setSalary(rs.getFloat("salary"));
             e.setBirthday(rs.getDate("birthday"));
             e.setAddress(rs.getString("address"));
-            e.setPassword(rs.getString("password"));            
+            e.setPassword(rs.getString("password"));
             e.setRole(rs.getString("role"));
             e.setWorkExperience(rs.getInt("workExperience"));
             e.setGender(rs.getBoolean("gender"));
@@ -67,13 +67,13 @@ public class EmployeeDAO extends ConnectionTool {
             cs.setFloat(4, employee.getSalary());
             cs.setDate(5, employee.getBirthday());
             cs.setString(6, employee.getAddress());
-            cs.setString(7, employee.getPassword());            
+            cs.setString(7, employee.getPassword());
             cs.setString(8, employee.getRole());
             cs.setInt(9, employee.getWorkExperience());
             cs.setBoolean(10, employee.getGender());
             cs.setInt(11, employee.getDepartnameID());
             cs.setInt(12, employee.getProjectID());
-            cs.setString(13,employee.getPhoto());
+            cs.setString(13, employee.getPhoto());
             cs.executeUpdate();
         } else {
             throw new Exception(error);
@@ -90,20 +90,21 @@ public class EmployeeDAO extends ConnectionTool {
         cs.setFloat(4, employee.getSalary());
         cs.setDate(5, employee.getBirthday());
         cs.setString(6, employee.getAddress());
-        cs.setString(7, employee.getPassword());        
+        cs.setString(7, employee.getPassword());
         cs.setString(8, employee.getRole());
         cs.setInt(9, employee.getWorkExperience());
         cs.setBoolean(10, employee.getGender());
         cs.setInt(11, employee.getDepartnameID());
         cs.setInt(12, employee.getProjectID());
-        cs.setString(13,employee.getPhoto());
+        cs.setString(13, employee.getPhoto());
         cs.executeUpdate();
         closeConnection();
     }
-       public void changeEmployeePassword(ChangePassword changePassword) throws ClassNotFoundException, Exception {
+
+    public void changeEmployeePassword(ChangePassword changePassword) throws ClassNotFoundException, Exception {
         initConnection();
         CallableStatement cs = conn.prepareCall("{call changeEmployeePassword(?,?,?)}");
-        cs.setString(1,changePassword.getEmail());
+        cs.setString(1, changePassword.getEmail());
         cs.setString(2, changePassword.getOldPassword());
         cs.setString(3, changePassword.getNewPassword());
         cs.executeUpdate();
@@ -142,7 +143,7 @@ public class EmployeeDAO extends ConnectionTool {
             e.setSalary(rs.getFloat("salary"));
             e.setBirthday(rs.getDate("birthday"));
             e.setAddress(rs.getString("address"));
-            e.setPassword(rs.getString("password"));            
+            e.setPassword(rs.getString("password"));
             e.setRole(rs.getString("role"));
             e.setWorkExperience(rs.getInt("workExperience"));
             e.setGender(rs.getBoolean("gender"));
@@ -170,7 +171,7 @@ public class EmployeeDAO extends ConnectionTool {
                 e.setSalary(rs.getFloat("salary"));
                 e.setBirthday(rs.getDate("birthday"));
                 e.setAddress(rs.getString("address"));
-                e.setPassword(rs.getString("password"));                
+                e.setPassword(rs.getString("password"));
                 e.setRole(rs.getString("role"));
                 e.setWorkExperience(rs.getInt("workExperience"));
                 e.setGender(rs.getBoolean("gender"));
@@ -185,4 +186,77 @@ public class EmployeeDAO extends ConnectionTool {
             return null;
         }
     }
+
+    public Employee getEmployeeByNumber(String number) throws ClassNotFoundException, SQLException {
+        initConnection();
+        Statement stmt = conn.createStatement();
+        ResultSet rs = stmt.executeQuery("select * from employee where employeeNumber = '" + number+"'");
+        Employee e = null;
+        if (rs.next()) {
+            e = new Employee();
+            e.setEmployeeID(rs.getInt("employeeID"));
+            e.setEmployeeNumber(rs.getString("employeeNumber"));
+            e.setEmployeeName(rs.getString("employeeName"));
+            e.setEmail(rs.getString("email"));
+            e.setSalary(rs.getFloat("salary"));
+            e.setBirthday(rs.getDate("birthday"));
+            e.setAddress(rs.getString("address"));
+            e.setPassword(rs.getString("password"));
+            e.setRole(rs.getString("role"));
+            e.setWorkExperience(rs.getInt("workExperience"));
+            e.setGender(rs.getBoolean("gender"));
+            e.setDepartnameID(rs.getInt("departmentID"));
+            e.setProjectID(rs.getInt("projectID"));
+            e.setPhoto(rs.getString("photo"));
+        }
+        closeConnection();
+        return e;
+    }
+    
+    public int getTotalNumberEmployee() throws ClassNotFoundException, SQLException{
+        initConnection();
+        Statement stmt = conn.createStatement();
+        ResultSet rs = stmt.executeQuery("select dbo.getTotalNumberEmployee ()");       
+        int r = 0;
+        if(rs.next()){            
+            r = rs.getInt("");
+        }
+        closeConnection();
+        return r;
+    }
+    public int getTotalMaleNumberEmployee() throws ClassNotFoundException, SQLException{
+        initConnection();
+        Statement stmt = conn.createStatement();
+        ResultSet rs = stmt.executeQuery("select dbo.getTotalMaleNumberEmployee ()");       
+        int r = 0;
+        if(rs.next()){            
+            r = rs.getInt("");
+        }
+        closeConnection();
+        return r;
+    }
+    public int getTotalFemaleNumberEmployee() throws ClassNotFoundException, SQLException{
+        initConnection();
+        Statement stmt = conn.createStatement();
+        ResultSet rs = stmt.executeQuery("select dbo.getTotalFemaleNumberEmployee ()");       
+        int r = 0;
+        if(rs.next()){            
+            r = rs.getInt("");
+        }
+        closeConnection();
+        return r;
+    }
+    public int getTotalSalaryEmployee() throws ClassNotFoundException, SQLException{
+        initConnection();
+        Statement stmt = conn.createStatement();
+        ResultSet rs = stmt.executeQuery("select dbo.getTotalSalaryEmployee ()");       
+        int r = 0;
+        if(rs.next()){            
+            r = rs.getInt("");
+        }
+        closeConnection();
+        return r;
+    }
+    
+    
 }

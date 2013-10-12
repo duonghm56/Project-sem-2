@@ -4,7 +4,9 @@
  */
 package com.c1212l.etm.bll;
 
+import com.c1212l.etm.dal.EmployeeDAO;
 import com.c1212l.etm.dal.TransferDAO;
+import com.c1212l.etm.dto.Employee;
 import com.c1212l.etm.dto.Transfer;
 import java.sql.Date;
 import java.sql.SQLException;
@@ -115,5 +117,30 @@ public class TransferBUS {
         Transfer transfer = new Transfer();
         transfer.setTransferID(transferID);
         transferDAO.deleteTransfer(transfer);
+    }
+    
+    public void makeNewTransfer(String emplNum, int transferTypeID, Date requestDate, Date relievingDate, Date joiningDate, Date approveDate, int fromProjectID, int toProjectID, int fromDepartmentID, int toDepartmentID, int fromLocationID, int toLocationID) throws ClassNotFoundException, SQLException, Exception{        
+        Transfer transfer = new Transfer();
+        EmployeeDAO employeeDAO = new EmployeeDAO();
+        Employee e = employeeDAO.getEmployeeByNumber(emplNum);
+        if(e==null){
+            throw new Exception("Cannot found employee with number: " + emplNum);
+        }else{
+            transfer.setEmployeeID(e.getEmployeeID());
+            transfer.setTransferTypeID(transferTypeID);
+            transfer.setRequestDate(requestDate);
+            transfer.setTransferRelievingDate(relievingDate);
+            transfer.setTransferJoiningDate(joiningDate);
+            transfer.setApproveDate(approveDate);
+            transfer.setFromProjectID(fromProjectID);
+            transfer.setToProjectID(toProjectID);
+            transfer.setFromDepartmentID(fromDepartmentID);
+            transfer.setToDepartmentID(toDepartmentID);
+            transfer.setFromLocationID(fromLocationID);
+            transfer.setToLocationID(toLocationID);
+            TransferDAO transferDAO = new TransferDAO();
+            transferDAO.makeNewTrasnfer(transfer);
+        }
+        
     }
 }
