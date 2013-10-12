@@ -2,14 +2,11 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.c1212l.etm.client.ui;
+package com.c1212l.etm.client.ui_new;
 
 import com.c1212l.etm.bll.EmployeeClientBUS;
-import com.c1212l.etm.dal.EmployeeClientDAO;
-import com.c1212l.etm.dto.Employee;
 import com.c1212l.etm.dto.EmployeeClient;
 import java.sql.SQLException;
-import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -17,19 +14,19 @@ import java.util.logging.Logger;
  *
  * @author Luu Bi
  */
-public class EmployeeClientPanel extends javax.swing.JPanel {
+public class EmployeeProfie extends javax.swing.JPanel {
 
     /**
-     * Creates new form EmployeeClientPanel
+     * Creates new form EmployeeProfie
      */
-    public EmployeeClientPanel() {
+    public EmployeeProfie() {
         try {
             initComponents();
             loadData();
         } catch (SQLException ex) {
-            Logger.getLogger(EmployeeClientPanel.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(EmployeeProfie.class.getName()).log(Level.SEVERE, null, ex);
         } catch (ClassNotFoundException ex) {
-            Logger.getLogger(EmployeeClientPanel.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(EmployeeProfie.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -65,85 +62,147 @@ public class EmployeeClientPanel extends javax.swing.JPanel {
         lblWorkExperience = new javax.swing.JLabel();
         lblSalary = new javax.swing.JLabel();
 
-        setBorder(javax.swing.BorderFactory.createTitledBorder("User Profile"));
-        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
         jLabel6.setText("Email");
-        add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(42, 135, -1, -1));
 
         jLabel7.setText("Address");
-        add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 170, -1, -1));
 
         jLabel5.setText("Birthday");
-        add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(42, 103, -1, -1));
 
         lblTitle4.setText("Salary");
-        add(lblTitle4, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 190, -1, -1));
 
         lblTitle3.setText("Work Experience");
-        add(lblTitle3, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 160, -1, -1));
 
         lblTitle1.setText("Current Location");
-        add(lblTitle1, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 100, -1, -1));
 
         lblTitle2.setText("Role");
-        add(lblTitle2, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 130, -1, -1));
 
         jLabel9.setText("Current Project");
-        add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 70, -1, -1));
 
         jLabel4.setText("Gender");
-        add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(42, 71, -1, -1));
 
         jLabel8.setText("Current Department");
-        add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 40, -1, -1));
 
         jLabel3.setText("Full Name:");
-        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(42, 39, -1, -1));
 
         lblFullName.setForeground(new java.awt.Color(153, 0, 0));
         lblFullName.setText("jLabel1");
-        add(lblFullName, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 40, -1, -1));
 
         lblGender.setForeground(new java.awt.Color(153, 0, 0));
         lblGender.setText("jLabel2");
-        add(lblGender, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 70, -1, -1));
 
         lblBirthday.setForeground(new java.awt.Color(153, 0, 0));
         lblBirthday.setText("jLabel14");
-        add(lblBirthday, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 100, -1, -1));
 
         lblEmail.setForeground(new java.awt.Color(153, 0, 0));
         lblEmail.setText("jLabel15");
-        add(lblEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 130, -1, -1));
 
         lblAddress.setForeground(new java.awt.Color(153, 0, 0));
         lblAddress.setText("jLabel16");
-        add(lblAddress, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 170, -1, -1));
 
         lblCurrentDepartment.setForeground(new java.awt.Color(153, 0, 0));
         lblCurrentDepartment.setText("jLabel17");
-        add(lblCurrentDepartment, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 40, -1, -1));
 
         lblCurrentProject.setForeground(new java.awt.Color(153, 0, 0));
         lblCurrentProject.setText("jLabel18");
-        add(lblCurrentProject, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 70, -1, -1));
 
         lblCurrentLocation.setForeground(new java.awt.Color(153, 0, 0));
         lblCurrentLocation.setText("jLabel19");
-        add(lblCurrentLocation, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 100, -1, -1));
 
         lblRole.setForeground(new java.awt.Color(153, 0, 0));
         lblRole.setText("jLabel20");
-        add(lblRole, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 130, -1, -1));
 
         lblWorkExperience.setForeground(new java.awt.Color(153, 0, 0));
         lblWorkExperience.setText("jLabel21");
-        add(lblWorkExperience, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 160, -1, -1));
 
         lblSalary.setForeground(new java.awt.Color(153, 0, 0));
         lblSalary.setText("jLabel22");
-        add(lblSalary, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 190, -1, -1));
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
+        this.setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel3)
+                    .addComponent(jLabel4)
+                    .addComponent(jLabel5)
+                    .addComponent(jLabel6)
+                    .addComponent(jLabel7)
+                    .addComponent(lblTitle4))
+                .addGap(28, 28, 28)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblFullName)
+                            .addComponent(lblGender)
+                            .addComponent(lblBirthday)
+                            .addComponent(lblEmail)
+                            .addComponent(lblAddress))
+                        .addGap(71, 71, 71)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(lblTitle3)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(lblWorkExperience))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(lblTitle2)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(lblRole))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(lblTitle1)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(lblCurrentLocation))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(jLabel9)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(lblCurrentProject))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(jLabel8)
+                                .addGap(18, 18, 18)
+                                .addComponent(lblCurrentDepartment))))
+                    .addComponent(lblSalary))
+                .addContainerGap(75, Short.MAX_VALUE))
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(30, 30, 30)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3)
+                    .addComponent(lblFullName)
+                    .addComponent(jLabel8)
+                    .addComponent(lblCurrentDepartment))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel4)
+                    .addComponent(lblGender)
+                    .addComponent(jLabel9)
+                    .addComponent(lblCurrentProject))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel5)
+                    .addComponent(lblBirthday)
+                    .addComponent(lblTitle1)
+                    .addComponent(lblCurrentLocation))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblEmail)
+                    .addComponent(jLabel6)
+                    .addComponent(lblTitle2)
+                    .addComponent(lblRole))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel7)
+                    .addComponent(lblAddress)
+                    .addComponent(lblTitle3)
+                    .addComponent(lblWorkExperience))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblTitle4)
+                    .addComponent(lblSalary))
+                .addContainerGap(96, Short.MAX_VALUE))
+        );
     }// </editor-fold>//GEN-END:initComponents
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel3;
@@ -169,7 +228,7 @@ public class EmployeeClientPanel extends javax.swing.JPanel {
     private javax.swing.JLabel lblTitle4;
     private javax.swing.JLabel lblWorkExperience;
     // End of variables declaration//GEN-END:variables
-   private EmployeeClientBUS emplClientBUS = new EmployeeClientBUS();
+      private EmployeeClientBUS emplClientBUS = new EmployeeClientBUS();
 //   private Employee employee = new Employee();
     private void loadData() throws SQLException, ClassNotFoundException
     {
@@ -192,5 +251,5 @@ public class EmployeeClientPanel extends javax.swing.JPanel {
                 {
                     lblGender.setText("Female");
                 }               
-     }
+     } 
 }
