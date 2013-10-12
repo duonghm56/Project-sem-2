@@ -79,6 +79,7 @@ public class ProjectPanel extends javax.swing.JPanel {
         btnUpdate = new javax.swing.JButton();
         btnDelete = new javax.swing.JButton();
         btnRefresh = new javax.swing.JButton();
+        btnSearch = new javax.swing.JButton();
 
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder("Total Project Infor"));
 
@@ -365,6 +366,18 @@ public class ProjectPanel extends javax.swing.JPanel {
         });
         toolBar.add(btnRefresh);
 
+        btnSearch.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image_new/find.png"))); // NOI18N
+        btnSearch.setText("Search");
+        btnSearch.setFocusable(false);
+        btnSearch.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        btnSearch.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        btnSearch.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSearchActionPerformed(evt);
+            }
+        });
+        toolBar.add(btnSearch);
+
         javax.swing.GroupLayout rightPanelLayout = new javax.swing.GroupLayout(rightPanel);
         rightPanel.setLayout(rightPanelLayout);
         rightPanelLayout.setHorizontalGroup(
@@ -474,10 +487,21 @@ public class ProjectPanel extends javax.swing.JPanel {
         reloadData();
     }//GEN-LAST:event_btnRefreshActionPerformed
 
+    private void btnSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchActionPerformed
+        try {
+            loadSearchData();
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(ProjectPanel.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(ProjectPanel.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_btnSearchActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAdd;
     private javax.swing.JButton btnDelete;
     private javax.swing.JButton btnRefresh;
+    private javax.swing.JButton btnSearch;
     private javax.swing.JButton btnUpdate;
     private javax.swing.JCheckBox chkCreateDateUnknow;
     private javax.swing.JCheckBox chkEndDateUnknow;
@@ -594,9 +618,7 @@ public class ProjectPanel extends javax.swing.JPanel {
             Logger.getLogger(com.c1212l.etm.ui.ProjectPanel.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-
     
-
     private void loadSearchData() throws ClassNotFoundException, SQLException {
         String conditon = "";
         if (!txtProjectName.getText().equals("")) {
@@ -606,20 +628,20 @@ public class ProjectPanel extends javax.swing.JPanel {
                 conditon += " and projectName like '%" + txtProjectName.getText() + "%'";
             }
         }
-//        if (!txtCreateDate.getText().equals("")) {
-//            if (conditon.contains("where")) {
-//                conditon += " and convert(varchar(25), createDate, 126) like '" + txtCreateDate.getText() + "%'";
-//            } else {
-//                conditon += " where convert(varchar(25), createDate, 126) like '" + txtCreateDate.getText() + "%'";
-//            }
-//        }
-//        if (!txtEndDate.getText().equals("")) {
-//            if (conditon.contains("where")) {
-//                conditon += " and convert(varchar(25), endDate, 126) like '" + txtEndDate.getText() + "%'";
-//            } else {
-//                conditon += " where convert(varchar(25), endDate, 126) like '" + txtEndDate.getText() + "%'";
-//            }
-//        }
+        if (!chkCreateDateUnknow.isSelected()) {
+            if (conditon.contains("where")) {
+                conditon += " and convert(varchar(25), createDate, 126) like '" + MyUtil.getDateStr(dcCreateDate) + "%'";
+            } else {
+                conditon += " where convert(varchar(25), createDate, 126) like '" + MyUtil.getDateStr(dcCreateDate) + "%'";
+            }
+        }
+        if (!chkEndDateUnknow.isSelected()) {
+            if (conditon.contains("where")) {
+                conditon += " and convert(varchar(25), endDate, 126) like '" + MyUtil.getDateStr(dcEndDate) + "%'";
+            } else {
+                conditon += " where convert(varchar(25), endDate, 126) like '" + MyUtil.getDateStr(dcEndDate) + "%'";
+            }
+        }
         //JOptionPane.showMessageDialog(null, conditon);
         initTable();
         lstProject = projectBUS.searchProject(conditon);

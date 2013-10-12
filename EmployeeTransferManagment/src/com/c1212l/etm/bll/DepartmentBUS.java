@@ -24,6 +24,9 @@ public class DepartmentBUS {
     public ArrayList<Department> getAllDepartment() throws ClassNotFoundException, SQLException{
         return departmentDAO.getAllDepartment();
     }
+    public ArrayList<Department> getDepartmentByLocationID(int locationID) throws ClassNotFoundException, SQLException{
+        return departmentDAO.getDepartmentByLocationId(locationID);
+    }
     public void addDepartment(String dpmName,int locationID) throws ClassNotFoundException, Exception{
         Department dpm=new Department();
         dpm.setDepartmentName(dpmName);

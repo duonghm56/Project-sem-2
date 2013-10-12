@@ -33,6 +33,22 @@ public class DepartmentDAO extends ConnectionTool {
         closeConnection();
         return result;
     }
+    
+    public ArrayList<Department> getDepartmentByLocationId(int locationID) throws ClassNotFoundException, SQLException {
+        initConnection();
+        Statement stt = conn.createStatement();
+        ResultSet rs = stt.executeQuery("Select * From department where locationID = " + locationID);
+        ArrayList<Department> result = new ArrayList<Department>();
+        while (rs.next()) {
+            Department dp = new Department();
+            dp.setDepartmentID(rs.getInt("departmentID"));
+            dp.setDepartmentName(rs.getString("departmentName"));
+            dp.setLocationID(rs.getInt("locationID"));
+            result.add(dp);
+        }
+        closeConnection();
+        return result;
+    }
 
     public void addDepartment(Department department) throws ClassNotFoundException, Exception {
             initConnection();

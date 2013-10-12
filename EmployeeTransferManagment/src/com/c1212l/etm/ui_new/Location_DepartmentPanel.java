@@ -64,14 +64,21 @@ public class Location_DepartmentPanel extends javax.swing.JPanel {
         btnAddDepartment = new javax.swing.JButton();
         btnUpdateDepartment = new javax.swing.JButton();
         btnDeleteDepartment = new javax.swing.JButton();
+        btnSearch = new javax.swing.JButton();
+        btnRefresh = new javax.swing.JButton();
         panelTable = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         tbDepartment = new javax.swing.JTable();
 
-        lstLocation.setModel(new javax.swing.AbstractListModel() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public Object getElementAt(int i) { return strings[i]; }
+        lstLocation.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                lstLocationMouseReleased(evt);
+            }
+        });
+        lstLocation.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
+            public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
+                lstLocationValueChanged(evt);
+            }
         });
         jScrollPane1.setViewportView(lstLocation);
 
@@ -92,12 +99,22 @@ public class Location_DepartmentPanel extends javax.swing.JPanel {
         btnUpdateLocation.setFocusable(false);
         btnUpdateLocation.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnUpdateLocation.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnUpdateLocation.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnUpdateLocationActionPerformed(evt);
+            }
+        });
         jToolBar3.add(btnUpdateLocation);
 
         btnDeleteLocation.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image_new/delete1.png"))); // NOI18N
         btnDeleteLocation.setFocusable(false);
         btnDeleteLocation.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnDeleteLocation.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnDeleteLocation.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDeleteLocationActionPerformed(evt);
+            }
+        });
         jToolBar3.add(btnDeleteLocation);
 
         javax.swing.GroupLayout leftPanelLayout = new javax.swing.GroupLayout(leftPanel);
@@ -105,7 +122,7 @@ public class Location_DepartmentPanel extends javax.swing.JPanel {
         leftPanelLayout.setHorizontalGroup(
             leftPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jToolBar3, javax.swing.GroupLayout.DEFAULT_SIZE, 160, Short.MAX_VALUE)
-            .addComponent(jScrollPane1)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
         );
         leftPanelLayout.setVerticalGroup(
             leftPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -123,8 +140,6 @@ public class Location_DepartmentPanel extends javax.swing.JPanel {
 
         jLabel2.setText("Location");
 
-        cmbLocation.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
         javax.swing.GroupLayout panelBasicInforLayout = new javax.swing.GroupLayout(panelBasicInfor);
         panelBasicInfor.setLayout(panelBasicInforLayout);
         panelBasicInforLayout.setHorizontalGroup(
@@ -138,20 +153,20 @@ public class Location_DepartmentPanel extends javax.swing.JPanel {
                 .addGroup(panelBasicInforLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(txtDepartmentName, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(cmbLocation, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(120, Short.MAX_VALUE))
         );
         panelBasicInforLayout.setVerticalGroup(
             panelBasicInforLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelBasicInforLayout.createSequentialGroup()
-                .addGap(11, 11, 11)
+                .addGap(14, 14, 14)
                 .addGroup(panelBasicInforLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(txtDepartmentName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(panelBasicInforLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(cmbLocation, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2))
-                .addContainerGap(14, Short.MAX_VALUE))
+                .addGroup(panelBasicInforLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel2)
+                    .addComponent(cmbLocation, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         toolBar.setRollover(true);
@@ -184,7 +199,7 @@ public class Location_DepartmentPanel extends javax.swing.JPanel {
         });
         toolBar.add(btnUpdateDepartment);
 
-        btnDeleteDepartment.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image_new/delete1.png"))); // NOI18N
+        btnDeleteDepartment.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image_new/delete_32.png"))); // NOI18N
         btnDeleteDepartment.setText("Delete");
         btnDeleteDepartment.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         btnDeleteDepartment.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
@@ -196,6 +211,30 @@ public class Location_DepartmentPanel extends javax.swing.JPanel {
             }
         });
         toolBar.add(btnDeleteDepartment);
+
+        btnSearch.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image_new/find.png"))); // NOI18N
+        btnSearch.setText("Search");
+        btnSearch.setFocusable(false);
+        btnSearch.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        btnSearch.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        btnSearch.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSearchActionPerformed(evt);
+            }
+        });
+        toolBar.add(btnSearch);
+
+        btnRefresh.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/1380633043_gtk-cancel.png"))); // NOI18N
+        btnRefresh.setText("Refresh");
+        btnRefresh.setFocusable(false);
+        btnRefresh.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        btnRefresh.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        btnRefresh.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRefreshActionPerformed(evt);
+            }
+        });
+        toolBar.add(btnRefresh);
 
         panelTable.setBorder(javax.swing.BorderFactory.createTitledBorder("List Department"));
 
@@ -211,6 +250,9 @@ public class Location_DepartmentPanel extends javax.swing.JPanel {
             }
         ));
         tbDepartment.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                tbDepartmentMouseReleased(evt);
+            }
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tbDepartmentMouseClicked(evt);
             }
@@ -223,14 +265,14 @@ public class Location_DepartmentPanel extends javax.swing.JPanel {
             panelTableLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelTableLayout.createSequentialGroup()
                 .addGap(5, 5, 5)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 465, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 505, Short.MAX_VALUE)
                 .addContainerGap())
         );
         panelTableLayout.setVerticalGroup(
             panelTableLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelTableLayout.createSequentialGroup()
                 .addGap(5, 5, 5)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 211, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 229, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -249,9 +291,9 @@ public class Location_DepartmentPanel extends javax.swing.JPanel {
         rightPanelLayout.setVerticalGroup(
             rightPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, rightPanelLayout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(5, 5, 5)
                 .addComponent(toolBar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(panelBasicInfor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(panelTable, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -264,29 +306,39 @@ public class Location_DepartmentPanel extends javax.swing.JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jSplitPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 719, Short.MAX_VALUE)
+            .addComponent(jSplitPane1)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jSplitPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 432, Short.MAX_VALUE)
+            .addComponent(jSplitPane1)
         );
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAddLocationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddLocationActionPerformed
-        // TODO add your handling code here:
+        try {
+            String locationName = JOptionPane.showInputDialog(null, "Please enter location name: ", "Add Location", JOptionPane.INFORMATION_MESSAGE);
+            if(locationName != null){
+                locationBUS.addLocation(locationName);
+                initCmbLocation();
+                reloadDataList();
+            }
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        }
+
     }//GEN-LAST:event_btnAddLocationActionPerformed
 
     private void btnAddDepartmentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddDepartmentActionPerformed
         // TODO add your handling code here:
-           try {
-             if (txtDepartmentName.getText().equals("")) {
+        try {
+            if (txtDepartmentName.getText().equals("")) {
                 JOptionPane.showMessageDialog(null, "Please enter department name");
                 return;
             }
             Pattern ptDepartName = Pattern.compile("^([A-Za-z]+[\\s]?)+$");
             Matcher mcDepartName = ptDepartName.matcher(txtDepartmentName.getText());
             if (!mcDepartName.find()) {
-                 throw new Exception("Department name is not valid");
+                throw new Exception("Department name is not valid");
             }
             departmentBUS.addDepartment(txtDepartmentName.getText(), ((KeyValue) cmbLocation.getSelectedItem()).getKey());
             reloadData();
@@ -297,21 +349,20 @@ public class Location_DepartmentPanel extends javax.swing.JPanel {
 
     private void btnUpdateDepartmentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateDepartmentActionPerformed
         // TODO add your handling code here:
-            try {
+        try {
             if (txtDepartmentName.getText().equals("")) {
                 throw new Exception("Please enter department name");
             }
             Pattern ptDepartName = Pattern.compile("^([A-Za-z]+[\\s]?)+$");
             Matcher mcDepartName = ptDepartName.matcher(txtDepartmentName.getText());
             if (!mcDepartName.find()) {
-                 throw new Exception("Department name is not valid");
+                throw new Exception("Department name is not valid");
             }
-            if (departmentID!=0) {
+            if (departmentID != 0) {
                 int locationID = ((KeyValue) cmbLocation.getSelectedItem()).getKey();
                 departmentBUS.updateDepartment(departmentID, txtDepartmentName.getText(), locationID);
                 reloadData();
-            }
-            else{
+            } else {
                 JOptionPane.showMessageDialog(null, "Please select department");
             }
         } catch (Exception ex) {
@@ -321,40 +372,124 @@ public class Location_DepartmentPanel extends javax.swing.JPanel {
 
     private void tbDepartmentMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbDepartmentMouseClicked
         // TODO add your handling code here:
-        int row = tbDepartment.rowAtPoint(evt.getPoint());
-         departmentID = Integer.parseInt(tbDepartment.getValueAt(row, 0).toString());
-        txtDepartmentName.setText(tbDepartment.getValueAt(row, 1).toString());
-        cmbLocation.setSelectedItem(new KeyValue(0, tbDepartment.getValueAt(row, 2).toString()));
+        
     }//GEN-LAST:event_tbDepartmentMouseClicked
 
     private void btnDeleteDepartmentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteDepartmentActionPerformed
-        // TODO add your handling code here:
-
-            try {
-                if (JOptionPane.showConfirmDialog(null, "Are you sure to delete?", "Delete", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
-                    if (departmentID!=0){
-                        departmentBUS.deleteDepartment(departmentID);
-                        reloadData();
-                    }
-                    else{
-                         JOptionPane.showMessageDialog(null, "Please select department");
-                    }
-                }
-            } catch (Exception ex) {
-                if(ex.getMessage().contains("UNIQUE KEY")){
-                    JOptionPane.showMessageDialog(null, "Error: Duplicate value", "Error", JOptionPane.ERROR_MESSAGE);
-                }else{
-                    JOptionPane.showMessageDialog(null, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);                    
-                    ex.printStackTrace();
+        try {
+            if (JOptionPane.showConfirmDialog(null, "Are you sure to delete?", "Delete", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
+                if (departmentID != 0) {
+                    departmentBUS.deleteDepartment(departmentID);
+                    reloadData();
+                } else {
+                    JOptionPane.showMessageDialog(null, "Please select department");
                 }
             }
+        } catch (Exception ex) {
+            if (ex.getMessage().contains("UNIQUE KEY")) {
+                JOptionPane.showMessageDialog(null, "Error: Duplicate value", "Error", JOptionPane.ERROR_MESSAGE);
+            } else {
+                JOptionPane.showMessageDialog(null, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+                ex.printStackTrace();
+            }
+        }
     }//GEN-LAST:event_btnDeleteDepartmentActionPerformed
+
+    private void lstLocationValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_lstLocationValueChanged
+        // TODO add your handling code here:
+    }//GEN-LAST:event_lstLocationValueChanged
+
+    private void lstLocationMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lstLocationMouseReleased
+        try {
+            KeyValue selectedItem = (KeyValue) lstLocation.getSelectedValue();
+            if (selectedItem.getKey() != 0) {
+                lstDepartment = departmentBUS.getDepartmentByLocationID(selectedItem.getKey());
+                initTable();
+                fillData(lstDepartment);
+            } else {
+                reloadData();
+            }
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(Location_DepartmentPanel.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(Location_DepartmentPanel.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }//GEN-LAST:event_lstLocationMouseReleased
+
+    private void btnUpdateLocationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateLocationActionPerformed
+        try {
+            KeyValue selectedItem = (KeyValue) lstLocation.getSelectedValue();
+            if (selectedItem == null || selectedItem.getKey() == 0) {
+                throw new Exception("Please select location");
+            }
+            String locationName = JOptionPane.showInputDialog(null, "Please enter location name: ", "Edit Location", JOptionPane.INFORMATION_MESSAGE);
+            
+            if (locationName != null) {
+                Pattern ptLocationName = Pattern.compile("^([A-Za-z]+[\\s]?)+$");
+                Matcher mcLocationName = ptLocationName.matcher(locationName);
+                if (!mcLocationName.find()) {
+                    throw new Exception("Location Name is not valid");
+                }
+
+                int locationID = selectedItem.getKey();
+                locationBUS.updateLocation(locationID, locationName);
+                reloadDataList();
+                initCmbLocation();
+            }
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+            ex.printStackTrace();
+        }
+    }//GEN-LAST:event_btnUpdateLocationActionPerformed
+
+    private void btnDeleteLocationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteLocationActionPerformed
+        try {
+            KeyValue selectedItem = (KeyValue) lstLocation.getSelectedValue();
+            if (selectedItem == null || selectedItem.getKey() == 0) {
+                throw new Exception("Please select location");
+            }
+            if (JOptionPane.showConfirmDialog(null, "Are you sure to delete?", "Delete", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
+                int locationID = selectedItem.getKey();
+                locationBUS.deleteLocation(locationID);
+                reloadDataList();
+                initCmbLocation();
+            }
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+
+        }
+    }//GEN-LAST:event_btnDeleteLocationActionPerformed
+
+    private void btnSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchActionPerformed
+        try {
+            loadSearchData();
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(Location_DepartmentPanel.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(Location_DepartmentPanel.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_btnSearchActionPerformed
+
+    private void btnRefreshActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRefreshActionPerformed
+        reloadData();
+        reloadDataList();
+    }//GEN-LAST:event_btnRefreshActionPerformed
+
+    private void tbDepartmentMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbDepartmentMouseReleased
+        int row = tbDepartment.rowAtPoint(evt.getPoint());
+        departmentID = Integer.parseInt(tbDepartment.getValueAt(row, 0).toString());
+        txtDepartmentName.setText(tbDepartment.getValueAt(row, 1).toString());
+        cmbLocation.setSelectedItem(new KeyValue(0, tbDepartment.getValueAt(row, 2).toString()));
+    }//GEN-LAST:event_tbDepartmentMouseReleased
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAddDepartment;
     private javax.swing.JButton btnAddLocation;
     private javax.swing.JButton btnDeleteDepartment;
     private javax.swing.JButton btnDeleteLocation;
+    private javax.swing.JButton btnRefresh;
+    private javax.swing.JButton btnSearch;
     private javax.swing.JButton btnUpdateDepartment;
     private javax.swing.JButton btnUpdateLocation;
     private javax.swing.JComboBox cmbLocation;
@@ -379,9 +514,8 @@ public class Location_DepartmentPanel extends javax.swing.JPanel {
     ArrayList<Location> listLocation;
     DepartmentBUS departmentBUS = new DepartmentBUS();
     LocationBUS locationBUS = new LocationBUS();
-    
-    
-    private int  departmentID;
+    private int departmentID;
+
     private void initTable() {
         Vector header = new Vector();
         header.add("Department ID");
@@ -411,17 +545,19 @@ public class Location_DepartmentPanel extends javax.swing.JPanel {
             Logger.getLogger(ProjectPanel.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    private void fillDataList(ArrayList<Location> lst)
-    {
+
+    private void fillDataList(ArrayList<Location> lst) {
         if (lst != null) {
             lstModel = new DefaultListModel();
-            for(Location location:lst){
-                lstModel.addElement(location.getLocationName());
+            lstModel.addElement(new KeyValue(0, "All Location"));
+            for (Location location : lst) {
+                lstModel.addElement(new KeyValue(location.getLocationID(), location.getLocationName()));
             }
             lstLocation.setModel(lstModel);
         }
     }
-    private void reloadDataList(){
+
+    private void reloadDataList() {
         try {
             fillDataList(locationBUS.getAllLocation());
         } catch (ClassNotFoundException ex) {
@@ -430,6 +566,7 @@ public class Location_DepartmentPanel extends javax.swing.JPanel {
             Logger.getLogger(Location_DepartmentPanel.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+
     private void initTextField() {
         txtDepartmentName.setText("");
     }
@@ -448,7 +585,6 @@ public class Location_DepartmentPanel extends javax.swing.JPanel {
             Logger.getLogger(DepartmentPanel.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-   
 
     private void searchDepartmentName() throws ClassNotFoundException, SQLException {
         String departmentName = "";
@@ -479,5 +615,17 @@ public class Location_DepartmentPanel extends javax.swing.JPanel {
         }
     }
     
-    
+    private void loadSearchData() throws ClassNotFoundException, SQLException {
+        String departmentName = "";
+        if (!txtDepartmentName.getText().equals("")) {
+            if (!departmentName.contains("where")) {
+                departmentName += " where departmentName like '%" + txtDepartmentName.getText() + "%'";
+            } else {
+                departmentName += " and departmentName like '%" + txtDepartmentName.getText() + "%'";
+            }
+        }
+        initTable();
+        lstDepartment = departmentBUS.searchDepartmentName(departmentName);
+        fillData(lstDepartment);
+    }
 }
