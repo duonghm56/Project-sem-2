@@ -218,7 +218,7 @@ public class Transfer {
                 break;
         }
 
-
+        v.add(letter);
 
         return v;
         /*v.add(transferID);

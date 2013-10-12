@@ -338,7 +338,7 @@ go
  
 
 --------------------------------------------------------------------------
-
+select * from transfer
 --select * from employee
 --go
 --exec addTransfer 2, 1, 'demo', 1, 2, 1, 1, 1, 1
@@ -367,3 +367,5 @@ go
 
       
 --select * from employee
+select departmentID, departmentName, locationName from department join location on department.locationID=location.locationID
+select * from department where departmentID=1

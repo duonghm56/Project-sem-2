@@ -149,6 +149,11 @@ public class ClientTransferPanel extends javax.swing.JPanel {
         add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 20, -1, -1));
 
         cmbFromDepartment.setEnabled(false);
+        cmbFromDepartment.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cmbFromDepartmentItemStateChanged(evt);
+            }
+        });
         add(cmbFromDepartment, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 310, 220, 30));
 
         cmbTransferType.setEnabled(false);
@@ -313,6 +318,10 @@ public class ClientTransferPanel extends javax.swing.JPanel {
         txtTransferLetter.setText(content);
     }//GEN-LAST:event_btnGenerateActionPerformed
 
+    private void cmbFromDepartmentItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cmbFromDepartmentItemStateChanged
+        
+    }//GEN-LAST:event_cmbFromDepartmentItemStateChanged
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnGenerate;
     private javax.swing.JButton btnReset;
@@ -365,6 +374,10 @@ public class ClientTransferPanel extends javax.swing.JPanel {
 
     private void initCmbToProject() throws ClassNotFoundException, SQLException {
         initCmbProject(cmbToProject);
+        ProjectDAO projectDAO = new ProjectDAO();
+        cmbToProject.setSelectedItem(
+                new KeyValue(employee.getProjectID(),
+                projectDAO.getProjectById(employee.getProjectID()).getProjectName()));
     }
 
     private void initCmbDepartment(JComboBox cmb) throws ClassNotFoundException, SQLException {
@@ -384,13 +397,17 @@ public class ClientTransferPanel extends javax.swing.JPanel {
     private void initCmbFromDepartment() throws ClassNotFoundException, SQLException {
         initCmbDepartment(cmbFromDepartment);
         DepartmentDAO departmentDAO = new DepartmentDAO();
-        cmbFromProject.setSelectedItem(
+        cmbFromDepartment.setSelectedItem(
                 new KeyValue(employee.getDepartnameID(),
                 departmentDAO.getDepartmentByID(employee.getDepartnameID()).getDepartmentName()));
     }
 
     private void initCmbToDepartment() throws ClassNotFoundException, SQLException {
         initCmbDepartment(cmbToDepartment);
+        DepartmentDAO departmentDAO = new DepartmentDAO();
+        cmbToDepartment.setSelectedItem(
+                new KeyValue(employee.getDepartnameID(),
+                departmentDAO.getDepartmentByID(employee.getDepartnameID()).getDepartmentName()));
     }
 
     private void initCmbLocation(JComboBox cmb) throws ClassNotFoundException, SQLException {
@@ -408,12 +425,20 @@ public class ClientTransferPanel extends javax.swing.JPanel {
         Department department = departmentDAO.getDepartmentByID(employee.getDepartnameID());
         LocationDAO locationDAO = new LocationDAO();
         Location location = locationDAO.getLocationById(department.getLocationID());
-        cmbFromProject.setSelectedItem(
+        System.out.println(location.getLocationID() + ": " + location.getLocationName());
+        cmbFromLocation.setSelectedItem(
                 new KeyValue(location.getLocationID(), location.getLocationName()));
     }
 
     private void initCmbToLocation() throws ClassNotFoundException, SQLException {
         initCmbLocation(cmbToLocation);
+        DepartmentDAO departmentDAO = new DepartmentDAO();
+        Department department = departmentDAO.getDepartmentByID(employee.getDepartnameID());
+        LocationDAO locationDAO = new LocationDAO();
+        Location location = locationDAO.getLocationById(department.getLocationID());
+        System.out.println(location.getLocationID() + ": " + location.getLocationName());
+        cmbToLocation.setSelectedItem(
+                new KeyValue(location.getLocationID(), location.getLocationName()));
     }
 
     private void loadData() throws ClassNotFoundException, SQLException {

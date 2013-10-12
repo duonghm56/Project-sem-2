@@ -13,11 +13,16 @@ import com.c1212l.etm.dto.Employee;
 import com.c1212l.etm.dto.Location;
 import com.c1212l.etm.dto.Project;
 import com.c1212l.etm.util.KeyValue;
+import com.c1212l.etm.util.MyUtil;
+import java.sql.Date;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -71,11 +76,14 @@ public class PanelEmployee extends javax.swing.JPanel {
         lblFemale = new javax.swing.JLabel();
         jLabel35 = new javax.swing.JLabel();
         lblTotlalSalary = new javax.swing.JLabel();
+        txtEmployeeID = new javax.swing.JTextField();
         rightPanel = new javax.swing.JPanel();
         toolBarButton = new javax.swing.JToolBar();
         btnAdd = new javax.swing.JButton();
         btnUpdate = new javax.swing.JButton();
         btnDelete = new javax.swing.JButton();
+        btnRefresh = new javax.swing.JButton();
+        btnSearch = new javax.swing.JButton();
         panelBasicInfor = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         txtNumber = new javax.swing.JTextField();
@@ -109,7 +117,6 @@ public class PanelEmployee extends javax.swing.JPanel {
         panelTable = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         tblEmployee = new javax.swing.JTable();
-        txtEmployeeID = new javax.swing.JTextField();
 
         panelInfor.setBorder(javax.swing.BorderFactory.createTitledBorder("Information"));
 
@@ -246,16 +253,19 @@ public class PanelEmployee extends javax.swing.JPanel {
             .addGroup(panelTotalInforLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(panelTotalInforLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel29)
-                    .addComponent(jLabel30)
-                    .addComponent(jLabel31)
-                    .addComponent(jLabel35))
-                .addGap(18, 18, 18)
-                .addGroup(panelTotalInforLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblTotlalSalary)
-                    .addComponent(lblFemale)
-                    .addComponent(lblMale)
-                    .addComponent(lblTotalEmpl))
+                    .addGroup(panelTotalInforLayout.createSequentialGroup()
+                        .addGroup(panelTotalInforLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel29)
+                            .addComponent(jLabel30)
+                            .addComponent(jLabel31)
+                            .addComponent(jLabel35))
+                        .addGap(18, 18, 18)
+                        .addGroup(panelTotalInforLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblTotlalSalary)
+                            .addComponent(lblFemale)
+                            .addComponent(lblMale)
+                            .addComponent(lblTotalEmpl)))
+                    .addComponent(txtEmployeeID, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         panelTotalInforLayout.setVerticalGroup(
@@ -277,7 +287,9 @@ public class PanelEmployee extends javax.swing.JPanel {
                 .addGroup(panelTotalInforLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel35)
                     .addComponent(lblTotlalSalary))
-                .addContainerGap(47, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(txtEmployeeID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(23, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout leftPanelLayout = new javax.swing.GroupLayout(leftPanel);
@@ -312,6 +324,11 @@ public class PanelEmployee extends javax.swing.JPanel {
         btnAdd.setFocusable(false);
         btnAdd.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         btnAdd.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        btnAdd.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAddActionPerformed(evt);
+            }
+        });
         toolBarButton.add(btnAdd);
 
         btnUpdate.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image_new/save_32.png"))); // NOI18N
@@ -319,6 +336,11 @@ public class PanelEmployee extends javax.swing.JPanel {
         btnUpdate.setFocusable(false);
         btnUpdate.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         btnUpdate.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        btnUpdate.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnUpdateActionPerformed(evt);
+            }
+        });
         toolBarButton.add(btnUpdate);
 
         btnDelete.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image_new/delete_32.png"))); // NOI18N
@@ -326,7 +348,36 @@ public class PanelEmployee extends javax.swing.JPanel {
         btnDelete.setFocusable(false);
         btnDelete.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         btnDelete.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        btnDelete.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDeleteActionPerformed(evt);
+            }
+        });
         toolBarButton.add(btnDelete);
+
+        btnRefresh.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/1380633043_gtk-cancel.png"))); // NOI18N
+        btnRefresh.setText("Refresh");
+        btnRefresh.setFocusable(false);
+        btnRefresh.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        btnRefresh.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        btnRefresh.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRefreshActionPerformed(evt);
+            }
+        });
+        toolBarButton.add(btnRefresh);
+
+        btnSearch.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image_new/find.png"))); // NOI18N
+        btnSearch.setText("Search");
+        btnSearch.setFocusable(false);
+        btnSearch.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        btnSearch.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        btnSearch.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSearchActionPerformed(evt);
+            }
+        });
+        toolBarButton.add(btnSearch);
 
         panelBasicInfor.setBorder(javax.swing.BorderFactory.createTitledBorder("Basic Information"));
 
@@ -549,26 +600,20 @@ public class PanelEmployee extends javax.swing.JPanel {
         rightPanelLayout.setHorizontalGroup(
             rightPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(rightPanelLayout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(rightPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(panelTable, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(panelWorkInfor, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(panelBasicInfor, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(toolBarButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(rightPanelLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(rightPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(panelTable, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(panelWorkInfor, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(panelBasicInfor, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(rightPanelLayout.createSequentialGroup()
-                .addComponent(toolBarButton, javax.swing.GroupLayout.PREFERRED_SIZE, 268, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(36, 36, 36)
-                .addComponent(txtEmployeeID, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
         );
         rightPanelLayout.setVerticalGroup(
             rightPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(rightPanelLayout.createSequentialGroup()
-                .addGroup(rightPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(rightPanelLayout.createSequentialGroup()
-                        .addComponent(txtEmployeeID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 22, Short.MAX_VALUE))
-                    .addComponent(toolBarButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(toolBarButton, javax.swing.GroupLayout.DEFAULT_SIZE, 49, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(panelBasicInfor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -601,9 +646,91 @@ public class PanelEmployee extends javax.swing.JPanel {
         updateFieldWhenSelectEmployee();
     }//GEN-LAST:event_tblEmployeeMouseReleased
 
+    private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
+        try {
+            validateField();
+            String photo = txtPhoto.getText();  
+            Date birthday = MyUtil.getDate(dcBirthday);
+            employeeBUS.addEmployee(
+                    txtNumber.getText(),
+                    txtName.getText(),
+                    txtEmail.getText(),
+                    Float.parseFloat(txtSalary.getText()),
+                    birthday,
+                    txtAddress.getText(),
+                    new String(txtPassword.getPassword()),
+                    txtEmployeeRole.getText(),
+                    Integer.parseInt(txtWorkExperience.getText()),
+                    ((KeyValue) cmbGender.getSelectedItem()).getKey() == 1 ? true : false,
+                    ((KeyValue) cmbDepartment.getSelectedItem()).getKey(),
+                    ((KeyValue) cmbProject.getSelectedItem()).getKey(),
+                    photo);
+            reloadData();
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+            ex.printStackTrace();
+        }
+    }//GEN-LAST:event_btnAddActionPerformed
+
+    private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
+        
+        try {            
+            validateField();
+            
+            int gender = ((KeyValue) cmbGender.getSelectedItem()).getKey();
+            int departmentID = ((KeyValue) cmbDepartment.getSelectedItem()).getKey();
+            int projectID = ((KeyValue) cmbProject.getSelectedItem()).getKey();
+            Date birthday = MyUtil.getDate(dcBirthday);
+            String photo = txtPhoto.getText();
+            employeeBUS.updateEmployee(
+                    txtNumber.getText(),
+                    txtName.getText(),
+                    txtEmail.getText(),
+                    Float.parseFloat(txtSalary.getText()),
+                    birthday,
+                    txtAddress.getText(),
+                    new String(txtPassword.getPassword()),
+                    txtEmployeeRole.getText(),
+                    Integer.parseInt(txtWorkExperience.getText()),
+                    gender == 1 ? true : false,
+                    departmentID,
+                    projectID,
+                    photo);
+            reloadData();
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, ex.getMessage(), "Error:", JOptionPane.ERROR_MESSAGE);
+
+        }
+    }//GEN-LAST:event_btnUpdateActionPerformed
+
+    private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
+        if (txtNumber.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "Please select employee");
+        } else {
+            try {
+                if (JOptionPane.showConfirmDialog(null, "Are you sure to delete?", "Delete", JOptionPane.YES_NO_OPTION) == JOptionPane.OK_OPTION) {
+                    employeeBUS.deleteEmployee(txtNumber.getText());
+                    reloadData();
+                }
+            } catch (Exception ex) {
+                JOptionPane.showMessageDialog(null, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+            }
+        }
+    }//GEN-LAST:event_btnDeleteActionPerformed
+
+    private void btnRefreshActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRefreshActionPerformed
+        reloadData();
+    }//GEN-LAST:event_btnRefreshActionPerformed
+
+    private void btnSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchActionPerformed
+        // Need write search function
+    }//GEN-LAST:event_btnSearchActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAdd;
     private javax.swing.JButton btnDelete;
+    private javax.swing.JButton btnRefresh;
+    private javax.swing.JButton btnSearch;
     private javax.swing.JButton btnUpdate;
     private javax.swing.JComboBox cmbDepartment;
     private javax.swing.JComboBox cmbGender;
@@ -697,10 +824,14 @@ public class PanelEmployee extends javax.swing.JPanel {
 
         makeColumnInvisible(0);
         makeColumnInvisible(3);
+        makeColumnInvisible(4);
         makeColumnInvisible(5);
         makeColumnInvisible(6);
         makeColumnInvisible(7);
         makeColumnInvisible(8);
+        makeColumnInvisible(9);
+        makeColumnInvisible(10);
+        makeColumnInvisible(13);
     }
 
     private void makeColumnInvisible(int col) {
@@ -725,6 +856,7 @@ public class PanelEmployee extends javax.swing.JPanel {
         txtEmployeeRole.setText("");
         txtPassword.setText("");
         txtWorkExperience.setText("");
+        txtPhoto.setText("");        
     }
     
     private void initCmbGender() {
@@ -775,7 +907,7 @@ public class PanelEmployee extends javax.swing.JPanel {
         txtName.setText(tblEmployee.getValueAt(selectedRow, 2).toString());
         txtEmail.setText(tblEmployee.getValueAt(selectedRow, 3).toString());
         txtSalary.setText(tblEmployee.getValueAt(selectedRow, 4).toString());
-//        dcBirthday.setDate(tblEmployee.getValueAt(selectedRow, 5).toString());
+        dcBirthday.setDate(Date.valueOf(tblEmployee.getValueAt(selectedRow, 5).toString()));
         txtAddress.setText(tblEmployee.getValueAt(selectedRow, 6).toString());
         txtPassword.setText(tblEmployee.getValueAt(selectedRow, 7).toString());
         txtEmployeeRole.setText(tblEmployee.getValueAt(selectedRow, 8).toString());
@@ -783,6 +915,71 @@ public class PanelEmployee extends javax.swing.JPanel {
         cmbGender.setSelectedItem(new KeyValue(0, tblEmployee.getValueAt(selectedRow, 10).toString()));
         cmbProject.setSelectedItem(new KeyValue(0, tblEmployee.getValueAt(selectedRow, 11).toString()));
         cmbDepartment.setSelectedItem(new KeyValue(0, tblEmployee.getValueAt(selectedRow, 12).toString()));
+        txtPhoto.setText(tblEmployee.getValueAt(selectedRow, 13).toString());
+    }
+    
+    private void validateField() throws Exception {
+        if (txtNumber.getText().equals("")) {
+            throw new Exception("Please enter Employee Number");
+        }
+        if (txtName.getText().equals("")) {
+            throw new Exception("Please enter Employee Name");
+        }
+        if (txtEmployeeRole.getText().equals("")) {
+            throw new Exception("Please enter Employee Role");
+        }
+        if (txtWorkExperience.getText().equals("")) {
+            throw new Exception("Please enter Work Experience");
+        }
+        if (new String(txtPassword.getPassword()).equals("")){
+            throw new Exception("Please enter Password");
+        }
+        KeyValue department = (KeyValue)cmbDepartment.getSelectedItem();
+        if(department.getValue().equals("")){
+            throw new Exception("Please select department");
+        }
+        
+        KeyValue project = (KeyValue)cmbProject.getSelectedItem();
+        if(project.getValue().equals("")){
+            throw new Exception("Please select project");
+        }
+        
+        KeyValue gender = (KeyValue)cmbGender.getSelectedItem();
+        if(gender.getValue().equals("")){
+            throw new Exception("Please select gender");
+        }                        
+
+        Pattern ptEmplName = Pattern.compile("^([A-Za-z]+[\\s]?)+$");
+        Matcher mcEmplName = ptEmplName.matcher(txtName.getText());
+        if (!mcEmplName.find()) {
+            throw new Exception("Name is not valid");
+        }
+
+        Pattern ptEmplRole = Pattern.compile("^([A-Za-z]+[\\s]?)+$");
+        Matcher mcEmplRole = ptEmplRole.matcher(txtEmployeeRole.getText());
+        if (!mcEmplRole.find()) {
+            throw new Exception("Employee Role is not valid");
+        }
+
+        Pattern ptemail = Pattern.compile("^[\\w.-]+@[\\w.-]+\\.[A-Za-z]{2,4}$");
+        Matcher mcemail = ptemail.matcher(txtEmail.getText());
+        if (!mcemail.find()) {
+            throw new Exception("Email is not valid");
+        }
+
+        /*Pattern ptEmplNumber = Pattern.compile("^E+[\\d]{4}$");
+         Matcher mcEmplNumber = ptEmplNumber.matcher(txtEmployeeNumber.getText());
+         if (!mcEmplNumber.find()) {
+         throw new Exception("Employee Number is not valid");
+         }*/
+        Pattern ptWorkExperience = Pattern.compile("^[\\d]{1,2}$");
+        Matcher mcWorkExperience = ptWorkExperience.matcher(txtWorkExperience.getText());
+        if (!mcWorkExperience.find()) {
+            throw new Exception("Work Experience is not valid");
+        }
+        if (Integer.parseInt(txtWorkExperience.getText()) > 50) {
+            throw new Exception("Work Experience ");
+        }
     }
     
 }
