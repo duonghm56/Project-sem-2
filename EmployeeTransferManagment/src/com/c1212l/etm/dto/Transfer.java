@@ -9,7 +9,10 @@ import com.c1212l.etm.dal.EmployeeDAO;
 import com.c1212l.etm.dal.LocationDAO;
 import com.c1212l.etm.dal.ProjectDAO;
 import com.c1212l.etm.dal.TransferTypeDAO;
+import com.c1212l.etm.report.TransferView;
 import java.sql.Date;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Vector;
 
 /**
@@ -221,36 +224,59 @@ public class Transfer {
         v.add(letter);
 
         return v;
-        /*v.add(transferID);
-         TransferType transferType= new TransferTypeDAO().getTransferTypeById(transferTypeID);
-         v.add(transferType!=null?transferType.getTransferTypeName():"undifined");
-         Employee employee = new EmployeeDAO().getEmployeeByID(employeeID);
-         v.add(employee!=null?employee.getEmployeeName():"undifined");
-         v.add(transferRelievingDate);
-         v.add(transferJoiningDate);
-         v.add(requestDate);
-         v.add(reason);
-         v.add(approve?"Approve":"Disapprove");
-         v.add(approveDate);
-         Project project;
-         project= new ProjectDAO().getProjectById(fromProjectID);
-         v.add(project!=null?project.getProjectName():"undifined");   
-         project = new ProjectDAO().getProjectById(toProjectID);
-         v.add(project!=null?project.getProjectName():"undifined");   
         
-         Department department;
-         department = new DepartmentDAO().getDepartmentByID(fromDepartmentID);
-         v.add(department!=null?department.getDepartmentName():"undifined"); 
-         department = new DepartmentDAO().getDepartmentByID(toDepartmentID);
-         v.add(department!=null?department.getDepartmentName():"undifined"); 
+    }
+
+    public TransferView getTransferView(){
+        TransferView transferView = new TransferView();
+        EmployeeDAO employeeDAO = new EmployeeDAO();
+        Employee empl = employeeDAO.getEmployeeByID(employeeID);
+
+        TransferTypeDAO transferTypeDAO = new TransferTypeDAO();
+        TransferType transferType = transferTypeDAO.getTransferTypeById(transferTypeID);
+
+        LocationDAO locationDAO = new LocationDAO();
+        Location fromLocation = locationDAO.getLocationById(fromLocationID);
+        Location toLocation = locationDAO.getLocationById(toLocationID);
+
+        DepartmentDAO departmentDAO = new DepartmentDAO();
+        Department fromDepartment = departmentDAO.getDepartmentByID(fromDepartmentID);
+        Department toDepartment = departmentDAO.getDepartmentByID(toDepartmentID);
+
+        ProjectDAO projectDAO = new ProjectDAO();
+        Project fromProject = projectDAO.getProjectById(fromProjectID);
+        Project toProject = projectDAO.getProjectById(toProjectID);
         
-         
-         Location location;
-         location = new LocationDAO().getLocationById(fromLocationID);
-         v.add(department!=null?location.getLocationName():"undifined"); 
-         location = new LocationDAO().getLocationById(toDepartmentID);
-         v.add(location!=null?location.getLocationName():"undifined"); 
-         return v;
-         */
+        transferView.setNumber(empl.getEmployeeNumber());
+        transferView.setFromProject(fromProject.getProjectName());
+        transferView.setToProject(toProject.getProjectName());
+        transferView.setFromDepartment(fromDepartment.getDepartmentName());
+        transferView.setToDepartment(toDepartment.getDepartmentName());
+        transferView.setFromLocation(fromLocation.getLocationName());
+        transferView.setToLocation(toLocation.getLocationName());
+        /*
+        DateFormat df = new SimpleDateFormat("MM/dd/yyyy");
+        if(transferRelievingDate==null){
+            transferView.setRelievingDate("Unknown");
+        }else{
+            transferView.setRelievingDate(df.format(transferRelievingDate));
+        }
+        if(transferJoiningDate==null){
+            transferView.setJoiningDate("Unknown");
+        }else{
+            transferView.setJoiningDate(df.format(transferJoiningDate));
+        }*/
+        switch(approve){
+            case 1:
+                transferView.setApprove("Approved");
+                break;
+            case 2:
+                transferView.setApprove("Disapproved");
+                break;
+            case 3:
+                transferView.setApprove("Waiting");
+                break;
+        }        
+        return transferView;
     }
 }

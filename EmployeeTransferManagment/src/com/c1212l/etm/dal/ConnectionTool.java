@@ -28,4 +28,8 @@ public class ConnectionTool {
         }
     }   
     
+    public Connection getConnection(){
+        return conn;
+    }
+    
 }

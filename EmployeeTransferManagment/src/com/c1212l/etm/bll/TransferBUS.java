@@ -8,6 +8,7 @@ import com.c1212l.etm.dal.EmployeeDAO;
 import com.c1212l.etm.dal.TransferDAO;
 import com.c1212l.etm.dto.Employee;
 import com.c1212l.etm.dto.Transfer;
+import java.sql.Connection;
 import java.sql.Date;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -142,5 +143,9 @@ public class TransferBUS {
             transferDAO.makeNewTrasnfer(transfer);
         }
         
+    }
+    
+    public Connection getConnection(){
+        return transferDAO.getConnection();
     }
 }

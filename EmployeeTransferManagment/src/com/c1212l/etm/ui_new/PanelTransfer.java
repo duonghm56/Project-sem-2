@@ -18,16 +18,20 @@ import com.c1212l.etm.dto.Employee;
 import com.c1212l.etm.dto.Location;
 import com.c1212l.etm.dto.Transfer;
 import com.c1212l.etm.dto.TransferType;
+import com.c1212l.etm.report.TransferView;
 import com.c1212l.etm.util.KeyValue;
 import com.c1212l.etm.util.MyUtil;
 import java.sql.Date;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Vector;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
+import net.sf.jasperreports.view.JasperViewer;
 
 /**
  *
@@ -73,6 +77,7 @@ public class PanelTransfer extends javax.swing.JPanel {
         btnDelete = new javax.swing.JButton();
         btnRefresh = new javax.swing.JButton();
         btnSearch = new javax.swing.JButton();
+        btnPrint = new javax.swing.JButton();
         btnApprove = new javax.swing.JButton();
         btnDisapprove = new javax.swing.JButton();
         panelBasicInfor = new javax.swing.JPanel();
@@ -277,6 +282,18 @@ public class PanelTransfer extends javax.swing.JPanel {
             }
         });
         toolBarButton.add(btnSearch);
+
+        btnPrint.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image_new/printer_32.png"))); // NOI18N
+        btnPrint.setText("Print");
+        btnPrint.setFocusable(false);
+        btnPrint.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        btnPrint.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        btnPrint.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPrintActionPerformed(evt);
+            }
+        });
+        toolBarButton.add(btnPrint);
 
         btnApprove.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image_new/badge_tick.png"))); // NOI18N
         btnApprove.setText("Approve");
@@ -682,12 +699,31 @@ public class PanelTransfer extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(null, "Cannot find this employee in database", "Error", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_btnLoadEmplActionPerformed
+
+    private void btnPrintActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPrintActionPerformed
+        try {            
+            ArrayList<TransferView> lstTransferViews = new ArrayList<TransferView>();
+            for(int i=0; i<lstTransfer.size(); i++){
+                lstTransferViews.add(lstTransfer.get(i).getTransferView());
+            }
+            HashMap map = new HashMap();
+            JRBeanCollectionDataSource datasource = new JRBeanCollectionDataSource(lstTransferViews);
+            System.out.println(lstTransferViews.size());
+            JasperPrint jrPrint = JasperFillManager.fillReport("src\\com\\c1212l\\etm\\report\\report1.jasper", map, datasource);
+            JasperViewer.viewReport(jrPrint);
+        } catch (Exception e) {
+            System.out.println(e);
+            e.printStackTrace();
+        }
+
+    }//GEN-LAST:event_btnPrintActionPerformed
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAdd;
     private javax.swing.JButton btnApprove;
     private javax.swing.JButton btnDelete;
     private javax.swing.JButton btnDisapprove;
     private javax.swing.JButton btnLoadEmpl;
+    private javax.swing.JButton btnPrint;
     private javax.swing.JButton btnRefresh;
     private javax.swing.JButton btnSearch;
     private javax.swing.JButton btnUpdate;
@@ -894,37 +930,41 @@ public class PanelTransfer extends javax.swing.JPanel {
         txtLetter.setText("");
     }
 
-    private void initRequestDate(){
+    private void initRequestDate() {
         dcRequestDate.setDate(new java.util.Date());
         cbRequestDateUnknown.setSelected(false);
     }
-    private void initRelievingDate(){
+
+    private void initRelievingDate() {
         dcRelievingDate.setDate(new java.util.Date());
         cbRelievingDateUnknown.setSelected(false);
     }
-    private void initJoiningDate(){
+
+    private void initJoiningDate() {
         dcJoiningDate.setDate(new java.util.Date());
         cbJoiningDateUnknown.setSelected(false);
     }
-    private void initApproveDate(){
+
+    private void initApproveDate() {
         dcApproveDate.setDate(new java.util.Date());
         cbApproveDateUnknown.setSelected(false);
     }
-    private void initAllDate(){
+
+    private void initAllDate() {
         initRequestDate();
         initRelievingDate();
         initJoiningDate();
         initApproveDate();
     }
-    
-    private void initLabel() throws ClassNotFoundException, SQLException{
+
+    private void initLabel() throws ClassNotFoundException, SQLException {
         TransferDAO transferDAO = new TransferDAO();
-        lblTotalTransfer.setText(""+transferDAO.getTotalNumberTransfer());
-        lblTotalApprove.setText(""+transferDAO.getTotalApproveNumberTransfer());
-        lblTotalDisapprove.setText(""+transferDAO.getTotalDisapproveNumberTransfer());
-        lblTotalWaiting.setText(""+transferDAO.getTotalWaitapproveNumberTransfer());
+        lblTotalTransfer.setText("" + transferDAO.getTotalNumberTransfer());
+        lblTotalApprove.setText("" + transferDAO.getTotalApproveNumberTransfer());
+        lblTotalDisapprove.setText("" + transferDAO.getTotalDisapproveNumberTransfer());
+        lblTotalWaiting.setText("" + transferDAO.getTotalWaitapproveNumberTransfer());
     }
-    
+
     private void reloadData() {
         try {
             initLabel();
@@ -939,8 +979,9 @@ public class PanelTransfer extends javax.swing.JPanel {
             initCmbFromLocation();
             initCmbToLocation();
             initCmbApprove();
-            //convertDate();            
-            fillData(transferBUS.getAllTransfer());
+            //convertDate();    
+            lstTransfer = transferBUS.getAllTransfer();
+            fillData(lstTransfer);
 //            initTextField();
         } catch (Exception ex) {
             ex.printStackTrace();
@@ -1055,7 +1096,7 @@ public class PanelTransfer extends javax.swing.JPanel {
         cmbToLocation.setSelectedItem(new KeyValue(0, tbTransferData.getValueAt(row, 14).toString()));
         cmbApprove.setSelectedItem(new KeyValue(0, tbTransferData.getValueAt(row, 15).toString()));
 
-        txtLetter.setText(tbTransferData.getValueAt(row, 16)==null?"":tbTransferData.getValueAt(row, 16).toString());
+        txtLetter.setText(tbTransferData.getValueAt(row, 16) == null ? "" : tbTransferData.getValueAt(row, 16).toString());
         String approve = tbTransferData.getValueAt(row, 15).toString();
 
         btnApprove.setVisible(approve.equals("Waiting Approve"));
