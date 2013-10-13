@@ -6,6 +6,7 @@ package com.c1212l.etm.dal;
 
 import com.c1212l.etm.dto.Admin;
 import com.c1212l.etm.dto.Employee;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -15,12 +16,16 @@ import java.sql.Statement;
  * @author Android21SDK
  */
 public class LoginDAO extends ConnectionTool {
-      public Admin getAdmin(String email,String password) throws ClassNotFoundException, SQLException{
+
+    public Admin getAdmin(String email, String password) throws ClassNotFoundException, SQLException {
         initConnection();
         Admin admin = null;
-        Statement stmt = conn.createStatement();
-        ResultSet rs = stmt.executeQuery("Select * From [admin] where email ="+"'"+email+"' and password ="+"'"+password+"'");
-        while (rs.next()) {
+        PreparedStatement pstmt = conn.prepareStatement("select * from [admin] where email = ? and [password] = ?");        
+        pstmt.setString(1, email);
+        pstmt.setString(2, password);        
+        ResultSet rs = pstmt.executeQuery();
+        if (rs.next()) {
+            admin = new Admin();
             admin.setId(rs.getInt("id"));
             admin.setEmail(rs.getString("email"));
             admin.setPassword(rs.getString("password"));
@@ -29,11 +34,12 @@ public class LoginDAO extends ConnectionTool {
         closeConnection();
         return admin;
     }
-     public Employee getEmployee(String email,String password) throws ClassNotFoundException, SQLException{
+
+    public Employee getEmployee(String email, String password) throws ClassNotFoundException, SQLException {
         initConnection();
         Employee e = null;
         Statement stmt = conn.createStatement();
-        ResultSet rs = stmt.executeQuery("Select * From employee where email ="+"'"+email+"' and password ="+"'"+password+"'");
+        ResultSet rs = stmt.executeQuery("Select * From employee where email =" + "'" + email + "' and password =" + "'" + password + "'");
         if (rs.next()) {
             e = new Employee();
             e.setEmployeeID(rs.getInt("employeeID"));
@@ -53,7 +59,7 @@ public class LoginDAO extends ConnectionTool {
         }
         closeConnection();
         return e;
-    }    
+    }
 }
 //       public Login getEmployee() throws ClassNotFoundException, SQLException{
 //          return null;
