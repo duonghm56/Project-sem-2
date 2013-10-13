@@ -48,6 +48,35 @@ public class TransferDAO extends ConnectionTool {
         closeConnection();
         return result;
     }
+   
+   public ArrayList<Transfer> getAllTransferByEmplID(int id) throws ClassNotFoundException, SQLException {
+        initConnection();
+        Statement stmt = conn.createStatement();
+        ResultSet rs = stmt.executeQuery("select * from [transfer] where employeeID="+id);
+        ArrayList<Transfer> result = new ArrayList<>();
+        while (rs.next()) {
+            Transfer transfer = new Transfer();
+            transfer.setTransferID(rs.getInt("transferID"));
+            transfer.setTransferTypeID(rs.getInt("transferTypeID"));
+            transfer.setEmployeeID(rs.getInt("employeeID"));
+            transfer.setTransferRelievingDate(rs.getDate("transferRelievingDate"));
+            transfer.setTransferJoiningDate(rs.getDate("transferJoiningDate"));
+            transfer.setRequestDate(rs.getDate("requestDate"));
+            transfer.setReason(rs.getString("reason"));
+            transfer.setApprove(rs.getInt("approve"));
+            transfer.setApproveDate(rs.getDate("approveDate"));
+            transfer.setFromProjectID(rs.getInt("fromProjectID"));
+            transfer.setToProjectID(rs.getInt("toProjectID"));
+            transfer.setFromDepartmentID(rs.getInt("fromDepartmentID"));
+            transfer.setToDepartmentID(rs.getInt("toDepartmentID"));
+            transfer.setFromLocationID(rs.getInt("fromLocationID"));
+            transfer.setToLocationID(rs.getInt("toLocationID"));
+            transfer.setLetter(rs.getString("letter"));
+            result.add(transfer);
+        }
+        closeConnection();
+        return result;
+    }
 
     public ArrayList<Transfer> searchTransfer(String condition) throws ClassNotFoundException, SQLException {
         initConnection();

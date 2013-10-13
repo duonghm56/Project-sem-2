@@ -28,6 +28,10 @@ public class TransferBUS {
     public ArrayList<Transfer> getAllTransfer() throws ClassNotFoundException, SQLException {
         return transferDAO.getAllTransfer();
     }
+    
+    public ArrayList<Transfer> getAllTransferByEmplID(int id) throws ClassNotFoundException, SQLException {
+        return transferDAO.getAllTransferByEmplID(id);
+    }
 
     public ArrayList<Transfer> searchTransfer(String condition) throws ClassNotFoundException, SQLException {
         return transferDAO.searchTransfer(condition);

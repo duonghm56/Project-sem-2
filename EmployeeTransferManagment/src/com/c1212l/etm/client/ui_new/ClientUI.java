@@ -2,20 +2,20 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.c1212l.etm.ui_new;
+package com.c1212l.etm.client.ui_new;
 
-import com.c1212l.etm.dto.Admin;
+import com.c1212l.etm.dto.Employee;
 
 /**
  *
  * @author DUONGHM
  */
-public class AdminUI extends javax.swing.JFrame {
+public class ClientUI extends javax.swing.JFrame {
 
     /**
-     * Creates new form AdminUI
+     * Creates new form ClientUI
      */
-    public AdminUI() {
+    public ClientUI() {
         initComponents();
     }
 
@@ -28,44 +28,42 @@ public class AdminUI extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jTabbedPane1 = new javax.swing.JTabbedPane();
-        panelTransfer1 = new com.c1212l.etm.ui_new.PanelTransfer();
-        panelEmployee1 = new com.c1212l.etm.ui_new.PanelEmployee();
-        projectPanel1 = new com.c1212l.etm.ui_new.ProjectPanel();
-        location_DepartmentPanel1 = new com.c1212l.etm.ui_new.Location_DepartmentPanel();
-        panelAdmin1 = new com.c1212l.etm.ui_new.PanelAdmin();
         lblBanner = new javax.swing.JLabel();
+        jTabbedPane1 = new javax.swing.JTabbedPane();
+        employeeProfie1 = new com.c1212l.etm.client.ui_new.EmployeeProfie();
+        transferRequest1 = new com.c1212l.etm.client.ui_new.TransferRequest();
+        transferHistoryPanel1 = new com.c1212l.etm.client.ui_new.TransferHistoryPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Transfer Manager System");
 
-        jTabbedPane1.addTab("Transfer Manager", panelTransfer1);
-        jTabbedPane1.addTab("Employee Manager", panelEmployee1);
-        jTabbedPane1.addTab("Project Manager", projectPanel1);
-        jTabbedPane1.addTab("Location and Department", location_DepartmentPanel1);
-        jTabbedPane1.addTab("Account Manager", panelAdmin1);
-
-        lblBanner.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image_new/banner-services.png"))); // NOI18N
+        lblBanner.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image_new/logotop.png"))); // NOI18N
         lblBanner.setText("jLabel1");
+
+        jTabbedPane1.addTab("Employee Profile", employeeProfie1);
+        jTabbedPane1.addTab("Transfer Request", transferRequest1);
+        jTabbedPane1.addTab("Transfer History", transferHistoryPanel1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(lblBanner, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                    .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 982, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(77, 77, 77)
+                        .addComponent(lblBanner, javax.swing.GroupLayout.PREFERRED_SIZE, 820, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(lblBanner)
-                .addGap(18, 18, 18)
-                .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 546, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 448, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -89,41 +87,42 @@ public class AdminUI extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(AdminUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ClientUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(AdminUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ClientUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(AdminUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ClientUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(AdminUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ClientUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new AdminUI().setVisible(true);
+                new ClientUI().setVisible(true);
             }
         });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private com.c1212l.etm.client.ui_new.EmployeeProfie employeeProfie1;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JLabel lblBanner;
-    private com.c1212l.etm.ui_new.Location_DepartmentPanel location_DepartmentPanel1;
-    private com.c1212l.etm.ui_new.PanelAdmin panelAdmin1;
-    private com.c1212l.etm.ui_new.PanelEmployee panelEmployee1;
-    private com.c1212l.etm.ui_new.PanelTransfer panelTransfer1;
-    private com.c1212l.etm.ui_new.ProjectPanel projectPanel1;
+    private com.c1212l.etm.client.ui_new.TransferHistoryPanel transferHistoryPanel1;
+    private com.c1212l.etm.client.ui_new.TransferRequest transferRequest1;
     // End of variables declaration//GEN-END:variables
-    Admin admin;
+    Employee employee;
 
-    public Admin getAdmin() {
-        return admin;
+    public Employee getEmployee() {
+        return employee;
     }
 
-    public void setAdmin(Admin admin) {
-        this.admin = admin;
-        panelAdmin1.setAdmin(admin);
+    public void setEmployee(Employee employee) {
+        this.employee = employee;
+        employeeProfie1.setEmployee(employee);
+        transferRequest1.setEmployee(employee);
+        transferHistoryPanel1.setEmployee(employee);
+        pack();
     }
     
     

@@ -15,27 +15,30 @@ import java.util.ArrayList;
  * @author Luu Bi
  */
 public class AdminBUS {
+
     AdminDAO adminDAO;
+
     public AdminBUS() {
-        adminDAO= new AdminDAO();
+        adminDAO = new AdminDAO();
     }
-   public ArrayList<Admin> searchAdminEmail(String email) throws ClassNotFoundException, SQLException {
+
+    public ArrayList<Admin> searchAdminEmail(String email) throws ClassNotFoundException, SQLException {
         return adminDAO.searchAdminEmail(email);
     }
-   public ArrayList<Admin> searchAdminRole(int role) throws ClassNotFoundException, SQLException {
-        return adminDAO.searchAdminRole(role);
-    }  
-    public ArrayList<Admin> getAllAdmin() throws ClassNotFoundException, SQLException{
-        return adminDAO.getAllAdmin();
+
+    public ArrayList<Admin> getAllAdmin(Admin admin) throws ClassNotFoundException, SQLException {
+        return adminDAO.getAllAdmin(admin);
     }
-    public void addAdmin(String email,String password,int role) throws ClassNotFoundException, Exception{
+
+    public void addAdmin(String email, String password, int role) throws ClassNotFoundException, Exception {
         Admin admin = new Admin();
         admin.setEmail(email);
         admin.setPassword(password);
         admin.setRole(role);
         adminDAO.addAdmin(admin);
     }
-    public void updateAdmin(int id, String email,String password,int role) throws ClassNotFoundException, Exception{
+
+    public void updateAdmin(int id, String email, String password, int role) throws ClassNotFoundException, Exception {
         Admin admin = new Admin();
         admin.setId(id);
         admin.setEmail(email);
@@ -43,12 +46,14 @@ public class AdminBUS {
         admin.setRole(role);
         adminDAO.updateAdmin(admin);
     }
-    public void deleteAdmin(int id) throws ClassNotFoundException, Exception{
+
+    public void deleteAdmin(int id) throws ClassNotFoundException, Exception {
         Admin admin = new Admin();
         admin.setId(id);
         adminDAO.deleteAdmin(admin);
-    } 
-    public void changePasswordAdmin(String email,String oldPassword, String newPassword) throws ClassNotFoundException, Exception{
+    }
+
+    public void changePasswordAdmin(String email, String oldPassword, String newPassword) throws ClassNotFoundException, Exception {
         ChangePassword changePassword = new ChangePassword();
         changePassword.setEmail(email);
         changePassword.setOldPassword(oldPassword);

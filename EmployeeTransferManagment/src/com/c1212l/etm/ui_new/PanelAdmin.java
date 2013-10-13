@@ -28,9 +28,6 @@ public class PanelAdmin extends javax.swing.JPanel {
      */
     public PanelAdmin() {
         initComponents();
-        initTextField();
-        initTable();
-        reloadData();
     }
 
     /**
@@ -134,7 +131,6 @@ public class PanelAdmin extends javax.swing.JPanel {
         btnAdd.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         btnAdd.setMaximumSize(new java.awt.Dimension(61, 39));
         btnAdd.setMinimumSize(new java.awt.Dimension(61, 39));
-        btnAdd.setPreferredSize(new java.awt.Dimension(61, 39));
         btnAdd.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAddActionPerformed(evt);
@@ -149,7 +145,6 @@ public class PanelAdmin extends javax.swing.JPanel {
         btnUpdate.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         btnUpdate.setMaximumSize(new java.awt.Dimension(77, 39));
         btnUpdate.setMinimumSize(new java.awt.Dimension(77, 39));
-        btnUpdate.setPreferredSize(new java.awt.Dimension(77, 39));
         btnUpdate.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnUpdateActionPerformed(evt);
@@ -164,7 +159,6 @@ public class PanelAdmin extends javax.swing.JPanel {
         btnDelete.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         btnDelete.setMaximumSize(new java.awt.Dimension(65, 31));
         btnDelete.setMinimumSize(new java.awt.Dimension(65, 31));
-        btnDelete.setPreferredSize(new java.awt.Dimension(65, 31));
         btnDelete.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         btnDelete.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -181,7 +175,6 @@ public class PanelAdmin extends javax.swing.JPanel {
         btnReset.setInheritsPopupMenu(true);
         btnReset.setMaximumSize(new java.awt.Dimension(75, 39));
         btnReset.setMinimumSize(new java.awt.Dimension(75, 39));
-        btnReset.setPreferredSize(new java.awt.Dimension(75, 39));
         btnReset.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         btnReset.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -272,24 +265,24 @@ public class PanelAdmin extends javax.swing.JPanel {
 
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
         // TODO add your handling code here:
-                       try {
-             if (txtEmail.getText().equals("")) {
-                 throw new Exception("Please enter email");
-             }
-             if (txtPassword.getText().equals("")) {
+        try {
+            if (txtEmail.getText().equals("")) {
+                throw new Exception("Please enter email");
+            }
+            if (txtPassword.getText().equals("")) {
                 throw new Exception("Please enter Password");
-             }
-              Pattern ptemail = Pattern.compile("^[\\w.-]+@[\\w.-]+\\.[A-Za-z]{2,4}$");
-              Matcher mcemail = ptemail.matcher(txtEmail.getText());
-              if (!mcemail.find()) {
+            }
+            Pattern ptemail = Pattern.compile("^[\\w.-]+@[\\w.-]+\\.[A-Za-z]{2,4}$");
+            Matcher mcemail = ptemail.matcher(txtEmail.getText());
+            if (!mcemail.find()) {
                 throw new Exception("Email is not valid");
-              }
-                  String email = txtEmail.getText();
-                  String password = new String(txtPassword.getPassword());
-                  int role = ((KeyValue) cmbRole.getSelectedItem()).getKey();
-                  adminBUS.addAdmin(email, password, role);
-                  reloadData();
-     
+            }
+            String email = txtEmail.getText();
+            String password = new String(txtPassword.getPassword());
+            int role = ((KeyValue) cmbRole.getSelectedItem()).getKey();
+            adminBUS.addAdmin(email, password, role);
+            reloadData();
+
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(null, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }
@@ -297,14 +290,14 @@ public class PanelAdmin extends javax.swing.JPanel {
 
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
         // TODO add your handling code here:
-                   try {
+        try {
             if (id == null) {
-                 throw new Exception("Please select admin");
+                throw new Exception("Please select admin");
             }
             if (JOptionPane.showConfirmDialog(null, "Are you sure to delete?", "Delete", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
-                    adminBUS.deleteAdmin(Integer.parseInt(id));
-                    reloadData(); 
-          
+                adminBUS.deleteAdmin(Integer.parseInt(id));
+                reloadData();
+
             }
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(null, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
@@ -313,28 +306,28 @@ public class PanelAdmin extends javax.swing.JPanel {
 
     private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
         // TODO add your handling code here:
-                try {
-               if (id == null) {
-                 throw new Exception("Please select admin");
-               }
-               if (txtEmail.getText().equals("")) {
-                 throw new Exception("Please enter email");
-               }
-               if (txtPassword.getText().equals("")) {
-                  throw new Exception("Please enter Password");
-               }
- 
-               Pattern ptemail = Pattern.compile("^[\\w.-]+@[\\w.-]+\\.[A-Za-z]{2,4}$");
-               Matcher mcemail = ptemail.matcher(txtEmail.getText());
-               if (!mcemail.find()) {
-                 throw new Exception("Email is not valid");
-               }
-                    int role = ((KeyValue) cmbRole.getSelectedItem()).getKey();
-                    String email = txtEmail.getText();
-                    String password = new String(txtPassword.getPassword());
-                    adminBUS.updateAdmin(Integer.parseInt(id), email, password, role);
-                    reloadData();
-                
+        try {
+            if (id == null) {
+                throw new Exception("Please select admin");
+            }
+            if (txtEmail.getText().equals("")) {
+                throw new Exception("Please enter email");
+            }
+            if (txtPassword.getText().equals("")) {
+                throw new Exception("Please enter Password");
+            }
+
+            Pattern ptemail = Pattern.compile("^[\\w.-]+@[\\w.-]+\\.[A-Za-z]{2,4}$");
+            Matcher mcemail = ptemail.matcher(txtEmail.getText());
+            if (!mcemail.find()) {
+                throw new Exception("Email is not valid");
+            }
+            int role = ((KeyValue) cmbRole.getSelectedItem()).getKey();
+            String email = txtEmail.getText();
+            String password = new String(txtPassword.getPassword());
+            adminBUS.updateAdmin(Integer.parseInt(id), email, password, role);
+            reloadData();
+
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(null, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }
@@ -356,7 +349,6 @@ public class PanelAdmin extends javax.swing.JPanel {
         txtEmail.setText("");
         txtPassword.setText("");
     }//GEN-LAST:event_btnResetActionPerformed
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAdd;
     private javax.swing.JButton btnDelete;
@@ -377,10 +369,23 @@ public class PanelAdmin extends javax.swing.JPanel {
     private javax.swing.JTextField txtEmail;
     private javax.swing.JPasswordField txtPassword;
     // End of variables declaration//GEN-END:variables
-     DefaultTableModel tblModel;
-  ArrayList<Admin> lstAdmin;
-  AdminBUS adminBUS = new AdminBUS();
-  private String id;
+    DefaultTableModel tblModel;
+    ArrayList<Admin> lstAdmin;
+    Admin admin;
+    AdminBUS adminBUS = new AdminBUS();
+    private String id;
+
+    public Admin getAdmin() {
+        return admin;
+    }
+
+    public void setAdmin(Admin admin) {
+        this.admin = admin;
+        initTextField();
+        initTable();
+        reloadData();
+    }
+
     private void initTable() {
         Vector header = new Vector();
         header.add("Admin ID");
@@ -403,7 +408,7 @@ public class PanelAdmin extends javax.swing.JPanel {
         try {
             initTable();
             initCmbRole();
-            fillData(adminBUS.getAllAdmin());
+            fillData(adminBUS.getAllAdmin(admin));
             initTextField();
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(com.c1212l.etm.ui.ProjectPanel.class.getName()).log(Level.SEVERE, null, ex);
@@ -428,15 +433,17 @@ public class PanelAdmin extends javax.swing.JPanel {
             }
         }
     }
-   private void loadSearchAdminRole() throws ClassNotFoundException, SQLException {
+
+    private void loadSearchAdminRole() throws ClassNotFoundException, SQLException {
         String role = "";
-            if (!role.contains("where")) {
-                role += " where role = " + cmbRole.getSelectedIndex()+1;
-            } else {
-                role += " and role = " +  cmbRole.getSelectedIndex()+1;
-            }
+        if (!role.contains("where")) {
+            role += " where role = " + cmbRole.getSelectedIndex() + 1;
+        } else {
+            role += " and role = " + cmbRole.getSelectedIndex() + 1;
+        }
     }
-   private void initCmbRole() {
+
+    private void initCmbRole() {
         cmbRole.removeAllItems();
         cmbRole.addItem(new KeyValue(1, "Admin 1"));
         cmbRole.addItem(new KeyValue(2, "Admin 2"));

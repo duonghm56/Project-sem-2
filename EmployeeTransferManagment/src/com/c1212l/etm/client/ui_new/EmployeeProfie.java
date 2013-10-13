@@ -4,8 +4,7 @@
  */
 package com.c1212l.etm.client.ui_new;
 
-import com.c1212l.etm.bll.EmployeeClientBUS;
-import com.c1212l.etm.dto.EmployeeClient;
+import com.c1212l.etm.dto.Employee;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -20,14 +19,7 @@ public class EmployeeProfie extends javax.swing.JPanel {
      * Creates new form EmployeeProfie
      */
     public EmployeeProfie() {
-        try {
-            initComponents();
-            loadData();
-        } catch (SQLException ex) {
-            Logger.getLogger(EmployeeProfie.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(EmployeeProfie.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        initComponents();
     }
 
     /**
@@ -39,83 +31,244 @@ public class EmployeeProfie extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel6 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        lblTitle4 = new javax.swing.JLabel();
-        lblTitle3 = new javax.swing.JLabel();
-        lblTitle1 = new javax.swing.JLabel();
-        lblTitle2 = new javax.swing.JLabel();
-        jLabel9 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
+        jPanel1 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        lblNumber = new javax.swing.JLabel();
         lblFullName = new javax.swing.JLabel();
-        lblGender = new javax.swing.JLabel();
-        lblBirthday = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
         lblEmail = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        lblGender = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        lblBirthday = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
         lblAddress = new javax.swing.JLabel();
-        lblCurrentDepartment = new javax.swing.JLabel();
-        lblCurrentProject = new javax.swing.JLabel();
-        lblCurrentLocation = new javax.swing.JLabel();
+        jPanel2 = new javax.swing.JPanel();
+        lblTitle2 = new javax.swing.JLabel();
         lblRole = new javax.swing.JLabel();
+        lblTitle3 = new javax.swing.JLabel();
         lblWorkExperience = new javax.swing.JLabel();
+        lblTitle4 = new javax.swing.JLabel();
         lblSalary = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        lblCurrentDepartment = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
+        lblCurrentProject = new javax.swing.JLabel();
+        lblTitle1 = new javax.swing.JLabel();
+        lblCurrentLocation = new javax.swing.JLabel();
+        jPanel3 = new javax.swing.JPanel();
+        lblPhoto = new javax.swing.JLabel();
 
-        jLabel6.setText("Email");
+        setBorder(javax.swing.BorderFactory.createTitledBorder("Employee Profile"));
 
-        jLabel7.setText("Address");
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Basic Information"));
 
-        jLabel5.setText("Birthday");
+        jLabel1.setText("Employee Number");
 
-        lblTitle4.setText("Salary");
-
-        lblTitle3.setText("Work Experience");
-
-        lblTitle1.setText("Current Location");
-
-        lblTitle2.setText("Role");
-
-        jLabel9.setText("Current Project");
-
-        jLabel4.setText("Gender");
-
-        jLabel8.setText("Current Department");
-
-        jLabel3.setText("Full Name:");
+        lblNumber.setForeground(new java.awt.Color(153, 0, 0));
+        lblNumber.setText("jLabel2");
 
         lblFullName.setForeground(new java.awt.Color(153, 0, 0));
         lblFullName.setText("jLabel1");
 
-        lblGender.setForeground(new java.awt.Color(153, 0, 0));
-        lblGender.setText("jLabel2");
+        jLabel3.setText("Full Name:");
 
-        lblBirthday.setForeground(new java.awt.Color(153, 0, 0));
-        lblBirthday.setText("jLabel14");
+        jLabel6.setText("Email");
 
         lblEmail.setForeground(new java.awt.Color(153, 0, 0));
         lblEmail.setText("jLabel15");
 
+        jLabel4.setText("Gender");
+
+        lblGender.setForeground(new java.awt.Color(153, 0, 0));
+        lblGender.setText("jLabel2");
+
+        jLabel5.setText("Birthday");
+
+        lblBirthday.setForeground(new java.awt.Color(153, 0, 0));
+        lblBirthday.setText("jLabel14");
+
+        jLabel7.setText("Address");
+
         lblAddress.setForeground(new java.awt.Color(153, 0, 0));
         lblAddress.setText("jLabel16");
 
-        lblCurrentDepartment.setForeground(new java.awt.Color(153, 0, 0));
-        lblCurrentDepartment.setText("jLabel17");
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel1)
+                                .addGap(18, 18, 18)
+                                .addComponent(lblNumber))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel4)
+                                .addGap(69, 69, 69)
+                                .addComponent(lblGender)))
+                        .addGap(141, 141, 141)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel6)
+                                .addGap(58, 58, 58)
+                                .addComponent(lblEmail))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel7)
+                                    .addComponent(jLabel5))
+                                .addGap(42, 42, 42)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(lblBirthday)
+                                    .addComponent(lblAddress))))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel3)
+                        .addGap(54, 54, 54)
+                        .addComponent(lblFullName)
+                        .addGap(0, 0, Short.MAX_VALUE))))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(lblNumber)
+                    .addComponent(jLabel6)
+                    .addComponent(lblEmail))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3)
+                    .addComponent(lblFullName)
+                    .addComponent(jLabel5)
+                    .addComponent(lblBirthday))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblGender)
+                    .addComponent(jLabel4)
+                    .addComponent(jLabel7)
+                    .addComponent(lblAddress))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
 
-        lblCurrentProject.setForeground(new java.awt.Color(153, 0, 0));
-        lblCurrentProject.setText("jLabel18");
+        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Work Information"));
 
-        lblCurrentLocation.setForeground(new java.awt.Color(153, 0, 0));
-        lblCurrentLocation.setText("jLabel19");
+        lblTitle2.setText("Role");
 
         lblRole.setForeground(new java.awt.Color(153, 0, 0));
         lblRole.setText("jLabel20");
 
+        lblTitle3.setText("Work Experience");
+
         lblWorkExperience.setForeground(new java.awt.Color(153, 0, 0));
         lblWorkExperience.setText("jLabel21");
 
+        lblTitle4.setText("Salary");
+
         lblSalary.setForeground(new java.awt.Color(153, 0, 0));
         lblSalary.setText("jLabel22");
+
+        jLabel8.setText("Current Department");
+
+        lblCurrentDepartment.setForeground(new java.awt.Color(153, 0, 0));
+        lblCurrentDepartment.setText("jLabel17");
+
+        jLabel9.setText("Current Project");
+
+        lblCurrentProject.setForeground(new java.awt.Color(153, 0, 0));
+        lblCurrentProject.setText("jLabel18");
+
+        lblTitle1.setText("Current Location");
+
+        lblCurrentLocation.setForeground(new java.awt.Color(153, 0, 0));
+        lblCurrentLocation.setText("jLabel19");
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblTitle2)
+                    .addComponent(lblTitle3)
+                    .addComponent(lblTitle4))
+                .addGap(31, 31, 31)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblSalary)
+                    .addComponent(lblRole)
+                    .addComponent(lblWorkExperience))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 115, Short.MAX_VALUE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                        .addComponent(jLabel8)
+                        .addGap(18, 18, 18))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel9)
+                            .addComponent(lblTitle1))
+                        .addGap(35, 35, 35)))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblCurrentDepartment)
+                    .addComponent(lblCurrentProject)
+                    .addComponent(lblCurrentLocation))
+                .addGap(153, 153, 153))
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(lblTitle2)
+                            .addComponent(lblRole))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(lblTitle3)
+                            .addComponent(lblWorkExperience))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(lblTitle4)
+                            .addComponent(lblSalary)))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel8)
+                            .addComponent(lblCurrentDepartment))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel9)
+                            .addComponent(lblCurrentProject))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(lblTitle1)
+                            .addComponent(lblCurrentLocation))))
+                .addContainerGap(25, Short.MAX_VALUE))
+        );
+
+        jPanel3.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(lblPhoto, javax.swing.GroupLayout.DEFAULT_SIZE, 132, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(lblPhoto, javax.swing.GroupLayout.DEFAULT_SIZE, 137, Short.MAX_VALUE)
+                .addContainerGap())
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -123,88 +276,28 @@ public class EmployeeProfie extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
+                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel3)
-                    .addComponent(jLabel4)
-                    .addComponent(jLabel5)
-                    .addComponent(jLabel6)
-                    .addComponent(jLabel7)
-                    .addComponent(lblTitle4))
-                .addGap(28, 28, 28)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblFullName)
-                            .addComponent(lblGender)
-                            .addComponent(lblBirthday)
-                            .addComponent(lblEmail)
-                            .addComponent(lblAddress))
-                        .addGap(71, 71, 71)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(lblTitle3)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(lblWorkExperience))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(lblTitle2)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(lblRole))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(lblTitle1)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(lblCurrentLocation))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(jLabel9)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(lblCurrentProject))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(jLabel8)
-                                .addGap(18, 18, 18)
-                                .addComponent(lblCurrentDepartment))))
-                    .addComponent(lblSalary))
-                .addContainerGap(75, Short.MAX_VALUE))
+                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(30, 30, 30)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(lblFullName)
-                    .addComponent(jLabel8)
-                    .addComponent(lblCurrentDepartment))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
-                    .addComponent(lblGender)
-                    .addComponent(jLabel9)
-                    .addComponent(lblCurrentProject))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel5)
-                    .addComponent(lblBirthday)
-                    .addComponent(lblTitle1)
-                    .addComponent(lblCurrentLocation))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblEmail)
-                    .addComponent(jLabel6)
-                    .addComponent(lblTitle2)
-                    .addComponent(lblRole))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel7)
-                    .addComponent(lblAddress)
-                    .addComponent(lblTitle3)
-                    .addComponent(lblWorkExperience))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblTitle4)
-                    .addComponent(lblSalary))
-                .addContainerGap(96, Short.MAX_VALUE))
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(16, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -212,6 +305,9 @@ public class EmployeeProfie extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
     private javax.swing.JLabel lblAddress;
     private javax.swing.JLabel lblBirthday;
     private javax.swing.JLabel lblCurrentDepartment;
@@ -220,6 +316,8 @@ public class EmployeeProfie extends javax.swing.JPanel {
     private javax.swing.JLabel lblEmail;
     private javax.swing.JLabel lblFullName;
     private javax.swing.JLabel lblGender;
+    private javax.swing.JLabel lblNumber;
+    private javax.swing.JLabel lblPhoto;
     private javax.swing.JLabel lblRole;
     private javax.swing.JLabel lblSalary;
     private javax.swing.JLabel lblTitle1;
@@ -228,28 +326,41 @@ public class EmployeeProfie extends javax.swing.JPanel {
     private javax.swing.JLabel lblTitle4;
     private javax.swing.JLabel lblWorkExperience;
     // End of variables declaration//GEN-END:variables
-      private EmployeeClientBUS emplClientBUS = new EmployeeClientBUS();
-//   private Employee employee = new Employee();
-    private void loadData() throws SQLException, ClassNotFoundException
-    {
-            EmployeeClient employeeClient = emplClientBUS.getEmployeeClient();
- 
-                lblFullName.setText(employeeClient.getFullName());
-                lblEmail.setText(employeeClient.getEmail());
-                lblSalary.setText(employeeClient.getSalary()+"");
-                lblBirthday.setText(employeeClient.getBirthday()+"");
-                lblAddress.setText(employeeClient.getAddress());
-                lblCurrentDepartment.setText(employeeClient.getCurrentDepartment());
-                lblCurrentProject.setText(employeeClient.getCurrentProject());
-                lblCurrentLocation.setText(employeeClient.getCurrentLocation());
-                lblRole.setText(employeeClient.getRole());
-                lblWorkExperience.setText(employeeClient.getWorkExperience());
-                if (employeeClient.getGender() == true) {
-                    lblGender.setText("Male");
-                }
-                else if(employeeClient.getGender() == false)
-                {
-                    lblGender.setText("Female");
-                }               
-     } 
+    private Employee employee;
+
+    public Employee getEmployee() {
+        return employee;
+    }
+
+    public void setEmployee(Employee employee) {
+        try {
+            this.employee = employee;
+            loadData();
+        } catch (SQLException ex) {
+            Logger.getLogger(EmployeeProfie.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(EmployeeProfie.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    private void loadData() throws SQLException, ClassNotFoundException {
+        lblFullName.setText(employee.getEmployeeName());
+        lblNumber.setText(employee.getEmployeeNumber());
+        lblEmail.setText(employee.getEmail());
+        lblSalary.setText(employee.getSalary() + "");
+        lblBirthday.setText(employee.getBirthday() + "");
+        lblAddress.setText(employee.getAddress());
+        lblCurrentDepartment.setText(employee.getEmployeeDepartment());
+        lblCurrentProject.setText(employee.getEmployeeProject());
+        lblCurrentLocation.setText(employee.getEmployeeLocation());
+        lblRole.setText(employee.getRole());
+        lblWorkExperience.setText("" + employee.getWorkExperience());
+        if (employee.getGender() == true) {
+            lblGender.setText("Male");
+            lblPhoto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image_new/319.png")));
+        } else if (employee.getGender() == false) {
+            lblGender.setText("Female");
+            lblPhoto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image_new/Female_guestblogger1.png")));
+        }
+    }
 }

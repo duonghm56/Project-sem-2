@@ -4,8 +4,8 @@
  */
 package com.c1212l.etm.client.ui_new;
 
-import com.c1212l.etm.client.ui.*;
-import com.c1212l.etm.bll.TransferHistoryBUS;
+import com.c1212l.etm.bll.TransferBUS;
+import com.c1212l.etm.dto.Employee;
 import com.c1212l.etm.dto.Transfer;
 import com.c1212l.etm.ui.ProjectPanel;
 import java.sql.SQLException;
@@ -25,9 +25,7 @@ public class TransferHistoryPanel extends javax.swing.JPanel {
      * Creates new form TransferHistoryPanel
      */
     public TransferHistoryPanel() {
-            initComponents();
-            initTable();
-            reloadData();
+        initComponents();                
     }
 
     /**
@@ -41,12 +39,8 @@ public class TransferHistoryPanel extends javax.swing.JPanel {
 
         jScrollPane1 = new javax.swing.JScrollPane();
         tbTransferHistory = new javax.swing.JTable();
-        jLabel1 = new javax.swing.JLabel();
 
         setBorder(javax.swing.BorderFactory.createTitledBorder("Transfer History"));
-        setMinimumSize(new java.awt.Dimension(950, 520));
-        setPreferredSize(new java.awt.Dimension(10, 10));
-        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         tbTransferHistory.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -61,21 +55,42 @@ public class TransferHistoryPanel extends javax.swing.JPanel {
         ));
         jScrollPane1.setViewportView(tbTransferHistory);
 
-        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(16, 78, 918, 176));
-
-        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel1.setText("Transfer History");
-        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(419, 38, -1, -1));
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
+        this.setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 932, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 311, Short.MAX_VALUE)
+                .addContainerGap())
+        );
     }// </editor-fold>//GEN-END:initComponents
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tbTransferHistory;
     // End of variables declaration//GEN-END:variables
     DefaultTableModel tblModel;
     ArrayList<Transfer> lstTransfer;
-    TransferHistoryBUS transferHistoryBUS = new TransferHistoryBUS();
+    Employee employee;
+    TransferBUS transferBUS = new TransferBUS();
     Vector header = new Vector();
+
+    public Employee getEmployee() {
+        return employee;
+    }
+
+    public void setEmployee(Employee employee) {
+        this.employee = employee;
+        reloadData();
+        initTable();
+    }
 
     private void initTable() {
         header = new Vector();
@@ -101,13 +116,14 @@ public class TransferHistoryPanel extends javax.swing.JPanel {
         header.add("Appove");
         tblModel = new DefaultTableModel(header, 0);
         tbTransferHistory.setModel(tblModel);
-
-        makeInvisibleColumn(0);
+        
         makeInvisibleColumn(1);
-        makeInvisibleColumn(4);
-        makeInvisibleColumn(5);
+        makeInvisibleColumn(2);
+        makeInvisibleColumn(3);        
         makeInvisibleColumn(6);
         makeInvisibleColumn(7);
+        makeInvisibleColumn(13);
+        makeInvisibleColumn(14);
 
     }
 
@@ -120,19 +136,29 @@ public class TransferHistoryPanel extends javax.swing.JPanel {
 
     private void fillData(ArrayList<Transfer> lst) {
         if (lst != null) {
-            for (Transfer transfer: lst) {
+            for (Transfer transfer : lst) {
                 tblModel.addRow(transfer.getVector());
             }
         }
     }
-       private void reloadData() {
+
+    private void reloadData() {
         try {
             initTable();
-            fillData(transferHistoryBUS.getTransferHistory());
+            if(employee != null){
+                fillData(transferBUS.getAllTransferByEmplID(employee.getEmployeeID()));
+            }
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(ProjectPanel.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {
             Logger.getLogger(ProjectPanel.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+
+    @Override
+    public void validate() {
+        reloadData();
+    }
+    
+    
 }

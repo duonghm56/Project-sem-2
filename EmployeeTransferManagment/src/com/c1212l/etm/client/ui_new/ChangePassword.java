@@ -4,10 +4,8 @@
  */
 package com.c1212l.etm.client.ui_new;
 
-import com.c1212l.etm.bll.AdminBUS;
 import com.c1212l.etm.bll.EmployeeBUS;
-import com.c1212l.etm.ui.*;
-import java.util.ArrayList;
+import com.c1212l.etm.dto.Employee;
 import javax.swing.JOptionPane;
 
 /**
@@ -121,27 +119,26 @@ public class ChangePassword extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
          try{
-            if (txtOldPassword.getText().equals("")) {
+            if (txtOldPassword.getPassword().equals("")) {
                 JOptionPane.showMessageDialog(this, "Please enter Old Password !");
                 return;
             }
-            if (txtNewPassword.getText().equals("")) {
+            if (txtNewPassword.getPassword().equals("")) {
                 JOptionPane.showMessageDialog(this, "Please enter New Password !");
                 return;
             }
-            if (txtConfirmPassword.getText().equals("")) {
+            if (txtConfirmPassword.getPassword().equals("")) {
                  JOptionPane.showMessageDialog(this, "Please enter Confirm Password !");
                 return;
             }
-            if (!txtNewPassword.getText().equals(txtConfirmPassword.getText())) {
+            if (!txtNewPassword.getPassword().equals(txtConfirmPassword.getPassword())) {
                 JOptionPane.showMessageDialog(this, "New Password must validate ComfirmPassword!");
                 return;
             }
             String oldPassword = new String(txtOldPassword.getPassword());
-            if (oldPassword.equals(LoginFrame.password)) {
+            if (oldPassword.equals(employee.getPassword())) {
                   String newPassword = new String(txtNewPassword.getPassword());
-                  employeeBUS.changeEmployeePassword(LoginFrame.email,oldPassword, newPassword);
-                  adminBUS.changePasswordAdmin(LoginFrame.email, oldPassword, newPassword);
+                  employeeBUS.changeEmployeePassword(employee.getEmail(),oldPassword, newPassword);                  
                   JOptionPane.showMessageDialog(null, "Change Password success!");
             }
             else{
@@ -212,5 +209,16 @@ public class ChangePassword extends javax.swing.JFrame {
     private javax.swing.JPasswordField txtOldPassword;
     // End of variables declaration//GEN-END:variables
     EmployeeBUS employeeBUS = new EmployeeBUS();
-    AdminBUS adminBUS = new AdminBUS();
+    Employee employee;
+
+    public Employee getEmployee() {
+        return employee;
+    }
+
+    public void setEmployee(Employee employee) {
+        this.employee = employee;
+    }
+    
+    
+    
 }
