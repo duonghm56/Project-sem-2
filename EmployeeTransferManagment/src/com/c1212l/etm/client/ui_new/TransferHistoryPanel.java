@@ -88,8 +88,7 @@ public class TransferHistoryPanel extends javax.swing.JPanel {
 
     public void setEmployee(Employee employee) {
         this.employee = employee;
-        reloadData();
-        initTable();
+        reloadData();        
     }
 
     private void initTable() {

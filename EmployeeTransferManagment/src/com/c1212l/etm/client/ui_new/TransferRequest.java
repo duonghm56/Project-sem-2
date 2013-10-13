@@ -410,6 +410,13 @@ public class TransferRequest extends javax.swing.JPanel {
     }//GEN-LAST:event_cmbToProjectItemStateChanged
 
     private void btnResetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnResetActionPerformed
+        try {
+            loadData();
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(TransferRequest.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(TransferRequest.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_btnResetActionPerformed
 
     private void btnSendActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSendActionPerformed
@@ -475,7 +482,14 @@ public class TransferRequest extends javax.swing.JPanel {
     }
 
     public void setEmployee(Employee employee) {
-        this.employee = employee;
+        try {
+            this.employee = employee;
+            loadData();
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(TransferRequest.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(TransferRequest.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     private void initCmbProject(JComboBox cmb) throws ClassNotFoundException, SQLException {
