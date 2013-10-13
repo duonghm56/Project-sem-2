@@ -236,7 +236,7 @@ public class TransferRequest extends javax.swing.JPanel {
                             .addComponent(jLabel11)
                             .addComponent(jLabel2))
                         .addGap(26, 26, 26)
-                        .addComponent(cmbTransferType, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(cmbTransferType, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -357,7 +357,7 @@ public class TransferRequest extends javax.swing.JPanel {
     }//GEN-LAST:event_cmbFromDepartmentItemStateChanged
 
     private void txtEmployeeNumberKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtEmployeeNumberKeyReleased
-        // TODO add your handling code here:
+       
     }//GEN-LAST:event_txtEmployeeNumberKeyReleased
 
     private void btnGenerateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGenerateActionPerformed
@@ -474,7 +474,7 @@ public class TransferRequest extends javax.swing.JPanel {
         return employee;
     }
 
-    public void setEmployee(Employee employee) {        
+    public void setEmployee(Employee employee) {
         this.employee = employee;
     }
 
@@ -519,18 +519,14 @@ public class TransferRequest extends javax.swing.JPanel {
 
     private void initCmbFromDepartment() throws ClassNotFoundException, SQLException {
         initCmbDepartment(cmbFromDepartment);
-        DepartmentDAO departmentDAO = new DepartmentDAO();
         cmbFromDepartment.setSelectedItem(
-                new KeyValue(employee.getDepartnameID(),
-                departmentDAO.getDepartmentByID(employee.getDepartnameID()).getDepartmentName()));
+                new KeyValue(employee.getDepartnameID(), employee.getEmployeeDepartment()));
     }
 
     private void initCmbToDepartment() throws ClassNotFoundException, SQLException {
         initCmbDepartment(cmbToDepartment);
-        DepartmentDAO departmentDAO = new DepartmentDAO();
         cmbToDepartment.setSelectedItem(
-                new KeyValue(employee.getDepartnameID(),
-                departmentDAO.getDepartmentByID(employee.getDepartnameID()).getDepartmentName()));
+                new KeyValue(employee.getDepartnameID(), employee.getEmployeeDepartment()));
     }
 
     private void initCmbLocation(JComboBox cmb) throws ClassNotFoundException, SQLException {
@@ -544,24 +540,28 @@ public class TransferRequest extends javax.swing.JPanel {
 
     private void initCmbFromLocation() throws ClassNotFoundException, SQLException {
         initCmbLocation(cmbFromLocation);
-        DepartmentDAO departmentDAO = new DepartmentDAO();
-        Department department = departmentDAO.getDepartmentByID(employee.getDepartnameID());
-        LocationDAO locationDAO = new LocationDAO();
-        Location location = locationDAO.getLocationById(department.getLocationID());
-        System.out.println(location.getLocationID() + ": " + location.getLocationName());
+        /*DepartmentDAO departmentDAO = new DepartmentDAO();
+         Department department = departmentDAO.getDepartmentByID(employee.getDepartnameID());
+         LocationDAO locationDAO = new LocationDAO();
+         Location location = locationDAO.getLocationById(department.getLocationID());        
+         cmbFromLocation.setSelectedItem(
+         new KeyValue(location.getLocationID(), location.getLocationName()));*/
         cmbFromLocation.setSelectedItem(
-                new KeyValue(location.getLocationID(), location.getLocationName()));
+                new KeyValue(0, employee.getEmployeeLocation()));
     }
 
     private void initCmbToLocation() throws ClassNotFoundException, SQLException {
         initCmbLocation(cmbToLocation);
-        DepartmentDAO departmentDAO = new DepartmentDAO();
-        Department department = departmentDAO.getDepartmentByID(employee.getDepartnameID());
-        LocationDAO locationDAO = new LocationDAO();
-        Location location = locationDAO.getLocationById(department.getLocationID());
-        System.out.println(location.getLocationID() + ": " + location.getLocationName());
+        /*DepartmentDAO departmentDAO = new DepartmentDAO();
+         Department department = departmentDAO.getDepartmentByID(employee.getDepartnameID());
+         LocationDAO locationDAO = new LocationDAO();
+         Location location = locationDAO.getLocationById(department.getLocationID());
+         System.out.println(location.getLocationID() + ": " + location.getLocationName());
+         cmbToLocation.setSelectedItem(
+         new KeyValue(location.getLocationID(), location.getLocationName()));
+         */
         cmbToLocation.setSelectedItem(
-                new KeyValue(location.getLocationID(), location.getLocationName()));
+                new KeyValue(0, employee.getEmployeeLocation()));
     }
 
     private void loadData() throws ClassNotFoundException, SQLException {
@@ -646,8 +646,7 @@ public class TransferRequest extends javax.swing.JPanel {
         }
     }
 
-    private void updateCmbTransferType() {
-        //System.out.println("Check field : " + checkFieldAndReturnTransferType());
+    private void updateCmbTransferType() {        
         cmbTransferType.setSelectedItem(new KeyValue(0, checkFieldAndReturnTransferType()));
     }
 
@@ -666,7 +665,7 @@ public class TransferRequest extends javax.swing.JPanel {
     public void validate() {
         try {
             super.validate();
-            if(employee!=null){
+            if (employee != null) {
                 loadData();
             }
         } catch (ClassNotFoundException ex) {

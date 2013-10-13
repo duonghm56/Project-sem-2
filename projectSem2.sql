@@ -89,15 +89,15 @@ as begin
 end
 go
 
-create procedure updateAdmin(@email varchar(100), @password varchar(100),@role int)
+create procedure updateAdmin(@id int, @email varchar(100), @password varchar(100),@role int)
 as begin
 	update [admin] set email = @email, [password]=@password,[role] =@role
-	where email= @email 
+	where id = @id
 end
 go
-create procedure deleteAdmin(@email varchar(100))
+create procedure deleteAdmin(@id int)
 as begin
-	delete from [admin] where email = @email
+	delete from [admin] where id = @id
 end
 go
 create procedure changePasswordAdmin(@email varchar(100),@oldPassword varchar(100),@newPassword varchar(100))

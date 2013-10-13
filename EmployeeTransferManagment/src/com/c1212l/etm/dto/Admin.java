@@ -54,13 +54,13 @@ public class Admin {
         v.add(password); 
         switch (role) {
             case 1:
-                v.add("Admin 1");
+                v.add("Administrator");
                 break;
             case 2:
-                v.add("Admin 2");
+                v.add("Moderator");
                 break;
             case 3:
-                v.add("Admin 3");
+                v.add("Assistant");
                 break;
         }
         return v;

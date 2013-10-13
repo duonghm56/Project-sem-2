@@ -12,6 +12,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
+import javax.swing.WindowConstants;
 import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
@@ -55,6 +56,7 @@ public class MyReport {
             frame.pack();
             frame.setBounds((dim.width-1014)/2, (dim.height-684)/2, 1014, 684);
             //frame.setSize((int) dim.getWidth(), (int) dim.getHeight() - 30);
+            frame.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
             return frame;
         } catch (Exception ex) {
             Logger.getLogger(MyReport.class.getName()).log(Level.SEVERE, null, ex);

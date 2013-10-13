@@ -4,6 +4,8 @@
  */
 package com.c1212l.etm.client.ui_new;
 
+import com.c1212l.etm.bll.EmployeeBUS;
+import com.c1212l.etm.dal.EmployeeDAO;
 import com.c1212l.etm.dto.Employee;
 import java.sql.SQLException;
 import java.util.logging.Level;
@@ -363,4 +365,19 @@ public class EmployeeProfie extends javax.swing.JPanel {
             lblPhoto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image_new/Female_guestblogger1.png")));
         }
     }
+
+    @Override
+    public void validate() {
+        try {
+            super.validate();
+            employee = new EmployeeDAO().getEmployeeByID(employee.getEmployeeID());
+            loadData();
+        } catch (SQLException ex) {
+            Logger.getLogger(EmployeeProfie.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(EmployeeProfie.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    
 }

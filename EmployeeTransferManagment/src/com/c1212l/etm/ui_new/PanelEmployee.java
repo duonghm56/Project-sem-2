@@ -647,10 +647,10 @@ public class PanelEmployee extends javax.swing.JPanel {
     }//GEN-LAST:event_btnAddActionPerformed
 
     private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
-        
-        try {            
+
+        try {
             validateField();
-            
+
             int gender = ((KeyValue) cmbGender.getSelectedItem()).getKey();
             int departmentID = ((KeyValue) cmbDepartment.getSelectedItem()).getKey();
             int projectID = ((KeyValue) cmbProject.getSelectedItem()).getKey();
@@ -699,7 +699,6 @@ public class PanelEmployee extends javax.swing.JPanel {
     private void btnSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchActionPerformed
         // Need write search function
     }//GEN-LAST:event_btnSearchActionPerformed
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAdd;
     private javax.swing.JButton btnDelete;
@@ -771,7 +770,7 @@ public class PanelEmployee extends javax.swing.JPanel {
     DefaultTableModel tblModel;
     ArrayList<Employee> lstEmpl;
     EmployeeBUS employeeBUS = new EmployeeBUS();
-    
+
     private void initTable() {
         Vector header = new Vector();
         header.add("ID");
@@ -781,7 +780,7 @@ public class PanelEmployee extends javax.swing.JPanel {
         header.add("Salary");
         header.add("Birthday");
         header.add("Address");
-        header.add("Password");        
+        header.add("Password");
         header.add("Role");
         header.add("Experience");
         header.add("Gender");
@@ -819,7 +818,7 @@ public class PanelEmployee extends javax.swing.JPanel {
             }
         }
     }
-    
+
     private void initTextField() {
         txtEmployeeID.setText("");
         txtNumber.setText("");
@@ -832,14 +831,14 @@ public class PanelEmployee extends javax.swing.JPanel {
         dcBirthday.setDate(new java.util.Date());
         //txtPhoto.setText("");        
     }
-    
+
     private void initCmbGender() {
         cmbGender.removeAllItems();
         cmbGender.addItem(new KeyValue(-1, ""));
         cmbGender.addItem(new KeyValue(1, "Male"));
         cmbGender.addItem(new KeyValue(0, "Female"));
     }
-    
+
     private void initCmbProject() throws ClassNotFoundException, SQLException {
         cmbProject.removeAllItems();
         cmbProject.addItem(new KeyValue(-1, ""));
@@ -849,7 +848,7 @@ public class PanelEmployee extends javax.swing.JPanel {
             cmbProject.addItem(new KeyValue(p.getProjectID(), p.getProjectName()));
         }
     }
-    
+
     private void initCmbDepartment() throws ClassNotFoundException, SQLException {
         cmbDepartment.removeAllItems();
         cmbDepartment.addItem(new KeyValue(-1, ""));
@@ -860,15 +859,15 @@ public class PanelEmployee extends javax.swing.JPanel {
             cmbDepartment.addItem(new KeyValue(department.getDepartmentID(), department.getDepartmentName() + " - " + location.getLocationName()));
         }
     }
-    
-    private void initLabel() throws ClassNotFoundException, SQLException{
+
+    private void initLabel() throws ClassNotFoundException, SQLException {
         EmployeeDAO employeeDAO = new EmployeeDAO();
         lblTotalEmpl.setText("" + employeeDAO.getTotalNumberEmployee());
         lblMale.setText("" + employeeDAO.getTotalMaleNumberEmployee());
         lblFemale.setText("" + employeeDAO.getTotalFemaleNumberEmployee());
-        lblTotlalSalary.setText("" + employeeDAO.getTotalSalaryEmployee() + " USD");        
+        lblTotlalSalary.setText("" + employeeDAO.getTotalSalaryEmployee() + " USD");
     }
-    
+
     private void reloadData() {
         try {
             initLabel();
@@ -878,11 +877,11 @@ public class PanelEmployee extends javax.swing.JPanel {
             initCmbGender();
             initCmbProject();
             initCmbDepartment();
-        } catch(Exception ex){
+        } catch (Exception ex) {
             ex.printStackTrace();
         }
     }
-    
+
     private void updateFieldWhenSelectEmployee() {
         int selectedRow = tblEmployee.getSelectedRow();
         txtEmployeeID.setText(tblEmployee.getValueAt(selectedRow, 0).toString());
@@ -899,7 +898,7 @@ public class PanelEmployee extends javax.swing.JPanel {
         cmbProject.setSelectedItem(new KeyValue(0, tblEmployee.getValueAt(selectedRow, 11).toString()));
         cmbDepartment.setSelectedItem(new KeyValue(0, tblEmployee.getValueAt(selectedRow, 12).toString()));
         //txtPhoto.setText(tblEmployee.getValueAt(selectedRow, 13).toString());
-        
+
         lblNumber.setText(tblEmployee.getValueAt(selectedRow, 1).toString());
         lblName.setText(tblEmployee.getValueAt(selectedRow, 2).toString());
         lblEmail.setText(tblEmployee.getValueAt(selectedRow, 3).toString());
@@ -907,15 +906,15 @@ public class PanelEmployee extends javax.swing.JPanel {
         lblRole.setText(tblEmployee.getValueAt(selectedRow, 8).toString());
         lblDep.setText(tblEmployee.getValueAt(selectedRow, 12).toString());
         lblProject.setText(tblEmployee.getValueAt(selectedRow, 11).toString());
-        
-        if(tblEmployee.getValueAt(selectedRow, 10).toString().equals("Male")){
+
+        if (tblEmployee.getValueAt(selectedRow, 10).toString().equals("Male")) {
             lblImage.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image_new/319.png")));
-        }else if(tblEmployee.getValueAt(selectedRow, 10).toString().equals("Female")){
+        } else if (tblEmployee.getValueAt(selectedRow, 10).toString().equals("Female")) {
             lblImage.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image_new/Female_guestblogger1.png")));
         }
-                
+
     }
-    
+
     private void validateField() throws Exception {
         if (txtNumber.getText().equals("")) {
             throw new Exception("Please enter Employee Number");
@@ -929,23 +928,23 @@ public class PanelEmployee extends javax.swing.JPanel {
         if (txtWorkExperience.getText().equals("")) {
             throw new Exception("Please enter Work Experience");
         }
-        if (new String(txtPassword.getPassword()).equals("")){
+        if (new String(txtPassword.getPassword()).equals("")) {
             throw new Exception("Please enter Password");
         }
-        KeyValue department = (KeyValue)cmbDepartment.getSelectedItem();
-        if(department.getValue().equals("")){
+        KeyValue department = (KeyValue) cmbDepartment.getSelectedItem();
+        if (department.getValue().equals("")) {
             throw new Exception("Please select department");
         }
-        
-        KeyValue project = (KeyValue)cmbProject.getSelectedItem();
-        if(project.getValue().equals("")){
+
+        KeyValue project = (KeyValue) cmbProject.getSelectedItem();
+        if (project.getValue().equals("")) {
             throw new Exception("Please select project");
         }
-        
-        KeyValue gender = (KeyValue)cmbGender.getSelectedItem();
-        if(gender.getValue().equals("")){
+
+        KeyValue gender = (KeyValue) cmbGender.getSelectedItem();
+        if (gender.getValue().equals("")) {
             throw new Exception("Please select gender");
-        }                        
+        }
 
         Pattern ptEmplName = Pattern.compile("^([A-Za-z]+[\\s]?)+$");
         Matcher mcEmplName = ptEmplName.matcher(txtName.getText());
@@ -979,5 +978,10 @@ public class PanelEmployee extends javax.swing.JPanel {
             throw new Exception("Work Experience ");
         }
     }
-    
+
+    @Override
+    public void validate() {
+        super.validate();
+        reloadData();
+    }
 }

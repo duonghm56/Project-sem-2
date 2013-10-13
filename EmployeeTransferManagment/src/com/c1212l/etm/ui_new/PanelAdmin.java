@@ -41,6 +41,7 @@ public class PanelAdmin extends javax.swing.JPanel {
 
         jSplitPane2 = new javax.swing.JSplitPane();
         panelLeft = new javax.swing.JPanel();
+        jLabel4 = new javax.swing.JLabel();
         panelRight = new javax.swing.JPanel();
         panelBasicInfo = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
@@ -58,15 +59,18 @@ public class PanelAdmin extends javax.swing.JPanel {
         jScrollPane1 = new javax.swing.JScrollPane();
         tbAdmin = new javax.swing.JTable();
 
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image_new/276569_326855717361_523352318_n.jpg"))); // NOI18N
+        jLabel4.setText("jLabel4");
+
         javax.swing.GroupLayout panelLeftLayout = new javax.swing.GroupLayout(panelLeft);
         panelLeft.setLayout(panelLeftLayout);
         panelLeftLayout.setHorizontalGroup(
             panelLeftLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 161, Short.MAX_VALUE)
+            .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         panelLeftLayout.setVerticalGroup(
             panelLeftLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 506, Short.MAX_VALUE)
+            .addComponent(jLabel4)
         );
 
         jSplitPane2.setLeftComponent(panelLeft);
@@ -196,6 +200,11 @@ public class PanelAdmin extends javax.swing.JPanel {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        tbAdmin.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                tbAdminMouseReleased(evt);
+            }
+        });
         jScrollPane1.setViewportView(tbAdmin);
 
         javax.swing.GroupLayout panelTableLayout = new javax.swing.GroupLayout(panelTable);
@@ -204,14 +213,14 @@ public class PanelAdmin extends javax.swing.JPanel {
             panelTableLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelTableLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 645, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 609, Short.MAX_VALUE)
                 .addContainerGap())
         );
         panelTableLayout.setVerticalGroup(
             panelTableLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelTableLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 266, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 260, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -223,7 +232,7 @@ public class PanelAdmin extends javax.swing.JPanel {
                 .addGroup(panelRightLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(panelRightLayout.createSequentialGroup()
                         .addComponent(jToolBar1, javax.swing.GroupLayout.PREFERRED_SIZE, 468, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 219, Short.MAX_VALUE))
+                        .addGap(0, 183, Short.MAX_VALUE))
                     .addGroup(panelRightLayout.createSequentialGroup()
                         .addContainerGap()
                         .addGroup(panelRightLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -258,7 +267,7 @@ public class PanelAdmin extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jSplitPane2)
+                .addComponent(jSplitPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 502, Short.MAX_VALUE)
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -349,6 +358,15 @@ public class PanelAdmin extends javax.swing.JPanel {
         txtEmail.setText("");
         txtPassword.setText("");
     }//GEN-LAST:event_btnResetActionPerformed
+
+    private void tbAdminMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbAdminMouseReleased
+        int row = tbAdmin.getSelectedRow();
+        id = tblModel.getValueAt(row, 0).toString();
+        txtEmail.setText(tblModel.getValueAt(row, 1).toString());
+        txtPassword.setText(tblModel.getValueAt(row, 2).toString());
+        cmbRole.setSelectedItem(new KeyValue(0, tblModel.getValueAt(row, 3).toString()));
+    }//GEN-LAST:event_tbAdminMouseReleased
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAdd;
     private javax.swing.JButton btnDelete;
@@ -358,6 +376,7 @@ public class PanelAdmin extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSplitPane jSplitPane2;
     private javax.swing.JToolBar jToolBar1;
@@ -418,7 +437,7 @@ public class PanelAdmin extends javax.swing.JPanel {
     }
 
     private void initTextField() {
-
+        id = "";
         txtEmail.setText("");
         txtPassword.setText("");
     }
@@ -445,8 +464,8 @@ public class PanelAdmin extends javax.swing.JPanel {
 
     private void initCmbRole() {
         cmbRole.removeAllItems();
-        cmbRole.addItem(new KeyValue(1, "Admin 1"));
-        cmbRole.addItem(new KeyValue(2, "Admin 2"));
-        cmbRole.addItem(new KeyValue(3, "Admin 3"));
+        cmbRole.addItem(new KeyValue(1, "Administrator"));
+        cmbRole.addItem(new KeyValue(2, "Moderator"));
+        cmbRole.addItem(new KeyValue(3, "Assistant"));
     }
 }

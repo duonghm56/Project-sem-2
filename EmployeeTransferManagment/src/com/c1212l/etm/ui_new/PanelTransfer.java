@@ -20,12 +20,15 @@ import com.c1212l.etm.dto.Transfer;
 import com.c1212l.etm.dto.TransferType;
 import com.c1212l.etm.report.TransferView;
 import com.c1212l.etm.util.KeyValue;
+import com.c1212l.etm.util.MyReport;
 import com.c1212l.etm.util.MyUtil;
 import java.sql.Date;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Vector;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import net.sf.jasperreports.engine.JasperFillManager;
@@ -701,16 +704,18 @@ public class PanelTransfer extends javax.swing.JPanel {
     }//GEN-LAST:event_btnLoadEmplActionPerformed
 
     private void btnPrintActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPrintActionPerformed
-        try {            
+        try {
             ArrayList<TransferView> lstTransferViews = new ArrayList<TransferView>();
-            for(int i=0; i<lstTransfer.size(); i++){
+            for (int i = 0; i < lstTransfer.size(); i++) {
                 lstTransferViews.add(lstTransfer.get(i).getTransferView());
             }
             HashMap map = new HashMap();
             JRBeanCollectionDataSource datasource = new JRBeanCollectionDataSource(lstTransferViews);
-            System.out.println(lstTransferViews.size());
-            JasperPrint jrPrint = JasperFillManager.fillReport("src\\com\\c1212l\\etm\\report\\report1.jasper", map, datasource);
-            JasperViewer.viewReport(jrPrint);
+            MyReport myReport = new MyReport("src\\com\\c1212l\\etm\\report\\report1.jasper", map, datasource);
+            myReport.getFrameReport().setVisible(true);
+            //System.out.println(lstTransferViews.size());
+            //JasperPrint jrPrint = JasperFillManager.fillReport("src\\com\\c1212l\\etm\\report\\report1.jasper", map, datasource);
+            //JasperViewer.viewReport(jrPrint);
         } catch (Exception e) {
             System.out.println(e);
             e.printStackTrace();
@@ -793,7 +798,7 @@ public class PanelTransfer extends javax.swing.JPanel {
         header.add("ID");
         header.add("Type");
         //------------------------------------
-        header.add("Employee Number");
+        header.add("EmplNumber");
         header.add("Name");
         //---Ko hien thi        
         header.add("Relieving Date");
@@ -815,10 +820,14 @@ public class PanelTransfer extends javax.swing.JPanel {
 
         makeInvisibleColumn(0);
         makeInvisibleColumn(1);
+        makeInvisibleColumn(3);
         makeInvisibleColumn(4);
         makeInvisibleColumn(5);
         makeInvisibleColumn(6);
         makeInvisibleColumn(7);
+        makeInvisibleColumn(13);
+        makeInvisibleColumn(14);
+        makeInvisibleColumn(16);
 
     }
 
@@ -1245,7 +1254,11 @@ public class PanelTransfer extends javax.swing.JPanel {
             throw new Exception("Please select To Project");
         }
 
+    }
 
-
+    @Override
+    public void validate() {
+        super.validate();
+        reloadData();
     }
 }
