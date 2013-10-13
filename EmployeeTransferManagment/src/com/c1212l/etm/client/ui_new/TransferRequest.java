@@ -367,7 +367,7 @@ public class TransferRequest extends javax.swing.JPanel {
 
         String content = "";
         content += "Dear Manager, \n\n";
-        content += "My name is " + employee.getEmployeeName();
+        content += "My name is " + employee.getEmployeeName()+".\n";
         content += "My employee number is " + employee.getEmployeeNumber() + "\n";
         content += "Now, I work at: \n";
         Department fromDept = departmentDAO.getDepartmentByID(employee.getDepartnameID());

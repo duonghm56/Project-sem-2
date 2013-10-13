@@ -2,9 +2,12 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.c1212l.etm.client.ui_new;
+package com.c1212l.etm.ui_new;
 
+import com.c1212l.etm.bll.AdminBUS;
+import com.c1212l.etm.client.ui_new.*;
 import com.c1212l.etm.bll.EmployeeBUS;
+import com.c1212l.etm.dto.Admin;
 import com.c1212l.etm.dto.Employee;
 import javax.swing.JOptionPane;
 
@@ -189,12 +192,12 @@ public class ChangePassword extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(this, "Please enter Confirm Password !");
                 return;
             }            
-            if (oldPassword.equals(employee.getPassword())) {                
+            if (oldPassword.equals(admin.getPassword())) {                
                 if (!newPassword.equals(confirmPassowrd)) {
                     JOptionPane.showMessageDialog(this, "ComfirmPassword is not equal to NewPassword");
                     return;
                 }
-                employeeBUS.changeEmployeePassword(employee.getEmail(), oldPassword, newPassword);
+                adminBUS.changePasswordAdmin(admin.getEmail(), oldPassword, newPassword);
                 JOptionPane.showMessageDialog(null, "Change Password success!");
                 this.dispose();
             } else {
@@ -262,14 +265,16 @@ public class ChangePassword extends javax.swing.JFrame {
     private javax.swing.JPasswordField txtNewPassword;
     private javax.swing.JPasswordField txtOldPassword;
     // End of variables declaration//GEN-END:variables
-    EmployeeBUS employeeBUS = new EmployeeBUS();
-    Employee employee;
+    AdminBUS adminBUS = new AdminBUS();
+    Admin admin;
 
-    public Employee getEmployee() {
-        return employee;
+    public Admin getAdmin() {
+        return admin;
     }
 
-    public void setEmployee(Employee employee) {
-        this.employee = employee;
+    public void setAdmin(Admin admin) {
+        this.admin = admin;
     }
+
+    
 }
