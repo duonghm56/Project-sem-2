@@ -30,57 +30,43 @@ public class ChangePassword extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jLabel1 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         lblOldPassword = new javax.swing.JLabel();
+        txtOldPassword = new javax.swing.JPasswordField();
         lblNewPassword = new javax.swing.JLabel();
+        txtNewPassword = new javax.swing.JPasswordField();
         lblConfirmPassword = new javax.swing.JLabel();
         txtConfirmPassword = new javax.swing.JPasswordField();
-        txtNewPassword = new javax.swing.JPasswordField();
-        txtOldPassword = new javax.swing.JPasswordField();
-        jLabel1 = new javax.swing.JLabel();
-        jToolBar1 = new javax.swing.JToolBar();
         jButton1 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        lblOldPassword.setText("Old Password");
-        jPanel1.add(lblOldPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 70, -1, -1));
-
-        lblNewPassword.setText("New Password");
-        jPanel1.add(lblNewPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 120, -1, -1));
-
-        lblConfirmPassword.setText("Confirm Password");
-        jPanel1.add(lblConfirmPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 170, -1, -1));
-        jPanel1.add(txtConfirmPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 170, 160, -1));
-        jPanel1.add(txtNewPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 120, 160, -1));
-        jPanel1.add(txtOldPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 70, 160, -1));
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel1.setText("Chang Password Employee");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 10, -1, -1));
+        jLabel1.setText("Change Password");
 
-        jToolBar1.setRollover(true);
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
+
+        lblOldPassword.setText("Old Password");
+
+        lblNewPassword.setText("New Password");
+
+        lblConfirmPassword.setText("Confirm Password");
 
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image_new/badge_tick.png"))); // NOI18N
-        jButton1.setText("Ok");
+        jButton1.setText("OK");
         jButton1.setFocusable(false);
         jButton1.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jButton1.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         jButton1.setMaximumSize(new java.awt.Dimension(61, 39));
         jButton1.setMinimumSize(new java.awt.Dimension(61, 39));
-        jButton1.setPreferredSize(new java.awt.Dimension(61, 39));
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
-        jToolBar1.add(jButton1);
 
         jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image_new/arrow_undo.png"))); // NOI18N
         jButton4.setText("Reset");
@@ -92,71 +78,139 @@ public class ChangePassword extends javax.swing.JFrame {
                 jButton4ActionPerformed(evt);
             }
         });
-        jToolBar1.add(jButton4);
 
         jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image_new/exit.png"))); // NOI18N
-        jButton5.setText("Edit");
+        jButton5.setText("Exit");
         jButton5.setFocusable(false);
         jButton5.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jButton5.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         jButton5.setMaximumSize(new java.awt.Dimension(65, 39));
         jButton5.setMinimumSize(new java.awt.Dimension(65, 39));
-        jButton5.setPreferredSize(new java.awt.Dimension(65, 39));
         jButton5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton5ActionPerformed(evt);
             }
         });
-        jToolBar1.add(jButton5);
 
-        jPanel1.add(jToolBar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 210, -1, 40));
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jButton4)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addComponent(lblConfirmPassword)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(txtConfirmPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 245, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(lblOldPassword)
+                                .addComponent(lblNewPassword))
+                            .addGap(42, 42, 42)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(txtOldPassword, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 245, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(txtNewPassword, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 245, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblOldPassword)
+                    .addComponent(txtOldPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblNewPassword)
+                    .addComponent(txtNewPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblConfirmPassword)
+                    .addComponent(txtConfirmPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(13, Short.MAX_VALUE))
+        );
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1, -3, 400, 310));
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(170, 170, 170)
+                        .addComponent(jLabel1))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(39, 39, 39)
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(38, Short.MAX_VALUE))
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(27, Short.MAX_VALUE))
+        );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-         try{
-            if (txtOldPassword.getPassword().equals("")) {
+        try {
+            String oldPassword = new String(txtOldPassword.getPassword());
+            String newPassword = new String(txtNewPassword.getPassword());
+            String confirmPassowrd = new String(txtConfirmPassword.getPassword());
+            if (oldPassword.equals("")) {
                 JOptionPane.showMessageDialog(this, "Please enter Old Password !");
                 return;
             }
-            if (txtNewPassword.getPassword().equals("")) {
+            if (newPassword.equals("")) {
                 JOptionPane.showMessageDialog(this, "Please enter New Password !");
                 return;
             }
-            if (txtConfirmPassword.getPassword().equals("")) {
-                 JOptionPane.showMessageDialog(this, "Please enter Confirm Password !");
+            if (confirmPassowrd.equals("")) {
+                JOptionPane.showMessageDialog(this, "Please enter Confirm Password !");
                 return;
+            }            
+            if (oldPassword.equals(employee.getPassword())) {                
+                if (!newPassword.equals(confirmPassowrd)) {
+                    JOptionPane.showMessageDialog(this, "ComfirmPassword is not equal to NewPassword");
+                    return;
+                }
+                employeeBUS.changeEmployeePassword(employee.getEmail(), oldPassword, newPassword);
+                JOptionPane.showMessageDialog(null, "Change Password success!");
+                this.dispose();
+            } else {
+                JOptionPane.showMessageDialog(null, "Wrong password");
             }
-            if (!txtNewPassword.getPassword().equals(txtConfirmPassword.getPassword())) {
-                JOptionPane.showMessageDialog(this, "New Password must validate ComfirmPassword!");
-                return;
-            }
-            String oldPassword = new String(txtOldPassword.getPassword());
-            if (oldPassword.equals(employee.getPassword())) {
-                  String newPassword = new String(txtNewPassword.getPassword());
-                  employeeBUS.changeEmployeePassword(employee.getEmail(),oldPassword, newPassword);                  
-                  JOptionPane.showMessageDialog(null, "Change Password success!");
-            }
-            else{
-                JOptionPane.showMessageDialog(null, "Old Password is not valid");
-            }
+        } catch (Exception ex) {
+            ex.printStackTrace();
         }
-        catch(Exception ex){ex.printStackTrace();}
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        // TODO add your handling code here:
-            txtOldPassword.setText("");
-            txtNewPassword.setText("");
-            txtConfirmPassword.setText("");
+        txtOldPassword.setText("");
+        txtNewPassword.setText("");
+        txtConfirmPassword.setText("");
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        // TODO add your handling code here:
         this.dispose();
     }//GEN-LAST:event_jButton5ActionPerformed
 
@@ -200,7 +254,6 @@ public class ChangePassword extends javax.swing.JFrame {
     private javax.swing.JButton jButton5;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JToolBar jToolBar1;
     private javax.swing.JLabel lblConfirmPassword;
     private javax.swing.JLabel lblNewPassword;
     private javax.swing.JLabel lblOldPassword;
@@ -218,7 +271,4 @@ public class ChangePassword extends javax.swing.JFrame {
     public void setEmployee(Employee employee) {
         this.employee = employee;
     }
-    
-    
-    
 }

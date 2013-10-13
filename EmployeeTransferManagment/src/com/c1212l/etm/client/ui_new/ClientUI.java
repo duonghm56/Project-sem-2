@@ -5,6 +5,7 @@
 package com.c1212l.etm.client.ui_new;
 
 import com.c1212l.etm.dto.Employee;
+import com.c1212l.etm.ui_new.Login;
 
 /**
  *
@@ -33,42 +34,88 @@ public class ClientUI extends javax.swing.JFrame {
         employeeProfie1 = new com.c1212l.etm.client.ui_new.EmployeeProfie();
         transferRequest1 = new com.c1212l.etm.client.ui_new.TransferRequest();
         transferHistoryPanel1 = new com.c1212l.etm.client.ui_new.TransferHistoryPanel();
+        jToolBar1 = new javax.swing.JToolBar();
+        btnChangePassword = new javax.swing.JButton();
+        btnLogout = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Employee Transfer Manager System");
 
         lblBanner.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image_new/logotop.png"))); // NOI18N
-        lblBanner.setText("jLabel1");
 
         jTabbedPane1.addTab("Employee Profile", employeeProfie1);
         jTabbedPane1.addTab("Transfer Request", transferRequest1);
         jTabbedPane1.addTab("Transfer History", transferHistoryPanel1);
+
+        jToolBar1.setFloatable(false);
+        jToolBar1.setOrientation(javax.swing.SwingConstants.VERTICAL);
+        jToolBar1.setRollover(true);
+
+        btnChangePassword.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image_new/changePass.png"))); // NOI18N
+        btnChangePassword.setText("Change Password");
+        btnChangePassword.setFocusable(false);
+        btnChangePassword.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        btnChangePassword.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        btnChangePassword.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnChangePasswordActionPerformed(evt);
+            }
+        });
+        jToolBar1.add(btnChangePassword);
+
+        btnLogout.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image_new/exit.png"))); // NOI18N
+        btnLogout.setText("Logout");
+        btnLogout.setFocusable(false);
+        btnLogout.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        btnLogout.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        btnLogout.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLogoutActionPerformed(evt);
+            }
+        });
+        jToolBar1.add(btnLogout);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(77, 77, 77)
-                        .addComponent(lblBanner, javax.swing.GroupLayout.PREFERRED_SIZE, 820, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(lblBanner)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jToolBar1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(lblBanner)
+                .addGap(6, 6, 6)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblBanner)
+                    .addComponent(jToolBar1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 448, Short.MAX_VALUE)
+                .addComponent(jTabbedPane1)
                 .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnChangePasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnChangePasswordActionPerformed
+        ChangePassword changePassword = new ChangePassword();
+        changePassword.setEmployee(employee);
+        changePassword.setVisible(true);
+    }//GEN-LAST:event_btnChangePasswordActionPerformed
+
+    private void btnLogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogoutActionPerformed
+        this.dispose();
+        new Login().setVisible(true);
+    }//GEN-LAST:event_btnLogoutActionPerformed
 
     /**
      * @param args the command line arguments
@@ -105,8 +152,11 @@ public class ClientUI extends javax.swing.JFrame {
         });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnChangePassword;
+    private javax.swing.JButton btnLogout;
     private com.c1212l.etm.client.ui_new.EmployeeProfie employeeProfie1;
     private javax.swing.JTabbedPane jTabbedPane1;
+    private javax.swing.JToolBar jToolBar1;
     private javax.swing.JLabel lblBanner;
     private com.c1212l.etm.client.ui_new.TransferHistoryPanel transferHistoryPanel1;
     private com.c1212l.etm.client.ui_new.TransferRequest transferRequest1;

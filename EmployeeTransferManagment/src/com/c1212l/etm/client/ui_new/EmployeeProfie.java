@@ -370,8 +370,10 @@ public class EmployeeProfie extends javax.swing.JPanel {
     public void validate() {
         try {
             super.validate();
-            employee = new EmployeeDAO().getEmployeeByID(employee.getEmployeeID());
-            loadData();
+            if(employee!=null){
+                employee = new EmployeeDAO().getEmployeeByID(employee.getEmployeeID());
+                loadData();
+            }
         } catch (SQLException ex) {
             Logger.getLogger(EmployeeProfie.class.getName()).log(Level.SEVERE, null, ex);
         } catch (ClassNotFoundException ex) {

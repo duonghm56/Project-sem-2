@@ -156,7 +156,7 @@ public class TransferHistoryPanel extends javax.swing.JPanel {
     }
 
     @Override
-    public void validate() {
+    public void validate() {        
         reloadData();
     }
     
