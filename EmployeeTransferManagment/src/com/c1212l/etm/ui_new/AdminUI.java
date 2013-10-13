@@ -38,8 +38,8 @@ public class AdminUI extends javax.swing.JFrame {
         lblBanner = new javax.swing.JLabel();
         jToolBar1 = new javax.swing.JToolBar();
         btnChangePass = new javax.swing.JButton();
-        btnLogout = new javax.swing.JButton();
         btnConfig = new javax.swing.JButton();
+        btnLogout = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Transfer Manager System");
@@ -68,17 +68,6 @@ public class AdminUI extends javax.swing.JFrame {
         });
         jToolBar1.add(btnChangePass);
 
-        btnLogout.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image_new/exit.png"))); // NOI18N
-        btnLogout.setFocusable(false);
-        btnLogout.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        btnLogout.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        btnLogout.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnLogoutActionPerformed(evt);
-            }
-        });
-        jToolBar1.add(btnLogout);
-
         btnConfig.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image_new/manager.png"))); // NOI18N
         btnConfig.setFocusable(false);
         btnConfig.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -89,6 +78,17 @@ public class AdminUI extends javax.swing.JFrame {
             }
         });
         jToolBar1.add(btnConfig);
+
+        btnLogout.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image_new/exit.png"))); // NOI18N
+        btnLogout.setFocusable(false);
+        btnLogout.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnLogout.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnLogout.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLogoutActionPerformed(evt);
+            }
+        });
+        jToolBar1.add(btnLogout);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);

@@ -30,6 +30,7 @@ import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import javax.swing.WindowConstants;
 import javax.swing.table.DefaultTableModel;
 import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
@@ -83,6 +84,7 @@ public class PanelTransfer extends javax.swing.JPanel {
         btnPrint = new javax.swing.JButton();
         btnApprove = new javax.swing.JButton();
         btnDisapprove = new javax.swing.JButton();
+        btnReport = new javax.swing.JButton();
         panelBasicInfor = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         txtNumber = new javax.swing.JTextField();
@@ -177,7 +179,7 @@ public class PanelTransfer extends javax.swing.JPanel {
                     .addComponent(lblTotalDisapprove)
                     .addComponent(lblTotalApprove)
                     .addComponent(lblTotalTransfer))
-                .addContainerGap(14, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         panelTotalInforLayout.setVerticalGroup(
             panelTotalInforLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -322,6 +324,18 @@ public class PanelTransfer extends javax.swing.JPanel {
         });
         toolBarButton.add(btnDisapprove);
 
+        btnReport.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image_new/list_product_24.png"))); // NOI18N
+        btnReport.setText("Report");
+        btnReport.setFocusable(false);
+        btnReport.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        btnReport.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        btnReport.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnReportActionPerformed(evt);
+            }
+        });
+        toolBarButton.add(btnReport);
+
         panelBasicInfor.setBorder(javax.swing.BorderFactory.createTitledBorder("Employee Information"));
 
         jLabel1.setText("Employee Number");
@@ -378,7 +392,7 @@ public class PanelTransfer extends javax.swing.JPanel {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnLoadEmpl, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(txtTransferID, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 70, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(panelBasicInforLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel38)
                     .addComponent(jLabel13)
@@ -440,7 +454,7 @@ public class PanelTransfer extends javax.swing.JPanel {
             panelTableLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelTableLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 570, Short.MAX_VALUE)
+                .addComponent(jScrollPane2)
                 .addContainerGap())
         );
         panelTableLayout.setVerticalGroup(
@@ -525,7 +539,7 @@ public class PanelTransfer extends javax.swing.JPanel {
                         .addContainerGap()
                         .addGroup(rightPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(panelBasicInfor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 602, Short.MAX_VALUE)
+                            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(panelTable, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addContainerGap())
         );
@@ -550,14 +564,14 @@ public class PanelTransfer extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jSplitPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 850, Short.MAX_VALUE)
+                .addComponent(jSplitPane1)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jSplitPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 519, Short.MAX_VALUE))
+                .addComponent(jSplitPane1))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -722,6 +736,13 @@ public class PanelTransfer extends javax.swing.JPanel {
         }
 
     }//GEN-LAST:event_btnPrintActionPerformed
+
+    private void btnReportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReportActionPerformed
+        ReportWizard reportWizard = new ReportWizard();
+        reportWizard.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
+        reportWizard.setVisible(true);
+    }//GEN-LAST:event_btnReportActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAdd;
     private javax.swing.JButton btnApprove;
@@ -730,6 +751,7 @@ public class PanelTransfer extends javax.swing.JPanel {
     private javax.swing.JButton btnLoadEmpl;
     private javax.swing.JButton btnPrint;
     private javax.swing.JButton btnRefresh;
+    private javax.swing.JButton btnReport;
     private javax.swing.JButton btnSearch;
     private javax.swing.JButton btnUpdate;
     private javax.swing.JCheckBox cbApproveDateUnknown;
