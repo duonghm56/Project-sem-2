@@ -30,6 +30,7 @@ public class Employee {
     private Date birthday;
     private float salary;
     private String photo;
+    private float allowance;
 
     public Employee() {
     }
@@ -153,6 +154,7 @@ public class Employee {
                 ? department.getDepartmentName() + " - " + location.getLocationName()
                 : "undifined");
         result.add(photo);
+        result.add(allowance);
         return result;
     }
 
@@ -188,4 +190,13 @@ public class Employee {
         Project project = new ProjectDAO().getProjectById(projectID);
         return project.getProjectName();
     }
+
+    public float getAllowance() {
+        return allowance;
+    }
+
+    public void setAllowance(float allowance) {
+        this.allowance = allowance;
+    }
+        
 }

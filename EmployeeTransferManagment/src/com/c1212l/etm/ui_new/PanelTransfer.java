@@ -514,6 +514,7 @@ public class PanelTransfer extends javax.swing.JPanel {
         jLabel6.setText("Transfer Type");
         jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 120, -1, -1));
 
+        cmbTransferType.setEnabled(false);
         jPanel1.add(cmbTransferType, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 120, 160, -1));
 
         jLabel7.setText("ApproveDate");
@@ -739,6 +740,7 @@ public class PanelTransfer extends javax.swing.JPanel {
 
     private void btnReportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReportActionPerformed
         ReportWizard reportWizard = new ReportWizard();
+        reportWizard.setTitle("Report Wizard");
         reportWizard.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
         reportWizard.setVisible(true);
     }//GEN-LAST:event_btnReportActionPerformed

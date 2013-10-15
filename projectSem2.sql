@@ -30,6 +30,7 @@ create table employee(
 	employeeName nvarchar(200) not null,
 	email varchar(100) unique not null,
 	salary float,
+	allowance float,
 	photo varchar(100),
 	birthday date ,
 	[address] nvarchar(200),
@@ -129,10 +130,10 @@ as begin
 end
 go
 -- procedure for employee table
-create procedure addEmployee(@emplNum varchar(20), @emplName nvarchar(200),@email varchar(100),@salary float,@birthday date,@address nvarchar(200), @pass varchar(50), @role nvarchar(100), @workExperience int, @gender bit, @departmentID int, @projectID int, @photo varchar(100))
+create procedure addEmployee(@emplNum varchar(20), @emplName nvarchar(200),@email varchar(100),@salary float,@birthday date,@address nvarchar(200), @pass varchar(50), @role nvarchar(100), @workExperience int, @gender bit, @departmentID int, @projectID int, @photo varchar(100), @allowance float)
 as begin
-	insert into employee(employeeNumber ,employeeName,email,salary,birthday,[address], [password], [role], workExperience, gender, departmentID, projectID, photo)
-		values(@emplNum, @emplName,@email,@salary,@birthday,@address, @pass, @role, @workExperience, @gender, @departmentID, @projectID, @photo)
+	insert into employee(employeeNumber ,employeeName,email,salary,birthday,[address], [password], [role], workExperience, gender, departmentID, projectID, photo, allowance)
+		values(@emplNum, @emplName,@email,@salary,@birthday,@address, @pass, @role, @workExperience, @gender, @departmentID, @projectID, @photo, @allowance)
 end
 go
 
@@ -143,10 +144,10 @@ where employeeID =@employeeID
 end
 go
 
-create procedure updateEmployee(@emplNum varchar(20), @emplName nvarchar(200),@email varchar(100),@salary float,@birthday date,@address nvarchar(200), @pass varchar(50), @role nvarchar(100), @workExperience int, @gender bit, @departmentID int, @projectID int, @photo varchar(100))
+create procedure updateEmployee(@emplNum varchar(20), @emplName nvarchar(200),@email varchar(100),@salary float,@birthday date,@address nvarchar(200), @pass varchar(50), @role nvarchar(100), @workExperience int, @gender bit, @departmentID int, @projectID int, @photo varchar(100), @allowance float)
 as begin
 	update employee set employeeName = @emplName,email=@email,salary=@salary,birthday=@birthday,[address]=@address, [password] = @pass, [role] = @role,
-						workExperience = @workExperience, gender = @gender, departmentID = @departmentID, projectID = @projectID, photo=@photo
+						workExperience = @workExperience, gender = @gender, departmentID = @departmentID, projectID = @projectID, photo=@photo, allowance = @allowance
 	where employeeNumber = @emplNum
 end
 go
@@ -407,9 +408,9 @@ insert into project(projectName, createDate, endDate) values
 ('project 104', '2016-7-4', ''),
 ('project 302', '2013-6-5', '2013-9-9')
 go
-insert into employee(employeeNumber ,employeeName,email,salary,birthday,[address], [password], [role], workExperience, gender, departmentID, projectID, photo) values
- ('B1101', 'Nguyen Van A', 'user01@gmail.com', 1000,'1990-5-9', 'ABC 123', '1234', 'Manager', 3, 1, 1, 1, ''),
- ('B1102', 'Tran Thi B', 'user02@gmail.com', 2000,'1985-4-3', '254 IEO', '9999', 'Director', 5, 0, 2, 1, '')
+insert into employee(employeeNumber ,employeeName,email,salary,birthday,[address], [password], [role], workExperience, gender, departmentID, projectID, photo, allowance) values
+ ('B1101', 'Nguyen Van A', 'user01@gmail.com', 1000,'1990-5-9', 'ABC 123', '1234', 'Manager', 3, 1, 1, 1, '', 0),
+ ('B1102', 'Tran Thi B', 'user02@gmail.com', 2000,'1985-4-3', '254 IEO', '9999', 'Director', 5, 0, 2, 1, '', 0)
 go
  
 

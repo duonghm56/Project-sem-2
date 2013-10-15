@@ -112,6 +112,9 @@ public class PanelEmployee extends javax.swing.JPanel {
         jLabel9 = new javax.swing.JLabel();
         txtSalary = new javax.swing.JTextField();
         jLabel16 = new javax.swing.JLabel();
+        jLabel12 = new javax.swing.JLabel();
+        txtAllowance = new javax.swing.JTextField();
+        jLabel18 = new javax.swing.JLabel();
         panelTable = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         tblEmployee = new javax.swing.JTable();
@@ -448,7 +451,7 @@ public class PanelEmployee extends javax.swing.JPanel {
 
         jLabel7.setText("Role");
 
-        jLabel11.setText("Project:");
+        jLabel11.setText("Project");
 
         cmbProject.setModel(new javax.swing.DefaultComboBoxModel(new String[] { " " }));
 
@@ -456,13 +459,17 @@ public class PanelEmployee extends javax.swing.JPanel {
 
         cmbDepartment.setModel(new javax.swing.DefaultComboBoxModel(new String[] { " " }));
 
-        jLabel10.setText("Work Experience:");
+        jLabel10.setText("Work Experience");
 
         jLabel14.setText("Year");
 
-        jLabel9.setText("Salary:");
+        jLabel9.setText("Salary");
 
         jLabel16.setText("USD");
+
+        jLabel12.setText("Allowance");
+
+        jLabel18.setText("USD");
 
         javax.swing.GroupLayout panelWorkInforLayout = new javax.swing.GroupLayout(panelWorkInfor);
         panelWorkInfor.setLayout(panelWorkInforLayout);
@@ -478,28 +485,33 @@ public class PanelEmployee extends javax.swing.JPanel {
                 .addGroup(panelWorkInforLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(txtEmployeeRole, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(panelWorkInforLayout.createSequentialGroup()
-                        .addGroup(panelWorkInforLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(txtSalary, javax.swing.GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE)
-                            .addComponent(txtWorkExperience))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(panelWorkInforLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(txtWorkExperience, javax.swing.GroupLayout.DEFAULT_SIZE, 63, Short.MAX_VALUE)
+                            .addComponent(txtSalary))
+                        .addGap(18, 18, 18)
                         .addGroup(panelWorkInforLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel16, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel16, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 70, Short.MAX_VALUE)
                 .addGroup(panelWorkInforLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel15)
-                    .addComponent(jLabel11))
+                    .addComponent(jLabel11)
+                    .addComponent(jLabel12))
                 .addGap(18, 18, 18)
                 .addGroup(panelWorkInforLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(cmbProject, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cmbDepartment, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cmbDepartment, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(panelWorkInforLayout.createSequentialGroup()
+                        .addComponent(txtAllowance, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel18, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(25, 25, 25))
         );
         panelWorkInforLayout.setVerticalGroup(
             panelWorkInforLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelWorkInforLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(panelWorkInforLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(panelWorkInforLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(panelWorkInforLayout.createSequentialGroup()
                         .addGroup(panelWorkInforLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel15)
@@ -512,16 +524,21 @@ public class PanelEmployee extends javax.swing.JPanel {
                         .addGroup(panelWorkInforLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel7)
                             .addComponent(txtEmployeeRole, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(panelWorkInforLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel10)
                             .addComponent(txtWorkExperience, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel10))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(panelWorkInforLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel9)
-                    .addComponent(jLabel16, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtSalary, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel12)
+                    .addGroup(panelWorkInforLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(txtSalary, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel16, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(panelWorkInforLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(txtAllowance, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel18, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -587,7 +604,7 @@ public class PanelEmployee extends javax.swing.JPanel {
         rightPanelLayout.setVerticalGroup(
             rightPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(rightPanelLayout.createSequentialGroup()
-                .addComponent(toolBarButton, javax.swing.GroupLayout.DEFAULT_SIZE, 64, Short.MAX_VALUE)
+                .addComponent(toolBarButton, javax.swing.GroupLayout.DEFAULT_SIZE, 59, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(panelBasicInfor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -605,14 +622,14 @@ public class PanelEmployee extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jSplitPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 850, Short.MAX_VALUE)
+                .addComponent(jSplitPane1)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jSplitPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 530, Short.MAX_VALUE))
+                .addComponent(jSplitPane1))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -638,7 +655,8 @@ public class PanelEmployee extends javax.swing.JPanel {
                     ((KeyValue) cmbGender.getSelectedItem()).getKey() == 1 ? true : false,
                     ((KeyValue) cmbDepartment.getSelectedItem()).getKey(),
                     ((KeyValue) cmbProject.getSelectedItem()).getKey(),
-                    photo);
+                    photo,
+                    Float.parseFloat(txtAllowance.getText()));
             reloadData();
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(null, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
@@ -669,7 +687,8 @@ public class PanelEmployee extends javax.swing.JPanel {
                     gender == 1 ? true : false,
                     departmentID,
                     projectID,
-                    photo);
+                    photo,
+                    Float.parseFloat(txtAllowance.getText()));
             reloadData();
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(null, ex.getMessage(), "Error:", JOptionPane.ERROR_MESSAGE);
@@ -697,7 +716,13 @@ public class PanelEmployee extends javax.swing.JPanel {
     }//GEN-LAST:event_btnRefreshActionPerformed
 
     private void btnSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchActionPerformed
-        // Need write search function
+        try {
+            loadSearchEmployeeNumber();
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(PanelEmployee.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(PanelEmployee.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_btnSearchActionPerformed
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAdd;
@@ -712,11 +737,13 @@ public class PanelEmployee extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
+    private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel21;
@@ -758,6 +785,7 @@ public class PanelEmployee extends javax.swing.JPanel {
     private javax.swing.JTable tblEmployee;
     private javax.swing.JToolBar toolBarButton;
     private javax.swing.JTextField txtAddress;
+    private javax.swing.JTextField txtAllowance;
     private javax.swing.JTextField txtEmail;
     private javax.swing.JTextField txtEmployeeID;
     private javax.swing.JTextField txtEmployeeRole;
@@ -787,6 +815,7 @@ public class PanelEmployee extends javax.swing.JPanel {
         header.add("Project");
         header.add("Department");
         header.add("Photo");
+        header.add("Allowance");
         tblModel = new DefaultTableModel(header, 0);
         tblEmployee.setModel(tblModel);
         //TableColumn col = tblEmployee.getColumnModel().getColumn(3);
@@ -801,7 +830,8 @@ public class PanelEmployee extends javax.swing.JPanel {
         makeColumnInvisible(8);
         makeColumnInvisible(9);
         makeColumnInvisible(10);
-        makeColumnInvisible(13);
+        makeColumnInvisible(13);       
+        makeColumnInvisible(14);       
     }
 
     private void makeColumnInvisible(int col) {
@@ -830,6 +860,7 @@ public class PanelEmployee extends javax.swing.JPanel {
         txtAddress.setText("");
         dcBirthday.setDate(new java.util.Date());
         //txtPhoto.setText("");        
+        txtAllowance.setText("");
     }
 
     private void initCmbGender() {
@@ -898,6 +929,7 @@ public class PanelEmployee extends javax.swing.JPanel {
         cmbProject.setSelectedItem(new KeyValue(0, tblEmployee.getValueAt(selectedRow, 11).toString()));
         cmbDepartment.setSelectedItem(new KeyValue(0, tblEmployee.getValueAt(selectedRow, 12).toString()));
         //txtPhoto.setText(tblEmployee.getValueAt(selectedRow, 13).toString());
+        txtAllowance.setText(tblEmployee.getValueAt(selectedRow, 14).toString());
 
         lblNumber.setText(tblEmployee.getValueAt(selectedRow, 1).toString());
         lblName.setText(tblEmployee.getValueAt(selectedRow, 2).toString());
@@ -919,18 +951,52 @@ public class PanelEmployee extends javax.swing.JPanel {
         if (txtNumber.getText().equals("")) {
             throw new Exception("Please enter Employee Number");
         }
+        
         if (txtName.getText().equals("")) {
             throw new Exception("Please enter Employee Name");
         }
-        if (txtEmployeeRole.getText().equals("")) {
-            throw new Exception("Please enter Employee Role");
+        Pattern ptEmplName = Pattern.compile("^([A-Za-z]+[\\s]?)+$");
+        Matcher mcEmplName = ptEmplName.matcher(txtName.getText());
+        if (!mcEmplName.find()) {
+            throw new Exception("Name is not valid");
         }
-        if (txtWorkExperience.getText().equals("")) {
-            throw new Exception("Please enter Work Experience");
+        
+        Pattern ptemail = Pattern.compile("^[\\w.-]+@[\\w.-]+\\.[A-Za-z]{2,4}$");
+        Matcher mcemail = ptemail.matcher(txtEmail.getText());
+        if (!mcemail.find()) {
+            throw new Exception("Email is not valid");
         }
+        
         if (new String(txtPassword.getPassword()).equals("")) {
             throw new Exception("Please enter Password");
         }
+        
+        KeyValue gender = (KeyValue) cmbGender.getSelectedItem();
+        if (gender.getValue().equals("")) {
+            throw new Exception("Please select gender");
+        }
+        
+        if (txtEmployeeRole.getText().equals("")) {
+            throw new Exception("Please enter Employee Role");
+        }
+        Pattern ptEmplRole = Pattern.compile("^([A-Za-z]+[\\s]?)+$");
+        Matcher mcEmplRole = ptEmplRole.matcher(txtEmployeeRole.getText());
+        if (!mcEmplRole.find()) {
+            throw new Exception("Employee Role is not valid");
+        }
+        
+        if (txtWorkExperience.getText().equals("")) {
+            throw new Exception("Please enter Work Experience");
+        }
+        Pattern ptWorkExperience = Pattern.compile("^[\\d]{1,2}$");
+        Matcher mcWorkExperience = ptWorkExperience.matcher(txtWorkExperience.getText());
+        if (!mcWorkExperience.find()) {
+            throw new Exception("Work Experience is not valid");
+        }
+        if (Integer.parseInt(txtWorkExperience.getText()) > 60) {
+            throw new Exception("Work Experience ");
+        }
+        
         KeyValue department = (KeyValue) cmbDepartment.getSelectedItem();
         if (department.getValue().equals("")) {
             throw new Exception("Please select department");
@@ -941,47 +1007,38 @@ public class PanelEmployee extends javax.swing.JPanel {
             throw new Exception("Please select project");
         }
 
-        KeyValue gender = (KeyValue) cmbGender.getSelectedItem();
-        if (gender.getValue().equals("")) {
-            throw new Exception("Please select gender");
+        try{
+            Float.parseFloat(txtSalary.getText());
+        }catch(Exception ex){
+            throw new Exception("Salary is invalid");
         }
-
-        Pattern ptEmplName = Pattern.compile("^([A-Za-z]+[\\s]?)+$");
-        Matcher mcEmplName = ptEmplName.matcher(txtName.getText());
-        if (!mcEmplName.find()) {
-            throw new Exception("Name is not valid");
+        
+        try{
+            Float.parseFloat(txtAllowance.getText());
+        }catch(Exception ex){
+            throw new Exception("Allowance is invalid");
         }
-
-        Pattern ptEmplRole = Pattern.compile("^([A-Za-z]+[\\s]?)+$");
-        Matcher mcEmplRole = ptEmplRole.matcher(txtEmployeeRole.getText());
-        if (!mcEmplRole.find()) {
-            throw new Exception("Employee Role is not valid");
-        }
-
-        Pattern ptemail = Pattern.compile("^[\\w.-]+@[\\w.-]+\\.[A-Za-z]{2,4}$");
-        Matcher mcemail = ptemail.matcher(txtEmail.getText());
-        if (!mcemail.find()) {
-            throw new Exception("Email is not valid");
-        }
-
-        /*Pattern ptEmplNumber = Pattern.compile("^E+[\\d]{4}$");
-         Matcher mcEmplNumber = ptEmplNumber.matcher(txtEmployeeNumber.getText());
-         if (!mcEmplNumber.find()) {
-         throw new Exception("Employee Number is not valid");
-         }*/
-        Pattern ptWorkExperience = Pattern.compile("^[\\d]{1,2}$");
-        Matcher mcWorkExperience = ptWorkExperience.matcher(txtWorkExperience.getText());
-        if (!mcWorkExperience.find()) {
-            throw new Exception("Work Experience is not valid");
-        }
-        if (Integer.parseInt(txtWorkExperience.getText()) > 50) {
-            throw new Exception("Work Experience ");
-        }
+        
+                
     }
 
     @Override
     public void validate() {
         super.validate();
         reloadData();
+    }
+    
+    private void loadSearchEmployeeNumber() throws ClassNotFoundException, SQLException {
+        String employeeName = "";
+        if (!txtNumber.getText().equals("")) {
+            if (!employeeName.contains("where")) {
+                employeeName += " where employeeNumber like '%" + txtNumber.getText() + "%'";
+            } else {
+                employeeName += " and employeeNumber like '%" + txtNumber.getText() + "%'";
+            }
+        }
+        initTable();
+        lstEmpl = employeeBUS.searchEmployee(employeeName);
+        fillData(lstEmpl);
     }
 }

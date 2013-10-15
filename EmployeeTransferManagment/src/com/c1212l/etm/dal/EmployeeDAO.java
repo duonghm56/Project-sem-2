@@ -40,6 +40,7 @@ public class EmployeeDAO extends ConnectionTool {
             e.setDepartnameID(rs.getInt("departmentID"));
             e.setProjectID(rs.getInt("projectID"));
             e.setPhoto(rs.getString("photo"));
+            e.setAllowance(rs.getFloat("allowance"));
             result.add(e);
         }
         closeConnection();
@@ -60,7 +61,7 @@ public class EmployeeDAO extends ConnectionTool {
             error += "Error: Duplicate employee email\n";
         }
         if (error.equals("")) {
-            CallableStatement cs = conn.prepareCall("{call addEmployee(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)}");
+            CallableStatement cs = conn.prepareCall("{call addEmployee(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)}");
             cs.setString(1, employee.getEmployeeNumber());
             cs.setString(2, employee.getEmployeeName());
             cs.setString(3, employee.getEmail());
@@ -74,6 +75,7 @@ public class EmployeeDAO extends ConnectionTool {
             cs.setInt(11, employee.getDepartnameID());
             cs.setInt(12, employee.getProjectID());
             cs.setString(13, employee.getPhoto());
+            cs.setFloat(14, employee.getAllowance());
             cs.executeUpdate();
         } else {
             throw new Exception(error);
@@ -97,6 +99,7 @@ public class EmployeeDAO extends ConnectionTool {
         cs.setInt(11, employee.getDepartnameID());
         cs.setInt(12, employee.getProjectID());
         cs.setString(13, employee.getPhoto());
+        cs.setFloat(14, employee.getAllowance());
         cs.executeUpdate();
         closeConnection();
     }
@@ -150,6 +153,7 @@ public class EmployeeDAO extends ConnectionTool {
             e.setDepartnameID(rs.getInt("departmentID"));
             e.setProjectID(rs.getInt("projectID"));
             e.setPhoto(rs.getString("photo"));
+            e.setAllowance(rs.getFloat("allowance"));
             result.add(e);
         }
         closeConnection();
@@ -178,6 +182,7 @@ public class EmployeeDAO extends ConnectionTool {
                 e.setDepartnameID(rs.getInt("departmentID"));
                 e.setProjectID(rs.getInt("projectID"));
                 e.setPhoto(rs.getString("photo"));
+                e.setAllowance(rs.getFloat("allowance"));
             }
             closeConnection();
             return e;
@@ -208,6 +213,7 @@ public class EmployeeDAO extends ConnectionTool {
             e.setDepartnameID(rs.getInt("departmentID"));
             e.setProjectID(rs.getInt("projectID"));
             e.setPhoto(rs.getString("photo"));
+            e.setAllowance(rs.getFloat("allowance"));
         }
         closeConnection();
         return e;
