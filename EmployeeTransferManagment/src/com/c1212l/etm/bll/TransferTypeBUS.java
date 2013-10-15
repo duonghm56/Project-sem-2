@@ -3,7 +3,7 @@
  * and open the template in the editor.
  */
 package com.c1212l.etm.bll;
-import com.c1212l.etm.dal.TransferTypeDAO;
+import com.c1212l.etm.dao.TransferTypeDAO;
 import com.c1212l.etm.dto.TransferType;
 import java.sql.SQLException;
 import java.util.ArrayList;

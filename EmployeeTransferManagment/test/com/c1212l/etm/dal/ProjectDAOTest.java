@@ -4,6 +4,7 @@
  */
 package com.c1212l.etm.dal;
 
+import com.c1212l.etm.dao.ProjectDAO;
 import com.c1212l.etm.dto.Project;
 import java.util.ArrayList;
 import org.junit.After;

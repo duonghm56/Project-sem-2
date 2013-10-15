@@ -11,8 +11,10 @@ import java.util.Vector;
  * @author Luu Bi
  */
 public class Location {
-    private int locationID ;
+
+    private int locationID;
     private String locationName;
+    private float allowance;
 
     public Location() {
     }
@@ -37,10 +39,22 @@ public class Location {
     public void setLocationName(String locationName) {
         this.locationName = locationName;
     }
-     public Vector getVector(){
+
+    public float getAllowance() {
+        return allowance;
+    }
+
+    public void setAllowance(float allowance) {
+        this.allowance = allowance;
+    }
+    
+    public Vector getVector() {
         Vector v = new Vector();
         v.add(locationID);
         v.add(locationName);
+        v.add(allowance);
         return v;
     }
+    
+    
 }

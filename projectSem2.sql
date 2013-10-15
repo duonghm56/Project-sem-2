@@ -6,7 +6,8 @@ go
 
 create table location(
 	locationID int primary key identity,
-	locationName nvarchar(200) unique
+	locationName nvarchar(200) unique,
+	allowance float
 )
 --drop table location
 create table department(
@@ -217,16 +218,16 @@ go
 
 -----------------------------------------------------------
 
-create procedure addLocation(@locationName nvarchar(200))
+create procedure addLocation(@locationName nvarchar(200), @allowance float)
 as
 begin
-	insert into location(locationName) values(@locationName)
+	insert into location(locationName, allowance) values(@locationName, @allowance)
 end
 go
 
-create procedure updateLocation(@id int,@name nvarchar(200))
+create procedure updateLocation(@id int, @name nvarchar(200), @allowance float)
 as begin
-	update location set locationName=@name
+	update location set locationName=@name, allowance=@allowance
 	where locationID=@id
 end
 go
@@ -394,7 +395,7 @@ go
 
 --------------------------------------------------------------------------
 --Demo Data--
-insert into location(locationName) values('Ha Noi'), ('Da Nang'), ('Ho Chi Minh'), ('Nha Trang')
+insert into location(locationName, allowance) values('Ha Noi', 0), ('Da Nang', 100), ('Ho Chi Minh', 50), ('Nha Trang', 0)
 go
 insert into department(departmentName, locationID) values
 ('Marketing', 1), ('Accouting', 1), ('Techical', 1), ('Production', 1),

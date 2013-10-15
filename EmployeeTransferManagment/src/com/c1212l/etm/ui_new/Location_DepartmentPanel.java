@@ -327,17 +327,9 @@ public class Location_DepartmentPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAddLocationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddLocationActionPerformed
-        try {
-            String locationName = JOptionPane.showInputDialog(null, "Please enter location name: ", "Add Location", JOptionPane.INFORMATION_MESSAGE);
-            if(locationName != null){
-                locationBUS.addLocation(locationName);
-                initCmbLocation();
-                reloadDataList();
-            }
-        } catch (Exception ex) {
-            JOptionPane.showMessageDialog(null, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
-        }
-
+        DialogAddLocation dlg = new DialogAddLocation(null, true);
+        dlg.setPanelLC(this);
+        dlg.setVisible(true);
     }//GEN-LAST:event_btnAddLocationActionPerformed
 
     private void btnAddDepartmentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddDepartmentActionPerformed
@@ -384,7 +376,6 @@ public class Location_DepartmentPanel extends javax.swing.JPanel {
 
     private void tbDepartmentMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbDepartmentMouseClicked
         // TODO add your handling code here:
-        
     }//GEN-LAST:event_tbDepartmentMouseClicked
 
     private void btnDeleteDepartmentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteDepartmentActionPerformed
@@ -435,20 +426,12 @@ public class Location_DepartmentPanel extends javax.swing.JPanel {
             if (selectedItem == null || selectedItem.getKey() == 0) {
                 throw new Exception("Please select location");
             }
-            String locationName = JOptionPane.showInputDialog(null, "Please enter location name: ", "Edit Location", JOptionPane.INFORMATION_MESSAGE);
-            
-            if (locationName != null) {
-                Pattern ptLocationName = Pattern.compile("^([A-Za-z]+[\\s]?)+$");
-                Matcher mcLocationName = ptLocationName.matcher(locationName);
-                if (!mcLocationName.find()) {
-                    throw new Exception("Location Name is not valid");
-                }
+            int locationID = selectedItem.getKey();
+            DialogEditLocation dlg = new DialogEditLocation(null, false);
+            dlg.setPanelDC(this);
+            dlg.setLocationID(locationID);
+            dlg.setVisible(true);
 
-                int locationID = selectedItem.getKey();
-                locationBUS.updateLocation(locationID, locationName);
-                reloadDataList();
-                initCmbLocation();
-            }
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(null, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
             ex.printStackTrace();
@@ -494,7 +477,6 @@ public class Location_DepartmentPanel extends javax.swing.JPanel {
         txtDepartmentName.setText(tbDepartment.getValueAt(row, 1).toString());
         cmbLocation.setSelectedItem(new KeyValue(0, tbDepartment.getValueAt(row, 2).toString()));
     }//GEN-LAST:event_tbDepartmentMouseReleased
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAddDepartment;
     private javax.swing.JButton btnAddLocation;
@@ -569,7 +551,7 @@ public class Location_DepartmentPanel extends javax.swing.JPanel {
         }
     }
 
-    private void reloadDataList() {
+    void reloadDataList() {
         try {
             fillDataList(locationBUS.getAllLocation());
         } catch (ClassNotFoundException ex) {
@@ -583,7 +565,7 @@ public class Location_DepartmentPanel extends javax.swing.JPanel {
         txtDepartmentName.setText("");
     }
 
-    private void initCmbLocation() {
+    void initCmbLocation() {
         try {
             cmbLocation.removeAllItems();
             LocationBUS locationBUS = new LocationBUS();
@@ -626,7 +608,7 @@ public class Location_DepartmentPanel extends javax.swing.JPanel {
             Logger.getLogger(DepartmentPanel.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
+
     private void loadSearchData() throws ClassNotFoundException, SQLException {
         String departmentName = "";
         if (!txtDepartmentName.getText().equals("")) {

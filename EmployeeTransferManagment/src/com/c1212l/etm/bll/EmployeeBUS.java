@@ -4,7 +4,7 @@
  */
 package com.c1212l.etm.bll;
 
-import com.c1212l.etm.dal.EmployeeDAO;
+import com.c1212l.etm.dao.EmployeeDAO;
 import com.c1212l.etm.dto.ChangePassword;
 import com.c1212l.etm.dto.Employee;
 import java.sql.Date;

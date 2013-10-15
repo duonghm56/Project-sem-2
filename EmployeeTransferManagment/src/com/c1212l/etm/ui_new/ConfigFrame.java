@@ -4,7 +4,7 @@
  */
 package com.c1212l.etm.ui_new;
 
-import com.c1212l.etm.dal.ConnectionTool;
+import com.c1212l.etm.dao.ConnectionTool;
 import javax.swing.JOptionPane;
 
 /**
@@ -45,6 +45,7 @@ public class ConfigFrame extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Configuration");
+        setResizable(false);
 
         jLabel1.setText("Host name");
 
@@ -130,10 +131,11 @@ public class ConfigFrame extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnTest)
                     .addComponent(btnSave))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(43, Short.MAX_VALUE))
         );
 
-        pack();
+        java.awt.Dimension screenSize = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
+        setBounds((screenSize.width-306)/2, (screenSize.height-249)/2, 306, 249);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnTestActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTestActionPerformed

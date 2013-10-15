@@ -4,11 +4,11 @@
  */
 package com.c1212l.etm.dto;
 
-import com.c1212l.etm.dal.DepartmentDAO;
-import com.c1212l.etm.dal.EmployeeDAO;
-import com.c1212l.etm.dal.LocationDAO;
-import com.c1212l.etm.dal.ProjectDAO;
-import com.c1212l.etm.dal.TransferTypeDAO;
+import com.c1212l.etm.dao.DepartmentDAO;
+import com.c1212l.etm.dao.EmployeeDAO;
+import com.c1212l.etm.dao.LocationDAO;
+import com.c1212l.etm.dao.ProjectDAO;
+import com.c1212l.etm.dao.TransferTypeDAO;
 import com.c1212l.etm.report.TransferView;
 import java.sql.Date;
 import java.text.DateFormat;

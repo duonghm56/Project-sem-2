@@ -5,8 +5,8 @@
 package com.c1212l.etm.ui_new;
 
 import com.c1212l.etm.bll.ProjectBUS;
-import com.c1212l.etm.dal.EmployeeDAO;
-import com.c1212l.etm.dal.ProjectDAO;
+import com.c1212l.etm.dao.EmployeeDAO;
+import com.c1212l.etm.dao.ProjectDAO;
 import com.c1212l.etm.dto.Project;
 import com.c1212l.etm.util.MyUtil;
 import java.sql.Date;

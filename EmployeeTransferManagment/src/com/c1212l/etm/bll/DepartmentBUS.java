@@ -3,7 +3,7 @@
  * and open the template in the editor.
  */
 package com.c1212l.etm.bll;
-import com.c1212l.etm.dal.DepartmentDAO;
+import com.c1212l.etm.dao.DepartmentDAO;
 import com.c1212l.etm.dto.Department;
 import java.sql.ResultSet;
 import java.sql.SQLException;

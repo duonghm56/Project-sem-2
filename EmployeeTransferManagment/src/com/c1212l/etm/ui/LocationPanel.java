@@ -149,7 +149,7 @@ public class LocationPanel extends javax.swing.JPanel {
                      throw new Exception("Location Name is not valid");
              }
             String locationName = txtLocationName.getText();
-            locationBUS.addLocation(locationName);
+            //locationBUS.addLocation(locationName);
             reloadData();
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(null, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
@@ -173,7 +173,7 @@ public class LocationPanel extends javax.swing.JPanel {
              }
             int locationID = Integer.parseInt(txtLocationID.getText());
             String locationName = txtLocationName.getText();
-            locationBUS.updateLocation(locationID, locationName);
+            //locationBUS.updateLocation(locationID, locationName);
             reloadData();
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(null, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);

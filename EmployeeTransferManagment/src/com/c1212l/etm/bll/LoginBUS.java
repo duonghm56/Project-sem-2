@@ -4,7 +4,7 @@
  */
 package com.c1212l.etm.bll;
 
-import com.c1212l.etm.dal.LoginDAO;
+import com.c1212l.etm.dao.LoginDAO;
 import com.c1212l.etm.dto.Admin;
 import com.c1212l.etm.dto.Employee;
 import java.sql.SQLException;

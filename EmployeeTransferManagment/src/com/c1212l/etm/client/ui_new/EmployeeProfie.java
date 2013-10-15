@@ -5,7 +5,7 @@
 package com.c1212l.etm.client.ui_new;
 
 import com.c1212l.etm.bll.EmployeeBUS;
-import com.c1212l.etm.dal.EmployeeDAO;
+import com.c1212l.etm.dao.EmployeeDAO;
 import com.c1212l.etm.dto.Employee;
 import java.sql.SQLException;
 import java.util.logging.Level;

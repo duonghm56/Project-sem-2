@@ -40,6 +40,7 @@ public class ClientUI extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Employee Transfer Manager System");
+        setResizable(false);
 
         lblBanner.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image_new/logotop.png"))); // NOI18N
 

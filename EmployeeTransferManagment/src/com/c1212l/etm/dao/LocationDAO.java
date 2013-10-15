@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.c1212l.etm.dal;
+package com.c1212l.etm.dao;
 
 import com.c1212l.etm.dto.Location;
 import java.sql.CallableStatement;
@@ -28,6 +28,7 @@ public class LocationDAO extends ConnectionTool {
             Location l = new Location();
             l.setLocationID(rs.getInt("locationID"));
             l.setLocationName(rs.getString("locationName"));
+            l.setAllowance(rs.getFloat("allowance"));
             result.add(l);
         }
         closeConnection();
@@ -43,8 +44,9 @@ public class LocationDAO extends ConnectionTool {
             error += "Error: Duplicate location name\n";
         }
         if (error.equals("")) {
-            CallableStatement cs = conn.prepareCall("{call addLocation( ?)}");
+            CallableStatement cs = conn.prepareCall("{call addLocation(?, ?)}");
             cs.setString(1, location.getLocationName());
+            cs.setFloat(2, location.getAllowance());
             cs.executeUpdate();
         } else {
             throw new Exception(error);
@@ -54,24 +56,17 @@ public class LocationDAO extends ConnectionTool {
 
     public void updateLocation(Location location) throws ClassNotFoundException, Exception {
         initConnection();
-        String error = "";
-        PreparedStatement pstmt = conn.prepareStatement("select * from location where locationName = ?");
-        pstmt.setString(1, location.getLocationName());
-        if (pstmt.executeQuery().next()) {
-            error += "Error: Update duplicate department name\n";
-        }
-        if (error.equals("")) {
-            CallableStatement cs = conn.prepareCall("{call updateLocation(?, ?)}");
-            cs.setInt(1, location.getLocationID());
-            cs.setString(2, location.getLocationName());
-            cs.executeUpdate();
-        } else {
-            throw new Exception(error);
-        }
+
+        CallableStatement cs = conn.prepareCall("{call updateLocation(?, ?, ?)}");
+        cs.setInt(1, location.getLocationID());
+        cs.setString(2, location.getLocationName());
+        cs.setFloat(3, location.getAllowance());
+        cs.executeUpdate();
+
         closeConnection();
     }
 
-    public void deleteLocation(Location location) throws ClassNotFoundException, Exception {        
+    public void deleteLocation(Location location) throws ClassNotFoundException, Exception {
         initConnection();
         String error = "";
         PreparedStatement pstmt = conn.prepareStatement("select * from department where locationID = ?");
@@ -93,7 +88,7 @@ public class LocationDAO extends ConnectionTool {
         } else {
             throw new Exception(error);
         }
-        closeConnection();        
+        closeConnection();
     }
 
     public ArrayList<Location> searchLocationName(String locationName) throws ClassNotFoundException, SQLException {
@@ -105,6 +100,7 @@ public class LocationDAO extends ConnectionTool {
             Location location = new Location();
             location.setLocationID(rs.getInt("locationID"));
             location.setLocationName(rs.getString("locationName"));
+            location.setAllowance(rs.getFloat("allowance"));
             result.add(location);
         }
         closeConnection();
@@ -121,6 +117,7 @@ public class LocationDAO extends ConnectionTool {
                 location = new Location();
                 location.setLocationID(rs.getInt("locationID"));
                 location.setLocationName(rs.getString("locationName"));
+                location.setAllowance(rs.getFloat("allowance"));
             }
             closeConnection();
             return location;

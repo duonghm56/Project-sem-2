@@ -7,7 +7,7 @@ package com.c1212l.etm.ui_new;
 import com.c1212l.etm.bll.DepartmentBUS;
 import com.c1212l.etm.bll.ProjectBUS;
 import com.c1212l.etm.bll.TransferBUS;
-import com.c1212l.etm.dal.LocationDAO;
+import com.c1212l.etm.dao.LocationDAO;
 import com.c1212l.etm.dto.Department;
 import com.c1212l.etm.dto.Location;
 import com.c1212l.etm.dto.Transfer;

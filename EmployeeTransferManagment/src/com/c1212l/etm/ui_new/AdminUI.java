@@ -43,6 +43,7 @@ public class AdminUI extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Transfer Manager System");
+        setResizable(false);
 
         jTabbedPane1.addTab("Transfer Manager", panelTransfer1);
         jTabbedPane1.addTab("Employee Manager", panelEmployee1);

@@ -5,7 +5,7 @@
 package com.c1212l.etm.bll;
 
 import com.c1212l.etm.dto.Project;
-import com.c1212l.etm.dal.ProjectDAO;
+import com.c1212l.etm.dao.ProjectDAO;
 import java.sql.Date;
 import java.sql.SQLException;
 import java.util.ArrayList;
