@@ -11,6 +11,7 @@ import com.c1212l.etm.dto.Employee;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import javax.swing.WindowConstants;
 
 /**
@@ -196,10 +197,8 @@ public class Login extends javax.swing.JFrame {
                     lblError.setText("Invalid Email and Password");
                 }
             }
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (SQLException ex) {
-            Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (Exception ex){
+            JOptionPane.showMessageDialog(null, "Cannot Login. Please check database connection", "Connection Error", JOptionPane.ERROR_MESSAGE);
         }
         
         

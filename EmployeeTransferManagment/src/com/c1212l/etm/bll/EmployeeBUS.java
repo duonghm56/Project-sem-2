@@ -4,12 +4,18 @@
  */
 package com.c1212l.etm.bll;
 
+import com.c1212l.etm.dao.DepartmentDAO;
 import com.c1212l.etm.dao.EmployeeDAO;
+import com.c1212l.etm.dao.LocationDAO;
 import com.c1212l.etm.dto.ChangePassword;
+import com.c1212l.etm.dto.Department;
 import com.c1212l.etm.dto.Employee;
+import com.c1212l.etm.dto.Location;
 import java.sql.Date;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -80,5 +86,15 @@ public class EmployeeBUS {
         employeeDAO.deleteEmployee(e);
     }
     
+    public double getTotalAllowance(String emplNum){
+        try {
+            Employee empl = employeeDAO.getEmployeeByNumber(emplNum);
+            Department department = new DepartmentDAO().getDepartmentByID(empl.getDepartnameID());            
+            Location location = new LocationDAO().getLocationById(department.getDepartmentID());
+            return empl.getAllowance() + location.getAllowance();
+        } catch (Exception ex){
+            return 0;
+        }
+    }
     
 }

@@ -67,6 +67,8 @@ public class PanelEmployee extends javax.swing.JPanel {
         lblDep = new javax.swing.JLabel();
         lblProject = new javax.swing.JLabel();
         lblImage = new javax.swing.JLabel();
+        jLabel20 = new javax.swing.JLabel();
+        lblAllowance = new javax.swing.JLabel();
         panelTotalInfor = new javax.swing.JPanel();
         jLabel29 = new javax.swing.JLabel();
         jLabel30 = new javax.swing.JLabel();
@@ -138,42 +140,53 @@ public class PanelEmployee extends javax.swing.JPanel {
         lblImage.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image_new/319.png"))); // NOI18N
         lblImage.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
+        jLabel20.setText("Allowance");
+
         javax.swing.GroupLayout panelInforLayout = new javax.swing.GroupLayout(panelInfor);
         panelInfor.setLayout(panelInforLayout);
         panelInforLayout.setHorizontalGroup(
             panelInforLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelInforLayout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(panelInforLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(panelInforLayout.createSequentialGroup()
+                        .addContainerGap()
                         .addGroup(panelInforLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel8)
-                            .addComponent(jLabel17)
-                            .addComponent(jLabel21)
-                            .addComponent(jLabel23)
-                            .addComponent(jLabel25)
-                            .addComponent(jLabel26))
-                        .addGap(18, 18, 18)
-                        .addGroup(panelInforLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblName, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(panelInforLayout.createSequentialGroup()
                                 .addGroup(panelInforLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(lblProject)
-                                    .addComponent(lblDep)
-                                    .addComponent(lblRole)
-                                    .addComponent(lblEmail)
-                                    .addComponent(lblBirthday))
+                                    .addComponent(jLabel8)
+                                    .addComponent(jLabel17)
+                                    .addComponent(jLabel21)
+                                    .addComponent(jLabel23)
+                                    .addComponent(jLabel25)
+                                    .addComponent(jLabel26))
+                                .addGap(18, 18, 18)
+                                .addGroup(panelInforLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(lblName, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addGroup(panelInforLayout.createSequentialGroup()
+                                        .addGroup(panelInforLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(lblProject)
+                                            .addComponent(lblDep)
+                                            .addComponent(lblRole)
+                                            .addComponent(lblEmail)
+                                            .addComponent(lblBirthday))
+                                        .addGap(0, 0, Short.MAX_VALUE))))
+                            .addGroup(panelInforLayout.createSequentialGroup()
+                                .addComponent(jLabel19)
+                                .addGap(21, 21, 21)
+                                .addComponent(lblNumber)
                                 .addGap(0, 0, Short.MAX_VALUE))))
                     .addGroup(panelInforLayout.createSequentialGroup()
-                        .addComponent(jLabel19)
-                        .addGap(21, 21, 21)
-                        .addComponent(lblNumber)
+                        .addGroup(panelInforLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(panelInforLayout.createSequentialGroup()
+                                .addGap(24, 24, 24)
+                                .addComponent(lblImage, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(panelInforLayout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(jLabel20)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(lblAllowance)))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
-            .addGroup(panelInforLayout.createSequentialGroup()
-                .addGap(24, 24, 24)
-                .addComponent(lblImage, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         panelInforLayout.setVerticalGroup(
             panelInforLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -208,6 +221,10 @@ public class PanelEmployee extends javax.swing.JPanel {
                 .addGroup(panelInforLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel26)
                     .addComponent(lblProject))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(panelInforLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel20)
+                    .addComponent(lblAllowance))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -274,7 +291,7 @@ public class PanelEmployee extends javax.swing.JPanel {
                     .addComponent(lblTotlalSalary))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(txtEmployeeID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(51, Short.MAX_VALUE))
+                .addContainerGap(34, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout leftPanelLayout = new javax.swing.GroupLayout(leftPanel);
@@ -294,7 +311,7 @@ public class PanelEmployee extends javax.swing.JPanel {
                 .addContainerGap()
                 .addComponent(panelInfor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(panelTotalInfor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(panelTotalInfor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
@@ -604,7 +621,7 @@ public class PanelEmployee extends javax.swing.JPanel {
         rightPanelLayout.setVerticalGroup(
             rightPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(rightPanelLayout.createSequentialGroup()
-                .addComponent(toolBarButton, javax.swing.GroupLayout.DEFAULT_SIZE, 59, Short.MAX_VALUE)
+                .addComponent(toolBarButton, javax.swing.GroupLayout.DEFAULT_SIZE, 62, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(panelBasicInfor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -692,7 +709,7 @@ public class PanelEmployee extends javax.swing.JPanel {
             reloadData();
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(null, ex.getMessage(), "Error:", JOptionPane.ERROR_MESSAGE);
-
+            ex.printStackTrace();
         }
     }//GEN-LAST:event_btnUpdateActionPerformed
 
@@ -746,6 +763,7 @@ public class PanelEmployee extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel23;
     private javax.swing.JLabel jLabel25;
@@ -763,6 +781,7 @@ public class PanelEmployee extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JSplitPane jSplitPane1;
+    private javax.swing.JLabel lblAllowance;
     private javax.swing.JLabel lblBirthday;
     private javax.swing.JLabel lblDep;
     private javax.swing.JLabel lblEmail;
@@ -938,6 +957,7 @@ public class PanelEmployee extends javax.swing.JPanel {
         lblRole.setText(tblEmployee.getValueAt(selectedRow, 8).toString());
         lblDep.setText(tblEmployee.getValueAt(selectedRow, 12).toString());
         lblProject.setText(tblEmployee.getValueAt(selectedRow, 11).toString());
+        lblAllowance.setText(""+employeeBUS.getTotalAllowance(tblEmployee.getValueAt(selectedRow, 1).toString()));
 
         if (tblEmployee.getValueAt(selectedRow, 10).toString().equals("Male")) {
             lblImage.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image_new/319.png")));

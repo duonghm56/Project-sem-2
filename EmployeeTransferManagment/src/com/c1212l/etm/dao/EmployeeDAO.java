@@ -85,7 +85,7 @@ public class EmployeeDAO extends ConnectionTool {
 
     public void updateEmployee(Employee employee) throws ClassNotFoundException, Exception {
         initConnection();
-        CallableStatement cs = conn.prepareCall("{call updateEmployee(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)}");
+        CallableStatement cs = conn.prepareCall("{call updateEmployee(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)}");
         cs.setString(1, employee.getEmployeeNumber());
         cs.setString(2, employee.getEmployeeName());
         cs.setString(3, employee.getEmail());
@@ -195,7 +195,7 @@ public class EmployeeDAO extends ConnectionTool {
     public Employee getEmployeeByNumber(String number) throws ClassNotFoundException, SQLException {
         initConnection();
         Statement stmt = conn.createStatement();
-        ResultSet rs = stmt.executeQuery("select * from employee where employeeNumber = '" + number+"'");
+        ResultSet rs = stmt.executeQuery("select * from employee where employeeNumber = '" + number + "'");
         Employee e = null;
         if (rs.next()) {
             e = new Employee();
@@ -218,51 +218,52 @@ public class EmployeeDAO extends ConnectionTool {
         closeConnection();
         return e;
     }
-    
-    public int getTotalNumberEmployee() throws ClassNotFoundException, SQLException{
+
+    public int getTotalNumberEmployee() throws ClassNotFoundException, SQLException {
         initConnection();
         Statement stmt = conn.createStatement();
-        ResultSet rs = stmt.executeQuery("select dbo.getTotalNumberEmployee ()");       
+        ResultSet rs = stmt.executeQuery("select dbo.getTotalNumberEmployee ()");
         int r = 0;
-        if(rs.next()){            
+        if (rs.next()) {
             r = rs.getInt("");
         }
         closeConnection();
         return r;
     }
-    public int getTotalMaleNumberEmployee() throws ClassNotFoundException, SQLException{
+
+    public int getTotalMaleNumberEmployee() throws ClassNotFoundException, SQLException {
         initConnection();
         Statement stmt = conn.createStatement();
-        ResultSet rs = stmt.executeQuery("select dbo.getTotalMaleNumberEmployee ()");       
+        ResultSet rs = stmt.executeQuery("select dbo.getTotalMaleNumberEmployee ()");
         int r = 0;
-        if(rs.next()){            
+        if (rs.next()) {
             r = rs.getInt("");
         }
         closeConnection();
         return r;
     }
-    public int getTotalFemaleNumberEmployee() throws ClassNotFoundException, SQLException{
+
+    public int getTotalFemaleNumberEmployee() throws ClassNotFoundException, SQLException {
         initConnection();
         Statement stmt = conn.createStatement();
-        ResultSet rs = stmt.executeQuery("select dbo.getTotalFemaleNumberEmployee ()");       
+        ResultSet rs = stmt.executeQuery("select dbo.getTotalFemaleNumberEmployee ()");
         int r = 0;
-        if(rs.next()){            
+        if (rs.next()) {
             r = rs.getInt("");
         }
         closeConnection();
         return r;
     }
-    public int getTotalSalaryEmployee() throws ClassNotFoundException, SQLException{
+
+    public int getTotalSalaryEmployee() throws ClassNotFoundException, SQLException {
         initConnection();
         Statement stmt = conn.createStatement();
-        ResultSet rs = stmt.executeQuery("select dbo.getTotalSalaryEmployee ()");       
+        ResultSet rs = stmt.executeQuery("select dbo.getTotalSalaryEmployee ()");
         int r = 0;
-        if(rs.next()){            
+        if (rs.next()) {
             r = rs.getInt("");
         }
         closeConnection();
         return r;
     }
-    
-    
 }
