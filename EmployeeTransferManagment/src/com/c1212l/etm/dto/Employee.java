@@ -186,6 +186,12 @@ public class Employee {
         return location.getLocationName();
     }
     
+    public double getEmployeeLocationAllowance(){
+        Department department = new DepartmentDAO().getDepartmentByID(departnameID);
+        Location location = new LocationDAO().getLocationById(department.getLocationID());
+        return location.getAllowance();
+    }
+    
     public String getEmployeeProject(){
         Project project = new ProjectDAO().getProjectById(projectID);
         return project.getProjectName();

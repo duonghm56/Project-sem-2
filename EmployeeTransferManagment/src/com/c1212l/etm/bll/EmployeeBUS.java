@@ -88,11 +88,10 @@ public class EmployeeBUS {
     
     public double getTotalAllowance(String emplNum){
         try {
-            Employee empl = employeeDAO.getEmployeeByNumber(emplNum);
-            Department department = new DepartmentDAO().getDepartmentByID(empl.getDepartnameID());            
-            Location location = new LocationDAO().getLocationById(department.getDepartmentID());
-            return empl.getAllowance() + location.getAllowance();
-        } catch (Exception ex){
+            Employee e = employeeDAO.getEmployeeByNumber(emplNum);
+            return e.getAllowance() + e.getEmployeeLocationAllowance();
+        } catch(Exception ex){
+            ex.printStackTrace();
             return 0;
         }
     }
